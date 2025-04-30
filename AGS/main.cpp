@@ -1,5 +1,5 @@
 #include <DxLib.h>
-#include "Application.h"
+#include "Manager/Application.h"
 
 // WinMainä÷êî
 //---------------------------------

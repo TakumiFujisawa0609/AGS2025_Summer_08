@@ -151,23 +151,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="FpsControl.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="StageBase.cpp" />
+    <ClCompile Include="Manager\Application.cpp" />
+    <ClCompile Include="Manager\FpsControl.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="Object\Camera.cpp" />
+    <ClCompile Include="Object\Player.cpp" />
+    <ClCompile Include="Object\PlayerShot.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="Stage\StageBase.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="FpsControl.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="StageBase.h" />
+    <ClInclude Include="Manager\Application.h" />
+    <ClInclude Include="Manager\FpsControl.h" />
+    <ClInclude Include="Manager\InputManager.h" />
+    <ClInclude Include="Manager\SceneManager.h" />
+    <ClInclude Include="Manager\SoundManager.h" />
+    <ClInclude Include="Object\Camera.h" />
+    <ClInclude Include="Object\Player.h" />
+    <ClInclude Include="Object\PlayerShot.h" />
+    <ClInclude Include="Scene\GameScene.h" />
+    <ClInclude Include="Scene\SceneBase.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="Stage\StageBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
