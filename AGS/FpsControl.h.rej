@@ -1,0 +1,38 @@
+diff a/AGS/FpsControl.h b/AGS/FpsControl.h	(rejected hunks)
+@@ -0,0 +1,36 @@
++#pragma once
++
++// �t���[�����[�g
++static constexpr float FRAME_RATE(1000 / 60);
++
++class FpsControl
++{
++public:
++	// �R���X�g���N�^�E�f�X�g���N�^
++	FpsControl();
++	~FpsControl();
++
++	// ������
++	void Init(void);
++
++	// �t���[�����[�g�X�V
++	bool UpdateFrameRate(void);
++
++	// �t���[�����[�g�v�Z
++	void CalcFrameRate(void);
++
++	// �t���[�����[�g�\��
++	void DrawFrameRate(void);
++
++private:
++
++	int currentTime;			// ���݂̎���
++	int prevFrameTime;			// �O��̃t���[�����s���̎���
++
++	int frameCnt;				// �t���[���J�E���g�p
++	int updateFrameRateTime;	// �t���[�����[�g��X�V�������̎���
++
++	float frameRate;			// �t���[�����[�g�i�\���p�j
++
++};
++

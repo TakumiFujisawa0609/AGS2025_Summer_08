@@ -152,35 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
 <<<<<<< HEAD
-<<<<<<< HEAD
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="FpsControl.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerShot.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="StageBase.cpp" />
-    <ClCompile Include="TitleScene.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="FpsControl.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerShot.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="StageBase.h" />
-    <ClInclude Include="TitleScene.h" />
-=======
-=======
->>>>>>> stage
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager\Application.cpp" />
     <ClCompile Include="Manager\FpsControl.cpp" />
@@ -208,9 +179,6 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
-<<<<<<< HEAD
->>>>>>> stage
-=======
 =======
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -238,7 +206,6 @@
     <ClInclude Include="StageBase.h" />
     <ClInclude Include="TitleScene.h" />
 >>>>>>> parent of 90286ed (Merge branch 'stage')
->>>>>>> stage
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
