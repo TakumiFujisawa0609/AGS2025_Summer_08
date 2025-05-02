@@ -12,15 +12,13 @@ public:
 private:
 
 
-	//ステージの配置座標（ｚ）
-	float stageLoopPosZ;
-	//一つ目のステージ位置を変更する場合、true
-	bool isLoopStage;
-
-
 	//一つ目のステージモデルのロード
-	int stageModeId;
-	//2つ目ステージモデルのロード
-	int stage2ModeId;
+	int stageModeId_;
+
+	// ステージの座標
+	VECTOR stagePos_;
+
+	// ステージのサイズ
+	VECTOR stageScale_;
 };
 
