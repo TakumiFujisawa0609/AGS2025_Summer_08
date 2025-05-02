@@ -151,9 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="FpsControl.h" />
-    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
@@ -164,10 +161,7 @@
     <ClInclude Include="Object\PlayerShot.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
-    <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="StageBase.h" />
     <ClInclude Include="Stage\StageBase.h" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -175,15 +169,9 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Object\Camera.cpp" />
-    <ClCompile Include="Object\Player.cpp" />
-    <ClCompile Include="Object\PlayerShot.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerShot.cpp" />
-    <ClCompile Include="Scene\GameScene.cpp" />
-    <ClCompile Include="Scene\SceneBase.cpp" />
-    <ClCompile Include="Scene\SceneManager.cpp" />
-    <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StageBase.cpp" />
     <ClCompile Include="TitleScene.cpp" />
