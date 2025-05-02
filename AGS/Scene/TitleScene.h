@@ -1,7 +1,8 @@
 #pragma once
+#include "SceneBase.h"
 
 
-class TitleScene
+class TitleScene : public SceneBase
 {
 
 public:
@@ -12,17 +13,17 @@ public:
 	// デストラクタ
 	~TitleScene(void);
 
-	void Init(void);
-	void Update(void);
-	void Draw(void);
-	void Release(void);
+	void Init(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+	void Release(void) override;
 
 private:
 
-	// タイトル画像
-	
+	// testタイトル画像
+	int testTitleImg_;
 
 	// スタート画像
-	
+
 
 };

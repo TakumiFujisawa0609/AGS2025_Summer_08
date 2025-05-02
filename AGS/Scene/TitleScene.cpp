@@ -14,7 +14,7 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-
+	testTitleImg_ = LoadGraph("Image/TestTitle.png");
 }
 
 void TitleScene::Update(void)
@@ -30,21 +30,15 @@ void TitleScene::Update(void)
 void TitleScene::Draw(void)
 {
 
-	// 背景
-	DrawGraph(0, 0, , true);
+	// test背景
+	DrawGraph(0, 0, testTitleImg_, true);
 
-	// スタートキー画像のサイズ 337×53
-	// 画面真ん中のちょっと下
-	DrawGraph(
-		(Application::SCREEN_SIZE_X / 2) - (337 / 2),
-		(Application::SCREEN_SIZE_Y / 2) - (53 / 2) + 160,
-		,
-		true
-	);
+
+
 
 }
 
 void TitleScene::Release(void)
 {
-	
+	DeleteGraph(testTitleImg_);
 }

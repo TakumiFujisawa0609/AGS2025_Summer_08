@@ -41,7 +41,7 @@ void Application::Init(void)
 	SetWindowText("Learning");
 
 	// ウィンドウサイズ
-	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 32);
+	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DIPTH);
 	ChangeWindowMode(true);
 
 	if (DxLib_Init() == -1)
@@ -56,7 +56,7 @@ void Application::Init(void)
 	InputManager::GetInstance()->Init();
 
 	// シーン管理初期化
-	//SceneManager::CreateInstance();
+	SceneManager::CreateInstance();
 
 	// サウンド管理初期化
 	SoundManager::CreateInstance();
@@ -78,8 +78,8 @@ void Application::Run(void)
 		if (!fps_->UpdateFrameRate()) continue;
 
 		InputManager::GetInstance()->Update();
-		//SceneManager::GetInstance()->Update();
-		//SceneManager::GetInstance()->Draw();
+		SceneManager::GetInstance()->Update();
+		SceneManager::GetInstance()->Draw();
 
 		fps_->CalcFrameRate();	// フレームレート計算
 		fps_->DrawFrameRate();	// フレームレート描画
@@ -96,7 +96,7 @@ void Application::Destroy(void)
 	InputManager::GetInstance()->DeleteInstance();
 
 	// シーン管理破棄
-	//SceneManager::GetInstance()->Destroy();
+	SceneManager::GetInstance()->Destroy();
 
 	// サウンド管理破棄
 	SoundManager::GetInstance()->DeleteInstance();
