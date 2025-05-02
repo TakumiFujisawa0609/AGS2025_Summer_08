@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 class Stage;
 class Camera;
 class Player;
@@ -24,11 +25,6 @@ public:
 	void Draw(void);
 	void Release(void);
 
-	// ゲームクリアフラグの設定
-	void SetIsGameClear(bool isGameClear);
-	// ゲームクリアフラグの取得
-	bool GetIsGameClear(void);
-
 private:
 	// プレイヤー
 	Player* player_;
@@ -51,5 +47,5 @@ private:
 	// 衝突
 	Collision* collision_;
 
-	
+
 };
