@@ -159,13 +159,9 @@
     <ClInclude Include="Manager\InputManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
-    <ClInclude Include="Object\Camera.h" />
-    <ClInclude Include="Object\Player.h" />
-    <ClInclude Include="Object\PlayerShot.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="SoundManager.h" />
@@ -175,13 +171,9 @@
     <ClCompile Include="FpsControl.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Object\Camera.cpp" />
-    <ClCompile Include="Object\Player.cpp" />
-    <ClCompile Include="Object\PlayerShot.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerShot.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StageBase.cpp" />
     <ClCompile Include="TitleScene.cpp" />
