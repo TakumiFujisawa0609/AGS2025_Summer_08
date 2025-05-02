@@ -152,7 +152,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="FpsControl.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Manager\Application.h" />
@@ -173,7 +172,6 @@
     <ClInclude Include="StageBase.h" />
     <ClInclude Include="Stage\StageBase.h" />
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FpsControl.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
