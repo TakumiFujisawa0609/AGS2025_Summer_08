@@ -14,24 +14,24 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-
+	testTitleImg_ = LoadGraph("Image/TestTitle.png");
 }
 
 void TitleScene::Update(void)
 {
-	//if (CheckHitKey(KEY_INPUT_SPACE))
-	//{
-	//	// スペースキーが押下されたら、ゲームシーンへ遷移する
-	//	SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
-	//}
+	if (CheckHitKey(KEY_INPUT_SPACE))
+	{
+		// スペースキーが押下されたら、ゲームシーンへ遷移する
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
+	}
 
 }
 
 void TitleScene::Draw(void)
 {
 
-	// 背景
-	
+	// test背景
+	DrawGraph(0, 0, testTitleImg_, true);
 
 	
 	
@@ -40,5 +40,5 @@ void TitleScene::Draw(void)
 
 void TitleScene::Release(void)
 {
-	
+	DeleteGraph(testTitleImg_);
 }

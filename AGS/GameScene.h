@@ -1,4 +1,5 @@
 #pragma once
+#include "SceneBase.h"
 class Stage;
 class Camera;
 class Player;
@@ -8,7 +9,7 @@ class Enemy;
 class Collision;
 
 
-class GameScene
+class GameScene : public SceneBase
 {
 
 public:
@@ -19,10 +20,10 @@ public:
 	// デストラクタ
 	~GameScene(void);
 
-	void Init(void);
-	void Update(void);
-	void Draw(void);
-	void Release(void);
+	void Init(void) override;
+	void Update(void) override;
+	void Draw(void) override;
+	void Release(void) override;
 
 	// ゲームクリアフラグの設定
 	void SetIsGameClear(bool isGameClear);
@@ -50,6 +51,9 @@ private:
 
 	// 衝突
 	Collision* collision_;
+
+	//testゲームシーン
+	int testGameSceneImg_;
 
 	
 };

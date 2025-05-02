@@ -16,7 +16,6 @@ public:
 		NONE,
 		TITLE,
 		GAME,
-		GAMEOVER,
 	};
 
 	// インスタンスの生成
@@ -45,7 +44,6 @@ private:
 
 	// フェード
 	Fader* fader_;
-
 	// 各種シーン
 	SceneBase* scene_;
 
