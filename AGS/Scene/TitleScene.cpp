@@ -33,9 +33,6 @@ void TitleScene::Draw(void)
 	// testîwåi
 	DrawGraph(0, 0, testTitleImg_, true);
 
-
-
-
 }
 
 void TitleScene::Release(void)

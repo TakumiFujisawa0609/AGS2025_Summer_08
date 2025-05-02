@@ -25,12 +25,9 @@ public:
 	void Draw(void) override;
 	void Release(void) override;
 
-	// ゲームクリアフラグの設定
-	void SetIsGameClear(bool isGameClear);
-	// ゲームクリアフラグの取得
-	bool GetIsGameClear(void);
-
 private:
+
+
 	// プレイヤー
 	Player* player_;
 

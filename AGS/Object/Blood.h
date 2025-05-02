@@ -1,6 +1,6 @@
 #pragma once
 
-class EnemyBase
+class Blood
 {
 public:
 
@@ -11,5 +11,5 @@ public:
 
 private:
 
-	int EnemyImageId;
+	int BloodImages[];
 };

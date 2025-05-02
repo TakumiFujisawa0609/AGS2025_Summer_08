@@ -53,30 +53,27 @@ void SoundManager::Init(void)
 	// BGM読み込み
 	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 
+	// 歩く読み込み
+	walkHundle_ = LoadSoundMem(WALK1_PATH);
+
 	// 走る音読み込み
 	run1Hundle_ = LoadSoundMem(RUN1_PATH);
 
-	// ジャンプ音読み込み
-	jump1Hundle_ = LoadSoundMem(JUMP1_PATH);
-
-	// 着地音読み込み
-	landing1Hundle_ = LoadSoundMem(LANDING1_PATH);
 }
 
 void SoundManager::Update(void)
 {
 	PlayBgm1();
+	PlayWalk1();
 	PlayRun1();
-	PlayJump1();
-	PlayLanding1();
 }
 
 void SoundManager::Release(void)
 {
+
 	DeleteSoundMem(bgm1Hundle_);
+	DeleteSoundMem(walk1Hundle_);
 	DeleteSoundMem(run1Hundle_);
-	DeleteSoundMem(jump1Hundle_);
-	DeleteSoundMem(landing1Hundle_);
 
 	// インスタンスの削除
 	DeleteInstance();
@@ -95,6 +92,15 @@ void SoundManager::PlayBgm1()
 	ChangeVolumeSoundMem(BGM1_VOLUME, bgm1Hundle_);
 }
 
+void SoundManager::PlayWalk()
+{
+	// 再生
+	PlaySoundMem(walk1Hundle_, DX_PLAYTYPE_BACK, true);
+
+	// 音量調整
+	ChangeVolumeSoundMem(WALK1_VOLUME, walk1Hundle_);
+}
+
 // 走る音
 void SoundManager::PlayRun1()
 {
@@ -105,31 +111,15 @@ void SoundManager::PlayRun1()
 	ChangeVolumeSoundMem(RUN1_VOLUME, run1Hundle_);
 }
 
-// ジャンプ音１再生
-void SoundManager::PlayJump1()
-{
-	// 再生
-	PlaySoundMem(jump1Hundle_, DX_PLAYTYPE_BACK, true);
-
-	// 音量調整
-	ChangeVolumeSoundMem(JUMP1_VOLUME, jump1Hundle_);
-}
-
-
-// 着地音１再生
-void SoundManager::PlayLanding1()
-{
-	// 再生
-	PlaySoundMem(landing1Hundle_, DX_PLAYTYPE_BACK, true);
-
-	// 音量調整
-	ChangeVolumeSoundMem(LANDING1_VOLUME, landing1Hundle_);
-}
-
 // BGM１停止
 void SoundManager::StopBgm1()
 {
 	StopSoundMem(bgm1Hundle_);
+}
+
+void SoundManager::StopWalk1()
+{
+	StopSoundMem(walk1Hundle_);
 }
 
 // 走る１停止
