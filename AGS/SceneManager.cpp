@@ -127,8 +127,6 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
 		break;
-	case SCENE_ID::GAMEOVER:
-		break;
 	}
 
 	// ƒV[ƒ“‚Ì‰Šú‰»

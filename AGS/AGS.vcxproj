@@ -167,6 +167,7 @@
     <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerShot.h" />
+    <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerShot.cpp" />
+    <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="StageBase.cpp" />
@@ -193,6 +195,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="FpsControl.h.rej" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\testgame.png" />
+    <Image Include="Image\testtitle.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

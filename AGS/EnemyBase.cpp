@@ -33,45 +33,14 @@ void EnemyBase::Init(GameScene* gameScene, Camera* camera)
 
 void EnemyBase::Update(void)
 {
-	// ゲームクリアフラグが折れてた時
-	if (!gameScene_->GetIsGameClear())
-	{
-		// 敵の再出現処理
-		if (!isAliveEnemy_ || enemyPos_.z < camera_->GetCameraPos().z)
-		{
-			// ランダムの数値を取得（０～６００）
-			int rundomNum = GetRand(600);
-			//  -３００～3００の数値にする
-			rundomNum -= 300;
-			// 敵のX座標をランダムに設定
-			enemyPos_.x = rundomNum;
-
-			// 敵の再出現Z位置を設定
-			enemyPos_.z = camera_->GetCameraPos().z + ENEMY_RESPAWN_POS_Z;
-			// 敵の座標をモデルに設定
-			MV1SetPosition(enemyModelId_, enemyPos_);
-
-			// 敵の生存判定を立てる
-			isAliveEnemy_ = true;
-		}
-	}
-	else // ゲームクリアしたら敵削除
-	{
-		// 敵の生存判定を折る
-		isAliveEnemy_ = false;
-	}
 
 
 }
 
 void EnemyBase::Draw(void)
 {
-	// 敵の座標をモデルに設定
-	if (isAliveEnemy_)
-	{
-		// 敵モデル描画
-		MV1DrawModel(enemyModelId_);
-	}
+	// 
+	MV1DrawModel(enemyModelId_);
 }
 
 

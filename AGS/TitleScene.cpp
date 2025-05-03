@@ -14,12 +14,12 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-
+	testTitle_ = LoadGraph("Image/testtitle.png");
 }
 
 void TitleScene::Update(void)
 {
-	if (CheckHitKey(KEY_INPUT_SPACE))
+	if (CheckHitKey(KEY_INPUT_F1))
 	{
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
@@ -31,20 +31,11 @@ void TitleScene::Draw(void)
 {
 
 	// 背景
-	DrawGraph(0, 0, , true);
-
-	// スタートキー画像のサイズ 337×53
-	// 画面真ん中のちょっと下
-	DrawGraph(
-		(Application::SCREEN_SIZE_X / 2) - (337 / 2),
-		(Application::SCREEN_SIZE_Y / 2) - (53 / 2) + 160,
-		,
-		true
-	);
+	DrawGraph(0, 0, testTitle_, true);
 
 }
 
 void TitleScene::Release(void)
 {
-	
+	DeleteGraph(testTitle_);
 }

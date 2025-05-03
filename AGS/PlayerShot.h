@@ -7,6 +7,7 @@ class PlayerShot
 {
 public:
 
+    static constexpr VECTOR INIT_P_SHOT_POS = {};
     PlayerShot();
     ~PlayerShot();
 

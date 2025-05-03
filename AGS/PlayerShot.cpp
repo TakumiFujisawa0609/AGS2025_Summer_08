@@ -46,8 +46,6 @@ void PlayerShot::Release()
 {
 	// ’eƒ‚ƒfƒ‹‚Ì‰ð•ú
 	MV1DeleteModel(pShotModelId_);
-	MV1DeleteModel(abnormalPShotModelId1_);
-	MV1DeleteModel(abnormalPShotModelId2_);
 }
 
 

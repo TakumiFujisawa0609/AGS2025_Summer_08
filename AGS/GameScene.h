@@ -1,15 +1,16 @@
 #pragma once
+#include "SceneBase.h"
 class Stage;
 class Camera;
 class Player;
 class PlayerShot;
 class Blood;
-class Enemy;
+class EnemyBase;
 class EnemyShot;
 class Collision;
 
 
-class GameScene
+class GameScene : public SceneBase
 {
 
 public:
@@ -20,15 +21,10 @@ public:
 	// デストラクタ
 	~GameScene(void);
 
-	void Init(void);
-	void Update(void);
-	void Draw(void);
-	void Release(void);
-
-	// ゲームクリアフラグの設定
-	void SetIsGameClear(bool isGameClear);
-	// ゲームクリアフラグの取得
-	bool GetIsGameClear(void);
+	void Init(void)	override;
+	void Update(void) override;
+	void Draw(void)	override;
+	void Release(void) override;
 
 private:
 
@@ -42,7 +38,7 @@ private:
 	Player* player_;
 
 	// 敵
-	Enemy* enemy_;
+	EnemyBase* enemy_;
 
 	// 弾
 	PlayerShot* pShot_;
@@ -56,20 +52,5 @@ private:
 	// 衝突
 	Collision* collision_;
 
-	// ゲームオーバー画像ID
-	int gameOverId_;
-	// ゲームクリア画像ID
-	int gameClearId_;
-
-	// ゲームクリアフラグ
-	bool isGameClear_;
-
-	// プレイヤーの当たり判定の球体の半径
-	float playerSphereRadius_;
-	// 敵の当たり判定の球体の半径
-	float enemySphereRadius_;
-	// プレイヤーと敵の当たり判定用球体の半径の合計
-	float radiusSum_;
-	// 当たり判定用球体の中心間の距離
-	float centerDistance_;
+	int testgame_;
 };

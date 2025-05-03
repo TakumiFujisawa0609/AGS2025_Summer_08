@@ -1,6 +1,6 @@
 #pragma once
 class Player;
-class Enemy;
+class EnemyBase;
 class Blast;
 class PlayerShot;
 
@@ -18,7 +18,7 @@ public:
 
 
     // 初期化
-    void Init(Player* player, Enemy* enemy, Blast* blast, PlayerShot* pShot);
+    void Init(Player* player, EnemyBase* enemy, Blast* blast, PlayerShot* pShot);
     // 更新
     void Update(void);
     // 描画
@@ -36,26 +36,12 @@ private:
 
     Player* player_;
 
-    Enemy* enemy_;
+    EnemyBase* enemy_;
 
     Blast* blast_;
 
     PlayerShot* pShot_;
 
-    // プレイヤーの当たり判定の球体の半径
-    float playerSphereRadius_;
-    // 敵の当たり判定の球体の半径
-    float enemySphereRadius_;
-    // プレイヤーと敵の当たり判定用球体の半径の合計
-    float radiusPAndESum_;
-    // プレイヤー弾と敵の当たり判定用球体の半径の合計
-    float radiusPShotAndESum_;
 
-    // プレイヤーと敵の当たり判定用球体の中心間の距離
-    float centerDistancePandE_;
-    // プレイヤー弾と敵の当たり判定用球体の中心間の距離
-    float centerDistancePShotAndE_;
-    float centerDistanceAbnormalPShotAndE1_;
-    float centerDistanceAbnoemalPShotAndE2_;
 
 };

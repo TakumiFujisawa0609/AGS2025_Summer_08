@@ -8,8 +8,8 @@ class Application
 public:
 
 	// スクリーンサイズ
-	static constexpr int SCREEN_SIZE_X = 768;
-	static constexpr int SCREEN_SIZE_Y = 480;
+	static constexpr int SCREEN_SIZE_X = 1024;
+	static constexpr int SCREEN_SIZE_Y = 768;
 
 	// 明示的にインステンスを生成する
 	static void CreateInstance(void);

@@ -3,17 +3,13 @@
 
 #define BGM1_PATH "Data/BGM1.mp3"
 #define RUN1_PATH "Data/Run1.wav"
-#define JUMP1_PATH "Data/Jump1.wav"
-#define LANDING1_PATH "Data/Landing1.wav"
 
 class SoundManager
 {
 public:
 
 	static constexpr int BGM1_VOLUME = 130;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int RUN1_VOLUME = 125;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int JUMP1_VOLUME = 90;		// ƒWƒƒƒ“ƒv‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int LANDING1_VOLUME = 125;	// ’…’n‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int RUN1_VOLUME = 125;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚T)
 
 	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
 	static void CreateInstance(void);
@@ -29,8 +25,6 @@ public:
 	// ‰¹Œ¹Ä¶
 	void PlayBgm1();	// BGM
 	void PlayRun1();	// ‘–‚é
-	void PlayJump1();	// ƒWƒƒƒ“ƒv
-	void PlayLanding1();// ’…’n
 	//‰¹Œ¹’â~
 	void StopBgm1();	//BGM
 	void StopRun1();	//‘–‚é
@@ -49,8 +43,6 @@ private:
 
 	int bgm1Hundle_;
 	int run1Hundle_;
-	int landing1Hundle_;
-	int jump1Hundle_;
 };
 
 

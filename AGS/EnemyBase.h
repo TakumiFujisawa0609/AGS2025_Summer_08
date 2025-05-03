@@ -8,6 +8,8 @@ class EnemyBase
 {
 
 public:
+	static constexpr VECTOR INIT_ENEMY_POS = {};
+	static constexpr VECTOR INIT_ENEMY_SCALE = {};
 
 
 	void Init(GameScene* gameScene, Camera* camera);

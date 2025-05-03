@@ -12,14 +12,10 @@ void Camera::Init(Player* player)
 
 void Camera::Update(void)
 {
-	// カメラの前方運動量
-	cameraPos_.z += CAMERA_MOVE_POWER_Z;
-	// カメラX座標をプレイヤーX座標と同期させる
-	cameraPos_.x = player_->GetPlayerPos().x;
+	// カメラ座標をプレイヤー座標と同期させる
 
 	// カメラ設定
-	SetCameraPositionAndAngle(
-		cameraPos_, VECTOR_V, 0.0f, 0.0f);
+	
 }
 
 void Camera::Draw(void)
