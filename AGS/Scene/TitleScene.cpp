@@ -1,6 +1,6 @@
 #include <DxLib.h>
-#include "Application.h"
-#include "SceneManager.h"
+#include "../Manager/Application.h"
+#include "../Manager/SceneManager.h"
 #include "TitleScene.h"
 
 
@@ -19,7 +19,7 @@ void TitleScene::Init(void)
 
 void TitleScene::Update(void)
 {
-	if (CheckHitKey(KEY_INPUT_F1))
+	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);

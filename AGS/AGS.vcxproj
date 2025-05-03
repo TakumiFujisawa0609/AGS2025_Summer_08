@@ -151,54 +151,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
-    <ClInclude Include="Blood.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="EnemyBase.h" />
-    <ClInclude Include="Fader.h" />
-    <ClInclude Include="FpsControl.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="InputManager.h" />
+    <ClCompile Include="Fanction\Collision.cpp" />
+    <ClCompile Include="Fanction\Fader.cpp" />
+    <ClCompile Include="Fanction\FpsControl.cpp" />
+    <ClCompile Include="Manager\Application.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
+    <ClCompile Include="Manager\main.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="Object\Blood.cpp" />
+    <ClCompile Include="Object\Camera.cpp" />
+    <ClCompile Include="Object\EnemyBase.cpp" />
+    <ClCompile Include="Object\Player.cpp" />
+    <ClCompile Include="Object\PlayerShot.cpp" />
+    <ClCompile Include="Object\StageBase.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClInclude Include="Fanction\Collision.h" />
+    <ClInclude Include="Fanction\Fader.h" />
+    <ClInclude Include="Fanction\FpsControl.h" />
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerShot.h" />
-    <ClInclude Include="SceneBase.h" />
-    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Object\Blood.h" />
+    <ClInclude Include="Object\Camera.h" />
+    <ClInclude Include="Object\EnemyBase.h" />
+    <ClInclude Include="Object\Player.h" />
+    <ClInclude Include="Object\PlayerShot.h" />
+    <ClInclude Include="Object\StageBase.h" />
+    <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="StageBase.h" />
     <ClInclude Include="Stage\StageBase.h" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Blood.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="EnemyBase.cpp" />
-    <ClCompile Include="Fader.cpp" />
-    <ClCompile Include="FpsControl.cpp" />
-    <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerShot.cpp" />
-    <ClCompile Include="SceneBase.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="StageBase.cpp" />
-    <ClCompile Include="TitleScene.cpp" />
-    <ClInclude Include="TitleScene.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FpsControl.h.rej" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\testgame.png" />
     <Image Include="Image\testtitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Log.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fanction\FpsControl.h.rej" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

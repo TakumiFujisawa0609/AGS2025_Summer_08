@@ -1,5 +1,5 @@
 #include <DxLib.h>
-#include "GameScene.h"
+#include "../Scene/GameScene.h"
 #include "EnemyBase.h"
 #include "Camera.h"
 

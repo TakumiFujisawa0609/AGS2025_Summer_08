@@ -1,9 +1,10 @@
 #include <DxLib.h>
-#include "Application.h"
-#include "Fader.h"
-#include "SceneBase.h"
-#include "TitleScene.h"
-#include "GameScene.h"
+#include "../Manager/Application.h"
+#include "../Fanction/FpsControl.h"
+#include "../Fanction/Fader.h"
+#include "../Scene/SceneBase.h"
+#include "../Scene/TitleScene.h"
+#include "../Scene/GameScene.h"
 #include "SceneManager.h"
 
 SceneManager* SceneManager::instance_ = nullptr;

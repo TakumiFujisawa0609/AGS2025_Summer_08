@@ -1,9 +1,9 @@
 #include "Collision.h"
 #include <DxLib.h>
-#include "Player.h"
-#include "EnemyBase.h"
-#include "Blood.h"
-#include "PlayerShot.h"
+#include "../Object/Player.h"
+#include "../Object/EnemyBase.h"
+#include "../Object/Blood.h"
+#include "../Object/Player.h"
 
 // èâä˙âª
 void Collision::Init(Player* player, EnemyBase* enemy, Blast* blast, PlayerShot* pShot)
