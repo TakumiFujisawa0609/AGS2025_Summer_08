@@ -14,7 +14,7 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-	testTitle_ = LoadGraph("Image/testtitle.png");
+	testTitle_ = LoadGraph("Data/Image/testtitle.png");
 }
 
 void TitleScene::Update(void)

@@ -130,11 +130,55 @@
     <Image Include="Image\testgame.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Image\Enemy\parasiteZombie_body_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\Enemy\parasiteZombie_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\Enemy\parasiteZombie_normal.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Image\Enemy\parasiteZombie_specular.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\testgame.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\testtitle.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\Enemy\parasiteZombie_body_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\Enemy\parasiteZombie_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\Enemy\parasiteZombie_normal.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\Enemy\parasiteZombie_specular.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_normal.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_specular.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Log.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fanction\FpsControl.h.rej" />
+    <None Include="Model\Enemy\Zombie_Idle.mv1" />
+    <None Include="Data\Model\Enemy\Zombie_Idle.mv1" />
   </ItemGroup>
 </Project>

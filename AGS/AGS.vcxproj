@@ -188,6 +188,20 @@
     <ClInclude Include="Stage\StageBase.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Data\Image\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Image\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Image\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Data\Image\Enemy\parasiteZombie_specular.png" />
+    <Image Include="Data\Image\testgame.png" />
+    <Image Include="Data\Image\testtitle.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_specular.png" />
+    <Image Include="Image\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Image\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Image\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Image\Enemy\parasiteZombie_specular.png" />
     <Image Include="Image\testgame.png" />
     <Image Include="Image\testtitle.png" />
   </ItemGroup>
@@ -195,7 +209,9 @@
     <Text Include="Log.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Model\Enemy\Zombie_Idle.mv1" />
     <None Include="Fanction\FpsControl.h.rej" />
+    <None Include="Model\Enemy\Zombie_Idle.mv1" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

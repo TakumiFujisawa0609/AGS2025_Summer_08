@@ -7,9 +7,10 @@ class Camera;
 class EnemyBase
 {
 
+
 public:
-	static constexpr VECTOR INIT_ENEMY_POS = {};
-	static constexpr VECTOR INIT_ENEMY_SCALE = {};
+	static constexpr VECTOR INIT_ENEMY_POS = {500,250,-300};
+	static constexpr VECTOR INIT_ENEMY_SCALE = {1.0f,1.0f,1.0f};
 
 
 	void Init(GameScene* gameScene, Camera* camera);
@@ -39,6 +40,8 @@ private:
 	// 敵の生存判定
 	bool isAliveEnemy_;
 
+	// アニメーション
+	int animIndex_;
 
 };
 

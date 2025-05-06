@@ -15,7 +15,7 @@ void Camera::Update(void)
 	// カメラ座標をプレイヤー座標と同期させる
 
 	// カメラ設定
-	
+	SetCameraPositionAndAngle(cameraPos_, 0.0f, 0.0f, 0.0f);
 }
 
 void Camera::Draw(void)
