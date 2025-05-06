@@ -47,7 +47,7 @@ void EnemyBase::Update(void)
 
 void EnemyBase::Draw(void)
 {
-	// 
+	// “Gƒ‚ƒfƒ‹•`‰æ
 	MV1DrawModel(enemyModelId_);
 }
 

@@ -40,7 +40,7 @@ private:
 	// 敵の生存判定
 	bool isAliveEnemy_;
 
-	// アニメーション
+	// アニメーション用変数
 	int animIndex_;
 
 };
