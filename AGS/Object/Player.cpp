@@ -1,1 +1,25 @@
 #include "Player.h"
+
+Player::Player()
+{
+}
+
+Player::~Player()
+{
+}
+
+void Player::Init(void)
+{
+}
+
+void Player::Update(void)
+{
+}
+
+void Player::Draw(void)
+{
+}
+
+void Player::Release(void)
+{
+}
