@@ -7,10 +7,9 @@ class Camera
 public:
 
 	// カメラ初期位置
-	static constexpr VECTOR INIT_CAMERA_POS = { 0.0f, 200.0f, -400.f };
-
-	// カメラの前方運動量
-	static constexpr float CAMERA_MOVE_POWER_Z = 20.0f;
+	static constexpr VECTOR INIT_CAMERA_POS = { 0.0f, 0.0f, 0.0f };
+	// カメラ初期角度
+	static constexpr VECTOR INIT_CAMERA_ANGLE = { 0.0, 0.0f, 0.0f };
 
 	void Init(Player* player);
 	void Update(void);
@@ -25,5 +24,7 @@ private:
 
 	// カメラ座標
 	VECTOR cameraPos_;
+	// カメラ角度
+	VECTOR cameraAngle_;
 
 };

@@ -5,8 +5,9 @@ class Camera;
 class Player;
 class PlayerShot;
 class Blast;
-class Enemy;
+class EnemyBase;
 class Collision;
+class Grid;
 
 
 class GameScene : public SceneBase
@@ -38,7 +39,7 @@ private:
 	Camera* camera_;
 
 	// 敵
-	Enemy* enemy_;
+	EnemyBase* enemy_;
 
 	// 弾
 	PlayerShot* pShot_;
@@ -48,6 +49,9 @@ private:
 
 	// 衝突
 	Collision* collision_;
+
+	// グリッド
+	Grid* grid_;
 
 	//testゲームシーン
 	int testGameSceneImg_;

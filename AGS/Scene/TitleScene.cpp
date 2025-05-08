@@ -1,6 +1,6 @@
 #include <DxLib.h>
-#include "Application.h"
-#include "SceneManager.h"
+#include "../Manager/Application.h"
+#include "../Manager/SceneManager.h"
 #include "TitleScene.h"
 
 
@@ -14,7 +14,7 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-	testTitleImg_ = LoadGraph("Image/TestTitle.png");
+	testTitleImg_ = LoadGraph("Data/Image/TestTitle.png");
 }
 
 void TitleScene::Update(void)

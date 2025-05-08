@@ -1,7 +1,7 @@
 #include "DxLib.h"
 #include "FpsControl.h"
-#include "Application.h"
-#include "InputManager.h"
+#include "../Manager/Application.h"
+#include "../Manager/InputManager.h"
 
 FpsControl::FpsControl()
 {
