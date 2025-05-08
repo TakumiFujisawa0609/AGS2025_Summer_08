@@ -151,18 +151,70 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Function\Collision.h" />
+    <ClInclude Include="Function\Fader.h" />
+    <ClInclude Include="Function\FpsControl.h" />
+    <ClInclude Include="Function\Grid.h" />
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
+    <ClInclude Include="Object\Blood.h" />
     <ClInclude Include="Object\Camera.h" />
+    <ClInclude Include="Object\EnemyBase.h" />
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Object\PlayerShot.h" />
+    <ClInclude Include="Object\StageBase.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
+    <ClCompile Include="Function\Collision.cpp" />
+    <ClCompile Include="Function\Fader.cpp" />
+    <ClCompile Include="Function\FpsControl.cpp" />
+    <ClCompile Include="Function\Grid.cpp" />
+    <ClCompile Include="Manager\Application.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
+    <ClCompile Include="Manager\main.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="Object\Blood.cpp" />
+    <ClCompile Include="Object\Camera.cpp" />
+    <ClCompile Include="Object\EnemyBase.cpp" />
+    <ClCompile Include="Object\Player.cpp" />
+    <ClCompile Include="Object\PlayerShot.cpp" />
+    <ClCompile Include="Object\StageBase.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Data\Image\TestGameScene.png" />
+    <Image Include="Data\Image\TestTitle.png" />
+    <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_normal.png" />
+    <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_specular.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_specular.png" />
+    <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_normal.png" />
+    <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_specular.png" />
+    <Image Include="Image\TestGameScene.png" />
+    <Image Include="Image\TestTitle.png" />
+    <Image Include="Model\parasiteZombie_body_diffuse.png" />
+    <Image Include="Model\parasiteZombie_diffuse.png" />
+    <Image Include="Model\parasiteZombie_normal.png" />
+    <Image Include="Model\parasiteZombie_specular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Model\Enemy\idle.mv1" />
+    <None Include="Data\Model\Enemy\zombi_idle.fbx" />
+    <None Include="Model\zombi_idle.mv1" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
