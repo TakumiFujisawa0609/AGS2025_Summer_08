@@ -12,18 +12,11 @@ void Camera::Init(Player* player)
 
 void Camera::Update(void)
 {
-<<<<<<< HEAD
 
 	// カメラ座標をプレイヤー座標と同期させる
 
 	// カメラ設定
 	
-=======
-	// カメラ座標をプレイヤー座標と同期させる
-
-	// カメラ設定
-	SetCameraPositionAndAngle(cameraPos_, 0.0f, 0.0f, 0.0f);
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 }
 
 void Camera::Draw(void)

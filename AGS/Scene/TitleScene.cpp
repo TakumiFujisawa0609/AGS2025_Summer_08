@@ -14,11 +14,7 @@ TitleScene::~TitleScene(void)
 
 void TitleScene::Init(void)
 {
-<<<<<<< HEAD
 	testTitleImg_ = LoadGraph("Data/Image/TestTitle.png");
-=======
-	testTitle_ = LoadGraph("Data/Image/testtitle.png");
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 }
 
 void TitleScene::Update(void)
@@ -34,21 +30,12 @@ void TitleScene::Update(void)
 void TitleScene::Draw(void)
 {
 
-<<<<<<< HEAD
 	// test”wŒi
 	DrawGraph(0, 0, testTitleImg_, true);
-=======
-	// ”wŒi
-	DrawGraph(0, 0, testTitle_, true);
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 
 }
 
 void TitleScene::Release(void)
 {
-<<<<<<< HEAD
 	DeleteGraph(testTitleImg_);
-=======
-	DeleteGraph(testTitle_);
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 }

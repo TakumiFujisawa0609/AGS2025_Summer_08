@@ -44,10 +44,6 @@ void InputManager::Init(void)
 	// ゲームで使用したキーを、
 	// 事前にここで登録しておく
 	Add(KEY_INPUT_SPACE);
-<<<<<<< HEAD
-=======
-	Add(KEY_INPUT_F1);
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 
 
 	// アニメーション用に使用するボタン
@@ -56,13 +52,11 @@ void InputManager::Init(void)
 	Add(KEY_INPUT_3);
 	Add(KEY_INPUT_4);
 	Add(KEY_INPUT_5);
+	Add(KEY_INPUT_6);
 
 	// エフェクト用に使用するボタン
 	Add(KEY_INPUT_Q);
-<<<<<<< HEAD
 
-=======
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 }
 
 void InputManager::Update(void)

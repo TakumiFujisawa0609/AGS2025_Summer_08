@@ -15,17 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="Scene\GameScene.cpp">
-=======
-    <ClCompile Include="Scene\TitleScene.cpp">
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Scene\SceneBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Scene\TitleScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -72,51 +67,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Function\Grid.cpp">
-=======
-    <ClCompile Include="Scene\GameScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\InputManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\SceneManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\SoundManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\Blood.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\EnemyBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\PlayerShot.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\StageBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Object\Camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\Application.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Fanction\Collision.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Fanction\Fader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Fanction\FpsControl.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Manager\main.cpp">
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -136,7 +86,6 @@
     <ClInclude Include="Manager\SoundManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Object\Camera.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -144,21 +93,11 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Object\PlayerShot.h">
-=======
-    <ClInclude Include="Scene\SceneBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\TitleScene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage\StageBase.h">
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Scene\GameScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Scene\SceneBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -177,45 +116,20 @@
     <ClInclude Include="Function\FpsControl.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-=======
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
     <ClInclude Include="Object\Blood.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Object\EnemyBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="Object\StageBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Function\Grid.h">
-=======
-    <ClInclude Include="Object\Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Object\PlayerShot.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Object\StageBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Object\Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Fanction\Collision.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Fanction\Fader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Fanction\FpsControl.h">
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Image Include="Image\TestGameScene.png">
       <Filter>リソース ファイル</Filter>
     </Image>
@@ -232,42 +146,6 @@
       <Filter>リソース ファイル</Filter>
     </Image>
     <Image Include="Model\parasiteZombie_specular.png">
-=======
-    <Image Include="Image\testtitle.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Image\testgame.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Image\Enemy\parasiteZombie_body_diffuse.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Image\Enemy\parasiteZombie_diffuse.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Image\Enemy\parasiteZombie_normal.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Image\Enemy\parasiteZombie_specular.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Data\Image\testgame.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Data\Image\testtitle.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Data\Image\Enemy\parasiteZombie_body_diffuse.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Data\Image\Enemy\parasiteZombie_diffuse.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Data\Image\Enemy\parasiteZombie_normal.png">
-      <Filter>リソース ファイル</Filter>
-    </Image>
-    <Image Include="Data\Image\Enemy\parasiteZombie_specular.png">
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
       <Filter>リソース ファイル</Filter>
     </Image>
     <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png">
@@ -282,7 +160,6 @@
     <Image Include="Data\Model\Enemy\parasiteZombie_specular.png">
       <Filter>リソース ファイル</Filter>
     </Image>
-<<<<<<< HEAD
     <Image Include="Data\Image\TestGameScene.png">
       <Filter>リソース ファイル</Filter>
     </Image>
@@ -318,15 +195,5 @@
     <None Include="Model\zombi_idle.mv1" />
     <None Include="Data\Model\Enemy\idle.mv1" />
     <None Include="Data\Model\Enemy\zombi_idle.fbx" />
-=======
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Log.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Fanction\FpsControl.h.rej" />
-    <None Include="Model\Enemy\Zombie_Idle.mv1" />
-    <None Include="Data\Model\Enemy\Zombie_Idle.mv1" />
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
   </ItemGroup>
 </Project>

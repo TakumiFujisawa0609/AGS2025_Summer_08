@@ -1,12 +1,6 @@
 #include <DxLib.h>
-<<<<<<< HEAD
 #include "Application.h"
 #include "../Function/Fader.h"
-=======
-#include "../Manager/Application.h"
-#include "../Fanction/FpsControl.h"
-#include "../Fanction/Fader.h"
->>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 #include "../Scene/SceneBase.h"
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
