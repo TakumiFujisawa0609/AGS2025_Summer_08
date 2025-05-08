@@ -8,15 +8,17 @@ void Camera::Init(Player* player)
 
 	// カメラ座標の初期化
 	cameraPos_ = INIT_CAMERA_POS;
+	// カメラ初期角度
+	cameraAngle_ = INIT_CAMERA_ANGLE;
+
+	// カメラ設定
+	SetCameraPositionAndAngle(
+		cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
 }
 
 void Camera::Update(void)
 {
-	// カメラX座標をプレイヤーX座標と同期させる
-
-	// カメラ設定
-	SetCameraPositionAndAngle(
-		cameraPos_, 0.0f, 0.0f, 0.0f);
+	
 }
 
 void Camera::Draw(void)

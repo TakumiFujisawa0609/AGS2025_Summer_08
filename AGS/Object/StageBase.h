@@ -9,6 +9,7 @@ public:
 	void Draw(void);
 	void Release(void);
 
+
 private:
 
 

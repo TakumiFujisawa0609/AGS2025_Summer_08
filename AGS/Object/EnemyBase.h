@@ -3,6 +3,7 @@
 class EnemyBase
 {
 public:
+	static constexpr VECTOR INIT_ENEMY_POS = { 500.0f,300.0f,-400.0f };
 
 	void Init();	// ‰Šú‰»
 	void Update();	// XV
@@ -11,5 +12,7 @@ public:
 
 private:
 
-	int EnemyImageId;
+	int enemyModelId_;
+
+	VECTOR enemyPos_;
 };

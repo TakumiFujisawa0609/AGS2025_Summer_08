@@ -33,3 +33,4 @@ void StageBase::Draw(void)
 void StageBase::Release(void)
 {
 }
+

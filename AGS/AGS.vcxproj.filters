@@ -66,6 +66,9 @@
     <ClCompile Include="Object\StageBase.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Function\Grid.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Manager\Application.h">
@@ -122,6 +125,9 @@
     <ClInclude Include="Object\StageBase.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Function\Grid.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\TestGameScene.png">
@@ -130,5 +136,39 @@
     <Image Include="Image\TestTitle.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Model\parasiteZombie_body_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Model\parasiteZombie_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Model\parasiteZombie_normal.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Model\parasiteZombie_specular.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_normal.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\parasiteZombie_specular.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\TestGameScene.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Image\TestTitle.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Model\zombi_idle.mv1" />
+    <None Include="Data\Model\Enemy\idle.mv1" />
   </ItemGroup>
 </Project>

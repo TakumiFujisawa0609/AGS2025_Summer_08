@@ -154,6 +154,7 @@
     <ClInclude Include="Function\Collision.h" />
     <ClInclude Include="Function\Fader.h" />
     <ClInclude Include="Function\FpsControl.h" />
+    <ClInclude Include="Function\Grid.h" />
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Function\Collision.cpp" />
     <ClCompile Include="Function\Fader.cpp" />
     <ClCompile Include="Function\FpsControl.cpp" />
+    <ClCompile Include="Function\Grid.cpp" />
     <ClCompile Include="Manager\Application.cpp" />
     <ClCompile Include="Manager\InputManager.cpp" />
     <ClCompile Include="Manager\main.cpp" />
@@ -188,8 +190,22 @@
     <ClCompile Include="Scene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Data\Image\TestGameScene.png" />
+    <Image Include="Data\Image\TestTitle.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Data\Model\Enemy\parasiteZombie_specular.png" />
     <Image Include="Image\TestGameScene.png" />
     <Image Include="Image\TestTitle.png" />
+    <Image Include="Model\parasiteZombie_body_diffuse.png" />
+    <Image Include="Model\parasiteZombie_diffuse.png" />
+    <Image Include="Model\parasiteZombie_normal.png" />
+    <Image Include="Model\parasiteZombie_specular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Model\Enemy\idle.mv1" />
+    <None Include="Model\zombi_idle.mv1" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
