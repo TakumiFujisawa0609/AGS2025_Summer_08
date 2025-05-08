@@ -1,4 +1,5 @@
 #pragma once
+<<<<<<< HEAD
 
 class Blood
 {
@@ -13,3 +14,5 @@ private:
 
 	int BloodImages[];
 };
+=======
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70

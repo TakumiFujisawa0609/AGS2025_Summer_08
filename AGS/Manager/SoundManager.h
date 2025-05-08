@@ -4,16 +4,23 @@
 #define BGM1_PATH "Data/BGM1.mp3"
 #define WALK1_PATH "Data/WALK1.wav"
 #define RUN1_PATH "Data/Run1.wav"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 
 class SoundManager
 {
 public:
 
 	static constexpr int BGM1_VOLUME = 130;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+<<<<<<< HEAD
 	static constexpr int WALK1_VOLUME = 125;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int RUN1_VOLUME = 125;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 
+=======
+	static constexpr int RUN1_VOLUME = 125;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇT)
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃê∂ê¨
 	static void CreateInstance(void);
@@ -30,7 +37,10 @@ public:
 	void PlayBgm1();	// BGM
 	void PlayWalk();	// ï‡Ç≠
 	void PlayRun1();	// ëñÇÈ
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 	//âπåπí‚é~
 	void StopBgm1();	// BGM
 	void StopWalk1();	// ï‡Ç≠
@@ -51,7 +61,10 @@ private:
 	int bgm1Hundle_;
 	int walk1Hundle_;
 	int run1Hundle_;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
 };
 
 

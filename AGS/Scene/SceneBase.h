@@ -23,4 +23,8 @@ public:
 	// ‰ğ•úˆ—
 	virtual void Release(void);
 
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70

@@ -123,12 +123,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\DxLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXLIB_DIR)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXLIB_DIR)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\DxLib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXLIB_DIR)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -147,14 +147,37 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(DXLIB_DIR)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Function\Collision.h" />
     <ClInclude Include="Function\Fader.h" />
     <ClInclude Include="Function\FpsControl.h" />
     <ClInclude Include="Function\Grid.h" />
+=======
+    <ClCompile Include="Fanction\Collision.cpp" />
+    <ClCompile Include="Fanction\Fader.cpp" />
+    <ClCompile Include="Fanction\FpsControl.cpp" />
+    <ClCompile Include="Manager\Application.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
+    <ClCompile Include="Manager\main.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Manager\SoundManager.cpp" />
+    <ClCompile Include="Object\Blood.cpp" />
+    <ClCompile Include="Object\Camera.cpp" />
+    <ClCompile Include="Object\EnemyBase.cpp" />
+    <ClCompile Include="Object\Player.cpp" />
+    <ClCompile Include="Object\PlayerShot.cpp" />
+    <ClCompile Include="Object\StageBase.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
+    <ClCompile Include="Scene\SceneBase.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClInclude Include="Fanction\Collision.h" />
+    <ClInclude Include="Fanction\Fader.h" />
+    <ClInclude Include="Fanction\FpsControl.h" />
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
@@ -170,6 +193,7 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
+<<<<<<< HEAD
     <ClCompile Include="Function\Collision.cpp" />
     <ClCompile Include="Function\Fader.cpp" />
     <ClCompile Include="Function\FpsControl.cpp" />
@@ -196,10 +220,21 @@
     <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_diffuse.png" />
     <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_normal.png" />
     <Image Include="Data\Model\Enemy\Idle.fbm\parasiteZombie_specular.png" />
+=======
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Data\Image\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Image\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Image\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Data\Image\Enemy\parasiteZombie_specular.png" />
+    <Image Include="Data\Image\testgame.png" />
+    <Image Include="Data\Image\testtitle.png" />
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
     <Image Include="Data\Model\Enemy\parasiteZombie_body_diffuse.png" />
     <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png" />
     <Image Include="Data\Model\Enemy\parasiteZombie_normal.png" />
     <Image Include="Data\Model\Enemy\parasiteZombie_specular.png" />
+<<<<<<< HEAD
     <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_body_diffuse.png" />
     <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_diffuse.png" />
     <Image Include="Data\Model\Enemy\zombi_idle.fbm\parasiteZombie_normal.png" />
@@ -215,6 +250,22 @@
     <None Include="Data\Model\Enemy\idle.mv1" />
     <None Include="Data\Model\Enemy\zombi_idle.fbx" />
     <None Include="Model\zombi_idle.mv1" />
+=======
+    <Image Include="Image\Enemy\parasiteZombie_body_diffuse.png" />
+    <Image Include="Image\Enemy\parasiteZombie_diffuse.png" />
+    <Image Include="Image\Enemy\parasiteZombie_normal.png" />
+    <Image Include="Image\Enemy\parasiteZombie_specular.png" />
+    <Image Include="Image\testgame.png" />
+    <Image Include="Image\testtitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Log.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Model\Enemy\Zombie_Idle.mv1" />
+    <None Include="Fanction\FpsControl.h.rej" />
+    <None Include="Model\Enemy\Zombie_Idle.mv1" />
+>>>>>>> 1320b2c2663e97c41eb8fd77b67b0acd9567dc70
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
