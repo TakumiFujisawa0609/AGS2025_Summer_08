@@ -54,7 +54,7 @@ void SoundManager::Init(void)
 	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 
 	// ï‡Ç≠ì«Ç›çûÇ›
-	walkHundle_ = LoadSoundMem(WALK1_PATH);
+	//walkHundle_ = LoadSoundMem(WALK1_PATH);
 
 	// ëñÇÈâπì«Ç›çûÇ›
 	run1Hundle_ = LoadSoundMem(RUN1_PATH);
@@ -64,7 +64,7 @@ void SoundManager::Init(void)
 void SoundManager::Update(void)
 {
 	PlayBgm1();
-	PlayWalk1();
+	//PlayWalk1();
 	PlayRun1();
 }
 

@@ -1,4 +1,4 @@
-#inclide <DxLib.h>
+#include <DxLib.h>
 #include "../Object/Player.h"
 
 void Player::Init(void)
