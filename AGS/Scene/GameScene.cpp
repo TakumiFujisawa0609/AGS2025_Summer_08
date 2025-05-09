@@ -23,6 +23,8 @@ void GameScene::Init(void)
 {
 	// テストゲームシーン
 	//testGameSceneImg_ = LoadGraph("Data/image/TestGameScene.png");
+	player_ = new Player();
+	player_->Init();
 
 	camera_ = new Camera();
 	camera_->Init(player_);
@@ -34,15 +36,18 @@ void GameScene::Init(void)
 // 更新処理
 void GameScene::Update(void)
 {
-	camera_->Update();
+	player_->Update();
 
 	enemy_->Update();
+
+	camera_->Update();
 }
 
 // 描画処理
 void GameScene::Draw(void)
 {
 	//DrawGraph(0, 0, testGameSceneImg_, true);
+	player_->Draw();
 
 	enemy_->Draw();
 

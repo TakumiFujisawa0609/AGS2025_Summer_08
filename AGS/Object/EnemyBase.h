@@ -29,7 +29,7 @@ public:
 private:
 
 	// “Gƒ‚ƒfƒ‹ID
-	int enemyModelId_;
+	int idleModelId_;
 
 	VECTOR enemyPos_;
 
