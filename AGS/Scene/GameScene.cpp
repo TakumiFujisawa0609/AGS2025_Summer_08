@@ -47,6 +47,8 @@ void GameScene::Draw(void)
 	enemy_->Draw();
 
 	grid_->Draw();
+
+	camera_->Draw();
 }
 
 //‰ð•úˆ—

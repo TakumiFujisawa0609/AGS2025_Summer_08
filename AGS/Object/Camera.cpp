@@ -16,11 +16,12 @@ void Camera::Update(void)
 	// カメラ座標をプレイヤー座標と同期させる
 
 	// カメラ設定
-	
+	SetCameraPositionAndAngle(cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
 }
 
 void Camera::Draw(void)
 {
+	DrawFormatString(0, 0, 0xffffff, "cameraPos : (%f, %f, %f)", cameraPos_.x, cameraPos_.y, cameraPos_.z);
 }
 
 void Camera::Release(void)
