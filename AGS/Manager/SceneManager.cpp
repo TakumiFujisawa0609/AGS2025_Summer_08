@@ -53,6 +53,9 @@ void SceneManager::Init(void)
 
 	// 初期シーンの設定
 	DoChangeScene(SCENE_ID::TITLE);
+
+	// 3Dの初期設定
+	Init3D();
 }
 
 void SceneManager::Update(void)
@@ -105,6 +108,25 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 	fader_->SetFade(Fader::STATE::FADE_OUT, 0xff0000);
 	isSceneChanging_ = true;
 
+}
+
+void SceneManager::Init3D(void)
+{
+	// 背景色設定
+	SetBackgroundColor(0, 139, 139);
+
+	// Zバッファを有効にする
+	SetUseZBuffer3D(true);
+	// Zバッファへの書き込みを有効にする
+	SetWriteZBuffer3D(true);
+
+	// バックカリングを有効にする
+	SetUseBackCulling(true);
+
+	// ライトの設定
+	SetUseLighting(true);
+	// 角度の設定
+	ChangeLightTypeDir({ 0.5f,-0.5f,0.5f });
 }
 
 void SceneManager::DoChangeScene(SCENE_ID sceneId)

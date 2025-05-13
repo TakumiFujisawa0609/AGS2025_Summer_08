@@ -15,7 +15,7 @@ class EnemyBase
 public:
 
 	// “G‰ŠúˆÊ’u
-	static constexpr VECTOR INIT_ENEMY_POS = { 500.0f, 300.0f, -450.0f };
+	static constexpr VECTOR INIT_ENEMY_POS = { 0.0f, 0.0f, 250.0f };
 	// “G‰ŠúŠp“x
 	static constexpr VECTOR INIT_ENEMY_ANGLE = { 0.0f, 0.0f, 0.0f };
 
@@ -29,7 +29,7 @@ public:
 private:
 
 	// “Gƒ‚ƒfƒ‹ID
-	int idleModelId_;
+	int enemyModelId_;
 
 	VECTOR enemyPos_;
 

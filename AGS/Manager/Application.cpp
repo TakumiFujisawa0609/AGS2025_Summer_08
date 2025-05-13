@@ -38,12 +38,14 @@ Application* Application::GetInstance(void)
 void Application::Init(void)
 {
 	// アプリケーションの初期設定
-	SetWindowText("Learning");
+	SetWindowText("Aso");
 
 	// ウィンドウサイズ
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DIPTH);
 	ChangeWindowMode(true);
 
+	// DxLib初期化
+	SetUseDirect3DVersion(DX_DIRECT3D_11);
 	if (DxLib_Init() == -1)
 	{
 		isError_ = true;

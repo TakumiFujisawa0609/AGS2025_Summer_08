@@ -7,7 +7,7 @@ class Camera
 public:
 
 	// カメラ初期位置
-	static constexpr VECTOR INIT_CAMERA_POS = { 0.0f, 0.0f, 0.0f };
+	static constexpr VECTOR INIT_CAMERA_POS = { 0.0f, 120.0f, -500.0f };
 	// カメラ初期角度
 	static constexpr VECTOR INIT_CAMERA_ANGLE = { 0.0, 0.0f, 0.0f };
 

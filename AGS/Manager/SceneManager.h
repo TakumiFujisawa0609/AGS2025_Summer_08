@@ -34,6 +34,9 @@ public:
 	// シーン遷移命令
 	void ChangeScene(SCENE_ID nextId);
 
+	// 3Dの初期設定
+	void Init3D(void);
+
 private:
 
 	// 静的インスタンス
