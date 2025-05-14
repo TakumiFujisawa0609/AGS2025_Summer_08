@@ -25,7 +25,7 @@ void GameScene::Init(void)
 	//testGameSceneImg_ = LoadGraph("Data/image/TestGameScene.png");
 
 	camera_ = new Camera();
-	camera_->Init(player_);
+	camera_->Init();
 
 	enemy_ = new EnemyBase();
 	enemy_->Init();
@@ -44,9 +44,8 @@ void GameScene::Draw(void)
 {
 	//DrawGraph(0, 0, testGameSceneImg_, true);
 
-	enemy_->Draw();
-
 	grid_->Draw();
+	enemy_->Draw();
 
 	camera_->Draw();
 }
