@@ -27,7 +27,7 @@ void GameScene::Init(void)
 	player_->Init();
 
 	camera_ = new Camera();
-	camera_->Init(player_);
+	camera_->Init();
 
 	enemy_ = new EnemyBase();
 	enemy_->Init(player_);
@@ -49,9 +49,8 @@ void GameScene::Draw(void)
 	//DrawGraph(0, 0, testGameSceneImg_, true);
 	player_->Draw();
 
-	enemy_->Draw();
-
 	grid_->Draw();
+	enemy_->Draw();
 
 	camera_->Draw();
 }

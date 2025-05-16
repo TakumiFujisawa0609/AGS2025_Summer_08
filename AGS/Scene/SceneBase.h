@@ -23,4 +23,8 @@ public:
 	// ‰ğ•úˆ—
 	virtual void Release(void);
 
+private:
+
+	
+
 };

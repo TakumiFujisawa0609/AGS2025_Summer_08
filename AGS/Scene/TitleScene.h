@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneBase.h"
-
+class Camera;
 
 class TitleScene : public SceneBase
 {
@@ -25,5 +25,6 @@ private:
 
 	// スタート画像
 
+	Camera* camera_;
 
 };
