@@ -5,9 +5,7 @@
 
 void Camera::Init(void)
 {
-	
 
-<<<<<<< HEAD
 
 	// ƒJƒƒ‰À•W‚Ì‰Šú‰»
 	cameraPos_ = INIT_CAMERA_POS;
@@ -16,7 +14,7 @@ void Camera::Init(void)
 
 	// ƒJƒƒ‰Ý’è
 	SetCameraPositionAndAngle(cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
-=======
+
 	//center_X = application_->SCREEN_SIZE_X / 2;
 	//center_Y = application_->SCREEN_SIZE_Y / 2;
 
@@ -30,8 +28,6 @@ void Camera::Init(void)
 
 	test = 0;
 	
-	
->>>>>>> b8b1caa8a72d614d82ca4a583639d8c8928f804c
 }
 
 
@@ -51,14 +47,13 @@ void Camera::Update(void)
 	if (CheckHitKey(KEY_INPUT_UP)) cameraPos_.z += 10.0f;
 	if (CheckHitKey(KEY_INPUT_DOWN)) cameraPos_.z -= 10.0f;*/
 
-<<<<<<< HEAD
 	float anglesPowRad = 1.0f * DX_PI_F / 180;
 	if (CheckHitKey(KEY_INPUT_LEFT)) cameraAngle_.y -= anglesPowRad;
 	if (CheckHitKey(KEY_INPUT_RIGHT)) cameraAngle_.y += anglesPowRad;
-=======
+
 	MouseLmit();
 	AddAngle();
->>>>>>> b8b1caa8a72d614d82ca4a583639d8c8928f804c
+
 
 	
 	if (nowPos_X >= testPos)

@@ -13,7 +13,7 @@ void StageBase::Init(void)
 {
 
 	//ステージモデルのロード
-
+	// = MV1LoadModel("Data/Model/Stage/Stage.mv1");
 
 
 

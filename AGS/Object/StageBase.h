@@ -13,7 +13,7 @@ public:
 
 private:
 
-	int stageModeId_;
+	int modeId_;
 
 	//ステージ位置
 	VECTOR stagePos_;
