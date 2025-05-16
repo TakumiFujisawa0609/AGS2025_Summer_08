@@ -22,6 +22,7 @@ void Camera::Update(void)
 	
 	cameraPos_ = playerPos;
 	cameraPos_.z -= 500.0f;
+	cameraPos_.y += 120.0f;
 	
 	
 	/*if (CheckHitKey(KEY_INPUT_T)) cameraPos_.y += 10.0f;

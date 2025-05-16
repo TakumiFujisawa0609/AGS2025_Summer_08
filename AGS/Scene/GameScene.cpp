@@ -30,7 +30,7 @@ void GameScene::Init(void)
 	camera_->Init(player_);
 
 	enemy_ = new EnemyBase();
-	enemy_->Init();
+	enemy_->Init(player_);
 }
 
 // XVˆ—

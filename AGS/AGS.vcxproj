@@ -151,6 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Utility\AsoUtility.cpp" />
+    <ClInclude Include="Function\AnimControl.h" />
     <ClInclude Include="Function\Collision.h" />
     <ClInclude Include="Function\Fader.h" />
     <ClInclude Include="Function\FpsControl.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
+    <ClCompile Include="Function\AnimControl.cpp" />
     <ClCompile Include="Function\Collision.cpp" />
     <ClCompile Include="Function\Fader.cpp" />
     <ClCompile Include="Function\FpsControl.cpp" />
@@ -188,6 +191,7 @@
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClInclude Include="Utility\AsoUtility.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Data\Image\TestGameScene.png" />

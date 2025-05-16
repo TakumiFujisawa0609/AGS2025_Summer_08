@@ -3,7 +3,7 @@
 
 void Player::Init(void)
 {
-	playerPos_ = { 0.0f, 120.0f, 0.0f };
+	playerPos_ = { 0.0f, 0.0f, 0.0f };
 }
 
 void Player::Update(void)
