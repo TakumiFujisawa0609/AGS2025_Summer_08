@@ -25,7 +25,7 @@ public:
 	static constexpr float MOVE_RUN_SPEED = 4.0f;	// 走り
 
 	// アニメーションが切り替わる距離
-	static constexpr float WALK_DISTANCE = 1000.0f;	// 歩き
+	static constexpr float WALK_DISTANCE = 1200.0f;	// 歩き
 	static constexpr float RUN_DISTANCE = 600.0f;	// 走り
 	static constexpr float ATTACK_DISTANCE = 150.0f;	// 攻撃
 

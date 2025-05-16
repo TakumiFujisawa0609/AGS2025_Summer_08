@@ -3,9 +3,9 @@
 #include "Player.h"
 #include "../Manager/Application.h"
 
-void Camera::Init(void)
+void Camera::Init(Player* player)
 {
-
+	player_ = player;	// ゲームシーン内のプレイヤーポインタを取得
 
 	// カメラ座標の初期化
 	cameraPos_ = INIT_CAMERA_POS;
@@ -43,19 +43,18 @@ void Camera::Update(void)
 	/*if (CheckHitKey(KEY_INPUT_T)) cameraPos_.y += 10.0f;
 	if (CheckHitKey(KEY_INPUT_F)) cameraPos_.y -= 10.0f;
 	if (CheckHitKey(KEY_INPUT_H)) cameraPos_.x -= 10.0f;
-	if (CheckHitKey(KEY_INPUT_G)) cameraPos_.x += 10.0f;
+	if (CheckHitKey(KEY_INPUT_G)) cameraPos_.x += 10.0f;*/
 	if (CheckHitKey(KEY_INPUT_UP)) cameraPos_.z += 10.0f;
-	if (CheckHitKey(KEY_INPUT_DOWN)) cameraPos_.z -= 10.0f;*/
+	if (CheckHitKey(KEY_INPUT_DOWN)) cameraPos_.z -= 10.0f;
 
 	float anglesPowRad = 1.0f * DX_PI_F / 180;
 	if (CheckHitKey(KEY_INPUT_LEFT)) cameraAngle_.y -= anglesPowRad;
 	if (CheckHitKey(KEY_INPUT_RIGHT)) cameraAngle_.y += anglesPowRad;
 
+	// 安藤作業中↓
 	MouseLmit();
 	AddAngle();
 
-
-	
 	if (nowPos_X >= testPos)
 	{
 		test += 1;
@@ -65,29 +64,19 @@ void Camera::Update(void)
 	GetMousePoint(&nowPos_X, &nowPos_Y);
 
 	testPos = nowPos_X + MOVE_CONTROL;
+	//---------------------------------------↑
 
-
-
-	// カメラ座標をプレイヤー座標と同期させる
-	if (CheckHitKey(KEY_INPUT_A) == true) cameraPos_.x +=  20;
-	if (CheckHitKey(KEY_INPUT_D) == true) cameraPos_.x -= 20;
-
-
+	SetCameraPositionAndAngle(cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
 	
 }
 
 void Camera::Draw(void)
 {
 
-
-	SetCameraPositionAndAngle(cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
-
-	DrawFormatString(0, 50, 0xffffff, "Angle : (%f, %f, %f)", cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
+	DrawFormatString(0, 60, 0xffffff, "Angle : (%f, %f, %f)", cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
 	DrawFormatString(0, 0, 0xffffff, "cameraPos : (%f, %f, %f)", cameraPos_.x, cameraPos_.y, cameraPos_.z);
 	// 座標文字列を描く
 	DrawFormatString(0, 100, 0xffffff, "nowPos : %d,%d", nowPos_X, nowPos_Y);
-
-
 
 	DrawFormatString(0, 200, 0xffffff, "test : %d", test);
 

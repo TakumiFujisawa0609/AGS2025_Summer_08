@@ -204,6 +204,10 @@
     <Image Include="Data\Model\Enemy\parasiteZombie_diffuse.png" />
     <Image Include="Data\Model\Enemy\parasiteZombie_normal.png" />
     <Image Include="Data\Model\Enemy\parasiteZombie_specular.png" />
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_body_diffuse.png" />
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_diffuse.png" />
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_normal.png" />
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_specular.png" />
     <Image Include="Data\Model\Enemy\Zombie1.fbm\parasiteZombie_body_diffuse.png" />
     <Image Include="Data\Model\Enemy\Zombie1.fbm\parasiteZombie_diffuse.png" />
     <Image Include="Data\Model\Enemy\Zombie1.fbm\parasiteZombie_normal.png" />
@@ -225,8 +229,10 @@
     <None Include="Data\Model\Enemy\idle.mv1" />
     <None Include="Data\Model\Enemy\Run.mv1" />
     <None Include="Data\Model\Enemy\Walk.mv1" />
+    <None Include="Data\Model\Enemy\Zombie.mv1" />
     <None Include="Data\Model\Enemy\Zombie1.mv1" />
     <None Include="Data\Model\Enemy\zombi_idle.fbx" />
+    <None Include="Data\Model\Stage\stagetest.mv1" />
     <None Include="Model\zombi_idle.mv1" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

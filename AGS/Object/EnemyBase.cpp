@@ -30,13 +30,6 @@ void EnemyBase::Init(Player* player)
 void EnemyBase::Update()
 {
 
-
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_1)) { state_ = STATE_IDLE; }	// 待機
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_2)) { state_ = STATE_WALK; }	// 歩き
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_3)) { state_ = STATE_RUN; }	// 走り
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_4)) { state_ = STATE_ATTACK; }	// 攻撃
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_5)) { state_ = STATE_DIE; }	// 死亡
-
 	// プレイヤー追尾
 	ChacePlayer();
 
@@ -109,7 +102,6 @@ void EnemyBase::ChacePlayer()
 
 	if (!AsoUtility::EqualsVZero(moveDir))
 	{
-
 		// 移動量を計算する（移動 * スピード）
 		VECTOR movePow = VScale(moveDir, speed_);
 		// 移動処理（座標＋移動量)

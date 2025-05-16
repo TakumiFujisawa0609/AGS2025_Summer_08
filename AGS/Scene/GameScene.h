@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneBase.h"
-class Stage;
+class StageBase;
 class Camera;
 class Player;
 class PlayerShot;
@@ -33,7 +33,7 @@ private:
 	Player* player_;
 
 	// ステージ
-	Stage* stage_;
+	StageBase* stage_;
 
 	// カメラ
 	Camera* camera_;

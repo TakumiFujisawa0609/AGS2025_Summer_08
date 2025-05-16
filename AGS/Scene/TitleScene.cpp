@@ -16,7 +16,7 @@ TitleScene::~TitleScene(void)
 void TitleScene::Init(void)
 {	
 	camera_ = new Camera();
-	camera_->Init();
+	
 	
 	testTitleImg_ = LoadGraph("Data/Image/TestTitle.png");
 }

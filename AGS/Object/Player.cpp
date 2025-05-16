@@ -18,8 +18,6 @@ void Player::Update(void)
 
 void Player::Draw(void)
 {
-	// プレイヤーの当たり判定用球体の描画
-	//DrawSphere3D(playerPos_, 80.0f, 10.0f, 0x0000ff, 0x0000ff, false);
 
 	// 各方向への半分のサイズ
 	float halfSizeX = 60.0f;

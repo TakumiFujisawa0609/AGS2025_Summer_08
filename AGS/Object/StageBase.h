@@ -4,6 +4,9 @@
 class StageBase
 {
 public:
+	// ステージ座標
+	static constexpr VECTOR STAGE_POS = { 0.0f, 0.0f, 0.0f };
+
 	StageBase();
 	~StageBase();
 	void Init(void);
@@ -13,11 +16,12 @@ public:
 
 private:
 
-	int modeId_;
+	//ステージモデルID
+	int modelId_;
 
 	//ステージ位置
-	VECTOR stagePos_;
+	VECTOR Pos_;
 
-	VECTOR stageScale_;
+	VECTOR Scale_;
 
 };

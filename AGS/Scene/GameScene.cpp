@@ -1,6 +1,6 @@
 #include "../Manager/Application.h"
 #include "../Object/Camera.h"
-#include "GameScene.h"
+#include "../Object/StageBase.h"
 #include "../Object/Player.h"
 #include "../Object/EnemyBase.h"
 #include "../Object/PlayerShot.h"
@@ -9,6 +9,7 @@
 #include "../Function/Grid.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/SoundManager.h"
+#include "GameScene.h"
 
 GameScene::GameScene(void)
 {
@@ -21,13 +22,14 @@ GameScene::~GameScene(void)
 //初期化処理
 void GameScene::Init(void)
 {
-	// テストゲームシーン
-	//testGameSceneImg_ = LoadGraph("Data/image/TestGameScene.png");
 	player_ = new Player();
 	player_->Init();
 
+	stage_ = new StageBase();
+	stage_->Init();
+
 	camera_ = new Camera();
-	camera_->Init();
+	camera_->Init(player_);
 
 	enemy_ = new EnemyBase();
 	enemy_->Init(player_);
@@ -46,7 +48,8 @@ void GameScene::Update(void)
 // 描画処理
 void GameScene::Draw(void)
 {
-	//DrawGraph(0, 0, testGameSceneImg_, true);
+	stage_->Draw();
+
 	player_->Draw();
 
 	grid_->Draw();
@@ -58,7 +61,14 @@ void GameScene::Draw(void)
 //解放処理
 void GameScene::Release(void)
 {
-	//DeleteGraph(testGameSceneImg_);
+
+	stage_->Release();
+	delete stage_;
+
+	player_->Release();
+	delete player_;
 
 	enemy_->Release();
+	delete enemy_;
+
 }

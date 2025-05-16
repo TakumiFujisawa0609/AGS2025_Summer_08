@@ -214,6 +214,18 @@
     <Image Include="Data\Model\Enemy\Zombie1.fbm\parasiteZombie_specular.png">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_body_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_diffuse.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_normal.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
+    <Image Include="Data\Model\Enemy\Zombie.fbm\parasiteZombie_specular.png">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Model\zombi_idle.mv1" />
@@ -224,5 +236,7 @@
     <None Include="Data\Model\Enemy\Run.mv1" />
     <None Include="Data\Model\Enemy\Walk.mv1" />
     <None Include="Data\Model\Enemy\Zombie1.mv1" />
+    <None Include="Data\Model\Stage\stagetest.mv1" />
+    <None Include="Data\Model\Enemy\Zombie.mv1" />
   </ItemGroup>
 </Project>
