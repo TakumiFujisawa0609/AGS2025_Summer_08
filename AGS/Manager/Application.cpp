@@ -3,7 +3,7 @@
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
 #include "Application.h"
-#include "../Function/FpsControl.h"
+#include "../Common/FpsControl.h"
 
 Application* Application::instance_ = nullptr;
 

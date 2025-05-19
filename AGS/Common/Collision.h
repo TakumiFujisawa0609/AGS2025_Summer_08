@@ -1,5 +1,6 @@
 #pragma once
 class Player;
+class StageBase;
 class EnemyBase;
 class Blast;
 class PlayerShot;
@@ -18,7 +19,7 @@ public:
 
 
     // 初期化
-    void Init(Player* player, EnemyBase* enemy, Blast* blast, PlayerShot* pShot);
+    void Init(Player* player,StageBase* stage, EnemyBase* enemy, Blast* blast, PlayerShot* pShot);
     // 更新
     void Update(void);
     // 描画
@@ -32,9 +33,14 @@ public:
     // プレイヤー弾と敵の当たり判定処理
     void CollisionPShotAndE(void);
 
+	// 敵とステージの当たり判定処理
+	void CollisionEAndStage(void);
+
 private:
 
     Player* player_;
+
+	StageBase* stage_;
 
     EnemyBase* enemy_;
 

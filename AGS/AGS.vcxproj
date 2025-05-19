@@ -152,11 +152,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Utility\AsoUtility.cpp" />
-    <ClInclude Include="Function\AnimControl.h" />
-    <ClInclude Include="Function\Collision.h" />
-    <ClInclude Include="Function\Fader.h" />
-    <ClInclude Include="Function\FpsControl.h" />
-    <ClInclude Include="Function\Grid.h" />
+    <ClInclude Include="Common\AnimControl.h" />
+    <ClInclude Include="Common\Collision.h" />
+    <ClInclude Include="Common\Fader.h" />
+    <ClInclude Include="Common\FpsControl.h" />
+    <ClInclude Include="Common\Grid.h" />
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
@@ -172,11 +172,11 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
-    <ClCompile Include="Function\AnimControl.cpp" />
-    <ClCompile Include="Function\Collision.cpp" />
-    <ClCompile Include="Function\Fader.cpp" />
-    <ClCompile Include="Function\FpsControl.cpp" />
-    <ClCompile Include="Function\Grid.cpp" />
+    <ClCompile Include="Common\AnimControl.cpp" />
+    <ClCompile Include="Common\Collision.cpp" />
+    <ClCompile Include="Common\Fader.cpp" />
+    <ClCompile Include="Common\FpsControl.cpp" />
+    <ClCompile Include="Common\Grid.cpp" />
     <ClCompile Include="Manager\Application.cpp" />
     <ClCompile Include="Manager\InputManager.cpp" />
     <ClCompile Include="Manager\main.cpp" />

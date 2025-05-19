@@ -17,6 +17,9 @@ void EnemyBase::Init(Player* player)
 
 	// 敵初期位置
 	pos_ = INIT_ENEMY_POS;
+	// 移動予定位置初期化
+	nextPos_ = INIT_ENEMY_POS;
+
 	// 敵初期角度
 	angle_ = INIT_ENEMY_ANGLE;
 
@@ -25,6 +28,9 @@ void EnemyBase::Init(Player* player)
 
 	// 初期アニメーション設定
 	anim_->Play(ANIM_IDLE);
+
+	// 敵の移動限界フラグ
+	isStop_ = false;	// 停止フラグ
 }
 
 void EnemyBase::Update()
@@ -60,6 +66,26 @@ void EnemyBase::Release()
 	MV1DeleteModel(modelId_);
 }
 
+int EnemyBase::GetModelId()
+{
+	return modelId_;
+}
+
+VECTOR EnemyBase::GetPos()
+{
+	return pos_;
+}
+
+VECTOR EnemyBase::GetNextPos()
+{
+	return nextPos_;
+}
+
+void EnemyBase::SetIsStop(bool isStop)
+{
+	isStop_ = isStop;	// 停止フラグをセット
+}
+
 void EnemyBase::ChangeAnim()
 {
 	// 状態に応じてアニメーションを切り替える
@@ -89,6 +115,7 @@ void EnemyBase::ChacePlayer()
 	// 移動方向を計算する（プレイヤー座標 - 敵座標）
 	VECTOR moveDir = VSub(pPos, pos_);
 	
+
 	// プレイヤーとの距離を計算
 	dist_ = VSize(moveDir);
 
@@ -102,16 +129,25 @@ void EnemyBase::ChacePlayer()
 
 	if (!AsoUtility::EqualsVZero(moveDir))
 	{
-		// 移動量を計算する（移動 * スピード）
+		// 移動量を計算する（向き * スピード）
 		VECTOR movePow = VScale(moveDir, speed_);
 		// 移動処理（座標＋移動量)
-		pos_ = VAdd(pos_, movePow);
+		nextPos_ = VAdd(pos_, movePow);	// ←移動予定位置
+
 
 		// 方向から角度(ラジアン）に変換する
 		angle_.y = atan2(moveDir.x, moveDir.z);
 
 		// モデルの方向が生の不の方向を向いてるので、補正する
 		angle_.y += AsoUtility::Deg2RadF(180.0f);
+
+		// ストップフラグが立っていなければ移動する
+		//if (!isStop_)
+		//{
+			pos_ = nextPos_;	// 敵座標を更新
+		//}
+
+
 	}
 	
 	// アニメーションを切り替える距離

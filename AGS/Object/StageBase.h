@@ -14,6 +14,8 @@ public:
 	void Draw(void);
 	void Release(void);
 
+	int GetModelId(void);
+
 private:
 
 	//ステージモデルID

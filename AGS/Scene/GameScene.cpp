@@ -5,8 +5,8 @@
 #include "../Object/EnemyBase.h"
 #include "../Object/PlayerShot.h"
 #include "../Object/Blood.h"
-#include "../Function/Collision.h"
-#include "../Function/Grid.h"
+#include "../Common/Collision.h"
+#include "../Common/Grid.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/SoundManager.h"
 #include "GameScene.h"
@@ -33,6 +33,9 @@ void GameScene::Init(void)
 
 	enemy_ = new EnemyBase();
 	enemy_->Init(player_);
+
+	collision_ = new Collision();
+	collision_->Init(player_, stage_, enemy_, blast_, pShot_);
 }
 
 // XVˆ—
@@ -43,6 +46,8 @@ void GameScene::Update(void)
 	enemy_->Update();
 
 	camera_->Update();
+
+	collision_->Update();
 }
 
 // •`‰æˆ—

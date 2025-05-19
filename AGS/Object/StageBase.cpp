@@ -45,3 +45,8 @@ void StageBase::Release(void)
 	// ステージモデル解放
 	MV1DeleteModel(modelId_);
 }
+
+int StageBase::GetModelId(void)
+{
+	return modelId_;
+}
