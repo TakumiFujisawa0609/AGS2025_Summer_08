@@ -232,6 +232,7 @@
     <None Include="Data\Model\Enemy\Zombie.mv1" />
     <None Include="Data\Model\Enemy\Zombie1.mv1" />
     <None Include="Data\Model\Enemy\zombi_idle.fbx" />
+    <None Include="Data\Model\Stage\Stage.mv1" />
     <None Include="Data\Model\Stage\stagetest.mv1" />
     <None Include="Model\zombi_idle.mv1" />
   </ItemGroup>

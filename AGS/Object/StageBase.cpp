@@ -13,7 +13,7 @@ void StageBase::Init(void)
 {
 
 	//ステージモデルのロード
-	modelId_ = MV1LoadModel("Data/Model/Stage/stagetest.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Stage/stage.mv1");
 
 	//ステージのスケール
 ;
