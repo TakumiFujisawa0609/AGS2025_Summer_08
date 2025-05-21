@@ -40,7 +40,6 @@ private:
 
 	int test;
 
-	int testPos;
 
 	//マウス中心固定(ゲームシーン用）
 	int center_X;
@@ -49,6 +48,16 @@ private:
 	int nowPos_X;
 	int nowPos_Y;
 
-	int addPos_X;
-	int addPos_Y;
+	int mousePow_X;
+	int mousePow_Y;
+
+
+	int cameraPow_X;
+	int cameraPow_Y;
+
+	int angle_X;
+	int angle_Y;
+	int angle_Z;
+
+
 };

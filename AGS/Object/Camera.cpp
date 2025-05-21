@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include "../Manager/Application.h"
+#include "../Utility/AsoUtility.h"
 
 void Camera::Init(Player* player)
 {
@@ -12,20 +13,18 @@ void Camera::Init(Player* player)
 	// カメラ角度初期化
 	cameraAngle_ = INIT_CAMERA_ANGLE;
 
-	// カメラ設定
-	SetCameraPositionAndAngle(cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
-
-	//center_X = application_->SCREEN_SIZE_X / 2;
-	//center_Y = application_->SCREEN_SIZE_Y / 2;
+	angle_X = 0.0f;
+	angle_Y = 0.0f;
+	angle_Z = 0.0f;
 
 	//初期位置
 	nowPos_X = application_->SCREEN_SIZE_X / 2;
 	nowPos_Y = application_->SCREEN_SIZE_Y / 2;
 
-	cameraAngle_ = VGet(0.0f, 0.0f, 0.0f);
-
+	//マウス初期位置
 	SetMousePoint(center_X, center_Y);
-
+	// カメラ設定
+	SetCameraPositionAndAngle(cameraPos_, angle_X, angle_Y, angle_Z);
 	test = 0;
 	
 }
@@ -33,17 +32,17 @@ void Camera::Init(Player* player)
 
 void Camera::Update(void)
 {
+	// カメラ設定
+	SetCameraPositionAndAngle(cameraPos_, angle_X, angle_Y, angle_Z);
+
 	VECTOR playerPos = player_->GetPPos();
 	
+	GetMousePoint(&nowPos_X, &nowPos_Y);
+
 	cameraPos_ = playerPos;
 	cameraPos_.z -= 500.0f;
 	cameraPos_.y += 120.0f;
 	
-	
-	/*if (CheckHitKey(KEY_INPUT_T)) cameraPos_.y += 10.0f;
-	if (CheckHitKey(KEY_INPUT_F)) cameraPos_.y -= 10.0f;
-	if (CheckHitKey(KEY_INPUT_H)) cameraPos_.x -= 10.0f;
-	if (CheckHitKey(KEY_INPUT_G)) cameraPos_.x += 10.0f;*/
 	if (CheckHitKey(KEY_INPUT_UP)) cameraPos_.z += 10.0f;
 	if (CheckHitKey(KEY_INPUT_DOWN)) cameraPos_.z -= 10.0f;
 
@@ -54,33 +53,50 @@ void Camera::Update(void)
 	// 安藤作業中↓
 	MouseLmit();
 	AddAngle();
+	
 
-	if (nowPos_X >= testPos)
+
+	if (nowPos_X > test_X)
 	{
 		test += 1;
-		testPos -= testPos;
+		test_X = nowPos_X;
 	}
+	else if (nowPos_X < test_X)
+	{
+		test += 1;
+		test_X = nowPos_X ;
+	}
+	
 
-	GetMousePoint(&nowPos_X, &nowPos_Y);
+	if (nowPos_Y > test_Y)
+	{
+		test += 1;
+		test_Y = nowPos_Y ;
+	}
+	else if (nowPos_Y < test_Y)
+	{
+		test += 1;
+		test_Y = nowPos_Y ;
+	}
+	
 
-	testPos = nowPos_X + MOVE_CONTROL;
 	//---------------------------------------↑
 
-	SetCameraPositionAndAngle(cameraPos_, cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
+	
 	
 }
 
 void Camera::Draw(void)
 {
 
-	DrawFormatString(0, 60, 0xffffff, "Angle : (%f, %f, %f)", cameraAngle_.x, cameraAngle_.y, cameraAngle_.z);
+	DrawFormatString(0, 60, 0xffffff, "Angle : (%f, %f, %f)", angle_X, angle_Y, angle_Z);
 	DrawFormatString(0, 0, 0xffffff, "cameraPos : (%f, %f, %f)", cameraPos_.x, cameraPos_.y, cameraPos_.z);
 	// 座標文字列を描く
 	DrawFormatString(0, 100, 0xffffff, "nowPos : %d,%d", nowPos_X, nowPos_Y);
 
 	DrawFormatString(0, 200, 0xffffff, "test : %d", test);
 
-
+	DrawFormatString(0, 150, 0xffffff, "testPos : %d ,%d", test_X,test_Y);
 
 }
 
@@ -98,48 +114,45 @@ void Camera::SetCameraPos(VECTOR cameraPos)
 
 void Camera::MouseLmit(void)
 {
+	mousePow_X = nowPos_X - center_X;
+	mousePow_Y = nowPos_Y - center_Y;
+
 
 	//マウスの移動制限
-	if (nowPos_X >= application_->SCREEN_SIZE_X)
+	int limit = 10;
+	//マウスの移動制限
+	if (nowPos_X >= application_->SCREEN_SIZE_X - limit)
 	{
-		nowPos_X = nowPos_X - 10;
+		nowPos_X = application_->SCREEN_SIZE_X - limit;
 	}
 	if (nowPos_X <= 0)
 	{
-		nowPos_X = nowPos_X + 10;
+		nowPos_X = limit ;
 	}
 
 	if (nowPos_Y >= application_->SCREEN_SIZE_Y)
 	{
-		nowPos_Y = nowPos_Y - 10;
+		nowPos_Y = application_->SCREEN_SIZE_Y - limit;
 	}
 	if (nowPos_Y <= 0)
 	{
-		nowPos_Y = nowPos_Y + 10;
+		nowPos_Y = limit;
 	}
+
+	SetMousePoint(nowPos_X, nowPos_Y);
 }
 
 void Camera::AddAngle(void)
 {
-	//X軸の視点移動
-	if (nowPos_X >= (nowPos_X + MOVE_CONTROL))
-	{
-		cameraAngle_.x =  cameraAngle_.x + ANGLE_CONTROL;
-	}
-	if (nowPos_X <= nowPos_X - MOVE_CONTROL)
-	{
-		cameraAngle_.x -= ANGLE_CONTROL;
-	}
+	int lowPow = 0;
 
-	//Y軸の視点移動
-	if (nowPos_Y >= nowPos_Y + MOVE_CONTROL)
+	if (mousePow_X > lowPow)
 	{
-		cameraAngle_.y += ANGLE_CONTROL;
+		cameraPow_X = mousePow_X / MOVE_CONTROL;
+		angle_X = AsoUtility::Deg2RadF(cameraPow_X);
 	}
-	if (nowPos_Y <= nowPos_Y - MOVE_CONTROL)
-	{
-		cameraAngle_.y -= ANGLE_CONTROL;
-	}
+	angle_X += AsoUtility::Deg2RadF(mousePow_X);
+	
 }
 
 
