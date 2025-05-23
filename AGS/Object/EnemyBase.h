@@ -43,9 +43,21 @@ public:
 
 	void SetStop(bool isStop);
 
+	void ChasePlayer();
 
-	void ChangeAnim();	// アニメーション変更
-	void ChacePlayer();	// プレイヤー追尾
+	void UpdateDist();
+	void ChangeState();	// アニメーション変更
+	void UpdateBehavior();	// プレイヤー追尾
+
+	void PlayIdle();
+
+	void PlayWalk();
+
+	void PlayRun();
+
+	void PlayAttack();
+
+	void PlayDie();
 
 private:
 
@@ -61,6 +73,8 @@ private:
 	VECTOR pos_;
 	// 移動予定位置
 	VECTOR movedPos_;
+
+	VECTOR moveDir_;
 
 	// 敵角度
 	VECTOR angle_;

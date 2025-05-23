@@ -42,12 +42,13 @@ void EnemyBase::Init(Player* player)
 
 void EnemyBase::Update()
 {
+	// プレイヤーとの距離を更新
+	UpdateDist();   
+	// 状態を遷移させる
+	ChangeState();     
+	// 状態に応じた行動（追尾・攻撃など）
+	UpdateBehavior();  
 
-	// プレイヤー追尾
-	ChacePlayer();
-
-	// アニメーション切り替え
-	ChangeAnim();
 
 	// アニメーションの時間更新
 	anim_->Update();
@@ -86,45 +87,24 @@ void EnemyBase::Release()
 	MV1DeleteModel(modelId_);
 }
 
-
-
-void EnemyBase::ChangeAnim()
-{
-	// 状態に応じてアニメーションを切り替える
-	switch (state_) {
-	case STATE_IDLE:
-		anim_->Play(ANIM_IDLE, 1);
-		break;
-	case STATE_WALK:
-		anim_->Play(ANIM_WALK, 1);
-		break;
-	case STATE_RUN:
-		anim_->Play(ANIM_RUN, 1);
-		break;
-	case STATE_ATTACK:
-		anim_->Play(ANIM_ATTACK, 1.5f);
-		break;
-	case STATE_DIE:
-		anim_->Play(ANIM_DIE, 1);
-		break;
-	}
-}
-
-// プレイヤー追尾
-void EnemyBase::ChacePlayer()
+void EnemyBase::UpdateDist()
 {
 	// プレイヤーの座標を取得
 	VECTOR pPos = player_->GetPPos();
 
 	// 移動方向を計算する（プレイヤー座標 - 敵座標）
-	VECTOR moveDir = VSub(pPos, pos_);
-	
+	moveDir_ = VSub(pPos, pos_);
+
 	// 移動方向のベクトルサイズを取得
-	dist_ = VSize(moveDir);
+	dist_ = VSize(moveDir_);
+}
+
+// プレイヤー追尾
+void EnemyBase::ChasePlayer()
+{
 
 	// 移動方向を正規化する
-	moveDir = VNorm(moveDir);
-
+	moveDir_ = VNorm(moveDir_);
 
 	// スピード設定
 	if (state_ == STATE_WALK) speed_ = MOVE_WALK_SPEED;  // 歩き速度
@@ -132,27 +112,32 @@ void EnemyBase::ChacePlayer()
 	else speed_ = 0.0f; // それ以外なら止まる
 
 	// 移動方向がゼロベクトルでない場合
-	if (!AsoUtility::EqualsVZero(moveDir))
+	if (!AsoUtility::EqualsVZero(moveDir_))
 	{
 		// 移動量を計算する（向き * スピード）
-		VECTOR movePow = VScale(moveDir, speed_);
+		VECTOR movePow = VScale(moveDir_, speed_);
 
 		// 移動処理（座標＋移動量)
-		movedPos_ = VAdd(pos_, movePow);	// ←移動予定位置
+		pos_ = VAdd(pos_, movePow);	// ←移動予定位置
 
-		if (!isStop_)
-		{
-			pos_ = movedPos_;
-		}
 
 		// 方向から角度(ラジアン）に変換する
-		angle_.y = atan2(moveDir.x, moveDir.z);
+		angle_.y = atan2(moveDir_.x, moveDir_.z);
 
 		// モデルの方向が生の不の方向を向いてるので、補正する
 		angle_.y += AsoUtility::Deg2RadF(180.0f);
 	}
+
 	
-	// アニメーションを切り替える距離
+	// 
+	MV1SetPosition(modelId_, pos_);
+	MV1SetRotationXYZ(modelId_, angle_);
+
+}
+
+void EnemyBase::ChangeState()
+{
+	// 状態を切り替える距離
 	if (dist_ < ATTACK_DISTANCE)
 	{
 		state_ = STATE_ATTACK;
@@ -169,11 +154,61 @@ void EnemyBase::ChacePlayer()
 	{
 		state_ = STATE_IDLE;
 	}
-	
-	// 
-	MV1SetPosition(modelId_, pos_);
-	MV1SetRotationXYZ(modelId_, angle_);
+}
 
+void EnemyBase::UpdateBehavior()
+{
+	// 状態に応じてアニメーションを切り替える
+	switch (state_) {
+	case STATE_IDLE:
+		PlayIdle();
+		break;
+	case STATE_WALK:
+		PlayWalk();
+		ChasePlayer();
+		break;
+	case STATE_RUN:
+		anim_->Play(ANIM_RUN, 1);
+		ChasePlayer();
+		PlayRun();;
+		break;
+	case STATE_ATTACK:
+		PlayAttack();
+		break;
+	case STATE_DIE:
+		PlayDie();
+		break;
+	}
+}
+
+void EnemyBase::PlayIdle()
+{
+	anim_->Play(ANIM_IDLE, 1);
+	// 追尾なし・待機状態などの処理
+}
+
+void EnemyBase::PlayWalk()
+{
+	anim_->Play(ANIM_WALK, 1);
+	ChasePlayer(MOVE_WALK_SPEED);
+}
+
+void EnemyBase::PlayRun()
+{
+	anim_->Play(ANIM_RUN, 1);
+	ChasePlayer(MOVE_RUN_SPEED);
+}
+
+void EnemyBase::PlayAttack()
+{
+	anim_->Play(ANIM_ATTACK, 1.5f);
+	// 攻撃判定など
+}
+
+void EnemyBase::PlayDie()
+{
+	anim_->Play(ANIM_DIE, 1);
+	// 死亡時の処理
 }
 
 int EnemyBase::GetModelId() const
