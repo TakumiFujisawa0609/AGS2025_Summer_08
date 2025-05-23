@@ -8,37 +8,28 @@ void Player::Init(void)
 
 void Player::Update(void)
 {
-	if (CheckHitKey(KEY_INPUT_W)) playerPos_.z += 10.0f;
-	if (CheckHitKey(KEY_INPUT_S)) playerPos_.z -= 10.0f;
-	if (CheckHitKey(KEY_INPUT_A)) playerPos_.x -= 10.0f;
-	if (CheckHitKey(KEY_INPUT_D)) playerPos_.x += 10.0f;
-	if (CheckHitKey(KEY_INPUT_UP)) playerPos_.y += 10.0f;
-	if (CheckHitKey(KEY_INPUT_DOWN)) playerPos_.y -= 10.0f;
+	if (CheckHitKey(KEY_INPUT_W)) playerPos_.z += 4.0f;
+	if (CheckHitKey(KEY_INPUT_S)) playerPos_.z -= 4.0f;
+	if (CheckHitKey(KEY_INPUT_A)) playerPos_.x -= 4.0f;
+	if (CheckHitKey(KEY_INPUT_D)) playerPos_.x += 4.0f;
+	/*if (CheckHitKey(KEY_INPUT_UP)) playerPos_.y += 10.0f;
+	if (CheckHitKey(KEY_INPUT_DOWN)) playerPos_.y -= 10.0f;*/
 }
 
 void Player::Draw(void)
 {
 
-	// 各方向への半分のサイズ
-	float halfSizeX = 60.0f;
-	float halfSizeY = 120.0f;
-	float halfSizeZ = 60.0f;
+	//VECTOR startPos = VAdd(playerPos_, VGet(0.0f, 30.0f, 0));                          // 敵の座標
+	//VECTOR endPos = VAdd(playerPos_, VGet(0.0f, 160.0f, 0));  // カプセルの上端（高さ60の例）
+	float radius = 45.0f;	// 半径30（調整可）
 
-	// 直方体の対角2点を計算
-	VECTOR pos1 = VGet(
-		playerPos_.x - halfSizeX,
-		playerPos_.y - halfSizeY,
-		playerPos_.z - halfSizeZ
-	);
+	VECTOR centerPos = VAdd(playerPos_, VGet(0.0f, 110, 0));
 
-	VECTOR pos2 = VGet(
-		playerPos_.x + halfSizeX,
-		playerPos_.y + halfSizeY,
-		playerPos_.z + halfSizeZ
-	);
 
-	// 長方形
-	DrawCube3D(pos1, pos2, 0x0000ff, 0x0000ff, false);
+	// キューブ描画
+	//DrawCapsule3D(startPos, endPos, radius, 8, GetColor(255, 0, 0), GetColor(255, 0, 0), FALSE);  // ワイヤーフレーム表示
+
+	DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);	// 球を描画
 
 	// プレイヤー座標
 	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", playerPos_.x, playerPos_.y, playerPos_.z);

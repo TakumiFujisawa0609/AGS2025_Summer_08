@@ -1,5 +1,5 @@
 #pragma once
-#include "../Common/AnimControl.h"
+class AnimControl;
 class Player;
 
 enum EnemyState
@@ -35,11 +35,14 @@ public:
 	void Draw();	// 描画
 	void Release();	// 解放
 
-	int GetModelId(); // モデルID取得
-	VECTOR GetPos(); // 敵座標取得
-	VECTOR GetNextPos(); // 移動予定位置取得
+	int GetModelId() const; // モデルID取得
+	VECTOR GetPos() const; // 敵座標取得
+	VECTOR GetMovedPos() const; // 移動予定位置取得
+	
+	void SetPos(VECTOR pos);
 
-	void SetIsStop(bool isStop);
+	void SetStop(bool isStop);
+
 
 	void ChangeAnim();	// アニメーション変更
 	void ChacePlayer();	// プレイヤー追尾
@@ -57,7 +60,7 @@ private:
 	// 敵座標
 	VECTOR pos_;
 	// 移動予定位置
-	VECTOR nextPos_;
+	VECTOR movedPos_;
 
 	// 敵角度
 	VECTOR angle_;
@@ -70,5 +73,4 @@ private:
 
 	//敵の停止フラグ
 	bool isStop_ = false;
-
 };

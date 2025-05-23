@@ -37,6 +37,8 @@ public:
 	// 3Dの初期設定
 	void Init3D(void);
 
+	float GetDeltaTime(void) const;
+
 private:
 
 	// 静的インスタンス
@@ -52,6 +54,10 @@ private:
 
 	// シーン遷移中判定
 	bool isSceneChanging_;
+
+	// デルタタイム
+	std::chrono::system_clock::time_point preTime_;
+	float deltaTime_;
 
 	// コンストラクタ
 	SceneManager(void);

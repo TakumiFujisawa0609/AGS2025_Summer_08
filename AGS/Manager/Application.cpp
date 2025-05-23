@@ -44,6 +44,8 @@ void Application::Init(void)
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DIPTH);
 	ChangeWindowMode(true);
 
+
+
 	// DxLibèâä˙âª
 	SetUseDirect3DVersion(DX_DIRECT3D_11);
 	if (DxLib_Init() == -1)

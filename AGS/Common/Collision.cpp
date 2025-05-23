@@ -31,6 +31,7 @@ void Collision::Update()
 
 void Collision::Draw()
 {
+	DrawFormatString(0, 120, 0xffffff, "Hit:%d", hitPoly.HitFlag);
 }
 
 void Collision::Release()
@@ -45,20 +46,31 @@ void Collision::CollisionPShotAndE(void)
 {
 }
 
-void Collision::CollisionEAndStage(void)
+void Collision::CollisionEAndStage()
 {
 	// ステージのモデルIDを取得
 	int modelId = stage_->GetModelId();
+
 	// 敵の座標を取得
 	VECTOR pos = enemy_->GetPos();
 	// 敵の移動予定地を取得
-	VECTOR nextPos = enemy_->GetNextPos();
-	// 敵の当たり判定の球体の半径
-	//COLLISION_HIT_RESULT result;
-	// 敵とステージが当たっていたら
-	//(MV1CollCheck_Line(modelId, -1, pos, nextPos, -1));
-	//{
-	//	// 敵をストップさせる
-	//	enemy_->SetIsStop(true);
-	//}
+	VECTOR movedPos = enemy_->GetMovedPos();
+	float r = 33;
+
+	VECTOR startPos = { pos.x, RAY_COL_Y, pos.z };		// レイの開始地点座標のY座標を200に固定
+	VECTOR endPos = { movedPos.x, RAY_COL_Y, movedPos.z }; // レイを飛ばす先をY座標を200に固定
+
+	// 敵とステージの当たり判定設定
+	hitPoly = (MV1CollCheck_Line(modelId, -1, startPos, endPos));
+	
+	//敵とステージが衝突した場合
+	if (hitPoly.HitFlag == 1)
+	{
+		enemy_->SetStop(true);	// 停止
+	}
+	else
+	{
+		enemy_->SetStop(false);	// 停止フラグ解除
+	}
 }
+

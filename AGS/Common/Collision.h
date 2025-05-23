@@ -16,6 +16,8 @@ public:
     // プレイヤー弾の当たり判定の球体の半径
     static constexpr float INIT_P_SHOT_SPHERE_RADIUS = 60.0f;
 
+    // レイの補正値
+    static constexpr float RAY_COL_Y = 150.0f;
 
 
     // 初期化
@@ -34,7 +36,7 @@ public:
     void CollisionPShotAndE(void);
 
 	// 敵とステージの当たり判定処理
-	void CollisionEAndStage(void);
+    void CollisionEAndStage();
 
 private:
 
@@ -48,6 +50,7 @@ private:
 
     PlayerShot* pShot_;
 
-
+    // 敵の当たり判定の球体の半径
+    MV1_COLL_RESULT_POLY hitPoly;
 
 };

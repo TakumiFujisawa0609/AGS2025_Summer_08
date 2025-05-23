@@ -1,3 +1,4 @@
+#include <chrono>
 #include <DxLib.h>
 #include "Application.h"
 #include "../Common/Fader.h"
@@ -73,6 +74,12 @@ void SceneManager::Update(void)
 		scene_->Update();
 	}
 
+	// デルタタイム
+	auto nowTime = std::chrono::system_clock::now();
+	deltaTime_ = static_cast<float>(
+		std::chrono::duration_cast<std::chrono::nanoseconds>(nowTime - preTime_).count() / 1000000000.0);
+	preTime_ = nowTime;
+
 }
 
 void SceneManager::Draw(void)
@@ -127,6 +134,12 @@ void SceneManager::Init3D(void)
 	SetUseLighting(true);
 	// 角度の設定
 	ChangeLightTypeDir({ 0.5f,-0.5f,0.5f });
+}
+
+// デルタタイムの取得
+float SceneManager::GetDeltaTime(void) const
+{
+	return deltaTime_;
 }
 
 void SceneManager::DoChangeScene(SCENE_ID sceneId)

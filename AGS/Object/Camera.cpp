@@ -33,17 +33,17 @@ void Camera::Init(Player* player)
 
 void Camera::Update(void)
 {
-	VECTOR playerPos = player_->GetPPos();
+	/*VECTOR playerPos = player_->GetPPos();
 	
 	cameraPos_ = playerPos;
 	cameraPos_.z -= 500.0f;
-	cameraPos_.y += 120.0f;
+	cameraPos_.y += 120.0f;*/
 	
 	
-	/*if (CheckHitKey(KEY_INPUT_T)) cameraPos_.y += 10.0f;
-	if (CheckHitKey(KEY_INPUT_F)) cameraPos_.y -= 10.0f;
+	if (CheckHitKey(KEY_INPUT_U)) cameraPos_.z += 10.0f;
+	if (CheckHitKey(KEY_INPUT_J)) cameraPos_.z -= 10.0f;
 	if (CheckHitKey(KEY_INPUT_H)) cameraPos_.x -= 10.0f;
-	if (CheckHitKey(KEY_INPUT_G)) cameraPos_.x += 10.0f;*/
+	if (CheckHitKey(KEY_INPUT_K)) cameraPos_.x += 10.0f;
 	if (CheckHitKey(KEY_INPUT_UP)) cameraPos_.z += 10.0f;
 	if (CheckHitKey(KEY_INPUT_DOWN)) cameraPos_.z -= 10.0f;
 

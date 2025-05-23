@@ -11,9 +11,11 @@ StageBase::~StageBase()
 
 void StageBase::Init(void)
 {
-
 	//ステージモデルのロード
 	modelId_ = MV1LoadModel("Data/Model/Stage/stage.mv1");
+
+	// コリジョン情報の初期化
+	MV1SetupCollInfo(modelId_, -1);
 
 	//ステージのスケール
 ;

@@ -48,6 +48,7 @@ void GameScene::Update(void)
 	camera_->Update();
 
 	collision_->Update();
+
 }
 
 // •`‰æˆ—
@@ -61,6 +62,8 @@ void GameScene::Draw(void)
 	enemy_->Draw();
 
 	camera_->Draw();
+
+	collision_->Draw();
 }
 
 //‰ð•úˆ—
