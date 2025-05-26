@@ -44,34 +44,35 @@ void Player::Dir()
 
 void Player::Move()
 {
-	//// カメラの移動
-	//// 移動方向を決める
-	//moveDir_ = AsoUtility::VECTOR_ZERO;
-	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_W)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_F); }
-	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_S)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_B); }
-	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_R); }
-	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_A)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_L); }
+	// カメラの移動
+	// 移動方向を決める
+	moveDir_ = AsoUtility::VECTOR_ZERO;
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_W)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_F); }
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_S)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_B); }
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_R); }
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_A)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_L); }
 
-	//// 移動方向を正規化する
-	//moveDir_ = VNorm(moveDir_);
+	
 
-	//// 移動処理
-	//// 動いていなかったら
-	//if (!AsoUtility::EqualsVZero(moveDir_))
-	//{
-	//	// 移動量を計算する（移動 * スピード）
-	//	VECTOR movePow = VScale(moveDir_, MOVE_SPEED);
-	//	// 移動処理（座標＋移動量)
-	//	pos_ = VAdd(pos_, movePow);
+	// 移動処理
+	// 動いていなかったら
+	if (!AsoUtility::EqualsVZero(moveDir_))
+	{
+		// 移動量を計算する（移動 * スピード）
+		VECTOR movePow = VScale(moveDir_, MOVE_SPEED);
+		// 移動処理（座標＋移動量)
+		pos_ = VAdd(pos_, movePow);
+		// 移動方向を正規化する
+		moveDir_ = VNorm(moveDir_);
 
-	//	//// 方向から角度(ラジアン）に変換する
-	//	//angle_.y = atan2(moveDir.x, moveDir.z);
-	//	//// モデルの方向が生の不の方向を向いてるので、補正する
-	//	//angle_.y += AsoUtility::Deg2RadF(180.0f);
-	//}
+		//// 方向から角度(ラジアン）に変換する
+		//angle_.y = atan2(moveDir.x, moveDir.z);
+		//// モデルの方向が生の不の方向を向いてるので、補正する
+		//angle_.y += AsoUtility::Deg2RadF(180.0f);
+	}
 
-	//MV1SetPosition(modelId_, pos_);
-	////MV1SetRotationXYZ(modelId_, angles_);
+	MV1SetPosition(modelId_, pos_);
+	//MV1SetRotationXYZ(modelId_, angles_);
 }
 
 VECTOR Player::GetPPos(void)
