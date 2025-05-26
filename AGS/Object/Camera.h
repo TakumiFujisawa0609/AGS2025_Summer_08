@@ -28,7 +28,7 @@ public:
 	void Release(void);
 	void SetCameraPos(VECTOR cameraPos);
 
-	void MouseLmit(void);
+	void MouseLimit(void);
 	void AddAngle(void);
 
 

@@ -32,6 +32,11 @@ void Collision::Update()
 void Collision::Draw()
 {
 	DrawFormatString(0, 120, 0xffffff, "Hit:%d", hitPoly.HitFlag);
+
+	DrawFormatString(0, 320, 0xffffff, "StartPos:(%.2f, %.2f, %.2f)", enemyPosS_.x, enemyPosS_.y, enemyPosS_.z);
+	DrawFormatString(0, 340, 0xffffff, "EndPos(%.2f, %.2f, %.2f)", enemyPosE_.x, enemyPosE_.x, enemyPosE_.z);
+
+	//DrawLine3D(enemyPosS_, enemyPosE_, 0xff0000);
 }
 
 void Collision::Release()
@@ -55,13 +60,9 @@ void Collision::CollisionEAndStage()
 	VECTOR pos = enemy_->GetPos();
 	// 敵の移動予定地を取得
 	VECTOR movedPos = enemy_->GetMovedPos();
-	float r = 33;
-
-	VECTOR startPos = { pos.x, RAY_COL_Y, pos.z };		// レイの開始地点座標のY座標を200に固定
-	VECTOR endPos = { movedPos.x, RAY_COL_Y, movedPos.z }; // レイを飛ばす先をY座標を200に固定
 
 	// 敵とステージの当たり判定設定
-	hitPoly = (MV1CollCheck_Line(modelId, -1, startPos, endPos));
+	hitPoly = (MV1CollCheck_Line(modelId, -1, pos, movedPos));
 	
 	//敵とステージが衝突した場合
 	if (hitPoly.HitFlag == 1)
@@ -72,5 +73,13 @@ void Collision::CollisionEAndStage()
 	{
 		enemy_->SetStop(false);	// 停止フラグ解除
 	}
+
+#ifdef _DEBUG
+
+
+	enemyPosS_ = pos;
+	enemyPosE_ = movedPos;
+#endif // _DEBUG
+
 }
 

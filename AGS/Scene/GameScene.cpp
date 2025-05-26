@@ -47,7 +47,10 @@ void GameScene::Update(void)
 
 	camera_->Update();
 
+	// “–‚½‚è”»’è
 	collision_->Update();
+	// “–‚½‚è”»’è¨“GÀ•WXV
+	enemy_->ModelReflect();
 
 }
 

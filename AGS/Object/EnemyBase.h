@@ -21,8 +21,8 @@ public:
 	static constexpr VECTOR INIT_ENEMY_ANGLE = { 0.0f, 0.0f, 0.0f };
 
 	// 移動速度
-	static constexpr float MOVE_WALK_SPEED = 2.0f;	// 歩き
-	static constexpr float MOVE_RUN_SPEED = 4.0f;	// 走り
+	static constexpr float MOVE_WALK_SPEED = 1.0f;	// 歩き
+	static constexpr float MOVE_RUN_SPEED = 3.0f;	// 走り
 
 	// アニメーションが切り替わる距離
 	static constexpr float WALK_DISTANCE = 1200.0f;	// 歩き
@@ -35,6 +35,8 @@ public:
 	void Draw();	// 描画
 	void Release();	// 解放
 
+	void ModelReflect();	// モデルの座標情報などを反映させる。
+
 	int GetModelId() const; // モデルID取得
 	VECTOR GetPos() const; // 敵座標取得
 	VECTOR GetMovedPos() const; // 移動予定位置取得
@@ -45,7 +47,7 @@ public:
 
 	void ChasePlayer();
 
-	void UpdateDist();
+	void LookPlayer();
 	void ChangeState();	// アニメーション変更
 	void UpdateBehavior();	// プレイヤー追尾
 
@@ -73,7 +75,6 @@ private:
 	VECTOR pos_;
 	// 移動予定位置
 	VECTOR movedPos_;
-
 	VECTOR moveDir_;
 
 	// 敵角度

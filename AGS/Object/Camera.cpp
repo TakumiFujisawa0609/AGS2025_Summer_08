@@ -36,8 +36,8 @@ void Camera::Update(void)
 	SetCameraPositionAndAngle(cameraPos_, angle_.x, angle_.y, angle_.z);
 
 	VECTOR playerPos = player_->GetPPos();
-	cameraPos_ = VGet(playerPos.x, playerPos.y + 100, playerPos.z - 20);
-
+	//cameraPos_ = VGet(playerPos.x, playerPos.y + 100, playerPos.z - 20);
+	cameraPos_ = VGet(playerPos.x, playerPos.y + 300, playerPos.z - 420);
 
 
 	prevPos_X = nowPos_X;
@@ -52,7 +52,7 @@ void Camera::Update(void)
 	if (CheckHitKey(KEY_INPUT_RIGHT)) cameraAngle_.y += anglesPowRad;
 
 	// ˆÀ“¡ì‹Æ’†«
-	MouseLmit();
+	MouseLimit();
 	AddAngle();
 	
 	if (nowPos_X > test_X)
@@ -107,7 +107,7 @@ void Camera::SetCameraPos(VECTOR cameraPos)
 
 
 
-void Camera::MouseLmit(void)
+void Camera::MouseLimit(void)
 {
 	//ƒ}ƒEƒX‚ÌˆÚ“®§ŒÀ
 	int limit = 10;

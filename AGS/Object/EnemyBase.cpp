@@ -23,7 +23,7 @@ void EnemyBase::Init(Player* player)
 	// 敵初期位置
 	pos_ = INIT_ENEMY_POS;
 	// 移動予定位置初期化
-	movedPos_ = INIT_ENEMY_POS;
+	movedPos_ = pos_;
 
 	// 敵初期角度
 	angle_ = INIT_ENEMY_ANGLE;
@@ -43,7 +43,8 @@ void EnemyBase::Init(Player* player)
 void EnemyBase::Update()
 {
 	// プレイヤーとの距離を更新
-	UpdateDist();   
+	LookPlayer();   
+
 	// 状態を遷移させる
 	ChangeState();     
 	// 状態に応じた行動（追尾・攻撃など）
@@ -64,6 +65,7 @@ void EnemyBase::Draw()
 	DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
 	DrawFormatString(0, 80, 0xffffff, "dist : %f", dist_);
 	DrawFormatString(0, 140, 0xffffff, "isStop:%d", isStop_);
+	DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);
 
 	float radius = 45.0f;               // 半径30（調整可）
 	VECTOR centerPos = VAdd(pos_, VGet(0.0f, 110, 0));	// 敵の衝突用中心座標
@@ -87,7 +89,21 @@ void EnemyBase::Release()
 	MV1DeleteModel(modelId_);
 }
 
-void EnemyBase::UpdateDist()
+void EnemyBase::ModelReflect()
+{
+	// 進んでよかったら
+	if (!isStop_)
+	{
+		// 座標を進める
+		pos_ = movedPos_;
+	}
+
+	// モデルをセット
+	MV1SetPosition(modelId_, pos_);
+	MV1SetRotationXYZ(modelId_, angle_);
+}
+
+void EnemyBase::LookPlayer()
 {
 	// プレイヤーの座標を取得
 	VECTOR pPos = player_->GetPPos();
@@ -97,14 +113,14 @@ void EnemyBase::UpdateDist()
 
 	// 移動方向のベクトルサイズを取得
 	dist_ = VSize(moveDir_);
+
+	// 移動方向を正規化する
+	moveDir_ = VNorm(moveDir_);
 }
 
 // プレイヤー追尾
 void EnemyBase::ChasePlayer()
 {
-
-	// 移動方向を正規化する
-	moveDir_ = VNorm(moveDir_);
 
 	// スピード設定
 	if (state_ == STATE_WALK) speed_ = MOVE_WALK_SPEED;  // 歩き速度
@@ -118,8 +134,7 @@ void EnemyBase::ChasePlayer()
 		VECTOR movePow = VScale(moveDir_, speed_);
 
 		// 移動処理（座標＋移動量)
-		pos_ = VAdd(pos_, movePow);	// ←移動予定位置
-
+		movedPos_ = VAdd(pos_, movePow);	// ←移動予定位置
 
 		// 方向から角度(ラジアン）に変換する
 		angle_.y = atan2(moveDir_.x, moveDir_.z);
@@ -127,12 +142,6 @@ void EnemyBase::ChasePlayer()
 		// モデルの方向が生の不の方向を向いてるので、補正する
 		angle_.y += AsoUtility::Deg2RadF(180.0f);
 	}
-
-	
-	// 
-	MV1SetPosition(modelId_, pos_);
-	MV1SetRotationXYZ(modelId_, angle_);
-
 }
 
 void EnemyBase::ChangeState()
@@ -190,13 +199,13 @@ void EnemyBase::PlayIdle()
 void EnemyBase::PlayWalk()
 {
 	anim_->Play(ANIM_WALK, 1);
-	ChasePlayer(MOVE_WALK_SPEED);
+	ChasePlayer();
 }
 
 void EnemyBase::PlayRun()
 {
 	anim_->Play(ANIM_RUN, 1);
-	ChasePlayer(MOVE_RUN_SPEED);
+	ChasePlayer();
 }
 
 void EnemyBase::PlayAttack()

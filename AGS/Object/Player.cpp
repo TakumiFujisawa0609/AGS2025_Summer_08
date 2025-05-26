@@ -1,19 +1,16 @@
 #include <DxLib.h>
+#include "../Manager/InputManager.h"
+#include "../Utility/AsoUtility.h"
 #include "../Object/Player.h"
 
 void Player::Init(void)
 {
-	playerPos_ = { 0.0f, 0.0f, 0.0f };
+	pos_ = { 0.0f, 0.0f, 0.0f };
 }
 
 void Player::Update(void)
 {
-	if (CheckHitKey(KEY_INPUT_W)) playerPos_.z += 4.0f;
-	if (CheckHitKey(KEY_INPUT_S)) playerPos_.z -= 4.0f;
-	if (CheckHitKey(KEY_INPUT_A)) playerPos_.x -= 4.0f;
-	if (CheckHitKey(KEY_INPUT_D)) playerPos_.x += 4.0f;
-	/*if (CheckHitKey(KEY_INPUT_UP)) playerPos_.y += 10.0f;
-	if (CheckHitKey(KEY_INPUT_DOWN)) playerPos_.y -= 10.0f;*/
+	Move();
 }
 
 void Player::Draw(void)
@@ -23,7 +20,7 @@ void Player::Draw(void)
 	//VECTOR endPos = VAdd(playerPos_, VGet(0.0f, 160.0f, 0));  // カプセルの上端（高さ60の例）
 	float radius = 45.0f;	// 半径30（調整可）
 
-	VECTOR centerPos = VAdd(playerPos_, VGet(0.0f, 110, 0));
+	VECTOR centerPos = VAdd(pos_, VGet(0.0f, 110, 0));
 
 
 	// キューブ描画
@@ -32,7 +29,7 @@ void Player::Draw(void)
 	DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);	// 球を描画
 
 	// プレイヤー座標
-	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", playerPos_.x, playerPos_.y, playerPos_.z);
+	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
 }
 
 void Player::Release(void)
@@ -40,9 +37,46 @@ void Player::Release(void)
 	
 }
 
+void Player::Dir()
+{
+
+}
+
+void Player::Move()
+{
+	//// カメラの移動
+	//// 移動方向を決める
+	//moveDir_ = AsoUtility::VECTOR_ZERO;
+	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_W)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_F); }
+	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_S)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_B); }
+	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_R); }
+	//if (InputManager::GetInstance()->IsNew(KEY_INPUT_A)) { moveDir_ = VAdd(moveDir_, AsoUtility::DIR_L); }
+
+	//// 移動方向を正規化する
+	//moveDir_ = VNorm(moveDir_);
+
+	//// 移動処理
+	//// 動いていなかったら
+	//if (!AsoUtility::EqualsVZero(moveDir_))
+	//{
+	//	// 移動量を計算する（移動 * スピード）
+	//	VECTOR movePow = VScale(moveDir_, MOVE_SPEED);
+	//	// 移動処理（座標＋移動量)
+	//	pos_ = VAdd(pos_, movePow);
+
+	//	//// 方向から角度(ラジアン）に変換する
+	//	//angle_.y = atan2(moveDir.x, moveDir.z);
+	//	//// モデルの方向が生の不の方向を向いてるので、補正する
+	//	//angle_.y += AsoUtility::Deg2RadF(180.0f);
+	//}
+
+	//MV1SetPosition(modelId_, pos_);
+	////MV1SetRotationXYZ(modelId_, angles_);
+}
+
 VECTOR Player::GetPPos(void)
 {
-	return playerPos_;
+	return pos_;
 }
 
 

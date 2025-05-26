@@ -53,4 +53,9 @@ private:
     // 敵の当たり判定の球体の半径
     MV1_COLL_RESULT_POLY hitPoly;
 
+#ifdef _DEBUG
+    // デバッグ用
+    VECTOR enemyPosS_, enemyPosE_;
+
+#endif // _DEBUG
 };
