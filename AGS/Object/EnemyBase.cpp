@@ -14,7 +14,7 @@ void EnemyBase::Init(Player* player)
 	modelId_ = MV1LoadModel("Data/Model/Enemy/Zombie.mv1");
 
 	// モデルのコリジョン情報の初期化
-	MV1SetupCollInfo(modelId_, 0, 2, 2, 2);	// コリジョン情報の初期化
+	MV1SetupCollInfo(modelId_, -1);	// コリジョン情報の初期化
 
 	// アニメーションクラスの生成と初期化
 	anim_ = new AnimControl();
@@ -144,6 +144,7 @@ void EnemyBase::ChasePlayer()
 	}
 }
 
+// 状態を切り替える
 void EnemyBase::ChangeState()
 {
 	// 状態を切り替える距離
@@ -165,6 +166,7 @@ void EnemyBase::ChangeState()
 	}
 }
 
+// 行動切り替え
 void EnemyBase::UpdateBehavior()
 {
 	// 状態に応じてアニメーションを切り替える

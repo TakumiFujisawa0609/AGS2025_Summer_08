@@ -70,7 +70,6 @@ void SoundManager::Update(void)
 
 void SoundManager::Release(void)
 {
-
 	DeleteSoundMem(bgm1Hundle_);
 	DeleteSoundMem(walk1Hundle_);
 	DeleteSoundMem(run1Hundle_);

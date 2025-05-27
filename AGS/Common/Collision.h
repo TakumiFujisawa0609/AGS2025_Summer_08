@@ -1,4 +1,5 @@
 #pragma once
+#include <DxLib.h>
 class Player;
 class StageBase;
 class EnemyBase;
@@ -30,10 +31,10 @@ public:
     void Release(void);
 
     // プレイヤーと敵の当たり判定処理
-    void CollisionPAndE(void);
+    void CollisionPAndE();
 
     // プレイヤー弾と敵の当たり判定処理
-    void CollisionPShotAndE(void);
+    void CollisionPShotAndE();
 
 	// 敵とステージの当たり判定処理
     void CollisionEAndStage();
@@ -50,12 +51,21 @@ private:
 
     PlayerShot* pShot_;
 
-    // 敵の当たり判定の球体の半径
-    MV1_COLL_RESULT_POLY hitPoly;
+    // 敵とプレイヤーのの当たり判定の球体の半径
+    MV1_COLL_RESULT_POLY_DIM hitPoly_E_P;
+    // 敵とステージの当たり判定
+	MV1_COLL_RESULT_POLY hitPoly_E_S;
+
 
 #ifdef _DEBUG
     // デバッグ用
     VECTOR enemyPosS_, enemyPosE_;
+
+    // 敵とステージの当たり判定がヒットしたかどうか
+	bool isHit_E_P = false; 
+
+    // プレイヤーの中心座標
+    VECTOR pCenterPos_;
 
 #endif // _DEBUG
 };
