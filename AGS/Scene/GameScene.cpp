@@ -23,25 +23,22 @@ GameScene::~GameScene(void)
 void GameScene::Init(void)
 {
 	player_ = new Player();
-	player_->Init();
-
-	stage_ = new StageBase();
-	stage_->Init();
-
 	camera_ = new Camera();
-	camera_->Init(player_);
-
 	enemy_ = new EnemyBase();
-	enemy_->Init(player_);
-
+	stage_ = new StageBase();
 	collision_ = new Collision();
+
+	player_->Init();
+	camera_->Init(player_);
+	enemy_->Init(player_);
+	stage_->Init();
 	collision_->Init(player_, stage_, enemy_, blast_, pShot_);
 }
 
 // XVˆ—
 void GameScene::Update(void)
 {
-	player_->Update();
+	player_->Update(camera_->GetAngles());
 
 	enemy_->Update();
 

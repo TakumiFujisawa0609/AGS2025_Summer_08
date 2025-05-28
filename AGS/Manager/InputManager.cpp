@@ -48,6 +48,10 @@ void InputManager::Init(void)
 	Add(KEY_INPUT_S);
 	Add(KEY_INPUT_A);
 	Add(KEY_INPUT_D);
+	Add(KEY_INPUT_UP);
+	Add(KEY_INPUT_DOWN);
+	Add(KEY_INPUT_LEFT);
+	Add(KEY_INPUT_RIGHT);
 
 
 	// アニメーション用に使用するボタン

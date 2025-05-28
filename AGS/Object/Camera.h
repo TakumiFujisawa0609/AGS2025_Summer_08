@@ -7,66 +7,57 @@ class Camera
 {
 public:
 
-	//マウス移動量調整
-	static constexpr float MOUSE_MOVE_CONTROL = 5;
-	//カメラ調整量
-	static constexpr float CAMERA_ANGLE_CONTROL = 1;
+	// カメラの高さ
+	static constexpr float HEIGHT = 200.0f;
 
-	static constexpr float ANGLE_DEG = 1.0f;
-	static constexpr float MAX_ANGLE_X_RAD = 80.0f * DX_PI_F / 180.0f;
-	static constexpr float MIN_ANGLE_X_RAD = -100.0f * DX_PI_F / 180.0f;
+	// 追従対象からカメラまでの距離
+	static constexpr float DIS_FOLLOW_TO_CAMERA = 500.0f;
 
-	// カメラ初期位置
-	static constexpr VECTOR INIT_CAMERA_POS = { 0.0f, 120.0f, -500.0f };
+	// 回転スピード
+	static constexpr float ROT_SPEED_DEG = 1.0f;
 
-	// カメラ初期角度
-	static constexpr VECTOR INIT_CAMERA_ANGLE = { 0.0, 0.0f, 0.0f };
 
 	void Init(Player* player);
 	void Update(void);
 	void Draw(void);
 	void Release(void);
-	void SetCameraPos(VECTOR cameraPos);
 
 	void MouseLimit(void);
-	void AddAngle(void);
+	void Angle(void);
 
+	// カメラ回転角度の取得
+	VECTOR GetAngles(void) { return localRotFrom_; }
 
 private:
 	// プレイヤー
 	Player* player_;
-	Application* application_;
-	// カメラ座標
-	VECTOR cameraPos_;
-	// カメラ角度
-	VECTOR cameraAngle_;
 
-	VECTOR angle_;
-	int test_X;
-	int test_Y;
-
-	int test;
-
-	int prevPos_X;
-	int prevPos_Y;
-	//マウス中心固定(ゲームシーン用）
-	//int center_X;
-	//int center_Y;
+	// 前のマウス位置
+	int prevPosX_;
+	int prevPosY_;
 	//マウスの移動先
-	int nowPos_X;
-	int nowPos_Y;
+	int movedPosX_;
+	int movedPosY_;
 
-	/*int prevPos_X;
-	int prevPos_Y;*/
+	////マウス中心固定(ゲームシーン用）
+	int centerX_;
+	int centerY_;
 
-	//マウスの現在の位置
-	int mousePow_X;
-	int mousePow_Y;
+	// 水平・垂直の角度（ラジアン）
+	float yaw_, pitch_;
 
-	int rad;
-	//カメラ移動量
-	int cameraPow_X;
-	int cameraPow_Y;
+	// カメラの位置
+	VECTOR pos_;
 
+	// カメラの角度(rad)
+	VECTOR angles_;
 
+	// 追従対象からのローカル座標
+	VECTOR localPosFrom_;
+
+	// 追従対象からのローカル座標の回転値
+	VECTOR localRotFrom_;
+
+	// ゲーム内フラグ
+	bool isInGame_;
 };

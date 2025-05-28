@@ -2,96 +2,61 @@
 #include "Camera.h"
 #include "Player.h"
 #include "../Manager/Application.h"
+#include "../Manager/InputManager.h"
 #include "../Utility/AsoUtility.h"
 
 void Camera::Init(Player* player)
 {
 	player_ = player;	// ゲームシーン内のプレイヤーポインタを取得
-	// カメラ座標の初期化
-	//cameraPos_ = VGet(player_->GetPPos().x, player_->GetPPos().y + 50, player_->GetPPos().z);
-	// カメラ角度初期化
-	cameraAngle_ = INIT_CAMERA_ANGLE;
-	//マウスの初期位置設定
-	//SetMousePoint(center_X, center_Y);
-	//カメラアングル初期設定
-	angle_ = VGet(0.0f, 0.0f, 0.0f);
 
-	// カメラ設定
-	SetCameraPositionAndAngle(cameraPos_, angle_.x, angle_.y, angle_.z);
+	// 画面の中央を設定
+	centerX_ = Application::SCREEN_SIZE_X / 2;
+	centerY_ = Application::SCREEN_SIZE_Y / 2;
 
-	//center_X = application_->SCREEN_SIZE_X / 2;
-	//center_Y = application_->SCREEN_SIZE_Y / 2;
-
-
-	//マウス初期位置
-	test = 0;
+	//水平・垂直の角度初期化
+	yaw_ = 0.0f;
+	pitch_ = 0.0f;
 	
+	// カメラの初期位置
+	pos_ = { 0.0f, 0.0f, 0.0f };
+
+	SetMouseDispFlag(true); // マウスカーソル非表示
+	SetMousePoint(centerX_, centerY_);	// マウスセット
+	GetMousePoint(&prevPosX_, &prevPosY_);	// マウスの位置取得
+
+	// 追従対象からのローカル座標設定
+	localPosFrom_ = { 0.0f, HEIGHT, -DIS_FOLLOW_TO_CAMERA };
+	// 追従対象からのローカル座標の回転値
+	localRotFrom_ = { 0.0f, 0.0f, 0.0f };
+
+	// ゲーム内フラグ
+	isInGame_ = true;
 }
 
 
 void Camera::Update(void)
 {
+	// マウス座標取得
+	GetMousePoint(&movedPosX_, &movedPosY_);
 
-	// カメラ設定
-	SetCameraPositionAndAngle(cameraPos_, angle_.x, angle_.y, angle_.z);
-
-	VECTOR playerPos = player_->GetPPos();
-	//cameraPos_ = VGet(playerPos.x, playerPos.y + 100, playerPos.z - 20);
-	cameraPos_ = VGet(playerPos.x, playerPos.y + 300, playerPos.z - 420);
-
-
-	prevPos_X = nowPos_X;
-	prevPos_Y = nowPos_Y;
-	GetMousePoint(&nowPos_X, &nowPos_Y);
-	mousePow_X = nowPos_X - prevPos_X;
-	mousePow_Y = nowPos_Y - prevPos_Y;
-	
-	//デバッグ
-	float anglesPowRad = 1.0f * DX_PI_F / 180;
-	if (CheckHitKey(KEY_INPUT_LEFT)) cameraAngle_.y -= anglesPowRad;
-	if (CheckHitKey(KEY_INPUT_RIGHT)) cameraAngle_.y += anglesPowRad;
-
-	// 安藤作業中↓
-	MouseLimit();
-	AddAngle();
-	
-	if (nowPos_X > test_X)
-	{
-		test += 1;
-		test_X = nowPos_X;
-	}
-	else if (nowPos_X < test_X)
-	{
-		test += 1;
-		test_X = nowPos_X ;
-	}
-	if (nowPos_Y > test_Y)
-	{
-		test += 1;
-		test_Y = nowPos_Y ;
-	}
-	else if (nowPos_Y < test_Y)
-	{
-		test += 1;
-		test_Y = nowPos_Y ;
+	if (!isInGame_) {
+		//移動制限
+		MouseLimit();
 	}
 
-	if (angle_.y >= 360.0f)
-	{
-		angle_.y = 0.0f;
+	if (isInGame_) {
+		// アングル処理（マウスの動き量からYaw/Pitchを計算）
+		Angle();
 	}
-	
+
+	// マウスを中央に戻す
+	SetMousePoint(centerX_, centerY_);
+	prevPosX_ = centerX_;
+	prevPosY_ = centerY_;
 }
 
 void Camera::Draw(void)
 {
-
-	DrawFormatString(0, 60, 0xffffff, "Angle : (%f, %f, %f)", angle_.x, angle_.y, angle_.z);
-	DrawFormatString(0, 0, 0xffffff, "cameraPos : (%f, %f, %f)", cameraPos_.x, cameraPos_.y, cameraPos_.z);
-	// 座標文字列を描く
-	DrawFormatString(0, 100, 0xffffff, "nowPos : %d,%d", nowPos_X, nowPos_Y);
-	DrawFormatString(0, 200, 0xffffff, "mousePow_X : %d", mousePow_X);
-	DrawFormatString(0, 150, 0xffffff, "cameraPow_X : %d", cameraPow_X);
 
 }
 
@@ -99,84 +64,76 @@ void Camera::Release(void)
 {
 }
 
-void Camera::SetCameraPos(VECTOR cameraPos)
-{
-	cameraPos_ = cameraPos;
-
-}
-
-
-
 void Camera::MouseLimit(void)
 {
 	//マウスの移動制限
-	int limit = 10;
+	int limit = 15;
 	//マウスの移動制限
-	if (nowPos_X >= application_->SCREEN_SIZE_X - limit)
+	if (movedPosX_ >= Application::SCREEN_SIZE_X - limit)
 	{
-		nowPos_X = application_->SCREEN_SIZE_X - limit;
+		movedPosX_ = Application::SCREEN_SIZE_X - limit;
 	}
-	if (nowPos_X <= 0)
+	if (movedPosX_ <= 0)
 	{
-		nowPos_X = limit ;
+		movedPosX_ = limit ;
 	}
 
-	if (nowPos_Y >= application_->SCREEN_SIZE_Y)
+	if (movedPosY_ >= Application::SCREEN_SIZE_Y)
 	{
-		nowPos_Y = application_->SCREEN_SIZE_Y - limit;
+		movedPosY_ = Application::SCREEN_SIZE_Y - limit;
 	}
-	if (nowPos_Y <= 0)
+	if (movedPosY_ <= 0)
 	{
-		nowPos_Y = limit;
+		movedPosY_ = limit;
 	}
-	SetMousePoint(nowPos_X, nowPos_Y);
-
-	
+	SetMousePoint(movedPosX_, movedPosY_);
 }
 
-void Camera::AddAngle(void)
+// アングル処理
+void Camera::Angle(void)
 {
+	// 前のマウス位置との差分
+	int deltaX = movedPosX_ - centerX_;
+	int deltaY = movedPosY_ - centerY_;
 
-	int lowPow = 1;
-	rad = ANGLE_DEG * DX_PI_F / 180;
+	// 角度更新（感度調整）
+	const float sensitivity = 0.002f; // センシ調整
+	// 更新
+	yaw_ += deltaX * sensitivity;
+	pitch_ += deltaY * sensitivity;
 
-	//mousePow_X = nowPos_X - prevPos_X;
-	//mousePow_Y = nowPos_Y - prevPos_Y;
+	// ピッチ制限（上向きすぎ・下向きすぎを防ぐ）
+	const float limit = DX_PI_F / 2.5f; // 72度ぐらい
+	if (pitch_ > limit) pitch_ = limit;
+	if (pitch_ < -limit) pitch_ = -limit;
 
+	// 追従対象の位置（Yaw/Pitchに基づく）
+	VECTOR followPos = player_->GetPPos();
+	// プレイヤーの目線位置をカメラの位置とする
+	pos_ = VGet(followPos.x, followPos.y + HEIGHT, followPos.z);
 
-	//マウスでplayerの視点移動
-	if (abs(mousePow_X) > lowPow)
-	{
-		cameraPow_X = mousePow_X / MOUSE_MOVE_CONTROL;
-		angle_.y += AsoUtility::Deg2RadF(cameraPow_X);
+	// 前方向ベクトルを計算
+	VECTOR forward = {
+		cosf(pitch_) * sinf(yaw_),
+		sinf(pitch_),
+		cosf(pitch_) * cosf(yaw_)
+	};
 	
-	}
+	pos_ = VAdd(pos_, forward);
 
-	if (abs(mousePow_Y) > lowPow)
-	{
-		cameraPow_Y = mousePow_Y / MOUSE_MOVE_CONTROL;
-		angle_.x += AsoUtility::Deg2RadF(cameraPow_Y);
-		if (angle_.x > MAX_ANGLE_X_RAD)
-		{
-			angle_.x = MAX_ANGLE_X_RAD;
-		}
-		if (angle_.x < MIN_ANGLE_X_RAD)
-		{
-			angle_.x = MIN_ANGLE_X_RAD;
-		}
-	}
+	// カメラセット
+	SetCameraPositionAndTargetAndUpVec(
+		pos_,
+		VGet(followPos.x, followPos.y + HEIGHT, followPos.z),
+		VGet(0, 1, 0)
+	);
 
+	// 更新した回転角度はlocalRotFrom_に格納しておく（必要なら）
+	localRotFrom_.x = pitch_;
+	localRotFrom_.y = yaw_;
+	localRotFrom_.z = 0.0f;
 
-
-	//if (mousePow_X < lowPow)
-	//{
-	//	//angle_.y = rad - (mousePow_X / MOUSE_MOVE_CONTROL);
-
-	//
-	//	cameraPow_X = mousePow_X / MOUSE_MOVE_CONTROL;
-	//	angle_.y -= AsoUtility::Deg2RadF(cameraPow_X);
-
-	//}
+	
 }
 
 
