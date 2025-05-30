@@ -8,7 +8,7 @@ class Camera
 public:
 
 	// カメラの高さ
-	static constexpr float HEIGHT = 200.0f;
+	static constexpr float HEIGHT = 150.0f;
 
 	// 追従対象からカメラまでの距離
 	static constexpr float DIS_FOLLOW_TO_CAMERA = 500.0f;
@@ -28,6 +28,10 @@ public:
 	// カメラ回転角度の取得
 	VECTOR GetAngles(void) { return localRotFrom_; }
 
+	// 前方向取得
+	VECTOR GetForward() const;
+	// カメラ座標取得
+	VECTOR GetPos() const;
 private:
 	// プレイヤー
 	Player* player_;
@@ -57,6 +61,9 @@ private:
 
 	// 追従対象からのローカル座標の回転値
 	VECTOR localRotFrom_;
+
+	// カメラの前方向
+	VECTOR forward_ = { 0,0,0 };
 
 	// ゲーム内フラグ
 	bool isInGame_;

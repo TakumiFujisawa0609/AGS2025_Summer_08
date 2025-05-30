@@ -21,6 +21,7 @@ void StageBase::Init(void)
 ;
 	//ステージ位置
 	Pos_ = STAGE_POS;
+
 	
 	// ステージ設定
 	MV1SetPosition(modelId_, Pos_);

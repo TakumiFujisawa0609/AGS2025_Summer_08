@@ -3,6 +3,7 @@
 class Player;
 class StageBase;
 class EnemyBase;
+class Camera;
 class Blast;
 class PlayerShot;
 
@@ -22,7 +23,7 @@ public:
 
 
     // 初期化
-    void Init(Player* player,StageBase* stage, EnemyBase* enemy, Blast* blast, PlayerShot* pShot);
+    void Init(Player* player,StageBase* stage, EnemyBase* enemy, Blast* blast, PlayerShot* pShot, Camera* camera);
     // 更新
     void Update(void);
     // 描画
@@ -36,8 +37,11 @@ public:
     // プレイヤー弾と敵の当たり判定処理
     void CollisionPShotAndE();
 
+    // プレイヤーとステージの当たり判定処理
+    void CollisionPAndS();
+
 	// 敵とステージの当たり判定処理
-    void CollisionEAndStage();
+    void CollisionEAndS();
 
 private:
 
@@ -47,12 +51,21 @@ private:
 
     EnemyBase* enemy_;
 
+    Camera* camera_;
+
     Blast* blast_;
 
     PlayerShot* pShot_;
 
-    // 敵とプレイヤーのの当たり判定の球体の半径
+    // 照準と敵の当たり判定
+    //MV1_COLL_RESULT_POLY hitPoly_PShot_E;
+    // // 照準と敵の当たり判定
+    MV1_COLL_RESULT_POLY hitPoly_PShot_E;
+
+    // 敵とプレイヤーのの当たり判定
     MV1_COLL_RESULT_POLY_DIM hitPoly_E_P;
+    // プレイヤーとステージの当たり判定
+    MV1_COLL_RESULT_POLY hitPoly_P_S;
     // 敵とステージの当たり判定
 	MV1_COLL_RESULT_POLY hitPoly_E_S;
 
@@ -62,10 +75,16 @@ private:
     VECTOR enemyPosS_, enemyPosE_;
 
     // 敵とステージの当たり判定がヒットしたかどうか
-	bool isHit_E_P = false; 
+	bool isHit_E_P_ = false; 
+
+    // プレイヤーとステージの当たり判定
+    bool isHit_P_S_ = false;
 
     // プレイヤーの中心座標
     VECTOR pCenterPos_;
+
+    VECTOR a;
+    VECTOR b;
 
 #endif // _DEBUG
 };

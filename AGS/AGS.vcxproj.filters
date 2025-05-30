@@ -239,5 +239,6 @@
     <None Include="Data\Model\Stage\stagetest.mv1" />
     <None Include="Data\Model\Enemy\Zombie.mv1" />
     <None Include="Data\Model\Stage\Stage.mv1" />
+    <None Include="Data\Model\bullet\bullet.mv1" />
   </ItemGroup>
 </Project>

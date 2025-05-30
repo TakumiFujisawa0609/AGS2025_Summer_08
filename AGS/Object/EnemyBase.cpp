@@ -35,9 +35,9 @@ void EnemyBase::Init(Player* player)
 	anim_->Play(ANIM_IDLE, 1);
 
 	// 敵の移動限界フラグ
-	isStop_ = false;	// 停止フラグ
-
-
+	isStop_ = false;
+	// 敵の生存フラグ
+	isAlive_ = true;
 }
 
 void EnemyBase::Update()
@@ -59,19 +59,14 @@ void EnemyBase::Update()
 void EnemyBase::Draw()
 {
 	// 敵モデル描画
-	MV1DrawModel(modelId_);
+	if(isAlive_) MV1DrawModel(modelId_); 
 
 	// デバッグ
-	DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
+	/*DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
 	DrawFormatString(0, 80, 0xffffff, "dist : %f", dist_);
 	DrawFormatString(0, 140, 0xffffff, "isStop:%d", isStop_);
-	DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);
-
-	float radius = 45.0f;               // 半径30（調整可）
-	VECTOR centerPos = VAdd(pos_, VGet(0.0f, 110, 0));	// 敵の衝突用中心座標
-
-	//DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
-	
+	DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
+	DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);*/
 
 	int animIndex = MV1GetAttachAnim(modelId_, 0);  // 敵の0番目のアニメ
 	float blendRate = MV1GetAttachAnimBlendRate(modelId_, animIndex);
@@ -222,6 +217,17 @@ void EnemyBase::PlayDie()
 	// 死亡時の処理
 }
 
+void EnemyBase::SetAlive(bool isAlive)
+{
+	isAlive_ = isAlive;
+
+	if (!isAlive_)
+	{
+		state_ = STATE_DIE;  // 死亡状態に変えるなど必要なら
+		speed_ = 0.0f;       // 止めるなど
+	}
+}
+
 int EnemyBase::GetModelId() const
 {
 	return modelId_;
@@ -246,4 +252,6 @@ void EnemyBase::SetStop(bool isStop)
 {
 	isStop_ = isStop;	// 停止フラグをセット
 	
+	// 死亡状態にする
+	state_ = STATE_DIE;
 }

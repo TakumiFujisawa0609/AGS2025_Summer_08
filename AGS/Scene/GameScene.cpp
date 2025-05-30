@@ -26,13 +26,15 @@ void GameScene::Init(void)
 	camera_ = new Camera();
 	enemy_ = new EnemyBase();
 	stage_ = new StageBase();
+	pShot_ = new PlayerShot();
 	collision_ = new Collision();
 
 	player_->Init();
 	camera_->Init(player_);
 	enemy_->Init(player_);
 	stage_->Init();
-	collision_->Init(player_, stage_, enemy_, blast_, pShot_);
+	pShot_->Init(camera_);
+	collision_->Init(player_, stage_, enemy_, blast_, pShot_, camera_);
 }
 
 // 更新処理
@@ -42,12 +44,17 @@ void GameScene::Update(void)
 
 	enemy_->Update();
 
-	camera_->Update();
-
 	// 当たり判定
 	collision_->Update();
+
+	// 当たり判定→プレイヤー座標更新
+	player_->ModelReflect();
 	// 当たり判定→敵座標更新
 	enemy_->ModelReflect();
+
+	camera_->Update();
+
+	pShot_->Update();
 
 }
 
@@ -59,9 +66,12 @@ void GameScene::Draw(void)
 	player_->Draw();
 
 	grid_->Draw();
+
 	enemy_->Draw();
 
 	camera_->Draw();
+
+	pShot_->Draw();
 
 	collision_->Draw();
 }
@@ -78,5 +88,8 @@ void GameScene::Release(void)
 
 	enemy_->Release();
 	delete enemy_;
+
+	pShot_->Release();
+	delete pShot_;
 
 }

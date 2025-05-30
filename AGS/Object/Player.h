@@ -15,14 +15,22 @@ public:
 	void Draw(void);
 	void Release(void);
 
-	void Dir();
+	// モデルの座標情報を反映させる
+	void ModelReflect();
+
+	// 移動停止
+	void SetStop(bool isStop);
+
 
 	VECTOR GetPPos(void);
+	VECTOR GetMovedPos(void);
 private:
 
 	// プレイヤーモデル
 	int modelId_;
-
+	
+	// プレイヤーの移動前座標
+	VECTOR movedPos_;
 	// プレイヤー座標
 	VECTOR pos_;
 	// 角度
@@ -49,4 +57,7 @@ private:
 	// 移動関連
 	// 移動操作
 	void ProcessMove(VECTOR angle);
+
+	// 移動停止フラグ
+	bool isStop_;
 };

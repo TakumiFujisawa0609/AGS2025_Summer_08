@@ -20,7 +20,12 @@ void Camera::Init(Player* player)
 	// カメラの初期位置
 	pos_ = { 0.0f, 0.0f, 0.0f };
 
-	SetMouseDispFlag(true); // マウスカーソル非表示
+	// ゲーム内フラグ
+	isInGame_ = true;
+
+	if (isInGame_)SetMouseDispFlag(false);
+	if (!isInGame_)SetMouseDispFlag(true);
+
 	SetMousePoint(centerX_, centerY_);	// マウスセット
 	GetMousePoint(&prevPosX_, &prevPosY_);	// マウスの位置取得
 
@@ -29,8 +34,7 @@ void Camera::Init(Player* player)
 	// 追従対象からのローカル座標の回転値
 	localRotFrom_ = { 0.0f, 0.0f, 0.0f };
 
-	// ゲーム内フラグ
-	isInGame_ = true;
+
 }
 
 
@@ -51,8 +55,6 @@ void Camera::Update(void)
 
 	// マウスを中央に戻す
 	SetMousePoint(centerX_, centerY_);
-	prevPosX_ = centerX_;
-	prevPosY_ = centerY_;
 }
 
 void Camera::Draw(void)
@@ -113,13 +115,15 @@ void Camera::Angle(void)
 	pos_ = VGet(followPos.x, followPos.y + HEIGHT, followPos.z);
 
 	// 前方向ベクトルを計算
-	VECTOR forward = {
+	forward_ = {
 		cosf(pitch_) * sinf(yaw_),
 		sinf(pitch_),
 		cosf(pitch_) * cosf(yaw_)
 	};
 	
-	pos_ = VAdd(pos_, forward);
+	// カメラの位置を前方向にする
+	pos_ = VAdd(pos_, forward_);
+
 
 	// カメラセット
 	SetCameraPositionAndTargetAndUpVec(
@@ -133,7 +137,18 @@ void Camera::Angle(void)
 	localRotFrom_.y = yaw_;
 	localRotFrom_.z = 0.0f;
 
-	
+}
+
+// 前方向取得
+VECTOR Camera::GetForward() const
+{
+	return forward_;
+}
+
+// 座標取得
+VECTOR Camera::GetPos() const
+{
+	return pos_;
 }
 
 

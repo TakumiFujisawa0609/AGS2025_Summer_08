@@ -226,6 +226,7 @@
     <Image Include="Model\parasiteZombie_specular.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Model\bullet\bullet.mv1" />
     <None Include="Data\Model\Enemy\Attack.mv1" />
     <None Include="Data\Model\Enemy\Die.mv1" />
     <None Include="Data\Model\Enemy\idle.mv1" />

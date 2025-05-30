@@ -25,8 +25,8 @@ public:
 	static constexpr float MOVE_RUN_SPEED = 4.0f;	// 走り
 
 	// アニメーションが切り替わる距離
-	static constexpr float WALK_DISTANCE = 1200.0f;	// 歩き
-	static constexpr float RUN_DISTANCE = 600.0f;	// 走り
+	static constexpr float WALK_DISTANCE = 1500.0f;	// 歩き
+	static constexpr float RUN_DISTANCE = 1000.0f;	// 走り
 	static constexpr float ATTACK_DISTANCE = 150.0f;	// 攻撃
 
 
@@ -45,6 +45,8 @@ public:
 
 	void SetStop(bool isStop);
 
+	//void TakeDamage(int damage);
+
 	void ChasePlayer();
 
 	void LookPlayer();
@@ -60,6 +62,8 @@ public:
 	void PlayAttack();
 
 	void PlayDie();
+
+	void SetAlive(bool isAlive);
 
 private:
 
@@ -88,4 +92,7 @@ private:
 
 	//敵の停止フラグ
 	bool isStop_ = false;
+
+	// 生存判定
+	bool isAlive_;
 };
