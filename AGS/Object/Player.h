@@ -23,6 +23,10 @@ private:
 	// プレイヤーモデル
 	int modelId_;
 
+	int testmodel;
+
+	VECTOR testPos;
+
 	// プレイヤー座標
 	VECTOR pos_;
 	// 角度

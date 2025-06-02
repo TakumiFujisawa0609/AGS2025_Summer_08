@@ -18,10 +18,19 @@ void Player::Init(void)
 
 	// カメラアングル
 	cameraAngle_ = { 0.0f, 0.0f, 0.0f };
+
+	testmodel = MV1LoadModel("Data/Model/Item/Ammo.mv1");
+
+	testPos = { 0,100,0 };
+	VECTOR scale = { 0.05,0.05f,0.05f };
+
+	//MV1SetScale(testmodel, scale);
 }
 
 void Player::Update(VECTOR angle)
 {
+	MV1SetPosition(testmodel, testPos);
+
 	// カメラアングル取得
 	cameraAngle_ = angle;
 
@@ -45,6 +54,8 @@ void Player::Draw(void)
 
 	// プレイヤー座標
 	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
+
+	MV1DrawModel(testmodel);
 }
 
 void Player::Release(void)
