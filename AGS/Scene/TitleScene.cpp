@@ -18,7 +18,7 @@ void TitleScene::Init(void)
 	camera_ = new Camera();
 	
 	
-	testTitleImg_ = LoadGraph("Data/Image/TestTitle.png");
+	testTitleImg_ = LoadGraph("Data/Image/Test1.png");
 }
 
 void TitleScene::Update(void)
@@ -56,8 +56,8 @@ void TitleScene::Draw(void)
 {
 
 	// testîwåi
-	DrawGraph(0, 0, testTitleImg_, true);
-
+	//DrawGraph(-100, -100, testTitleImg_, true);
+	DrawExtendGraph(0, 0, 1550, 900, testTitleImg_, true);
 
 }
 
