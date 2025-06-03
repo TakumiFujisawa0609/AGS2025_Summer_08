@@ -7,6 +7,17 @@ class Application
 
 public:
 
+
+	// データパス関連
+	//-------------------------------------------
+	static const std::string PATH_DATA;
+	static const std::string PATH_IMAGE;
+	static const std::string PATH_MODEL;
+	static const std::string PATH_EFFECT;
+	static const std::string PATH_MAP_DATA;
+
+	//-------------------------------------------
+
 	// スクリーンサイズ
 	static constexpr int SCREEN_SIZE_X = 1920;
 	static constexpr int SCREEN_SIZE_Y = 1080;
@@ -49,5 +60,6 @@ private:
 
 	// FPS
 	FpsControl* fps_;
+
 
 };
