@@ -1,10 +1,12 @@
 #pragma once
+#include <unordered_map>
 #include <DxLib.h>
+#include "../Object/Enemy/EnemyBase.h"
 class Player;
 class StageBase;
-class EnemyBase;
+class EnemyManager;
 class Camera;
-class Blast;
+class Blood;
 class PlayerShot;
 
 class Collision
@@ -23,7 +25,7 @@ public:
 
 
     // 初期化
-    void Init(Player* player,StageBase* stage, EnemyBase* enemy, Blast* blast, PlayerShot* pShot, Camera* camera);
+    void Init(Player* player,StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera);
     // 更新
     void Update(void);
     // 描画
@@ -37,6 +39,9 @@ public:
     // プレイヤー弾と敵の当たり判定処理
     void CollisionPShotAndE();
 
+    // プレイヤー弾とステージの当たり判定
+    void CollisionPShotAndS();
+
     // プレイヤーとステージの当たり判定処理
     void CollisionPAndS();
 
@@ -49,11 +54,11 @@ private:
 
 	StageBase* stage_;
 
-    EnemyBase* enemy_;
+    EnemyManager* enemy_;
 
     Camera* camera_;
 
-    Blast* blast_;
+    Blood* blood_;
 
     PlayerShot* pShot_;
 
@@ -61,6 +66,8 @@ private:
     //MV1_COLL_RESULT_POLY hitPoly_PShot_E;
     // // 照準と敵の当たり判定
     MV1_COLL_RESULT_POLY hitPoly_PShot_E;
+    // プレイヤー弾とステージの当たり判定
+    MV1_COLL_RESULT_POLY_DIM hitPoly_PShot_S;
 
     // 敵とプレイヤーのの当たり判定
     MV1_COLL_RESULT_POLY_DIM hitPoly_E_P;
@@ -79,6 +86,9 @@ private:
 
     // プレイヤーとステージの当たり判定
     bool isHit_P_S_ = false;
+
+    // 攻撃判定
+    std::unordered_map<EnemyBase*, bool> enemyAttackHit_;
 
     // プレイヤーの中心座標
     VECTOR pCenterPos_;

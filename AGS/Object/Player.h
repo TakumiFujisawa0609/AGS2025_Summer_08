@@ -10,6 +10,9 @@ public:
 	// 初期モデル補正角度
 	static constexpr VECTOR INIT_MODEL_ROT_OFFSET = { 0.0f, DX_PI_F, 0.0f };
 
+	// ヒットポイント
+	static constexpr int DEFAULT_HP = 2;
+
 	void Init(void);
 	void Update(VECTOR angle);
 	void Draw(void);
@@ -17,6 +20,8 @@ public:
 
 	// モデルの座標情報を反映させる
 	void ModelReflect();
+
+	void Damage(int damage);
 
 	// 移動停止
 	void SetStop(bool isStop);
@@ -60,4 +65,7 @@ private:
 
 	// 移動停止フラグ
 	bool isStop_;
+
+	// 体力
+	int hp_;
 };

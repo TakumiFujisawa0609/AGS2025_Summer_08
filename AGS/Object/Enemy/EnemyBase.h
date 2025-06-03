@@ -2,18 +2,36 @@
 class AnimControl;
 class Player;
 
-enum EnemyState
-{
-	STATE_IDLE,		// 待機
-	STATE_WALK,		// 歩き
-	STATE_RUN,		// 走り
-	STATE_ATTACK,	// 攻撃
-	STATE_DIE,		// 死亡
-};;
 
 class EnemyBase
 {
 public:
+
+	enum class TYPE
+	{
+		NORMAL,
+		MAX
+	};
+
+	enum class STATE
+	{
+		IDLE,		// 待機
+		WALK,		// 歩き
+		RUN,		// 走り
+		ATTACK,		// 攻撃
+		DIE,		// 死亡
+	};
+
+	// スポーン位置
+	struct SpawnPoint
+	{
+		VECTOR pos;
+	};
+
+	static constexpr SpawnPoint spawnPoints[2] = {
+		{100.0f, 0.0f, 300.0f},
+		{700.0f, 0.0f, 1300.0f}
+	};
 
 	// 敵初期位置
 	static constexpr VECTOR INIT_ENEMY_POS = { 0.0f, 0.0f, 250.0f };
@@ -29,8 +47,10 @@ public:
 	static constexpr float RUN_DISTANCE = 1000.0f;	// 走り
 	static constexpr float ATTACK_DISTANCE = 150.0f;	// 攻撃
 
+	EnemyBase();
+	virtual ~EnemyBase();
 
-	void Init(Player* player);	// 初期化
+	void Init(TYPE type, int baseModelId, Player* player);	// 初期化
 	void Update();	// 更新
 	void Draw();	// 描画
 	void Release();	// 解放
@@ -63,12 +83,18 @@ public:
 
 	void PlayDie();
 
+	bool GetAlive();
 	void SetAlive(bool isAlive);
 
-private:
+	EnemyBase::STATE GetState() const;
+
+protected:
 
 	AnimControl* anim_;	// アニメーションクラス
-	EnemyState state_;	// 敵の状態
+	STATE state_;	// 敵の状態
+
+	// 種別
+	TYPE type_;
 
 	Player* player_;	// プレイヤーのポインタ
 
@@ -95,4 +121,7 @@ private:
 
 	// 生存判定
 	bool isAlive_;
+
+	// パラメータ設定(純粋仮想関数)
+	virtual void SetParam() = 0;
 };

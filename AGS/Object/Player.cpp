@@ -20,6 +20,9 @@ void Player::Init(void)
 	// カメラアングル
 	cameraAngle_ = { 0.0f, 0.0f, 0.0f };
 
+	// 体力初期化
+	hp_ = DEFAULT_HP;
+
 	isStop_ = false;
 }
 
@@ -31,6 +34,11 @@ void Player::Update(VECTOR angle)
 	// 移動処理
 	ProcessMove(cameraAngle_);
 	//SetRotation();
+
+	if (hp_ == 0)
+	{
+		isStop_ = true;
+	}
 }
 
 void Player::Draw(void)
@@ -46,6 +54,9 @@ void Player::Draw(void)
 
 	// プレイヤー座標
 	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
+
+	DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
+	DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
 }
 
 void Player::Release(void)
@@ -62,6 +73,14 @@ void Player::ModelReflect()
 	}
 
 	MV1SetPosition(modelId_, pos_);
+}
+
+void Player::Damage(int damage)
+{
+	// ダメージを受ける
+	hp_ -= damage;
+
+	if (hp_ < 0) hp_ = 0;
 }
 
 void Player::SetStop(bool isStop)

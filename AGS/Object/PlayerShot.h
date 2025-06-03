@@ -5,11 +5,14 @@ class PlayerShot
 {
 public:
 	static constexpr VECTOR DEFAULT_POS = { 0,0,0 };
-	static constexpr VECTOR DEFAULT_SCALE = { 0.2f,0.2f,0.2f };
+	static constexpr VECTOR DEFAULT_SCALE = { 0.05f,0.05f,0.05f };
 
-	static constexpr float SHOT_SPEED = 10.0f;
+	static constexpr float SHOT_SPEED = 50.0f;
 
-	static constexpr float P_SHOT_MOVE_LIMIT = 600.0f;
+	static constexpr float P_SHOT_MOVE_LIMIT = 4000.0f;
+
+	// ç≈ëÂãÖêî
+	static constexpr int MAX_AMMO = 12;
 
 	PlayerShot();
 	~PlayerShot();
@@ -21,11 +24,19 @@ public:
 	int GetModelId() const;
 	VECTOR GetPos();
 	VECTOR GetDir();
+
+	bool GetAlive(void);
+	void SetAlive(bool isAlive);
+
+	void SetHave(bool isHave);
+
 private:
 	Camera* camera_;
 
 	// ÉÇÉfÉãID
 	int modelId_;
+	// íeâÊëú
+	int image_;
 
 	// ëÂÇ´Ç≥
 	VECTOR scale_;
@@ -39,5 +50,10 @@ private:
 	float dist_;
 
 	bool isAlive_;
+
+	bool isHave_;
+
+	// íeêî
+	int ammo_;
 };
 

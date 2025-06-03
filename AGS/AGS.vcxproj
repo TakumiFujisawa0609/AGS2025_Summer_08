@@ -153,20 +153,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Manager\EnemyManager.cpp" />
+    <ClCompile Include="Manager\ItemManager.cpp" />
+    <ClCompile Include="Object\Enemy\EnemyNormal.cpp" />
+    <ClCompile Include="Object\Item\ItemBase.cpp" />
+    <ClCompile Include="Object\Item\ItemBullet.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Common\AnimControl.h" />
     <ClInclude Include="Common\Collision.h" />
     <ClInclude Include="Common\Fader.h" />
     <ClInclude Include="Common\FpsControl.h" />
     <ClInclude Include="Common\Grid.h" />
+    <ClInclude Include="Manager\EnemyManager.h" />
     <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\FpsControl.h" />
     <ClInclude Include="Manager\InputManager.h" />
+    <ClInclude Include="Manager\ItemManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Object\Blood.h" />
     <ClInclude Include="Object\Camera.h" />
-    <ClInclude Include="Object\EnemyBase.h" />
+    <ClInclude Include="Object\Enemy\EnemyBase.h" />
+    <ClInclude Include="Object\Enemy\EnemyNormal.h" />
+    <ClInclude Include="Object\Item\ItemBullet.h" />
+    <ClInclude Include="Object\Item\ItemBase.h" />
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Object\PlayerShot.h" />
     <ClInclude Include="Object\StageBase.h" />
@@ -186,7 +196,7 @@
     <ClCompile Include="Manager\SoundManager.cpp" />
     <ClCompile Include="Object\Blood.cpp" />
     <ClCompile Include="Object\Camera.cpp" />
-    <ClCompile Include="Object\EnemyBase.cpp" />
+    <ClCompile Include="Object\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Object\Player.cpp" />
     <ClCompile Include="Object\PlayerShot.cpp" />
     <ClCompile Include="Object\StageBase.cpp" />

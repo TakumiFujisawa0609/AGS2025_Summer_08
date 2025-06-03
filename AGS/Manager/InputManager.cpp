@@ -54,6 +54,7 @@ void InputManager::Init(void)
 	Add(KEY_INPUT_RIGHT);
 	Add(KEY_INPUT_L);
 	Add(MOUSE_INPUT_LEFT);
+	Add(KEY_INPUT_R);
 
 
 	// アニメーション用に使用するボタン
@@ -78,14 +79,14 @@ void InputManager::Update(void)
 		// 入力されたキーフレーム更新
 		keyInfos_[i].keyOld = keyInfos_[i].keyNew;
 
-		// 押されたかをチェック
-		if (CheckHitKey(keyInfos_[i].key))
+		// ★ ここだけ条件分岐を追加（マウス用）
+		if (keyInfos_[i].key >= MOUSE_INPUT_LEFT && keyInfos_[i].key <= MOUSE_INPUT_MIDDLE)
 		{
-			keyInfos_[i].keyNew = true;
+			keyInfos_[i].keyNew = (GetMouseInput() & keyInfos_[i].key) != 0;
 		}
 		else
 		{
-			keyInfos_[i].keyNew = false;
+			keyInfos_[i].keyNew = CheckHitKey(keyInfos_[i].key) != 0;
 		}
 
 		// 今押された(前フレームで押されてない＆今フレームがおされた)かをチェックして更新

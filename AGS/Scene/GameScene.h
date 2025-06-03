@@ -4,8 +4,8 @@ class StageBase;
 class Camera;
 class Player;
 class PlayerShot;
-class Blast;
-class EnemyBase;
+class Blood;
+class EnemyManager;
 class Collision;
 class Grid;
 
@@ -40,13 +40,13 @@ private:
 	Camera* camera_;
 
 	// ìG
-	EnemyBase* enemy_;
+	EnemyManager* enemy_;
 
 	// íe
 	PlayerShot* pShot_;
 
 	// îöî≠
-	Blast* blast_;
+	Blood* blood_;
 
 	// è’ìÀ
 	Collision* collision_;

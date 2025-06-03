@@ -2,7 +2,7 @@
 #include "../Object/Camera.h"
 #include "../Object/StageBase.h"
 #include "../Object/Player.h"
-#include "../Object/EnemyBase.h"
+#include "../Manager/EnemyManager.h"
 #include "../Object/PlayerShot.h"
 #include "../Object/Blood.h"
 #include "../Common/Collision.h"
@@ -24,17 +24,19 @@ void GameScene::Init(void)
 {
 	player_ = new Player();
 	camera_ = new Camera();
-	enemy_ = new EnemyBase();
+	enemy_ = new EnemyManager(player_);
 	stage_ = new StageBase();
 	pShot_ = new PlayerShot();
+	blood_ = new Blood();
 	collision_ = new Collision();
 
 	player_->Init();
 	camera_->Init(player_);
-	enemy_->Init(player_);
+	enemy_->Init();
 	stage_->Init();
 	pShot_->Init(camera_);
-	collision_->Init(player_, stage_, enemy_, blast_, pShot_, camera_);
+	blood_->Init();
+	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_);
 }
 
 // 更新処理
@@ -44,13 +46,28 @@ void GameScene::Update(void)
 
 	enemy_->Update();
 
+	// 血
+	blood_->Update();
+
 	// 当たり判定
 	collision_->Update();
 
 	// 当たり判定→プレイヤー座標更新
 	player_->ModelReflect();
-	// 当たり判定→敵座標更新
-	enemy_->ModelReflect();
+	
+	// 敵取得
+	const auto& enemies = enemy_->GetEnemies();
+	// 連想配列（map）を for で回す
+	for (auto pair : enemies)
+	{
+		// pair.first : EnemyBase::TYPE（型）
+		// pair.second : std::vector<EnemyBase*>（敵リスト）
+		for (EnemyBase* enemy : pair.second)
+		{
+			// 当たり判定→敵座標更新
+			enemy->ModelReflect();
+		}
+	}
 
 	camera_->Update();
 
@@ -73,6 +90,9 @@ void GameScene::Draw(void)
 
 	pShot_->Draw();
 
+	// 血
+	blood_->Draw();
+
 	collision_->Draw();
 }
 
@@ -92,4 +112,6 @@ void GameScene::Release(void)
 	pShot_->Release();
 	delete pShot_;
 
+	blood_->Release();
+	delete blood_;
 }

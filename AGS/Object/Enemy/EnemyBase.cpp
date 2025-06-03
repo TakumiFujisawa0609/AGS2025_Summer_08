@@ -1,17 +1,30 @@
 #include <DxLib.h>
-#include "../Manager/InputManager.h"
-#include "../Common/AnimControl.h"
-#include "../Common/Collision.h"
-#include "../Utility/AsoUtility.h"
-#include "Player.h"
+#include "../../Manager/InputManager.h"
+#include "../../Common/AnimControl.h"
+#include "../../Common/Collision.h"
+#include "../../Utility/AsoUtility.h"
+#include "../Player.h"
 #include "EnemyBase.h"
 
-void EnemyBase::Init(Player* player)
+EnemyBase::EnemyBase()
 {
-	player_ = player;	// ゲームシーン内のプレイヤーポインタを取得
+}
+
+EnemyBase::~EnemyBase()
+{
+}
+
+
+void EnemyBase::Init(TYPE type, int baseModelId, Player* player)
+{
+	// 敵種別
+	type_ = type;
+
+	// ゲームシーン内のplayerを取得
+	player_ = player;
 
 	// 敵モデル描画
-	modelId_ = MV1LoadModel("Data/Model/Enemy/Zombie.mv1");
+	modelId_ = MV1DuplicateModel(baseModelId);
 
 	// モデルのコリジョン情報の初期化
 	MV1SetupCollInfo(modelId_, -1);	// コリジョン情報の初期化
@@ -31,6 +44,8 @@ void EnemyBase::Init(Player* player)
 	// 敵モデルの座標設定
 	MV1SetPosition(modelId_, pos_);
 
+	// 初期状態
+	state_ = STATE::IDLE;
 	// 初期アニメーション設定
 	anim_->Play(ANIM_IDLE, 1);
 
@@ -38,6 +53,9 @@ void EnemyBase::Init(Player* player)
 	isStop_ = false;
 	// 敵の生存フラグ
 	isAlive_ = true;
+
+	// パラメータ設定
+	SetParam();
 }
 
 void EnemyBase::Update()
@@ -59,7 +77,7 @@ void EnemyBase::Update()
 void EnemyBase::Draw()
 {
 	// 敵モデル描画
-	if(isAlive_) MV1DrawModel(modelId_); 
+	MV1DrawModel(modelId_); 
 
 	// デバッグ
 	/*DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
@@ -67,12 +85,15 @@ void EnemyBase::Draw()
 	DrawFormatString(0, 140, 0xffffff, "isStop:%d", isStop_);
 	DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
 	DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);*/
-
+	DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
 	int animIndex = MV1GetAttachAnim(modelId_, 0);  // 敵の0番目のアニメ
 	float blendRate = MV1GetAttachAnimBlendRate(modelId_, animIndex);
 	DrawFormatString(0, 280, GetColor(255, 255, 0), "BlendRate : %.2f", blendRate);
 
+	VECTOR centerPos = pos_;
+	centerPos = VAdd(centerPos, VGet(0, 100, 0));
 
+	//DrawSphere3D(centerPos, 70, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
 }
 
 void EnemyBase::Release()
@@ -116,10 +137,9 @@ void EnemyBase::LookPlayer()
 // プレイヤー追尾
 void EnemyBase::ChasePlayer()
 {
-
 	// スピード設定
-	if (state_ == STATE_WALK) speed_ = MOVE_WALK_SPEED;  // 歩き速度
-	else if (state_ == STATE_RUN) speed_ = MOVE_RUN_SPEED; // 走り速度
+	if (state_ == STATE::WALK) speed_ = MOVE_WALK_SPEED;  // 歩き速度
+	else if (state_ == STATE::RUN) speed_ = MOVE_RUN_SPEED; // 走り速度
 	else speed_ = 0.0f; // それ以外なら止まる
 
 	// 移動方向がゼロベクトルでない場合
@@ -145,20 +165,18 @@ void EnemyBase::ChangeState()
 	// 状態を切り替える距離
 	if (dist_ < ATTACK_DISTANCE)
 	{
-		state_ = STATE_ATTACK;
+		state_ = STATE::ATTACK;
 	}
 	else if (dist_ < RUN_DISTANCE)
 	{
-		state_ = STATE_RUN;
+		state_ = STATE::RUN;
 	}
 	else if (dist_ < WALK_DISTANCE)
 	{
-		state_ = STATE_WALK;
+		state_ = STATE::WALK;
 	}
-	else
-	{
-		state_ = STATE_IDLE;
-	}
+
+	if (!isAlive_) { state_ = STATE::DIE; }
 }
 
 // 行動切り替え
@@ -166,22 +184,22 @@ void EnemyBase::UpdateBehavior()
 {
 	// 状態に応じてアニメーションを切り替える
 	switch (state_) {
-	case STATE_IDLE:
+	case STATE::IDLE:
 		PlayIdle();
 		break;
-	case STATE_WALK:
+	case STATE::WALK:
 		PlayWalk();
 		ChasePlayer();
 		break;
-	case STATE_RUN:
+	case STATE::RUN:
 		anim_->Play(ANIM_RUN, 1);
 		ChasePlayer();
 		PlayRun();;
 		break;
-	case STATE_ATTACK:
+	case STATE::ATTACK:
 		PlayAttack();
 		break;
-	case STATE_DIE:
+	case STATE::DIE:
 		PlayDie();
 		break;
 	}
@@ -207,7 +225,7 @@ void EnemyBase::PlayRun()
 
 void EnemyBase::PlayAttack()
 {
-	anim_->Play(ANIM_ATTACK, 1.5f);
+	anim_->Play(ANIM_ATTACK, 2.2f);
 	// 攻撃判定など
 }
 
@@ -217,15 +235,25 @@ void EnemyBase::PlayDie()
 	// 死亡時の処理
 }
 
+bool EnemyBase::GetAlive()
+{
+	return isAlive_;
+}
+
 void EnemyBase::SetAlive(bool isAlive)
 {
 	isAlive_ = isAlive;
 
 	if (!isAlive_)
 	{
-		state_ = STATE_DIE;  // 死亡状態に変えるなど必要なら
+		state_ = STATE::DIE;  // 死亡状態に変えるなど必要なら
 		speed_ = 0.0f;       // 止めるなど
 	}
+}
+
+EnemyBase::STATE EnemyBase::GetState() const
+{
+	return state_;
 }
 
 int EnemyBase::GetModelId() const
@@ -253,5 +281,5 @@ void EnemyBase::SetStop(bool isStop)
 	isStop_ = isStop;	// 停止フラグをセット
 	
 	// 死亡状態にする
-	state_ = STATE_DIE;
+	state_ = STATE::DIE;
 }
