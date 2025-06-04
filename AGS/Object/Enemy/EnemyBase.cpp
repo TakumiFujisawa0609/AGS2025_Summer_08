@@ -162,8 +162,17 @@ void EnemyBase::ChasePlayer()
 // 状態を切り替える
 void EnemyBase::ChangeState()
 {
+	if (!isAlive_) {
+		state_ = STATE::DIE;
+		return;
+	}
+
 	// 状態を切り替える距離
-	if (dist_ < RUN_DISTANCE)
+	if (dist_ < ATTACK_DISTANCE)
+	{
+		state_ = STATE::ATTACK;
+	}
+	else if (dist_ < RUN_DISTANCE)
 	{
 		state_ = STATE::RUN;
 	}
@@ -171,8 +180,6 @@ void EnemyBase::ChangeState()
 	{
 		state_ = STATE::WALK;
 	}
-
-	if (!isAlive_) { state_ = STATE::DIE; }
 }
 
 // 行動切り替え
@@ -252,6 +259,11 @@ EnemyBase::STATE EnemyBase::GetState() const
 	return state_;
 }
 
+float EnemyBase::GetAnimRate()
+{
+	return anim_->GetCurrentAnimRate();
+}
+
 int EnemyBase::GetModelId() const
 {
 	return modelId_;
@@ -275,7 +287,4 @@ void EnemyBase::SetPos(VECTOR pos)
 void EnemyBase::SetStop(bool isStop)
 {
 	isStop_ = isStop;	// 停止フラグをセット
-	
-	// 死亡状態にする
-	state_ = STATE::DIE;
 }

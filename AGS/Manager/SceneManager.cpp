@@ -112,7 +112,9 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 	waitSceneId_ = nextId;
 
 	// フェードアウト(暗転)を開始する
-	fader_->SetFade(Fader::STATE::FADE_OUT, 0xff0000);
+	fader_->SetFade(Fader::STATE::FADE_OUT, GetColor(0, 0, 0));
+
+
 	isSceneChanging_ = true;
 
 }
@@ -183,7 +185,7 @@ void SceneManager::Fade(void)
 		{
 			// 暗転後、シーン変更
 			DoChangeScene(waitSceneId_);
-			fader_->SetFade(Fader::STATE::FADE_IN, 0xff0000);
+			fader_->SetFade(Fader::STATE::FADE_IN, GetColor(0,0,0));
 		}
 		break;
 	case Fader::STATE::FADE_IN:

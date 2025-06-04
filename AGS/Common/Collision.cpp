@@ -1,5 +1,6 @@
-#include <DxLib.h>
+ï»¿#include <DxLib.h>
 #include "../Manager/InputManager.h"
+#include "../Common/AnimControl.h"
 #include "../Object/Player.h"
 #include "../Object/StageBase.h"
 #include "../Manager/EnemyManager.h"
@@ -8,10 +9,10 @@
 #include "../Object/Blood.h"
 #include "Collision.h"
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera)
 {
-	// ƒQ[ƒ€ƒV[ƒ“‚©‚ç“n‚³‚ê‚½ƒCƒ“ƒXƒ^ƒ“ƒX‚ğg—p
+	// ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‹ã‚‰æ¸¡ã•ã‚ŒãŸã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½¿ç”¨
 	player_ = player;
 	stage_ = stage;
 	enemy_ = enemy;
@@ -19,10 +20,10 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Bloo
 	pShot_ = pShot;
 	camera_ = camera;
 
-	// “G‚ğæ“¾
+	// æ•µã‚’å–å¾—
 	const auto& enemies = enemy_->GetEnemies();
 
-	// ˜A‘z”z—ñimapj‚ğ for ‚Å‰ñ‚·
+	// é€£æƒ³é…åˆ—ï¼ˆmapï¼‰ã‚’ for ã§å›ã™
 	for (auto pair : enemies)
 	{
 		for (EnemyBase* enemy : pair.second)
@@ -35,28 +36,28 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Bloo
 
 void Collision::Update()
 {
-	// ƒvƒŒƒCƒ„[‚Æ“G‚Ì“–‚½‚è”»’è
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨æ•µã®å½“ãŸã‚Šåˆ¤å®š
 	CollisionPAndE();
 
-	// ƒvƒŒƒCƒ„[’e‚Æ“G‚Ì“–‚½‚è”»’è
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å¼¾ã¨æ•µã®å½“ãŸã‚Šåˆ¤å®š
 	CollisionPShotAndE();
-	// ƒvƒŒƒCƒ„[’e‚ÆƒXƒe[ƒW‚Ì“–‚½‚è”»’è
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å¼¾ã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®å½“ãŸã‚Šåˆ¤å®š
 	CollisionPShotAndS();
 
-	// ƒvƒŒƒCƒ„[‚ÆƒXƒe[ƒW‚Ì“–‚½‚è”»’è
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®å½“ãŸã‚Šåˆ¤å®š
 	CollisionPAndS();
 
-	// “G‚ÆƒXƒe[ƒW‚Ì“–‚½‚è”»’è
+	// æ•µã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®å½“ãŸã‚Šåˆ¤å®š
 	CollisionEAndS();
 }
 
 void Collision::Draw()
 {
-	//DrawSphere3D(pCenterPos_, 45, 10, 0x00ff00, 0x00ff00, false);	// ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è‚Ì‹…‘Ì‚ğ•`‰æ
+	//DrawSphere3D(pCenterPos_, 45, 10, 0x00ff00, 0x00ff00, false);	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã®çƒä½“ã‚’æç”»
 	//DrawFormatString(0, 400, 0xffffff, "pCenterPos_:(%.2f, %.2f, %.2f)", pCenterPos_.x, pCenterPos_.y, pCenterPos_.z);
-	// ƒvƒŒƒCƒ„[À•W
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™
 	player_->GetPPos();
-	DrawFormatString(0, 420, 0xffffff, "ƒRƒŠƒWƒ‡ƒ““à‚ÌpPos:(%.2f, %.2f, %.2f)", player_->GetPPos().x, player_->GetPPos().y, player_->GetPPos().z);
+	DrawFormatString(0, 420, 0xffffff, "ã‚³ãƒªã‚¸ãƒ§ãƒ³å†…ã®pPos:(%.2f, %.2f, %.2f)", player_->GetPPos().x, player_->GetPPos().y, player_->GetPPos().z);
 
 	DrawFormatString(0, 320, 0xffffff, "Hit_E_S:%d", hitPoly_E_S.HitFlag);
 	DrawFormatString(0, 640, 0xffffff, "Hit_E_P:%d", isHit_E_P_);
@@ -69,7 +70,30 @@ void Collision::Draw()
 
 	//DrawLine3D(enemyPosS_, enemyPosE_, 0xff0000);
 	DrawLine3D(a, b, 0xff0000);
-	//DrawSphere3D(enemyPosS_, 10, 10, 0xff0000, 0xff0000, false);	// ‹…‚ğ•`‰æ
+	//DrawSphere3D(enemyPosS_, 10, 10, 0xff0000, 0xff0000, false);	// çƒã‚’æç”»
+
+	int y = 500;
+	for (const auto& pair : enemyAttackHit_)
+	{
+		DrawFormatString(700, y, 0xffffff, "Enemy[%p] Hit:%d", pair.first, pair.second);
+		y += 30;
+	}
+
+	int animRateY = 100;
+	for (const auto& pair : enemy_->GetEnemies())
+	{
+		for (EnemyBase* enemy : pair.second)
+		{
+			if (enemy->GetState() == EnemyBase::STATE::ATTACK)
+			{
+				{
+					float animRate = enemy->GetAnimRate(); // 0.0ã€œ1.0 ã®ç¯„å›²
+					DrawFormatString(900, animRateY, 0xffaa00, "Enemy[%p] AnimRate: %.2f", enemy, animRate);
+					animRateY += 30;
+				}
+			}
+		}
+	}
 }
 
 void Collision::Release()
@@ -80,38 +104,52 @@ void Collision::CollisionPAndE()
 {
 	const auto& enemies = enemy_->GetEnemies();
 
-	// ˜A‘z”z—ñimapj‚ğ for ‚Å‰ñ‚·
+	// é€£æƒ³é…åˆ—ï¼ˆmapï¼‰ã‚’ for ã§å›ã™
 	for (auto pair : enemies)
 	{
 		for (EnemyBase* enemy : pair.second)
 		{
-			// ƒvƒŒƒCƒ„[‚ÌÀ•W‚ğæ“¾
+			// æ•µãŒæ”»æ’ƒçŠ¶æ…‹ä»¥å¤–ãªã‚‰ã‚¹ã‚­ãƒƒãƒ—ï¼ˆé‡è¦ï¼‰
+			if (enemy->GetState() != EnemyBase::STATE::ATTACK) continue;
+			
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™ã‚’å–å¾—
 			VECTOR pPos = player_->GetPPos();
-			// “G‚ÌÀ•W‚ğæ“¾
+			// æ•µã®åº§æ¨™ã‚’å–å¾—
 			VECTOR ePos = enemy->GetPos();
 			
-			// ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è‚Ì‹…‘Ì‚Ì’†S“_
+			// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã®çƒä½“ã®ä¸­å¿ƒç‚¹
 			VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
-			// “G‚Ì“–‚½‚è”»’è‚Ì‹…‘Ì‚Ì’†S“_
+			// æ•µã®å½“ãŸã‚Šåˆ¤å®šã®çƒä½“ã®ä¸­å¿ƒç‚¹
 			VECTOR eCenterPos = VAdd(ePos, VGet(0, 100, 0));
 
 			float radiusP = 45.0f;
 			float radiusE = 60.0f;
 
-			// ’†SŠÔ‚Ì‹——£
+			// ä¸­å¿ƒé–“ã®è·é›¢
 			float dis = VSize(VSub(pCenterPos,eCenterPos));
-			// ”¼Œa‚Ì‡Œv
+			dis = dis - 100;
+
+			// åŠå¾„ã®åˆè¨ˆ
 			float radiusNum = radiusP + radiusE;
 
-			// UŒ‚’†‚¾‚Á‚½‚ç
+			// æ•µã®æ”»æ’ƒã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿæ™‚é–“ã‚’å–å¾—
+			float animRate = enemy->GetAnimRate(); // å†ç”Ÿä½ç½®å‰²åˆ
+
+			// æ”»æ’ƒä¸­ã ã£ãŸã‚‰
 			if (dis < radiusNum)
 			{
-				isHit_E_P_ = true;
-				enemyAttackHit_[enemy] = true;
+				if (!enemyAttackHit_[enemy]) // å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§å½“ãŸã£ã¦ãªã‹ã£ãŸã‚‰
+				{
+					// æŒ‡å®šã—ãŸã‚¢ãƒ‹ãƒ¡ç¯„å›²å†…ã§ã—ã‹æ”»æ’ƒãƒ’ãƒƒãƒˆã‚’èªã‚ãªã„
+					//if (animRate >= 0.5f && animRate <= 0.6f)
+					//{
+						player_->Damage(1);
+					//}
+					enemyAttackHit_[enemy] = true;
+				}
 			}
 			else
 			{
-				isHit_E_P_ = false;
 				enemyAttackHit_[enemy] = false;
 			}
 		}
@@ -128,10 +166,10 @@ void Collision::CollisionPShotAndE(void)
 	//VECTOR dir = pShot_->GetDir();
 	//float maxShotPos = 1000.0f;
 
-	//// endPos ‚Í shotPos ‚©‚ç dir •ûŒü‚É maxDistance i‚ñ‚¾’n“_
+	//// endPos ã¯ shotPos ã‹ã‚‰ dir æ–¹å‘ã« maxDistance é€²ã‚“ã åœ°ç‚¹
 	//VECTOR endPos = VAdd(shotPos, VScale(dir, maxShotPos));
 
-	//// ‹…‘Ì‚Æ“Gƒ‚ƒfƒ‹‚Æ‚Ì“–‚½‚è”»’è
+	//// çƒä½“ã¨æ•µãƒ¢ãƒ‡ãƒ«ã¨ã®å½“ãŸã‚Šåˆ¤å®š
 	//hitPoly_PShot_E = MV1CollCheck_Line(eModelId, -1, shotPos, endPos, -1);
 
 	//if (hitPoly_PShot_E.HitFlag == 1)
@@ -142,34 +180,34 @@ void Collision::CollisionPShotAndE(void)
 	//	b = endPos;
 	//}
 
-	if (!pShot_->GetAlive()) return; // ’e‚ª–³‚¢‚È‚ç”»’è‚µ‚È‚¢
+	if (!pShot_->GetAlive()) return; // å¼¾ãŒç„¡ã„ãªã‚‰åˆ¤å®šã—ãªã„
 
 	const auto& enemies = enemy_->GetEnemies();
 
-	// ˜A‘z”z—ñimapj‚ğ for ‚Å‰ñ‚·
+	// é€£æƒ³é…åˆ—ï¼ˆmapï¼‰ã‚’ for ã§å›ã™
 	for (auto pair : enemies)
 	{
 		for (EnemyBase* enemy : pair.second)
 		{
-			if (!enemy->GetAlive()) continue;  // €‚ñ‚¾“G‚ÍƒXƒLƒbƒv
-			// ’†S“_
+			if (!enemy->GetAlive()) continue;  // æ­»ã‚“ã æ•µã¯ã‚¹ã‚­ãƒƒãƒ—
+			// ä¸­å¿ƒç‚¹
 			VECTOR centerPosE = enemy->GetPos();
 			centerPosE = VAdd(centerPosE, VGet(0, 100, 0));
-			// ’†S“_
+			// ä¸­å¿ƒç‚¹
 			VECTOR centerPosPShot = pShot_->GetPos();
 
-			// ’†S“_ŠÔ‚Ì‹——£
+			// ä¸­å¿ƒç‚¹é–“ã®è·é›¢
 			float dis = VSize(VSub(centerPosE, centerPosPShot));
-			// ”¼Œa
+			// åŠå¾„
 			float rEnemy = 60.0f;
 			float rPShot = 10.0f;
 			float radiusNum = rEnemy + rPShot;
 
-			// “–‚½‚Á‚½‚ç
+			// å½“ãŸã£ãŸã‚‰
 			if (dis < radiusNum)
 			{
 				enemy->SetAlive(false);
-				pShot_->SetAlive(false);  // ’e‚ğÁ‚·
+				pShot_->SetAlive(false);  // å¼¾ã‚’æ¶ˆã™
 
 				blood_->Emit();
 				blood_->SetAlive(true);
@@ -184,7 +222,7 @@ void Collision::CollisionPShotAndE(void)
 #endif // DEBUG
 }
 
-// ƒvƒŒƒCƒ„[’e‚ÆƒXƒe[ƒW‚Ì“–‚½‚è”»’è
+// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å¼¾ã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®å½“ãŸã‚Šåˆ¤å®š
 void Collision::CollisionPShotAndS()
 {
 	int modelId = stage_->GetModelId();
@@ -200,34 +238,34 @@ void Collision::CollisionPShotAndS()
 
 void Collision::CollisionPAndS()
 {
-	// ƒXƒe[ƒW‚Ìƒ‚ƒfƒ‹ID‚ğæ“¾
+	// ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒ¢ãƒ‡ãƒ«IDã‚’å–å¾—
 	int modelId = stage_->GetModelId();
-	// ƒvƒŒƒCƒ„[‚ÌÀ•W‚ğæ“¾
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åº§æ¨™ã‚’å–å¾—
 	VECTOR pos = player_->GetPPos();
-	// ƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è‚Ì‹…‘Ì‚Ì’†S“_
-	// “GƒvƒŒƒCƒ„[‚ÌˆÚ“®—\’è’n‚ğæ“¾
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å½“ãŸã‚Šåˆ¤å®šã®çƒä½“ã®ä¸­å¿ƒç‚¹
+	// æ•µãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç§»å‹•äºˆå®šåœ°ã‚’å–å¾—
 	VECTOR movedPos = player_->GetMovedPos();
 
-	// ˆÚ“®ƒxƒNƒgƒ‹iŒü‚«j
-	VECTOR dir = VSub(movedPos, pos);   // ˆÚ“®•ûŒüƒxƒNƒgƒ‹
-	dir = VNorm(dir);             // ³‹K‰»i’·‚³‚ğ1‚É‚·‚éj
-	dir = VScale(dir, 150.0f);    // ”CˆÓ‚Ì’·‚³‚ÉƒXƒP[ƒŠƒ“ƒO
-	VECTOR endPos = VAdd(pos, dir); // pos ‚©‚çL‚Î‚µ‚½I“_
+	// ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«ï¼ˆå‘ãï¼‰
+	VECTOR dir = VSub(movedPos, pos);   // ç§»å‹•æ–¹å‘ãƒ™ã‚¯ãƒˆãƒ«
+	dir = VNorm(dir);             // æ­£è¦åŒ–ï¼ˆé•·ã•ã‚’1ã«ã™ã‚‹ï¼‰
+	dir = VScale(dir, 150.0f);    // ä»»æ„ã®é•·ã•ã«ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°
+	VECTOR endPos = VAdd(pos, dir); // pos ã‹ã‚‰ä¼¸ã°ã—ãŸçµ‚ç‚¹
 
-	// X‚ÆYÀ•W‚ğƒŒƒC‚Ì•â³’l‚ÉŒÅ’è
+	// Xã¨Yåº§æ¨™ã‚’ãƒ¬ã‚¤ã®è£œæ­£å€¤ã«å›ºå®š
 	pos.y = endPos.y = RAY_COL_Y;
 
-	// “G‚ÆƒXƒe[ƒW‚Ì“–‚½‚è”»’èİ’è
+	// æ•µã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®å½“ãŸã‚Šåˆ¤å®šè¨­å®š
 	hitPoly_P_S = MV1CollCheck_Line(modelId, -1, pos, endPos, -1);
 
-	//“G‚ÆƒXƒe[ƒW‚ªÕ“Ë‚µ‚½ê‡
+	//æ•µã¨ã‚¹ãƒ†ãƒ¼ã‚¸ãŒè¡çªã—ãŸå ´åˆ
 	if (hitPoly_P_S.HitFlag == 1)
 	{
-		player_->SetStop(true);	// ’â~
+		player_->SetStop(true);	// åœæ­¢
 	}
 	else
 	{
-		player_->SetStop(false);	// ’â~ƒtƒ‰ƒO‰ğœ
+		player_->SetStop(false);	// åœæ­¢ãƒ•ãƒ©ã‚°è§£é™¤
 	}
 
 
@@ -241,34 +279,35 @@ void Collision::CollisionEAndS()
 {
 	const auto& enemies = enemy_->GetEnemies();
 
-	// ˜A‘z”z—ñimapj‚ğ for ‚Å‰ñ‚·
+	// é€£æƒ³é…åˆ—ï¼ˆmapï¼‰ã‚’ for ã§å›ã™
 	for (auto pair : enemies)
 	{
-		// pair.first : EnemyBase::TYPEiŒ^j
-		// pair.second : std::vector<EnemyBase*>i“GƒŠƒXƒgj
+		// pair.first : EnemyBase::TYPEï¼ˆå‹ï¼‰
+		// pair.second : std::vector<EnemyBase*>ï¼ˆæ•µãƒªã‚¹ãƒˆï¼‰
 		for (EnemyBase* enemy : pair.second)
 		{
-			// ƒXƒe[ƒW‚Ìƒ‚ƒfƒ‹ID‚ğæ“¾
+
+			// ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒ¢ãƒ‡ãƒ«IDã‚’å–å¾—
 			int eModelId = stage_->GetModelId();
-			// “G‚ÌÀ•W‚ğæ“¾
+			// æ•µã®åº§æ¨™ã‚’å–å¾—
 			VECTOR pos = enemy->GetPos();
-			// “G‚ÌˆÚ“®—\’è’n‚ğæ“¾
+			// æ•µã®ç§»å‹•äºˆå®šåœ°ã‚’å–å¾—
 			VECTOR movedPos = enemy->GetMovedPos();
 
-			// YÀ•W‚ğƒŒƒC‚Ì•â³’l‚ÉŒÅ’è
+			// Yåº§æ¨™ã‚’ãƒ¬ã‚¤ã®è£œæ­£å€¤ã«å›ºå®š
 			pos.y = movedPos.y = RAY_COL_Y;
 
-			// “G‚ÆƒXƒe[ƒW‚Ì“–‚½‚è”»’èİ’è
+			// æ•µã¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®å½“ãŸã‚Šåˆ¤å®šè¨­å®š
 			hitPoly_E_S = MV1CollCheck_Line(eModelId, -1, pos, movedPos);
 
-			//“G‚ÆƒXƒe[ƒW‚ªÕ“Ë‚µ‚½ê‡
+			//æ•µã¨ã‚¹ãƒ†ãƒ¼ã‚¸ãŒè¡çªã—ãŸå ´åˆ
 			if (hitPoly_E_S.HitFlag == 1)
 			{
-				enemy->SetStop(true);	// ’â~
+				enemy->SetStop(true);	// åœæ­¢
 			}
 			else
 			{
-				enemy->SetStop(false);	// ’â~ƒtƒ‰ƒO‰ğœ
+				enemy->SetStop(false);	// åœæ­¢ãƒ•ãƒ©ã‚°è§£é™¤
 			}
 
 

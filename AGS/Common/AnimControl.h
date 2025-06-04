@@ -23,6 +23,8 @@ public:
     void Draw();
     void Release();                      // メモリ解放などの後片付け
 
+    float GetCurrentAnimRate() const;
+
 private:
     int modelId_;                // モデルのハンドルID
     ANIM_TYPE currentAnim_;      // 現在再生中のアニメーション

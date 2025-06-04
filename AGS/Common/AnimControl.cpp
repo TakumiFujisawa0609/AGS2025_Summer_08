@@ -154,3 +154,10 @@ void AnimControl::Release()
         MV1DetachAnim(modelId_, attachNo_[i]);
     }
 }
+
+float AnimControl::GetCurrentAnimRate() const
+{
+    // 現在のアニメの再生割合を返す（0.0～1.0）
+    if (totalTime_[currentAnim_] == 0.0f) return 0.0f;
+    return step_ / totalTime_[currentAnim_];
+}

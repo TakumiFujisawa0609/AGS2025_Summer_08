@@ -58,4 +58,6 @@ private:
 	int testGameSceneImg_;
 
 	int gameOverImg_;
+	bool isGameOver = false;
+	float gameOverTimer_ = 0.0f;
 };

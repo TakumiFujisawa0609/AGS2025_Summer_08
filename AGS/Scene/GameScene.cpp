@@ -76,6 +76,16 @@ void GameScene::Update(void)
 
 	pShot_->Update();
 
+	gameOverTimer_ += SceneManager::GetInstance()->GetDeltaTime();
+
+	if (isGameOver)
+	{
+		if (gameOverTimer_ >= 3.0f)
+		{
+			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
+		}
+	}
+
 }
 
 // •`‰æˆ—
@@ -132,5 +142,7 @@ void GameScene::GameOver()
 	{
 		float scale = 1.1f;  // k¬
 		DrawRotaGraph(958, 538, scale, 0.0f, gameOverImg_, true);
+
+		isGameOver = true;
 	}
 }

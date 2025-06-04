@@ -90,6 +90,8 @@ public:
 
 	EnemyBase::STATE GetState() const;
 
+	float GetAnimRate();
+
 protected:
 
 	AnimControl* anim_;	// アニメーションクラス

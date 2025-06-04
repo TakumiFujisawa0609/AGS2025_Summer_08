@@ -8,6 +8,7 @@ class EnemyManager;
 class Camera;
 class Blood;
 class PlayerShot;
+class AnimControl;
 
 class Collision
 {
@@ -61,6 +62,8 @@ private:
     Blood* blood_;
 
     PlayerShot* pShot_;
+
+    AnimControl* animControl_;
 
     // è∆èÄÇ∆ìGÇÃìñÇΩÇËîªíË
     //MV1_COLL_RESULT_POLY hitPoly_PShot_E;

@@ -41,6 +41,7 @@ void Player::Update(VECTOR angle)
 	if (hp_ == 0)
 	{
 		isStop_ = true;
+		isAlive_ = false;
 	}
 
 	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
