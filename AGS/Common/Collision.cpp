@@ -85,37 +85,34 @@ void Collision::CollisionPAndE()
 	{
 		for (EnemyBase* enemy : pair.second)
 		{
-			// 敵モデルのIDを取得
-			int eModelId = enemy->GetModelId();
 			// プレイヤーの座標を取得
 			VECTOR pPos = player_->GetPPos();
 			// 敵の座標を取得
 			VECTOR ePos = enemy->GetPos();
+			
 			// プレイヤーの当たり判定の球体の中心点
 			VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
+			// 敵の当たり判定の球体の中心点
+			VECTOR eCenterPos = VAdd(ePos, VGet(0, 100, 0));
+
+			float radiusP = 45.0f;
+			float radiusE = 60.0f;
+
+			// 中心間の距離
+			float dis = VSize(VSub(pCenterPos,eCenterPos));
+			// 半径の合計
+			float radiusNum = radiusP + radiusE;
 
 			// 攻撃中だったら
-			if (enemy->GetState() == EnemyBase::STATE::ATTACK)
+			if (dis < radiusNum)
 			{
-				// 攻撃モーション中のみ、1回だけダメージを与える
-				hitPoly_E_P = MV1CollCheck_Sphere(eModelId, -1, pCenterPos, 45.0f, -1);
-
-				if (hitPoly_E_P.HitNum > 0)
-				{
-					if (enemyAttackHit_[enemy] == false) // ← 初回だけ通す
-					{
-						player_->Damage(1); // 1回だけダメージ
-						enemyAttackHit_[enemy] = true;    // 以降はスルーされる
-						
-					}
-					isHit_E_P_ = true;  // 誰か1体でも当たってたらtrue
-				}
-				else
-				{
-					// 当たっていない時に false に戻す（次の攻撃に備える）
-					enemyAttackHit_[enemy] = false;
-					isHit_E_P_ = false;
-				}
+				isHit_E_P_ = true;
+				enemyAttackHit_[enemy] = true;
+			}
+			else
+			{
+				isHit_E_P_ = false;
+				enemyAttackHit_[enemy] = false;
 			}
 		}
 	}
@@ -164,7 +161,7 @@ void Collision::CollisionPShotAndE(void)
 			// 中心点間の距離
 			float dis = VSize(VSub(centerPosE, centerPosPShot));
 			// 半径
-			float rEnemy = 70.0f;
+			float rEnemy = 60.0f;
 			float rPShot = 10.0f;
 			float radiusNum = rEnemy + rPShot;
 
@@ -218,7 +215,7 @@ void Collision::CollisionPAndS()
 	VECTOR endPos = VAdd(pos, dir); // pos から伸ばした終点
 
 	// XとY座標をレイの補正値に固定
-	pos.y =endPos.y = RAY_COL_Y;
+	pos.y = endPos.y = RAY_COL_Y;
 
 	// 敵とステージの当たり判定設定
 	hitPoly_P_S = MV1CollCheck_Line(modelId, -1, pos, endPos, -1);

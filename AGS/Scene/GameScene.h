@@ -26,7 +26,7 @@ public:
 	void Draw(void) override;
 	void Release(void) override;
 
-
+	void GameOver();
 private:
 
 
@@ -57,5 +57,5 @@ private:
 	//testƒQ[ƒ€ƒV[ƒ“
 	int testGameSceneImg_;
 
-	
+	int gameOverImg_;
 };

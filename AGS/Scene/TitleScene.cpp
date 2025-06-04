@@ -54,11 +54,12 @@ void TitleScene::Update(void)
 
 void TitleScene::Draw(void)
 {
-
 	// test背景
-	//DrawGraph(-100, -100, testTitleImg_, true);
-	DrawExtendGraph(0, 0, 1550, 900, testTitleImg_, true);
+	float scale = 1.1f;  // 縮小
+	DrawRotaGraph(958, 538, scale, 0.0f, testTitleImg_, true);
 
+	SetFontSize(30);
+	DrawString(0, 0, "※難易度選択は未実装→今はSPACEでゲームシーンへ", 0xffffff);
 }
 
 void TitleScene::Release(void)

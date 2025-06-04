@@ -29,6 +29,8 @@ public:
 
 	VECTOR GetPPos(void);
 	VECTOR GetMovedPos(void);
+
+	bool GetAlive(void);
 private:
 
 	// プレイヤーモデル
@@ -65,6 +67,9 @@ private:
 
 	// 移動停止フラグ
 	bool isStop_;
+
+	// 生存フラグ
+	bool isAlive_;
 
 	// 体力
 	int hp_;

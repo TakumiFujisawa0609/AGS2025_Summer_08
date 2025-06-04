@@ -28,8 +28,10 @@ public:
 		VECTOR pos;
 	};
 
-	static constexpr SpawnPoint spawnPoints[2] = {
-		{100.0f, 0.0f, 300.0f},
+	static constexpr SpawnPoint spawnPoints[4] = {
+		{100.0f, 0.0f, 400.0f},
+		{700.0f, 0.0f, 400.0f},
+		{-700.0f, 0.0f, 1300.0f},
 		{700.0f, 0.0f, 1300.0f}
 	};
 
@@ -121,6 +123,8 @@ protected:
 
 	// 生存判定
 	bool isAlive_;
+
+	
 
 	// パラメータ設定(純粋仮想関数)
 	virtual void SetParam() = 0;

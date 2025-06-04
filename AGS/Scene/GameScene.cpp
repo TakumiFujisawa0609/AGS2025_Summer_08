@@ -1,4 +1,5 @@
 #include "../Manager/Application.h"
+#include "../Manager/SceneManager.h"
 #include "../Object/Camera.h"
 #include "../Object/StageBase.h"
 #include "../Object/Player.h"
@@ -37,6 +38,8 @@ void GameScene::Init(void)
 	pShot_->Init(camera_);
 	blood_->Init();
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_);
+
+	gameOverImg_ = LoadGraph("Data/Image/gameover.png");
 }
 
 // çXêVèàóù
@@ -94,6 +97,8 @@ void GameScene::Draw(void)
 	blood_->Draw();
 
 	collision_->Draw();
+
+	GameOver();
 }
 
 //âï˙èàóù
@@ -114,4 +119,18 @@ void GameScene::Release(void)
 
 	blood_->Release();
 	delete blood_;
+
+	DeleteGraph(gameOverImg_);
+}
+
+void GameScene::GameOver()
+{
+	bool isAliveP = true;
+	isAliveP = player_->GetAlive();
+
+	if (isAliveP == false)
+	{
+		float scale = 1.1f;  // èkè¨
+		DrawRotaGraph(958, 538, scale, 0.0f, gameOverImg_, true);
+	}
 }

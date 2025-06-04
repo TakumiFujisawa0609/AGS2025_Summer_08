@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "../Manager/InputManager.h"
+#include "../Manager/SceneManager.h"
 #include "../Utility/AsoUtility.h"
 #include "../Object/Player.h"
 
@@ -24,6 +25,8 @@ void Player::Init(void)
 	hp_ = DEFAULT_HP;
 
 	isStop_ = false;
+
+	isAlive_ = true;
 }
 
 void Player::Update(VECTOR angle)
@@ -39,6 +42,9 @@ void Player::Update(VECTOR angle)
 	{
 		isStop_ = true;
 	}
+
+	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
+
 }
 
 void Player::Draw(void)
@@ -56,6 +62,7 @@ void Player::Draw(void)
 	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
 
 	DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
+	DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
 	DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
 }
 
@@ -96,6 +103,11 @@ VECTOR Player::GetPPos(void)
 VECTOR Player::GetMovedPos(void)
 {
 	return movedPos_;
+}
+
+bool Player::GetAlive(void)
+{
+	return isAlive_;
 }
 
 // âÒì]ê›íË

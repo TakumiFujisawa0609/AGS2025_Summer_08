@@ -93,7 +93,7 @@ void EnemyBase::Draw()
 	VECTOR centerPos = pos_;
 	centerPos = VAdd(centerPos, VGet(0, 100, 0));
 
-	//DrawSphere3D(centerPos, 70, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+	DrawSphere3D(centerPos, 60, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
 }
 
 void EnemyBase::Release()
@@ -163,11 +163,7 @@ void EnemyBase::ChasePlayer()
 void EnemyBase::ChangeState()
 {
 	// ó‘Ô‚ğØ‚è‘Ö‚¦‚é‹——£
-	if (dist_ < ATTACK_DISTANCE)
-	{
-		state_ = STATE::ATTACK;
-	}
-	else if (dist_ < RUN_DISTANCE)
+	if (dist_ < RUN_DISTANCE)
 	{
 		state_ = STATE::RUN;
 	}
