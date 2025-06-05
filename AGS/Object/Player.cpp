@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
+#include "../Manager/SoundManager.h"
 #include "../Utility/AsoUtility.h"
 #include "../Object/Player.h"
 
@@ -46,6 +47,11 @@ void Player::Update(VECTOR angle)
 
 	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
 
+	if (!isAlive_)
+	{
+		SoundManager::GetInstance()->PlayDie();
+	}
+
 }
 
 void Player::Draw(void)
@@ -53,18 +59,18 @@ void Player::Draw(void)
 
 	//VECTOR startPos = VAdd(playerPos_, VGet(0.0f, 30.0f, 0));                          // 敵の座標
 	//VECTOR endPos = VAdd(playerPos_, VGet(0.0f, 160.0f, 0));  // カプセルの上端（高さ60の例）
-	float radius = 45.0f;	// 半径45（調整可）
+	//float radius = 45.0f;	// 半径45（調整可）
 
-	VECTOR centerPos = VAdd(pos_, VGet(0.0f, 110, 0));
+	//VECTOR centerPos = VAdd(pos_, VGet(0.0f, 110, 0));
 
-	DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);	// 球を描画
+	//DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);	// 球を描画
 
-	// プレイヤー座標
-	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
+	//// プレイヤー座標
+	//DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
 
-	DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
-	DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
-	DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
+	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
+	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
+	//DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
 }
 
 void Player::Release(void)
@@ -139,10 +145,22 @@ void Player::ProcessMove(VECTOR angle)
 
 	// 移動方向を決める
 	moveVec_ = AsoUtility::VECTOR_ZERO;
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_S)) { moveVec_ = VAdd(moveVec_, AsoUtility::DIR_F); }
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_W)) { moveVec_ = VAdd(moveVec_, AsoUtility::DIR_B); }
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_A)) { moveVec_ = VAdd(moveVec_, AsoUtility::DIR_R); }
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { moveVec_ = VAdd(moveVec_, AsoUtility::DIR_L); }
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_S)) {
+		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_F);
+		SoundManager::GetInstance()->PlayWalk();
+	}
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_W)) { 
+		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_B);
+		SoundManager::GetInstance()->PlayWalk();
+	}
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_A)) {
+		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_R);
+		SoundManager::GetInstance()->PlayWalk();
+	}
+	if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { 
+		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_L); 
+		SoundManager::GetInstance()->PlayWalk();
+	}
 
 	// 移動処理
 	// 動いていたら

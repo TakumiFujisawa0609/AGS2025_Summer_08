@@ -1,16 +1,19 @@
 ﻿#include <DxLib.h>
 #include "../Manager/InputManager.h"
+#include "../Manager/SceneManager.h"
+#include "../Manager/SoundManager.h"
 #include "../Common/AnimControl.h"
 #include "../Object/Player.h"
 #include "../Object/StageBase.h"
 #include "../Manager/EnemyManager.h"
+#include "../Manager/ItemManager.h"
 #include "../Object/Camera.h"
 #include "../Object//PlayerShot.h"
 #include "../Object/Blood.h"
 #include "Collision.h"
 
 // 初期化
-void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera)
+void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera, ItemManager* item)
 {
 	// ゲームシーンから渡されたインスタンスを使用
 	player_ = player;
@@ -19,6 +22,7 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Bloo
 	blood_ = blood;
 	pShot_ = pShot;
 	camera_ = camera;
+	item_ = item;
 
 	// 敵を取得
 	const auto& enemies = enemy_->GetEnemies();
@@ -29,6 +33,17 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Bloo
 		for (EnemyBase* enemy : pair.second)
 		{
 			enemyAttackHit_[enemy] = false;
+		}
+	}
+
+	const auto& items = item_->GetItems();
+
+	// 連想配列（map）を for で回す
+	for (auto pair : items)
+	{
+		for (ItemBase* item : pair.second)
+		{
+			itemHit_[item] = false;
 		}
 	}
 
@@ -49,51 +64,68 @@ void Collision::Update()
 
 	// 敵とステージの当たり判定
 	CollisionEAndS();
+
+	// プレイヤーとワクチンの当たり判定
+	CollisionPAndV();
+
+	// プレイヤーとドアの当たり判定
+	CollisionPAndD();
 }
 
 void Collision::Draw()
 {
-	//DrawSphere3D(pCenterPos_, 45, 10, 0x00ff00, 0x00ff00, false);	// プレイヤーの当たり判定の球体を描画
-	//DrawFormatString(0, 400, 0xffffff, "pCenterPos_:(%.2f, %.2f, %.2f)", pCenterPos_.x, pCenterPos_.y, pCenterPos_.z);
-	// プレイヤー座標
-	player_->GetPPos();
-	DrawFormatString(0, 420, 0xffffff, "コリジョン内のpPos:(%.2f, %.2f, %.2f)", player_->GetPPos().x, player_->GetPPos().y, player_->GetPPos().z);
+	////DrawSphere3D(pCenterPos_, 45, 10, 0x00ff00, 0x00ff00, false);	// プレイヤーの当たり判定の球体を描画
+	////DrawFormatString(0, 400, 0xffffff, "pCenterPos_:(%.2f, %.2f, %.2f)", pCenterPos_.x, pCenterPos_.y, pCenterPos_.z);
+	//// プレイヤー座標
+	//player_->GetPPos();
+	//DrawFormatString(0, 420, 0xffffff, "コリジョン内のpPos:(%.2f, %.2f, %.2f)", player_->GetPPos().x, player_->GetPPos().y, player_->GetPPos().z);
 
-	DrawFormatString(0, 320, 0xffffff, "Hit_E_S:%d", hitPoly_E_S.HitFlag);
-	DrawFormatString(0, 640, 0xffffff, "Hit_E_P:%d", isHit_E_P_);
+	//DrawFormatString(0, 320, 0xffffff, "Hit_E_S:%d", hitPoly_E_S.HitFlag);
+	//DrawFormatString(0, 640, 0xffffff, "Hit_E_P:%d", isHit_E_P_);
 
-	DrawFormatString(600, 0, 0xffffff, "Hit_P_S:%d", isHit_P_S_);
-	//DrawFormatString(600, 20, 0xffffff, "Hit_PShot_E:%d", hitPoly_PShot_E.HitFlag);
+	//DrawFormatString(600, 0, 0xffffff, "Hit_P_S:%d", isHit_P_S_);
+	////DrawFormatString(600, 20, 0xffffff, "Hit_PShot_E:%d", hitPoly_PShot_E.HitFlag);
 
-	DrawFormatString(0, 360, 0xffffff, "StartPos:(%.2f, %.2f, %.2f)", enemyPosS_.x, enemyPosS_.y, enemyPosS_.z);
-	DrawFormatString(0, 380, 0xffffff, "EndPos(%.2f, %.2f, %.2f)", enemyPosE_.x, enemyPosE_.x, enemyPosE_.z);
+	//DrawFormatString(0, 360, 0xffffff, "StartPos:(%.2f, %.2f, %.2f)", enemyPosS_.x, enemyPosS_.y, enemyPosS_.z);
+	//DrawFormatString(0, 380, 0xffffff, "EndPos(%.2f, %.2f, %.2f)", enemyPosE_.x, enemyPosE_.x, enemyPosE_.z);
 
-	//DrawLine3D(enemyPosS_, enemyPosE_, 0xff0000);
-	DrawLine3D(a, b, 0xff0000);
-	//DrawSphere3D(enemyPosS_, 10, 10, 0xff0000, 0xff0000, false);	// 球を描画
+	////DrawLine3D(enemyPosS_, enemyPosE_, 0xff0000);
+	//DrawLine3D(a, b, 0xff0000);
+	////DrawSphere3D(enemyPosS_, 10, 10, 0xff0000, 0xff0000, false);	// 球を描画
 
-	int y = 500;
-	for (const auto& pair : enemyAttackHit_)
-	{
-		DrawFormatString(700, y, 0xffffff, "Enemy[%p] Hit:%d", pair.first, pair.second);
-		y += 30;
-	}
+	//DrawFormatString(600, 20, 0xffffff, "HitP_V:%d", isHitP_V_);
 
-	int animRateY = 100;
-	for (const auto& pair : enemy_->GetEnemies())
-	{
-		for (EnemyBase* enemy : pair.second)
-		{
-			if (enemy->GetState() == EnemyBase::STATE::ATTACK)
-			{
-				{
-					float animRate = enemy->GetAnimRate(); // 0.0〜1.0 の範囲
-					DrawFormatString(900, animRateY, 0xffaa00, "Enemy[%p] AnimRate: %.2f", enemy, animRate);
-					animRateY += 30;
-				}
-			}
-		}
-	}
+	//int y = 500;
+	//for (const auto& pair : enemyAttackHit_)
+	//{
+	//	DrawFormatString(700, y, 0xffffff, "Enemy[%p] Hit:%d", pair.first, pair.second);
+	//	y += 30;
+	//}
+	//// アイテム
+	//int y2 = 650;
+	//for (const auto& pair : itemHit_)
+	//{
+	//	DrawFormatString(700, y2, 0xffffff, "item[%p] Hit:%d", pair.first, pair.second);
+	//	y += 30;
+	//}
+
+	//int animRateY = 100;
+	//for (const auto& pair : enemy_->GetEnemies())
+	//{
+	//	for (EnemyBase* enemy : pair.second)
+	//	{
+	//		if (enemy->GetState() == EnemyBase::STATE::ATTACK)
+	//		{
+	//			{
+	//				float animRate = enemy->GetAnimRate(); // 0.0〜1.0 の範囲
+	//				DrawFormatString(900, animRateY, 0xffaa00, "Enemy[%p] AnimRate: %.2f", enemy, animRate);
+	//				animRateY += 30;
+	//			}
+	//		}
+	//	}
+	//}
+
+
 }
 
 void Collision::Release()
@@ -286,7 +318,6 @@ void Collision::CollisionEAndS()
 		// pair.second : std::vector<EnemyBase*>（敵リスト）
 		for (EnemyBase* enemy : pair.second)
 		{
-
 			// ステージのモデルIDを取得
 			int eModelId = stage_->GetModelId();
 			// 敵の座標を取得
@@ -321,5 +352,83 @@ void Collision::CollisionEAndS()
 		}
 	}
 
+}
+
+void Collision::CollisionPAndV()
+{
+	const auto& items = item_->GetItems();
+
+	// 連想配列（map）を for で回す
+	for (auto pair : items)
+	{
+		for (ItemBase* item : pair.second)
+		{
+			VECTOR pPos = player_->GetPPos();
+			VECTOR vPos = item->GetPos();
+
+			// プレイヤーの当たり判定の球体の中心点
+			VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
+			// 敵の当たり判定の球体の中心点
+			VECTOR vCenterPos = VAdd(vPos, VGet(0, 50, 0));
+
+			float radiusP = 45.0f;
+			float radiusV = 230.0f;
+
+			// 中心間の距離
+			float dis = VSize(VSub(vCenterPos, pCenterPos));
+
+			// 半径の合計
+			float radiusNum = radiusP + radiusV;
+
+			if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			{
+				item->SetPickUp();
+
+				itemHit_[item] = true;
+			}
+			else
+			{
+				itemHit_[item] = false;
+			}
+		}
+	}
+}
+
+void Collision::CollisionPAndD()
+{
+	VECTOR pPos = player_->GetPPos();
+	VECTOR dPos = stage_->GetDPos();
+
+	// プレイヤーの当たり判定の球体の中心点
+	VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
+	// ドアの当たり判定の球体の中心点
+	VECTOR dCenterPos = VAdd(dPos, VGet(0,200, 0));
+
+	float radiusP = 45.0f;
+	float radiusD = 165.0f;
+
+	// 中心間の距離
+	float dis = VSize(VSub(dCenterPos, pCenterPos));
+
+	// 半径の合計
+	float radiusNum = radiusP + radiusD;
+
+	const auto& items = item_->GetItems();
+
+	// 連想配列（map）を for で回す
+	for (auto pair : items)
+	{
+		for (ItemBase* item : pair.second)
+		{
+			if (dis < radiusNum
+				&& InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F)
+				&& item->GetPickUp())
+			{
+				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+
+				SoundManager::GetInstance()->PlayOpen();
+			}
+		}
+	}
 }
 

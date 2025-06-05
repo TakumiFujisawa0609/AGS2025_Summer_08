@@ -1,293 +1,561 @@
 ﻿0:ChangeWindowMode実行 
 0:ＤＸライブラリの初期化処理開始
-0:	システムの情報を出力します
-0:		ＤＸライブラリ Ver3.24b
-0:		論理プロセッサの数 : 16
-0:		ＯＳ  Windows11 ( Build 26100  )
-113:		現時点のＣＰＵ動作速度：大体2.20GHz
-113:		ＭＭＸ命令を使用します
-115:		ＳＳＥ命令が使用可能です
+10:	システムの情報を出力します
+10:		ＤＸライブラリ Ver3.24b
+10:		論理プロセッサの数 : 16
+10:		ＯＳ  Windows11 ( Build 26100  )
+115:		現時点のＣＰＵ動作速度：大体2.22GHz
+115:		ＭＭＸ命令を使用します
+116:		ＳＳＥ命令が使用可能です
 116:		ＳＳＥ２命令が使用可能です
-116:		ＣＰＵベンダ：GenuineIntel
-119:		ＣＰＵ名：Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz
+117:		ＣＰＵベンダ：GenuineIntel
+120:		ＣＰＵ名：Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz
 120:	ＣＯＭの初期化... 成功
-140:	非同期読み込み処理の初期化...成功
-141:	ファイルアクセス処理の初期化...成功
-142:	メモリ総量:16216.43MB  空きメモリ領域:4515.18MB 
-143:	ディスプレイ情報のセットアップ開始
-144:		モニターの数：1  ディスプレイデバイスの数：7
-144:		No.0  モニター名：\\.\DISPLAY1　1920x1080　32bit　60Hz  120x120dpi
-155:	ディスプレイ情報のセットアップ完了
-156:	タイマーの精度を検査します
-156:	精度結果 更新回数 マルチメディアタイマー：0  パフォーマンスカウンター：60
-157:	 パフォーマンスカウンターを使用します タイマー精度 : 10000.000000 KHz 
-158:	 
-158:	ソフトの二重起動検査... 二重起動はされていませんでした
-160:	ウインドウクラスを登録します... 登録に成功しました
-161:	フルスクリーンモード用のウインドウを作成します
-165:	ウインドウの作成に成功しました
-165:	ウインドウを表示します
-193:	ＩＭＥを無効にしました
-195:	ウインドウスタイルをフルスクリーンモード用に変更します... 完了
-237:	XInput DLL の読み込み中... 成功
-243:	DirectInput関係初期化処理
-244:		DirectInput8 の取得を試みます...成功
-385:			引き続き初期化処理... 初期化成功
-395:		ジョイパッドの初期化... 
-396:			XInput 対応コントローラーのチェックを開始します
-396:				XInput 対応コントローラー No.0 をチェック
-397:				XInput 対応コントローラー No.0 の接続は確認できませんでした
-397:				XInput 対応コントローラー No.1 をチェック
-398:				XInput 対応コントローラー No.1 の接続は確認できませんでした
-399:				XInput 対応コントローラー No.2 をチェック
-399:				XInput 対応コントローラー No.2 の接続は確認できませんでした
-400:				XInput 対応コントローラー No.3 をチェック
-400:				XInput 対応コントローラー No.3 の接続は確認できませんでした
-401:			XInput 対応コントローラーのチェック完了
-402:			DirectInput 対応ジョイパッドの列挙を開始します
-415:			DirectInput 対応ジョイパッドの列挙終了
-416:		ジョイパッドの初期化は正常に終了しました
-416:		マウスデバイスの初期化... 初期化成功
-418:		キーボードデバイスの初期化... 初期化成功
-422:	DirectInput 関連の初期化は正常に終了しました
-426:	WASAPI の初期化を行います
-434:		デバイス名 : スピーカー (Realtek(R) Audio)
-440:		デフォルト遅延時間 : 10.000 ms
-441:		最小遅延時間       : 3.000 ms
-441:		遅延時間           : 10.000 ms
-442:		チャンネル数  　   : 2 ch
-443:		量子化ビット深度   : 32 bit
-443:		有効ビット深度　   : 32 bit
-444:		サンプリングレート : 48000 Hz
-444:		データ形式         : 浮動小数点型
-464:		動作モード         : 共有モード
-464:	WASAPI の初期化は正常に終了しました
-470:	d3d11.dll の読み込み.... 成功
-479:	dxgi.dll の読み込み.... 成功
-480:	API CreateDXGIFactory2 のアドレスを取得します.... 成功
-481:	IDXGIFactory2 を作成します.... 成功
-497:	API CreateDXGIFactory6 のアドレスを取得します.... 成功
-499:	IDXGIAdapter を列挙
-500:		Adapter No.0 Desc:NVIDIA GeForce RTX 2060  VRAM:5980MB
-501:		Adapter No.1 Desc:Intel(R) UHD Graphics  VRAM:128MB
-501:			Output Device No.0 Name:\\.\DISPLAY1 ( 0, 0 )-( 1920, 1080 )
-502:		Adapter No.2 Desc:Microsoft Basic Render Driver  VRAM:0MB
-502:	API D3D11CreateDevice のアドレスを取得します.... 成功
-503:	IDXGIAdapter を取得します.... 成功
-505:	IDXGIAdapter1 を取得します.... 成功
-506:	IDXGIAdapter2 を取得します.... 成功
-507:	IDXGIAdapter3 を取得します.... 成功
-509:	IDXGIAdapter4 を取得します.... 成功
-510:	Direct3D 11 FeatureLevel 11_0 以上を対象とします
-510:	ID3D11Device オブジェクトを取得します.... 成功
-564:	IDXGIDevice1 を取得します.... 成功
-566:	IDXGIDevice1->SetMaximunFrameLatency( 1 ); を実行しました
-566:	[ウインドウモード 1920x1080 ( 0, 0 )-( 1920, 1080 )]
-567:	IDXGISwapChain2 を作成します.... 成功
-569:	IDXGIFactory2->CreateSwapChainForHwnd の戻り値：0x00000000
-570:	IDXGIOutput を取得します.... 成功
-571:	Graphics Device:Intel(R) UHD Graphics
-573:	画面のフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
-573:	16bit Zバッファフォーマットは DXGI_FORMAT_D16_UNORM です
-574:	24bit Zバッファフォーマットは DXGI_FORMAT_D24_UNORM_S8_UINT です
-575:	32bit Zバッファフォーマットは DXGI_FORMAT_D32_FLOAT です
-575:	16bit カラーフォーマットは DXGI_FORMAT_B5G6R5_UNORM です
-576:	32bit カラーフォーマットは DXGI_FORMAT_B8G8R8X8_UNORM です
-577:	アルファ付き 16bit カラーフォーマットは DXGI_FORMAT_B4G4R4A4_UNORM です
-577:	アルファ付き 32bit カラーフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
-578:	アルファテスト用 16bit カラーフォーマットは DXGI_FORMAT_B5G5R5A1_UNORM です
-579:	アルファテスト用 32bit カラーフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
-580:	ＤＸＴ１テクスチャフォーマットは DXGI_FORMAT_BC1_UNORM です
-581:	ＤＸＴ２テクスチャフォーマットは使えません
-581:	ＤＸＴ３テクスチャフォーマットは DXGI_FORMAT_BC2_UNORM です
-581:	ＤＸＴ４テクスチャフォーマットは使えません
-582:	ＤＸＴ５テクスチャフォーマットは DXGI_FORMAT_BC3_UNORM です
-582:	BC7_UNORM テクスチャフォーマットは DXGI_FORMAT_BC7_UNORM です
-583:	BC7_UNORM_SRGB テクスチャフォーマットは DXGI_FORMAT_BC7_UNORM_SRGB です
-584:	ABGR 整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_UNORM です
-585:	ABGR 浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_FLOAT です
-585:	ABGR 浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32B32A32_FLOAT です
-586:	１チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8_UNORM です
-587:	１チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_UNORM です
-587:	１チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_FLOAT です
-588:	１チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32_FLOAT です
-589:	２チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8G8_UNORM です
-590:	２チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_UNORM です
-591:	２チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_FLOAT です
-591:	２チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32_FLOAT です
-593:	描画用 16bit カラーフォーマットは DXGI_FORMAT_B5G6R5_UNORM です
-593:	描画用 32bit カラーフォーマットは DXGI_FORMAT_B8G8R8X8_UNORM です
-594:	描画用アルファ付き 32bit カラーフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
-595:	描画用 ABGR 整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_UNORM です
-595:	描画用 ABGR 浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_FLOAT です
-596:	描画用 ABGR 浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32B32A32_FLOAT です
-597:	描画用１チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8_UNORM です
-597:	描画用１チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_UNORM です
-598:	描画用１チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_FLOAT です
-599:	描画用１チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32_FLOAT です
-599:	描画用２チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8G8_UNORM です
-600:	描画用２チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_UNORM です
-601:	描画用２チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_FLOAT です
-601:	描画用２チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32_FLOAT です
-602:	使用する機能レベル:D3D_FEATURE_LEVEL_11_1
-603:	同時にレンダリングできるバッファの数:8
-603:	最大テクスチャサイズ　幅:16384 高さ:16384
-605:	標準描画用の頂点バッファの作成.... 成功
-606:	シェーダーコード関係の初期化.... 成功
-624:	各種シェーダー用定数バッファの作成.... 成功
-625:	各種 ID3D11InputLayout の作成.... 成功
-649:	画像の単純転送処理の初期化... 成功
-650:	深度バッファを作成します.... 成功
-653:	フォントの初期化を行います
-655:	フォントの初期化は正常に終了しました
-732:	文字コードバッファの初期化を行います... 完了しました
-750:ＤＸライブラリの初期化処理終了
-806:File Open Error : C:\Project\AGS2025_Summer_08\AGS\Data\BGM1.mp3
-808:Sound File Load Error : C:\Project\AGS2025_Summer_08\AGS\Data\BGM1.mp3
-809:File Open Error : C:\Project\AGS2025_Summer_08\AGS\Data\Run1.wav
-809:Sound File Load Error : C:\Project\AGS2025_Summer_08\AGS\Data\Run1.wav
-7412:フォントの初期化を行います
-7413:フォントの初期化は正常に終了しました
-7431:d3d11.dll の解放 1
-7431:dxgi.dll の解放 1
-7434:Direct3D11 のオブジェクト数を出力
-7434:Direct3D11 のオブジェクト合計数 : 0
-7436:DirectInput 関連の終了処理... 完了
-7437:サウンド関連の終了処理... 完了
-7446:ウィンドウ関連の終了処理... ディスプレイ情報のセットアップ開始
-7449:	モニターの数：1  ディスプレイデバイスの数：7
-7450:	No.0  モニター名：\\.\DISPLAY1　1920x1080　32bit　60Hz  120x120dpi
-7455:ディスプレイ情報のセットアップ完了
-7456:ウインドウを閉じようとしています
-7461:ウインドウが破棄されようとしています
-7463:ソフトを終了する準備が整いました
-7540:完了
-7541:ＣＯＭを終了... 完了
-7541:
-7543:Alloc memory dump
-7543:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3657   addr:00000247eba65d50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7544:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3675   addr:00000247eba7f430  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7544:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3693   addr:00000247eba98b10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7545:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3711   addr:00000247ebab21f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7545:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3729   addr:00000247ebacb8d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7546:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3747   addr:00000247ebae4fb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7546:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3765   addr:00000247ebafe690  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7547:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3783   addr:00000247ebb17d70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7547:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3801   addr:00000247ebb31450  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7548:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3819   addr:00000247ebb4ab30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7548:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3837   addr:00000247ebb64210  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7549:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3639   addr:00000247ebb87f30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7549:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3855   addr:00000247ebcc37f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7550:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2973   addr:00000247ebe65df0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7550:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2991   addr:00000247ebe7f4d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7551:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3009   addr:00000247ebe98bb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7551:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3027   addr:00000247ebeb2290  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7552:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3045   addr:00000247ebecb970  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7552:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3063   addr:00000247ebee5050  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7552:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3081   addr:00000247ebefe730  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7553:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3099   addr:00000247ebf17e10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7553:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3117   addr:00000247ebf314f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7554:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3135   addr:00000247ebf4abd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7554:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3153   addr:00000247ebf642b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7555:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2937   addr:00000247ebf87fd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7555:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2955   addr:00000247ec3a1750  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7555:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3441   addr:00000247ec3bae30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7556:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3459   addr:00000247ec3d4510  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7556:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3477   addr:00000247ec3edbf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7557:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3495   addr:00000247ec4072d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7557:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3513   addr:00000247ec4209b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7558:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3531   addr:00000247ec43a090  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7559:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3549   addr:00000247ec453770  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7559:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3567   addr:00000247ec46ce50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7560:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3585   addr:00000247ec486530  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7560:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3603   addr:00000247ec49fc10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7561:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3621   addr:00000247ec4b92f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7561:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3171   addr:00000247ec4dd010  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7561:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3243   addr:00000247ec4f66f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7562:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3261   addr:00000247ec50fdd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7563:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3279   addr:00000247ec5294b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7563:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3297   addr:00000247ec542b90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7564:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3315   addr:00000247ec55c270  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7564:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3333   addr:00000247ec575950  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7565:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3351   addr:00000247ec58f030  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7565:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3369   addr:00000247ec5a8710  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7566:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3387   addr:00000247ec5c1df0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7566:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3405   addr:00000247ec5db4d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7567:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52138  file:\Main\DxModel.cpp           line:31692   ID:3423   addr:00000247ec5f4bb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7567:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3189   addr:00000247ec6188d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7568:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3207   addr:00000247ec631fb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7568:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:3225   addr:00000247ec64b690  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7569:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2037   addr:00000247e04c99e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7570:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2055   addr:00000247e04e30c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7570:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2073   addr:00000247e04fc7a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7571:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2091   addr:00000247e0515e80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7571:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2109   addr:00000247e052f560  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7572:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2127   addr:00000247e0548c40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7572:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2145   addr:00000247e0562320  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7574:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2163   addr:00000247e057ba00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7574:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2181   addr:00000247e05950e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7575:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2199   addr:00000247e05ae7c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7575:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2217   addr:00000247e05c7ea0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7576:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1839   addr:00000247e06ebce0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7576:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1857   addr:00000247e07053c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7577:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1875   addr:00000247e071eaa0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7577:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1893   addr:00000247e0738180  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7578:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1911   addr:00000247e0751860  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7578:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1929   addr:00000247e076af40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7579:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1947   addr:00000247e0784620  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7579:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1965   addr:00000247e079dd00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7580:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1983   addr:00000247e07b73e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7580:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2001   addr:00000247e07d0ac0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7581:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2019   addr:00000247e07ea1a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7581:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1713   addr:00000247e080dec0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7582:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1731   addr:00000247e08275a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7582:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1749   addr:00000247e0840c80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7583:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1767   addr:00000247e085a360  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7583:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1785   addr:00000247e0873a40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7583:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1803   addr:00000247e088d120  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7584:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1821   addr:00000247e08a6800  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7584:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2253   addr:00000247e19c39b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7585:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2271   addr:00000247e19dd090  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7585:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2289   addr:00000247e19f6770  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7586:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2307   addr:00000247e1a0fe50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7586:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2325   addr:00000247e1a29530  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7587:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2343   addr:00000247e1a42c10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7587:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2361   addr:00000247e1a5c2f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7588:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2379   addr:00000247e1a759d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7588:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2397   addr:00000247e1a8f0b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7589:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2415   addr:00000247e1aa8790  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7589:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2433   addr:00000247e1ac1e70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7590:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:2235   addr:00000247e1ae5b90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7590:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2739   addr:00000247e1aff270  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7591:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2757   addr:00000247e1b18950  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7591:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2775   addr:00000247e1b32030  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7592:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2793   addr:00000247e1b4b710  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7592:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2811   addr:00000247e1b64df0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7593:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2829   addr:00000247e1b7e4d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7593:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2847   addr:00000247e1b97bb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7593:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2865   addr:00000247e1bb1290  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7594:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2883   addr:00000247e1bca970  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7594:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2901   addr:00000247e1be4050  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7595:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2919   addr:00000247e1bfd730  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7595:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2451   addr:00000247e1c21450  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7596:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2541   addr:00000247e1c3ab30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7596:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2559   addr:00000247e1c54210  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7597:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2577   addr:00000247e1c6d8f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7597:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2595   addr:00000247e1c86fd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7598:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2613   addr:00000247e1ca06b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7598:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2631   addr:00000247e1cb9d90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7599:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2649   addr:00000247e1cd3470  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7599:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2667   addr:00000247e1cecb50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7599:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2685   addr:00000247e1d06230  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7600:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2703   addr:00000247e1d1f910  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7600:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2721   addr:00000247e1d38ff0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7601:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2469   addr:00000247e1d5cd10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7601:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2487   addr:00000247e1d763f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7602:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2505   addr:00000247e1d8fad0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7602:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52137  file:\Main\DxModel.cpp           line:31692   ID:2523   addr:00000247e1da91b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7603:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1639   addr:00000247e1dc3a50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7603:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1659   addr:00000247e1ddd130  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7603:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1677   addr:00000247e1df6810  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7604:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:52136  file:\Main\DxModel.cpp           line:31692   ID:1695   addr:00000247e1e0fef0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
-7604:	Total size:12896000(12593.750kb)  Alloc num:124
-7604:
+136:	非同期読み込み処理の初期化...成功
+137:	ファイルアクセス処理の初期化...成功
+139:	メモリ総量:16216.43MB  空きメモリ領域:4699.51MB 
+139:	ディスプレイ情報のセットアップ開始
+140:		モニターの数：1  ディスプレイデバイスの数：7
+141:		No.0  モニター名：\\.\DISPLAY1　1920x1080　32bit　60Hz  120x120dpi
+152:	ディスプレイ情報のセットアップ完了
+153:	タイマーの精度を検査します
+153:	精度結果 更新回数 マルチメディアタイマー：0  パフォーマンスカウンター：60
+154:	 パフォーマンスカウンターを使用します タイマー精度 : 10000.000000 KHz 
+155:	 
+155:	ソフトの二重起動検査... 二重起動はされていませんでした
+156:	ウインドウクラスを登録します... 登録に成功しました
+157:	フルスクリーンモード用のウインドウを作成します
+162:	ウインドウの作成に成功しました
+163:	ウインドウを表示します
+191:	ＩＭＥを無効にしました
+194:	ウインドウスタイルをフルスクリーンモード用に変更します... 完了
+232:	XInput DLL の読み込み中... 成功
+236:	DirectInput関係初期化処理
+236:		DirectInput8 の取得を試みます...成功
+374:			引き続き初期化処理... 初期化成功
+380:		ジョイパッドの初期化... 
+381:			XInput 対応コントローラーのチェックを開始します
+381:				XInput 対応コントローラー No.0 をチェック
+382:				XInput 対応コントローラー No.0 の接続は確認できませんでした
+383:				XInput 対応コントローラー No.1 をチェック
+383:				XInput 対応コントローラー No.1 の接続は確認できませんでした
+384:				XInput 対応コントローラー No.2 をチェック
+385:				XInput 対応コントローラー No.2 の接続は確認できませんでした
+385:				XInput 対応コントローラー No.3 をチェック
+386:				XInput 対応コントローラー No.3 の接続は確認できませんでした
+387:			XInput 対応コントローラーのチェック完了
+387:			DirectInput 対応ジョイパッドの列挙を開始します
+399:			DirectInput 対応ジョイパッドの列挙終了
+399:		ジョイパッドの初期化は正常に終了しました
+400:		マウスデバイスの初期化... 初期化成功
+401:		キーボードデバイスの初期化... 初期化成功
+405:	DirectInput 関連の初期化は正常に終了しました
+409:	WASAPI の初期化を行います
+416:		デバイス名 : スピーカー (Realtek(R) Audio)
+421:		デフォルト遅延時間 : 10.000 ms
+422:		最小遅延時間       : 3.000 ms
+422:		遅延時間           : 10.000 ms
+423:		チャンネル数  　   : 2 ch
+424:		量子化ビット深度   : 32 bit
+424:		有効ビット深度　   : 32 bit
+425:		サンプリングレート : 48000 Hz
+425:		データ形式         : 浮動小数点型
+444:		動作モード         : 共有モード
+445:	WASAPI の初期化は正常に終了しました
+451:	d3d11.dll の読み込み.... 成功
+459:	dxgi.dll の読み込み.... 成功
+460:	API CreateDXGIFactory2 のアドレスを取得します.... 成功
+461:	IDXGIFactory2 を作成します.... 成功
+472:	API CreateDXGIFactory6 のアドレスを取得します.... 成功
+474:	IDXGIAdapter を列挙
+475:		Adapter No.0 Desc:NVIDIA GeForce RTX 2060  VRAM:5980MB
+476:		Adapter No.1 Desc:Intel(R) UHD Graphics  VRAM:128MB
+476:			Output Device No.0 Name:\\.\DISPLAY1 ( 0, 0 )-( 1920, 1080 )
+477:		Adapter No.2 Desc:Microsoft Basic Render Driver  VRAM:0MB
+477:	API D3D11CreateDevice のアドレスを取得します.... 成功
+478:	IDXGIAdapter を取得します.... 成功
+479:	IDXGIAdapter1 を取得します.... 成功
+480:	IDXGIAdapter2 を取得します.... 成功
+481:	IDXGIAdapter3 を取得します.... 成功
+482:	IDXGIAdapter4 を取得します.... 成功
+482:	Direct3D 11 FeatureLevel 11_0 以上を対象とします
+483:	ID3D11Device オブジェクトを取得します.... 成功
+521:	IDXGIDevice1 を取得します.... 成功
+524:	IDXGIDevice1->SetMaximunFrameLatency( 1 ); を実行しました
+524:	[ウインドウモード 1920x1080 ( 0, 0 )-( 1920, 1080 )]
+525:	IDXGISwapChain2 を作成します.... 成功
+526:	IDXGIFactory2->CreateSwapChainForHwnd の戻り値：0x00000000
+527:	IDXGIOutput を取得します.... 成功
+529:	Graphics Device:Intel(R) UHD Graphics
+529:	画面のフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
+530:	16bit Zバッファフォーマットは DXGI_FORMAT_D16_UNORM です
+530:	24bit Zバッファフォーマットは DXGI_FORMAT_D24_UNORM_S8_UINT です
+531:	32bit Zバッファフォーマットは DXGI_FORMAT_D32_FLOAT です
+532:	16bit カラーフォーマットは DXGI_FORMAT_B5G6R5_UNORM です
+532:	32bit カラーフォーマットは DXGI_FORMAT_B8G8R8X8_UNORM です
+532:	アルファ付き 16bit カラーフォーマットは DXGI_FORMAT_B4G4R4A4_UNORM です
+533:	アルファ付き 32bit カラーフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
+533:	アルファテスト用 16bit カラーフォーマットは DXGI_FORMAT_B5G5R5A1_UNORM です
+534:	アルファテスト用 32bit カラーフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
+534:	ＤＸＴ１テクスチャフォーマットは DXGI_FORMAT_BC1_UNORM です
+535:	ＤＸＴ２テクスチャフォーマットは使えません
+536:	ＤＸＴ３テクスチャフォーマットは DXGI_FORMAT_BC2_UNORM です
+536:	ＤＸＴ４テクスチャフォーマットは使えません
+537:	ＤＸＴ５テクスチャフォーマットは DXGI_FORMAT_BC3_UNORM です
+537:	BC7_UNORM テクスチャフォーマットは DXGI_FORMAT_BC7_UNORM です
+538:	BC7_UNORM_SRGB テクスチャフォーマットは DXGI_FORMAT_BC7_UNORM_SRGB です
+538:	ABGR 整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_UNORM です
+539:	ABGR 浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_FLOAT です
+540:	ABGR 浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32B32A32_FLOAT です
+540:	１チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8_UNORM です
+541:	１チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_UNORM です
+541:	１チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_FLOAT です
+542:	１チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32_FLOAT です
+543:	２チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8G8_UNORM です
+544:	２チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_UNORM です
+545:	２チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_FLOAT です
+545:	２チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32_FLOAT です
+546:	描画用 16bit カラーフォーマットは DXGI_FORMAT_B5G6R5_UNORM です
+547:	描画用 32bit カラーフォーマットは DXGI_FORMAT_B8G8R8X8_UNORM です
+547:	描画用アルファ付き 32bit カラーフォーマットは DXGI_FORMAT_R8G8B8A8_UNORM です
+548:	描画用 ABGR 整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_UNORM です
+549:	描画用 ABGR 浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16B16A16_FLOAT です
+549:	描画用 ABGR 浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32B32A32_FLOAT です
+550:	描画用１チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8_UNORM です
+551:	描画用１チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_UNORM です
+551:	描画用１チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16_FLOAT です
+552:	描画用１チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32_FLOAT です
+552:	描画用２チャンネル整数 8 ビット型カラーフォーマットは DXGI_FORMAT_R8G8_UNORM です
+553:	描画用２チャンネル整数 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_UNORM です
+553:	描画用２チャンネル浮動小数点 16 ビット型カラーフォーマットは DXGI_FORMAT_R16G16_FLOAT です
+554:	描画用２チャンネル浮動小数点 32 ビット型カラーフォーマットは DXGI_FORMAT_R32G32_FLOAT です
+554:	使用する機能レベル:D3D_FEATURE_LEVEL_11_1
+555:	同時にレンダリングできるバッファの数:8
+556:	最大テクスチャサイズ　幅:16384 高さ:16384
+557:	標準描画用の頂点バッファの作成.... 成功
+559:	シェーダーコード関係の初期化.... 成功
+577:	各種シェーダー用定数バッファの作成.... 成功
+579:	各種 ID3D11InputLayout の作成.... 成功
+607:	画像の単純転送処理の初期化... 成功
+609:	深度バッファを作成します.... 成功
+613:	フォントの初期化を行います
+615:	フォントの初期化は正常に終了しました
+705:	文字コードバッファの初期化を行います... 完了しました
+724:ＤＸライブラリの初期化処理終了
+12678:フォントの初期化を行います
+12679:フォントの初期化は正常に終了しました
+12694:d3d11.dll の解放 1
+12695:dxgi.dll の解放 1
+12697:Direct3D11 のオブジェクト数を出力
+12698:Direct3D11 のオブジェクト合計数 : 0
+12701:DirectInput 関連の終了処理... 完了
+12701:サウンド関連の終了処理... 完了
+12710:ウィンドウ関連の終了処理... ディスプレイ情報のセットアップ開始
+12712:	モニターの数：1  ディスプレイデバイスの数：7
+12714:	No.0  モニター名：\\.\DISPLAY1　1920x1080　32bit　60Hz  120x120dpi
+12722:ディスプレイ情報のセットアップ完了
+12723:ウインドウを閉じようとしています
+12729:ウインドウが破棄されようとしています
+12731:ソフトを終了する準備が整いました
+12811:完了
+12815:ＣＯＭを終了... 完了
+12816:
+12816:Alloc memory dump
+12817:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6547   addr:000002095d394dd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12817:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6565   addr:000002095d3ae4b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12818:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6583   addr:000002095d3c7b90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12818:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6601   addr:000002095d3e1270  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12819:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6619   addr:000002095d3fa950  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12819:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6637   addr:000002095d414030  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12820:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6655   addr:000002095d42d710  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12820:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6673   addr:000002095d446df0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12821:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6691   addr:000002095d4604d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12821:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6709   addr:000002095d479bb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12822:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6727   addr:000002095d493290  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12822:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6529   addr:000002095d4b6fb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12822:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6763   addr:000002095d4d0690  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12824:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6781   addr:000002095d4e9d70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12824:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6799   addr:000002095d503450  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12825:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6817   addr:000002095d51cb30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12825:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6835   addr:000002095d536210  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12826:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6853   addr:000002095d54f8f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12826:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6871   addr:000002095d568fd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12827:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6889   addr:000002095d5826b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12827:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6907   addr:000002095d59bd90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12828:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6925   addr:000002095d5b5470  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12828:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6943   addr:000002095d5ceb50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12829:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6745   addr:000002095d5f2870  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12829:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7231   addr:000002095d60bf50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12830:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7249   addr:000002095d625630  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12831:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7267   addr:000002095d63ed10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12831:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7285   addr:000002095d6583f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12832:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7303   addr:000002095d671ad0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12832:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7321   addr:000002095d68b1b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12833:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7339   addr:000002095d6a4890  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12833:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7357   addr:000002095d6bdf70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12834:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7375   addr:000002095d6d7650  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12834:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7393   addr:000002095d6f0d30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12834:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7411   addr:000002095d70a410  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12835:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6961   addr:000002095d72e130  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12835:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7033   addr:000002095d747810  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12836:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7051   addr:000002095d760ef0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12836:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7069   addr:000002095d77a5d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12837:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7087   addr:000002095d793cb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12837:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7105   addr:000002095d7ad390  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12838:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7123   addr:000002095d7c6a70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12838:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7141   addr:000002095d7e0150  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12839:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7159   addr:000002095d7f9830  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12839:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7177   addr:000002095d812f10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12840:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7195   addr:000002095d82c5f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12840:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7213   addr:000002095d845cd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12841:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6979   addr:000002095d8699f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12841:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6997   addr:000002095d8830d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12842:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7015   addr:000002095d89c7b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12842:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6511   addr:000002095d8b7050  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12843:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7465   addr:000002095d8d0730  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12843:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7483   addr:000002095d8e9e10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12844:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7501   addr:000002095d9034f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12844:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7519   addr:000002095d91cbd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12845:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7537   addr:000002095d9362b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12845:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7555   addr:000002095d94f990  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12845:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7573   addr:000002095d969070  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12846:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7591   addr:000002095d982750  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12846:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7609   addr:000002095d99be30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12847:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7627   addr:000002095d9b5510  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12847:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7645   addr:000002095d9cebf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12848:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7447   addr:000002095d9f2910  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12848:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7681   addr:000002095da0bff0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12849:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7699   addr:000002095da256d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12849:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7717   addr:000002095da3edb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12850:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7735   addr:000002095da58490  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12850:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7753   addr:000002095da71b70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12851:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7771   addr:000002095da8b250  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12851:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7789   addr:000002095daa4930  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12852:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7807   addr:000002095dabe010  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12852:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7825   addr:000002095dad76f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12852:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7843   addr:000002095daf0dd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12852:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7861   addr:000002095db0a4b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12853:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7663   addr:000002095db2e1d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12853:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8149   addr:000002095db478b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12854:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8167   addr:000002095db60f90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12854:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8185   addr:000002095db7a670  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12855:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8203   addr:000002095db93d50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12855:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8221   addr:000002095dbad430  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12856:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8239   addr:000002095dbc6b10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12856:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8257   addr:000002095dbe01f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12857:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8275   addr:000002095dbf98d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12857:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8293   addr:000002095dc12fb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12858:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8311   addr:000002095dc2c690  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12858:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8329   addr:000002095dc45d70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12859:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7879   addr:000002095dc69a90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12859:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7951   addr:000002095dc83170  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12860:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7969   addr:000002095dc9c850  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12860:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7987   addr:000002095dcb5f30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12861:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8005   addr:000002095dccf610  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12861:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8023   addr:000002095dce8cf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12862:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8041   addr:000002095dd023d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12862:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8059   addr:000002095dd1bab0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12863:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8077   addr:000002095dd35190  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12863:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8095   addr:000002095dd4e870  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12864:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8113   addr:000002095dd67f50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12864:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8131   addr:000002095dd81630  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12865:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7897   addr:000002095dda5350  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12865:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7915   addr:000002095ddbea30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12865:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:7933   addr:000002095ddd8110  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12866:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:7429   addr:000002095ddf29b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12866:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8383   addr:000002095de0c090  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12867:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8401   addr:000002095de25770  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12867:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8419   addr:000002095de3ee50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12868:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8437   addr:000002095de58530  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12868:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8455   addr:000002095de71c10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12869:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8473   addr:000002095de8b2f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12869:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8491   addr:000002095dea49d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12870:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8509   addr:000002095debe0b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12870:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8527   addr:000002095ded7790  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12870:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8545   addr:000002095def0e70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12872:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8563   addr:000002095df0a550  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12872:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8365   addr:000002095df2e270  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12872:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8599   addr:000002095df47950  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12872:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8617   addr:000002095df61030  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12873:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8635   addr:000002095df7a710  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12873:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8653   addr:000002095df93df0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12874:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8671   addr:000002095dfad4d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12874:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8689   addr:000002095dfc6bb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12875:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8707   addr:000002095dfe0290  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12875:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8725   addr:000002095dff9970  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12876:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8743   addr:000002095e013050  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12876:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8761   addr:000002095e02c730  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12877:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8779   addr:000002095e045e10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12877:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8581   addr:000002095e069b30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12878:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8797   addr:000002095e1a53f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12878:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8869   addr:000002095e1bead0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12878:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8887   addr:000002095e1d81b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12879:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8905   addr:000002095e1f1890  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12879:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8923   addr:000002095e20af70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12880:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8815   addr:000002095e2e0cb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12880:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8833   addr:000002095e2fa390  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12881:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07138  file:\Main\DxModel.cpp           line:31692   ID:8851   addr:000002095e313a70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12881:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07137  file:\Main\DxModel.cpp           line:31692   ID:8347   addr:000002095e32e310  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12882:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5125   addr:0000020951bf0110  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12882:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5143   addr:0000020951c097f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12883:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5161   addr:0000020951c22ed0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12883:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5179   addr:0000020951c3c5b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12885:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5197   addr:0000020951c55c90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12885:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5215   addr:0000020951c6f370  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12886:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5233   addr:0000020951c88a50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12886:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5251   addr:0000020951ca2130  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12886:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5269   addr:0000020951cbb810  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12887:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5287   addr:0000020951cd4ef0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12887:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5305   addr:0000020951cee5d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12888:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5107   addr:0000020951d122f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12888:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5611   addr:0000020951d2b9d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12889:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5629   addr:0000020951d450b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12889:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5647   addr:0000020951d5e790  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12890:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5665   addr:0000020951d77e70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12890:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5683   addr:0000020951d91550  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12891:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5701   addr:0000020951daac30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12891:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5719   addr:0000020951dc4310  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12892:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5737   addr:0000020951ddd9f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12892:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5755   addr:0000020951df70d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12893:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5773   addr:0000020951e107b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12893:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5791   addr:0000020951e29e90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12894:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5323   addr:0000020951e4dbb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12894:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5413   addr:0000020951e67290  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12895:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5431   addr:0000020951e80970  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12895:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5449   addr:0000020951e9a050  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12896:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5467   addr:0000020951eb3730  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12896:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5485   addr:0000020951ecce10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12896:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5503   addr:0000020951ee64f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12897:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5521   addr:0000020951effbd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12897:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5539   addr:0000020951f192b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12898:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5557   addr:0000020951f32990  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12898:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5575   addr:0000020951f4c070  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12899:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5593   addr:0000020951f65750  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12899:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5341   addr:0000020951f89470  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12900:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5359   addr:0000020951fa2b50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12900:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5377   addr:0000020951fbc230  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12901:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5395   addr:0000020951fd5910  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12901:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4441   addr:0000020951ff01b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12902:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4459   addr:0000020952009890  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12902:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4477   addr:0000020952022f70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12903:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4495   addr:000002095203c650  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12903:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4513   addr:0000020952055d30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12904:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4531   addr:000002095206f410  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12904:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4549   addr:0000020952088af0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12905:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4567   addr:00000209520a21d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12905:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4585   addr:00000209520bb8b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12906:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4603   addr:00000209520d4f90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12906:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4621   addr:00000209520ee670  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12907:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4405   addr:0000020952112390  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12907:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5827   addr:000002095212ba70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12908:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5845   addr:0000020952145150  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12908:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5863   addr:000002095215e830  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12909:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5881   addr:0000020952177f10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12909:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5899   addr:00000209521915f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12909:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5917   addr:00000209521aacd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12910:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5935   addr:00000209521c43b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12910:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5953   addr:00000209521dda90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12911:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5971   addr:00000209521f7170  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12911:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5989   addr:0000020952210850  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12912:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6007   addr:0000020952229f30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12912:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:5809   addr:000002095224dc50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12912:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6313   addr:0000020952267330  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12913:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6331   addr:0000020952280a10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12913:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6349   addr:000002095229a0f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12914:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6367   addr:00000209522b37d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12914:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6385   addr:00000209522cceb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12915:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6403   addr:00000209522e6590  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12915:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6421   addr:00000209522ffc70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12915:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6439   addr:0000020952319350  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12916:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6457   addr:0000020952332a30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12916:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6475   addr:000002095234c110  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12917:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07136  file:\Main\DxModel.cpp           line:31692   ID:6493   addr:00000209523657f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12917:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6025   addr:0000020952389510  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12918:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6115   addr:00000209523a2bf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12918:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6133   addr:00000209523bc2d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12919:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6151   addr:00000209523d59b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12919:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6169   addr:00000209523ef090  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12920:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6187   addr:0000020952408770  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12920:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6205   addr:0000020952421e50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12921:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6223   addr:000002095243b530  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12921:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6241   addr:0000020952454c10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12922:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6259   addr:000002095246e2f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12922:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6277   addr:00000209524879d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12923:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6295   addr:00000209524a10b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12923:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6043   addr:00000209524c4dd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12925:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6061   addr:00000209524de4b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12925:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6079   addr:00000209524f7b90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12926:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07135  file:\Main\DxModel.cpp           line:31692   ID:6097   addr:0000020952511270  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12926:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4423   addr:000002095252bb10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12927:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4909   addr:00000209525451f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12927:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4927   addr:000002095255e8d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12928:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4945   addr:0000020952577fb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12928:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4963   addr:0000020952591690  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12929:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4981   addr:00000209525aad70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12929:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4999   addr:00000209525c4450  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12930:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5017   addr:00000209525ddb30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12930:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5035   addr:00000209525f7210  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12931:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5053   addr:00000209526108f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12931:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5071   addr:0000020952629fd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12932:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:5089   addr:00000209526436b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12932:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4639   addr:00000209526673d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12933:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4711   addr:0000020952680ab0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12933:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4729   addr:000002095269a190  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12934:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4747   addr:00000209526b3870  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12934:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4765   addr:00000209526ccf50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12935:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4783   addr:00000209526e6630  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12935:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4801   addr:00000209526ffd10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12936:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4819   addr:00000209527193f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12936:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4837   addr:0000020952732ad0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12937:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4855   addr:000002095274c1b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12937:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4873   addr:0000020952765890  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12938:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4891   addr:000002095277ef70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12938:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4657   addr:00000209527a2c90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12939:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4675   addr:00000209527bc370  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12939:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4693   addr:00000209527d5a50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12940:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1975   addr:000002095484d2b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12940:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1993   addr:0000020954866990  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12941:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2011   addr:0000020954880070  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12941:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2029   addr:0000020954899750  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12942:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2047   addr:00000209548b2e30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12942:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2065   addr:00000209548cc510  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12942:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2083   addr:0000020946db8b10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12943:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2101   addr:0000020946dd21f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12943:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2119   addr:0000020946deb8d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12944:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2137   addr:0000020946e04fb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12944:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:2155   addr:0000020946e1e690  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12945:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2173   addr:0000020946e37d70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12945:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2191   addr:0000020946e51450  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12946:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2209   addr:0000020946e6ab30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12946:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2227   addr:0000020946e84210  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12947:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2245   addr:0000020946e9d8f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12947:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2263   addr:0000020946eb6fd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12948:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1849   addr:0000020946edacf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12948:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1867   addr:0000020946ef43d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12949:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1885   addr:0000020946f0dab0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12949:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3721   addr:0000020947230cd0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12950:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3739   addr:000002094724a3b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12950:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3757   addr:0000020947263a90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12951:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3775   addr:000002094727d170  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12951:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3793   addr:0000020947296850  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12952:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3811   addr:00000209472aff30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12952:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3829   addr:00000209472c9610  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12953:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3847   addr:00000209472e2cf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12953:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3865   addr:00000209472fc3d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12954:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3883   addr:0000020947315ab0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12954:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3901   addr:000002094732f190  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12955:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3703   addr:0000020947352eb0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12955:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4207   addr:000002094736c590  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12956:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4225   addr:0000020947385c70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12956:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4243   addr:000002094739f350  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12957:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4261   addr:00000209473b8a30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12957:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4279   addr:00000209473d2110  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12958:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4297   addr:00000209473eb7f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12958:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4315   addr:0000020947404ed0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12959:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4333   addr:000002094741e5b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12959:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4351   addr:0000020947437c90  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12959:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4369   addr:0000020947451370  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12960:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07134  file:\Main\DxModel.cpp           line:31692   ID:4387   addr:000002094746aa50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12960:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3919   addr:000002094748e770  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12961:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4009   addr:00000209474a7e50  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12961:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4027   addr:00000209474c1530  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12962:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4045   addr:00000209474dac10  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12962:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4063   addr:00000209474f42f0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12963:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4081   addr:000002094750d9d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12963:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4099   addr:00000209475270b0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12965:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4117   addr:0000020947540790  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12965:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4135   addr:0000020947559e70  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12966:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4153   addr:0000020947573550  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12966:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4171   addr:000002094758cc30  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12967:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:4189   addr:00000209475a6310  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12967:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3937   addr:00000209475ca030  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12968:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3955   addr:00000209475e3710  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12968:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3973   addr:00000209475fcdf0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12969:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3991   addr:00000209476164d0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12969:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1811   addr:00000209417f8e80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12970:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2803   addr:0000020941b5c820  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12970:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2821   addr:0000020941b75f00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12971:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2839   addr:0000020941b8f5e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12971:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2857   addr:0000020941ba8cc0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12971:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2875   addr:0000020941bc23a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12972:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2893   addr:0000020941bdba80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12972:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2911   addr:0000020941bf5160  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12972:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2929   addr:0000020941c0e840  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12974:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2947   addr:0000020941c27f20  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12974:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2965   addr:0000020941c41600  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12975:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2983   addr:0000020941c5ace0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12975:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2479   addr:0000020941c7ea00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12976:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2605   addr:0000020941c980e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12976:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2623   addr:0000020941cb17c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12977:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2641   addr:0000020941ccaea0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12977:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2659   addr:0000020941ce4580  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12978:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2677   addr:0000020941cfdc60  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12978:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2695   addr:0000020941d17340  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12979:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2713   addr:0000020941d30a20  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12980:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2731   addr:0000020941d4a100  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12980:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2749   addr:0000020941d637e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12981:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2767   addr:0000020941d7cec0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12981:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2785   addr:0000020941d965a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12982:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2497   addr:0000020941dba2c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12982:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2515   addr:0000020941dd39a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12983:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2533   addr:0000020941ded080  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12983:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2551   addr:0000020941e06760  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12984:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2569   addr:0000020941e1fe40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12984:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2587   addr:0000020941e39520  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12984:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1903   addr:000002094215ce00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12985:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1921   addr:00000209421764e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12985:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1939   addr:000002094218fbc0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12986:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1957   addr:00000209421a92a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12986:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07131  file:\Main\DxModel.cpp           line:31692   ID:1831   addr:00000209422a0090  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12987:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2281   addr:00000209303699e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12987:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2299   addr:00000209303830c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12988:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2317   addr:000002093039c7a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12988:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2335   addr:00000209303b5e80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12989:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2353   addr:00000209303cf560  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12989:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2371   addr:00000209303e8c40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12990:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2389   addr:0000020930402320  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12990:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2407   addr:000002093041ba00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12991:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2425   addr:00000209304350e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12991:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2443   addr:000002093044e7c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12991:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:2461   addr:0000020930467ea0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12992:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3019   addr:0000020930e2bc80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12992:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3037   addr:0000020930e45360  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12992:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3055   addr:0000020930e5ea40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12994:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3073   addr:0000020930e78120  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12994:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3091   addr:0000020930e91800  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12995:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3109   addr:0000020930eaaee0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12995:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3127   addr:0000020930ec45c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12996:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3145   addr:0000020930eddca0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12996:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3163   addr:0000020930ef7380  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12997:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3181   addr:0000020930f10a60  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12997:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3199   addr:0000020930f2a140  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12998:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3001   addr:0000020930f4de60  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12998:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3505   addr:0000020930f67540  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12999:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3523   addr:0000020930f80c20  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+12999:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3541   addr:0000020930f9a300  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13000:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3559   addr:0000020930fb39e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13000:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3577   addr:0000020930fcd0c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13001:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3595   addr:0000020930fe67a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13001:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3613   addr:0000020930fffe80  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13002:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3631   addr:0000020931019560  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13002:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3649   addr:0000020931032c40  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13003:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3667   addr:000002093104c320  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13003:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3685   addr:0000020931065a00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13004:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3217   addr:0000020931089720  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13004:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3307   addr:00000209310a2e00  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13005:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3325   addr:00000209310bc4e0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13005:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3343   addr:00000209310d5bc0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13006:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3361   addr:00000209310ef2a0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13006:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3379   addr:0000020931108980  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13007:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3397   addr:0000020931122060  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13007:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3415   addr:000002093113b740  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13008:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3433   addr:0000020931154e20  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13008:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3451   addr:000002093116e500  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13009:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3469   addr:0000020931187be0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13009:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3487   addr:00000209311a12c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13010:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07132  file:\Main\DxModel.cpp           line:31692   ID:3235   addr:00000209311c4fe0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13010:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3253   addr:00000209311de6c0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13011:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3271   addr:00000209311f7da0  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13011:	size:    104160(   101.719kb)  user size:    104000(   101.562kb)  time:07133  file:\Main\DxModel.cpp           line:31692   ID:3289   addr:0000020931211480  data:[01 00 00 00 00 00 00 00 30 f4 10 41 00 00 80 b8]
+13012:	Total size:41184000(40218.750kb)  Alloc num:396
+13012:

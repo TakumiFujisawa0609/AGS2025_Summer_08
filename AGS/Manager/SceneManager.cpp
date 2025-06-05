@@ -5,6 +5,7 @@
 #include "../Scene/SceneBase.h"
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
+#include "../Scene/GameClear.h"
 #include "SceneManager.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
@@ -122,7 +123,7 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 void SceneManager::Init3D(void)
 {
 	// 背景色設定
-	SetBackgroundColor(0, 139, 139);
+	SetBackgroundColor(128, 128, 128);
 
 	// Zバッファを有効にする
 	SetUseZBuffer3D(true);
@@ -135,7 +136,7 @@ void SceneManager::Init3D(void)
 	// ライトの設定
 	SetUseLighting(true);
 	// 角度の設定
-	ChangeLightTypeDir({ 0.5f,-0.5f,0.5f });
+	ChangeLightTypeDir({ -0.5f,-0.5f,-0.5f });
 }
 
 // デルタタイムの取得
@@ -164,6 +165,9 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
+		break;
+	case SCENE_ID::GAMECLEAR:
+		scene_ = new GameClear();
 		break;
 	}
 

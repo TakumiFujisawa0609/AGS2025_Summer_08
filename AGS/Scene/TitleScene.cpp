@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../Manager/Application.h"
 #include "../Manager/SceneManager.h"
+#include "../Manager/SoundManager.h"
 #include "../Object/Camera.h"
 #include "TitleScene.h"
 
@@ -29,6 +30,8 @@ void TitleScene::Update(void)
 	{
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
+	
+		SoundManager::GetInstance()->PlayClose();
 	}
 
 	//if (camera_->Getmouse_().x < 0)

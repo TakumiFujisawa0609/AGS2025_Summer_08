@@ -9,9 +9,9 @@ class ItemManager
 public:
 
 	// アイテムの数
-	static constexpr int BULLET_NUM = 2;
-	static constexpr int HEAL_NUM = 2;
-	static constexpr int VACCINE_NUM = 2;
+	static constexpr int BULLET_NUM = 0;
+	static constexpr int KIT_NUM = 2;
+	static constexpr int VACCINE_NUM = 1;
 
 	// コンストラクタ・デストラクタ
 	ItemManager(void);
@@ -21,6 +21,8 @@ public:
 	void Update(void);
 	void Draw(void);
 	void Release(void);
+
+	const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& GetItems();
 
 private:
 

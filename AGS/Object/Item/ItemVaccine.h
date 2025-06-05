@@ -1,15 +1,12 @@
 #pragma once
 #include "ItemBase.h"
 
-class ItemBullet : public ItemBase
+class ItemVaccine : public ItemBase
 {
 public:
 	// コンストラクタ・デストラクタ
-	ItemBullet(void);
-	~ItemBullet(void);
-
-	bool isVaccineAlive();
-	VECTOR GetVPos();
+	ItemVaccine(void);
+	~ItemVaccine(void);
 
 protected:
 
@@ -17,6 +14,4 @@ protected:
 	void SetParam() override;
 	// 効果設定
 	void SetApplyEffect() override;
-
-	bool isVaccineAlive_;
 };

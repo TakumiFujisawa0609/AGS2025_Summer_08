@@ -6,6 +6,7 @@ class Player;
 class PlayerShot;
 class Blood;
 class EnemyManager;
+class ItemManager;
 class Collision;
 class Grid;
 
@@ -42,6 +43,9 @@ private:
 	// “G
 	EnemyManager* enemy_;
 
+	// ƒAƒCƒeƒ€
+	ItemManager* item_;
+
 	// ’e
 	PlayerShot* pShot_;
 
@@ -60,4 +64,5 @@ private:
 	int gameOverImg_;
 	bool isGameOver = false;
 	float gameOverTimer_ = 0.0f;
+
 };

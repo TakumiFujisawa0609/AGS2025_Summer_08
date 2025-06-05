@@ -2,6 +2,7 @@
 #include <unordered_map>
 #include <DxLib.h>
 #include "../Object/Enemy/EnemyBase.h"
+#include "../Object/Item/ItemBase.h"
 class Player;
 class StageBase;
 class EnemyManager;
@@ -9,6 +10,7 @@ class Camera;
 class Blood;
 class PlayerShot;
 class AnimControl;
+class ItemManager;
 
 class Collision
 {
@@ -26,7 +28,7 @@ public:
 
 
     // 初期化
-    void Init(Player* player,StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera);
+    void Init(Player* player,StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera, ItemManager* item);
     // 更新
     void Update(void);
     // 描画
@@ -49,6 +51,12 @@ public:
 	// 敵とステージの当たり判定処理
     void CollisionEAndS();
 
+    // プレイヤーとワクチンの当たり判定
+    void CollisionPAndV();
+
+    // プレイヤーとドアの当たり判定
+    void CollisionPAndD();
+
 private:
 
     Player* player_;
@@ -64,6 +72,8 @@ private:
     PlayerShot* pShot_;
 
     AnimControl* animControl_;
+
+    ItemManager* item_;
 
     // 照準と敵の当たり判定
     //MV1_COLL_RESULT_POLY hitPoly_PShot_E;
@@ -90,8 +100,13 @@ private:
     // プレイヤーとステージの当たり判定
     bool isHit_P_S_ = false;
 
+    bool isHitP_V_ = false;
+
     // 攻撃判定
     std::unordered_map<EnemyBase*, bool> enemyAttackHit_;
+
+    // 取得判定
+    std::unordered_map<ItemBase*, bool> itemHit_;
 
     // プレイヤーの中心座標
     VECTOR pCenterPos_;

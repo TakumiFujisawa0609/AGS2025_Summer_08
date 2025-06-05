@@ -16,6 +16,7 @@ public:
 		NONE,
 		TITLE,
 		GAME,
+		GAMECLEAR
 	};
 
 	// インスタンスの生成

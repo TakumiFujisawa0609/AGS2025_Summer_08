@@ -158,6 +158,10 @@
     <ClCompile Include="Object\Enemy\EnemyNormal.cpp" />
     <ClCompile Include="Object\Item\ItemBase.cpp" />
     <ClCompile Include="Object\Item\ItemBullet.cpp" />
+    <ClCompile Include="Object\Item\ItemKit.cpp" />
+    <ClCompile Include="Object\Item\ItemVaccine.cpp" />
+    <ClCompile Include="Scene\GameClear.cpp" />
+    <ClCompile Include="Scene\T.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Common\AnimControl.h" />
     <ClInclude Include="Common\Collision.h" />
@@ -177,11 +181,15 @@
     <ClInclude Include="Object\Enemy\EnemyNormal.h" />
     <ClInclude Include="Object\Item\ItemBullet.h" />
     <ClInclude Include="Object\Item\ItemBase.h" />
+    <ClInclude Include="Object\Item\ItemKit.h" />
+    <ClInclude Include="Object\Item\ItemVaccine.h" />
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Object\PlayerShot.h" />
     <ClInclude Include="Object\StageBase.h" />
+    <ClInclude Include="Scene\GameClear.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
+    <ClInclude Include="Scene\T.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
     <ClCompile Include="Common\AnimControl.cpp" />

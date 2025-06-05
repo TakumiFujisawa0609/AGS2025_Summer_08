@@ -1,18 +1,30 @@
 #pragma once
 #include <DxLib.h>
 
-#define BGM1_PATH "Data/BGM1.mp3"
-#define WALK1_PATH "Data/WALK1.wav"
-#define RUN1_PATH "Data/Run1.wav"
-
+#define WALK_PATH "Data/Sound/walk.wav"
+#define OPEN_PATH "Data/Sound/open.wav"
+#define CLOSE_PATH "Data/Sound/close.wav"
+#define DIE_PATH "Data/Sound/die.wav"
+#define NOBULLET_PATH "Data/Sound/noBullet.wav"
+#define RELOAD_PATH "Data/Sound/reLoad.wav"
+#define SHOT_PATH "Data/Sound/shot.wav"
+#define PICKUP_PATH "Data/Sound/pickUp.wav"
+#define VOICE_PATH "Data/Sound/voice.wav"
 
 class SoundManager
 {
 public:
 
-	static constexpr int BGM1_VOLUME = 130;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int WALK1_VOLUME = 125;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int RUN1_VOLUME = 125;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int BGM_VOLUME = 255;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int WALK_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int OPEN_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int CLOSE_VOLUME = 255;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int DIE_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int NOBULLET_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int RELOAD_VOLUME = 255;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int SHOT_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PICKUP_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int VOICE_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃê∂ê¨
@@ -27,15 +39,29 @@ public:
 	void Release(void);
 
 	// âπåπçƒê∂
-	void PlayBgm1();	// BGM
+	//void PlayBgm1();	// BGM
 	void PlayWalk();	// ï‡Ç≠
-	void PlayRun1();	// ëñÇÈ
+	void PlayOpen();	// ëñÇÈ
+	void PlayClose();	// ï‡Ç≠
+	void PlayDie();	// ëñÇÈ
+	void PlayNoAmmo();	// ï‡Ç≠
+	void PlayPickUp();	// ëñÇÈ
+	void PlayReLoad();	// ï‡Ç≠
+	void PlayVoice();	// ëñÇÈ
+	void PlayShot();	// ï‡Ç≠
+
 	
 	//âπåπí‚é~
 	void StopBgm1();	// BGM
 	void StopWalk1();	// ï‡Ç≠
-	void StopRun1();	// ëñÇÈ
-
+	void StopOpen();	// ëñÇÈ
+	void StopClose();	// ï‡Ç≠
+	void StopDie();	// ëñÇÈ
+	void StopNoAmmo();	// ï‡Ç≠
+	void StopPickUp();	// ëñÇÈ
+	void StopReLoad();	// ï‡Ç≠
+	void StopVoice();	// ëñÇÈ
+	void StopShot();	// ëñÇÈ
 
 private:
 
@@ -49,8 +75,15 @@ private:
 	static SoundManager* instance_;
 
 	int bgm1Hundle_;
-	int walk1Hundle_;
-	int run1Hundle_;
+	int walkHundle_;
+	int openHundle_;
+	int closeHundle_;
+	int dieHundle_;
+	int noAmmoHundle_;
+	int pickUpHundle_;
+	int reLoadHundle_;
+	int voiceHundle_;
+	int shotHundle_;
 
 };
 

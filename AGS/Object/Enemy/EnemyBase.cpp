@@ -79,21 +79,21 @@ void EnemyBase::Draw()
 	// 敵モデル描画
 	MV1DrawModel(modelId_); 
 
-	// デバッグ
-	/*DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
-	DrawFormatString(0, 80, 0xffffff, "dist : %f", dist_);
-	DrawFormatString(0, 140, 0xffffff, "isStop:%d", isStop_);
-	DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
-	DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);*/
-	DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
-	int animIndex = MV1GetAttachAnim(modelId_, 0);  // 敵の0番目のアニメ
-	float blendRate = MV1GetAttachAnimBlendRate(modelId_, animIndex);
-	DrawFormatString(0, 280, GetColor(255, 255, 0), "BlendRate : %.2f", blendRate);
+	//// デバッグ
+	///*DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
+	//DrawFormatString(0, 80, 0xffffff, "dist : %f", dist_);
+	//DrawFormatString(0, 140, 0xffffff, "isStop:%d", isStop_);
+	//DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
+	//DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);*/
+	//DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
+	//int animIndex = MV1GetAttachAnim(modelId_, 0);  // 敵の0番目のアニメ
+	//float blendRate = MV1GetAttachAnimBlendRate(modelId_, animIndex);
+	//DrawFormatString(0, 280, GetColor(255, 255, 0), "BlendRate : %.2f", blendRate);
 
-	VECTOR centerPos = pos_;
-	centerPos = VAdd(centerPos, VGet(0, 100, 0));
+	//VECTOR centerPos = pos_;
+	//centerPos = VAdd(centerPos, VGet(0, 100, 0));
 
-	DrawSphere3D(centerPos, 60, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+	//DrawSphere3D(centerPos, 60, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
 }
 
 void EnemyBase::Release()

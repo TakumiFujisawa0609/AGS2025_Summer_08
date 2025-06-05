@@ -51,64 +51,143 @@ void SoundManager::DeleteInstance(void)
 void SoundManager::Init(void)
 {
 	// BGMì«Ç›çûÇ›
-	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
+	//bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 
-	// ï‡Ç≠ì«Ç›çûÇ›
-	//walkHundle_ = LoadSoundMem(WALK1_PATH);
-
-	// ëñÇÈâπì«Ç›çûÇ›
-	run1Hundle_ = LoadSoundMem(RUN1_PATH);
-
+	walkHundle_ = LoadSoundMem(WALK_PATH);
+	openHundle_ = LoadSoundMem(OPEN_PATH);
+	closeHundle_ = LoadSoundMem(CLOSE_PATH);
+	dieHundle_ = LoadSoundMem(DIE_PATH);
+	noAmmoHundle_ = LoadSoundMem(NOBULLET_PATH);
+	pickUpHundle_ = LoadSoundMem(PICKUP_PATH);
+	reLoadHundle_ = LoadSoundMem(RELOAD_PATH);
+	voiceHundle_ = LoadSoundMem(VOICE_PATH);
+	shotHundle_ = LoadSoundMem(SHOT_PATH);
 }
 
 void SoundManager::Update(void)
 {
-	PlayBgm1();
-	//PlayWalk1();
-	PlayRun1();
+	//PlayBgm1();
+	PlayWalk();
 }
 
 void SoundManager::Release(void)
 {
-	DeleteSoundMem(bgm1Hundle_);
-	DeleteSoundMem(walk1Hundle_);
-	DeleteSoundMem(run1Hundle_);
+	//DeleteSoundMem(bgmHundle_);
+	DeleteSoundMem(walkHundle_);
+
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃçÌèú
 	DeleteInstance();
 }
 
-// BGMÇPçƒê∂
-void SoundManager::PlayBgm1()
-{
-	// çƒê∂
-	if (CheckSoundMem(bgm1Hundle_) == 0)
-	{
-		PlaySoundMem(bgm1Hundle_, DX_PLAYTYPE_LOOP, true);
-	}
-
-	// âπó í≤êÆ
-	ChangeVolumeSoundMem(BGM1_VOLUME, bgm1Hundle_);
-}
+//// BGMÇPçƒê∂
+//void SoundManager::PlayBgm1()
+//{
+//	// çƒê∂
+//	if (CheckSoundMem(bgm1Hundle_) == 0)
+//	{
+//		PlaySoundMem(bgm1Hundle_, DX_PLAYTYPE_LOOP, true);
+//	}
+//
+//	// âπó í≤êÆ
+//	ChangeVolumeSoundMem(BGM1_VOLUME, bgm1Hundle_);
+//}
 
 void SoundManager::PlayWalk()
 {
 	// çƒê∂
-	PlaySoundMem(walk1Hundle_, DX_PLAYTYPE_BACK, true);
+	if (CheckSoundMem(walkHundle_) == 0)
+	{
+		// çƒê∂
+		PlaySoundMem(walkHundle_, DX_PLAYTYPE_BACK, true);
+	}
+	
 
 	// âπó í≤êÆ
-	ChangeVolumeSoundMem(WALK1_VOLUME, walk1Hundle_);
+	ChangeVolumeSoundMem(WALK_VOLUME, walkHundle_);
 }
 
-// ëñÇÈâπ
-void SoundManager::PlayRun1()
+void SoundManager::PlayOpen()
 {
 	// çƒê∂
-	PlaySoundMem(run1Hundle_, DX_PLAYTYPE_BACK, true);
+	PlaySoundMem(openHundle_, DX_PLAYTYPE_BACK, true);
 
 	// âπó í≤êÆ
-	ChangeVolumeSoundMem(RUN1_VOLUME, run1Hundle_);
+	ChangeVolumeSoundMem(OPEN_VOLUME, openHundle_);
 }
+
+void SoundManager::PlayClose()
+{
+	// çƒê∂
+	PlaySoundMem(closeHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(CLOSE_VOLUME, closeHundle_);
+}
+
+void SoundManager::PlayDie()
+{
+	// çƒê∂
+	PlaySoundMem(dieHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(DIE_VOLUME, dieHundle_);
+}
+
+void SoundManager::PlayNoAmmo()
+{
+	// çƒê∂
+	PlaySoundMem(noAmmoHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(NOBULLET_VOLUME, noAmmoHundle_);
+}
+
+void SoundManager::PlayPickUp()
+{
+	// çƒê∂
+	PlaySoundMem(pickUpHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(PICKUP_VOLUME, pickUpHundle_);
+}
+
+void SoundManager::PlayReLoad()
+{
+	// çƒê∂
+	PlaySoundMem(reLoadHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(RELOAD_VOLUME, reLoadHundle_);
+}
+
+void SoundManager::PlayVoice()
+{
+	// çƒê∂
+	PlaySoundMem(voiceHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(VOICE_VOLUME, voiceHundle_);
+}
+
+void SoundManager::PlayShot()
+{
+	// çƒê∂
+	PlaySoundMem(shotHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(SHOT_VOLUME, shotHundle_);
+}
+
+//// ëñÇÈâπ
+//void SoundManager::PlayRun1()
+//{
+//	// çƒê∂
+//	PlaySoundMem(run1Hundle_, DX_PLAYTYPE_BACK, true);
+//
+//	// âπó í≤êÆ
+//	ChangeVolumeSoundMem(RUN1_VOLUME, run1Hundle_);
+//}
 
 // BGMÇPí‚é~
 void SoundManager::StopBgm1()
@@ -118,11 +197,37 @@ void SoundManager::StopBgm1()
 
 void SoundManager::StopWalk1()
 {
-	StopSoundMem(walk1Hundle_);
+	StopSoundMem(walkHundle_);
 }
 
-// ëñÇÈÇPí‚é~
-void SoundManager::StopRun1()
+void SoundManager::StopOpen()
 {
-	StopSoundMem(run1Hundle_);
+}
+
+void SoundManager::StopClose()
+{
+}
+
+void SoundManager::StopDie()
+{
+}
+
+void SoundManager::StopNoAmmo()
+{
+}
+
+void SoundManager::StopPickUp()
+{
+}
+
+void SoundManager::StopReLoad()
+{
+}
+
+void SoundManager::StopVoice()
+{
+}
+
+void SoundManager::StopShot()
+{
 }

@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../Object/Camera.h"
 #include "../Manager/InputManager.h"
+#include "../Manager/SoundManager.h"
 #include "PlayerShot.h"
 
 PlayerShot::PlayerShot()
@@ -37,8 +38,11 @@ void PlayerShot::Init(Camera* camera)
 void PlayerShot::Update(void)
 {
 	// リロード
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && isHave_) {
+	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R)) //&& isHave_) 
+	{
 		ammo_ = MAX_AMMO;
+
+		SoundManager::GetInstance()->PlayReLoad();
 	}
 	
 	// 弾発射
@@ -56,6 +60,14 @@ void PlayerShot::Update(void)
 
 		// 弾数を減らす
 		ammo_--;
+
+		SoundManager::GetInstance()->PlayShot();
+	}
+	// 弾発射
+	if (!isAlive_
+		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
+		&& ammo_ == 0) {
+		SoundManager::GetInstance()->PlayNoAmmo();
 	}
 
 	// 弾移動
@@ -84,16 +96,12 @@ void PlayerShot::Draw(void)
 {
 	//if(isAlive_) MV1DrawModel(modelId_);
 
-	if(isAlive_) DrawSphere3D(pos_, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
-	DrawFormatString(0, 540, 0xffffff, "isShotAlive:%d", isAlive_ );
-	DrawFormatString(0, 500, 0xffffff, "ShotPos:(%f,%f,%f)", pos_.x, pos_.y, pos_.z);
-	DrawFormatString(0, 520, 0xffffff, "dir_: (%.2f, %.2f, %.2f)", dir_.x, dir_.y, dir_.z);
-	DrawFormatString(0, 560, 0xffffff, "Dist:%f", dist_);
+	//if(isAlive_) DrawSphere3D(pos_, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
+	//DrawFormatString(0, 540, 0xffffff, "isShotAlive:%d", isAlive_ );
+	//DrawFormatString(0, 500, 0xffffff, "ShotPos:(%f,%f,%f)", pos_.x, pos_.y, pos_.z);
+	//DrawFormatString(0, 520, 0xffffff, "dir_: (%.2f, %.2f, %.2f)", dir_.x, dir_.y, dir_.z);
+	//DrawFormatString(0, 560, 0xffffff, "Dist:%f", dist_);
 
-	//// 残弾表示（左下）
-	//SetFontSize(32); // フォントサイズを 32 に変更
-	//DrawFormatString(100, 1000, GetColor(255, 255, 255), "%d / %d", ammo_, MAX_AMMO);
-	//SetFontSize(32); // フォントサイズを 32 に変更
 
 	// 表示座標
 	int x = 130;
