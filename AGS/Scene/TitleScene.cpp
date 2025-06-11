@@ -29,9 +29,9 @@ void TitleScene::Update(void)
 	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
-		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::T);
 	
-		SoundManager::GetInstance()->PlayClose();
+		SoundManager::GetInstance()->PlayOpen();
 	}
 
 	//if (camera_->Getmouse_().x < 0)

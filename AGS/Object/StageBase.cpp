@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "../../Manager/Application.h"
 #include "StageBase.h"
 
 StageBase::StageBase()
@@ -56,6 +57,7 @@ void StageBase::Draw(void)
 	centerPos = VAdd(centerPos, VGet(0, 200, 0));
 
 	//DrawSphere3D(centerPos, 170, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+
 }
 
 void StageBase::Release(void)

@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../../Manager/SoundManager.h"
 #include "ItemBase.h"
 
 ItemBase::ItemBase()
@@ -55,6 +56,16 @@ void ItemBase::Draw()
         }
     }
 
+    if (!isPickUp_)
+    {
+        DrawFormatString(0, 50, 0xffffff, "ワクチンを回収");
+    }
+    else
+    {
+        DrawFormatString(0, 50, 0xffffff, "ドアから脱出");
+    }
+
+
     // スポーン位置の球体を描画
     /*for (const auto& point : bulletSpawnPoints)
     {
@@ -66,12 +77,12 @@ void ItemBase::Draw()
         DrawSphere3D(point.pos, 20.0f, 16, GetColor(0, 255, 0), GetColor(0, 255, 0), false);
     }*/
 
-    for (auto point : vaccineSpawnPoints)
-    {
-        point.pos = VAdd(point.pos, { 0, 50, -0 });
+    //for (auto point : vaccineSpawnPoints)
+    //{
+    //    point.pos = VAdd(point.pos, { 0, 50, -0 });
 
-        DrawSphere3D(point.pos, 230, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
-    }
+    //    DrawSphere3D(point.pos, 230, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+    //}
 }
 
 void ItemBase::Release()
@@ -96,6 +107,8 @@ void ItemBase::SetPickUp()
     {
         isPickUp_ = true;
         pickUpTime_ = GetNowCount();
+
+        SoundManager::GetInstance()->PlayPickUp();
     }
 }
 

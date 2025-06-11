@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "../../Manager/InputManager.h"
+#include "../../Manager/SoundManager.h"
 #include "../../Common/AnimControl.h"
 #include "../../Common/Collision.h"
 #include "../../Utility/AsoUtility.h"
@@ -180,6 +181,10 @@ void EnemyBase::ChangeState()
 	{
 		state_ = STATE::WALK;
 	}
+	else if (dist_ > WALK_DISTANCE)
+	{
+		state_ = STATE::IDLE;
+	}
 }
 
 // s“®Ø‚è‘Ö‚¦
@@ -236,6 +241,7 @@ void EnemyBase::PlayDie()
 {
 	anim_->Play(ANIM_DIE, 1);
 	// Ž€–SŽž‚Ìˆ—
+	//SoundManager::GetInstance()->PlayVoice();
 }
 
 bool EnemyBase::GetAlive()

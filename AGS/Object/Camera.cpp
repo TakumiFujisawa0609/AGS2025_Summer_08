@@ -71,6 +71,7 @@ void Camera::Draw(void)
 	// 右
 	DrawLine(centerX_ + gap, centerY_, centerX_ + (gap + size), centerY_, color);
 
+	
 	// 2. 加算合成で中心を光らせる（スポットライト風）
 	int centerX = Application::SCREEN_SIZE_X / 2;
 	int centerY = Application::SCREEN_SIZE_Y / 2;

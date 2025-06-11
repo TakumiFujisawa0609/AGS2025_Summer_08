@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "../Manager/InputManager.h"
+#include "../Manager/Application.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
 #include "../Utility/AsoUtility.h"
@@ -71,6 +72,8 @@ void Player::Draw(void)
 	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
 	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
 	//DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
+	
+	
 }
 
 void Player::Release(void)
@@ -160,6 +163,10 @@ void Player::ProcessMove(VECTOR angle)
 	if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { 
 		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_L); 
 		SoundManager::GetInstance()->PlayWalk();
+	}
+	if (!CheckHitKey(KEY_INPUT_W) && !CheckHitKey(KEY_INPUT_A) &&
+		!CheckHitKey(KEY_INPUT_S) && !CheckHitKey(KEY_INPUT_D)) {
+		SoundManager::GetInstance()->StopWalk();
 	}
 
 	// ˆÚ“®ˆ—

@@ -164,6 +164,8 @@ void SoundManager::PlayReLoad()
 void SoundManager::PlayVoice()
 {
 	// Н─Р╢
+
+	
 	PlaySoundMem(voiceHundle_, DX_PLAYTYPE_BACK, true);
 
 	// Й╣Ч╩Т▓Ро
@@ -195,7 +197,7 @@ void SoundManager::StopBgm1()
 	StopSoundMem(bgm1Hundle_);
 }
 
-void SoundManager::StopWalk1()
+void SoundManager::StopWalk()
 {
 	StopSoundMem(walkHundle_);
 }

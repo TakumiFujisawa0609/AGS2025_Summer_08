@@ -53,7 +53,7 @@ public:
 	
 	//‰¹Œ¹’âŽ~
 	void StopBgm1();	// BGM
-	void StopWalk1();	// •à‚­
+	void StopWalk();	// •à‚­
 	void StopOpen();	// ‘–‚é
 	void StopClose();	// •à‚­
 	void StopDie();	// ‘–‚é

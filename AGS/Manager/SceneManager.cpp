@@ -6,6 +6,7 @@
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
 #include "../Scene/GameClear.h"
+#include "../Scene/T.h"
 #include "SceneManager.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
@@ -162,6 +163,9 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	{
 	case SCENE_ID::TITLE:
 		scene_ = new TitleScene();
+		break;
+	case SCENE_ID::T:
+		scene_ = new T();
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
