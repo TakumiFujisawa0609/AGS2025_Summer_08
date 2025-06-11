@@ -1,22 +1,22 @@
 #include "DxLib.h"
 #include "../../Manager/SceneManager.h"
 #include "../../Manager/SoundManager.h"
-#include "T.h"
+#include "Tutorial.h"
 
-T::T(void)
+Tutorial::Tutorial(void)
 {
 }
 
-T::~T(void)
+Tutorial::~Tutorial(void)
 {
 }
 
-void T::Init(void)
+void Tutorial::Init(void)
 {
-	tImg_ = LoadGraph("Data/Image/Operation.png");
+	tutorialImg_ = LoadGraph("Data/Image/Operation.png");
 }
 
-void T::Update(void)
+void Tutorial::Update(void)
 {
 	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
@@ -27,13 +27,13 @@ void T::Update(void)
 	}
 }
 
-void T::Draw(void)
+void Tutorial::Draw(void)
 {
 	float scale = 1.0f;  // èkè¨
-	DrawRotaGraph(958, 538, scale, 0.0f, tImg_, true);
+	DrawRotaGraph(958, 538, scale, 0.0f, tutorialImg_, true);
 }
 
-void T::Release(void)
+void Tutorial::Release(void)
 {
-	DeleteGraph(tImg_);
+	DeleteGraph(tutorialImg_);
 }

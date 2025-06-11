@@ -64,11 +64,26 @@ void EnemyBase::Update()
 	// プレイヤーとの距離を更新
 	LookPlayer();   
 
-	// 状態を遷移させる
-	ChangeState();     
 	// 状態に応じた行動（追尾・攻撃など）
-	UpdateBehavior();  
-
+	ChangeStateDist();
+	
+	switch (state_) {
+	case STATE::IDLE:
+		UpdateIdle();
+		break;
+	case STATE::WALK:
+		UpdateWalk();
+		break;
+	case STATE::RUN:
+		UpdateRun();
+		break;
+	case STATE::ATTACK:
+		UpdateAttack();
+		break;
+	case STATE::DIE:
+		UpdateDie();
+		break;
+	}
 
 	// アニメーションの時間更新
 	anim_->Update();
@@ -77,19 +92,26 @@ void EnemyBase::Update()
 
 void EnemyBase::Draw()
 {
+	switch (state_) {
+	case STATE::IDLE:
+		DrawIdle();
+		break;
+	case STATE::WALK:
+		DrawWalk();
+		break;
+	case STATE::RUN:
+		DrawRun();
+		break;
+	case STATE::ATTACK:
+		DrawAttack();
+		break;
+	case STATE::DIE:
+		DrawDie();
+		break;
+	}
+
 	// 敵モデル描画
 	MV1DrawModel(modelId_); 
-
-	//// デバッグ
-	///*DrawFormatString(0, 20, 0xffffff, "enemyPos : (%f, %f, %f)", pos_.x, pos_.y, pos_.z);
-	//DrawFormatString(0, 80, 0xffffff, "dist : %f", dist_);
-	//DrawFormatString(0, 140, 0xffffff, "isStop:%d", isStop_);
-	//DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
-	//DrawFormatString(0, 300, 0xffffff, "movedPos:(%.2f, %.2f, %.2f)", movedPos_);*/
-	//DrawFormatString(100, 140, 0xffffff, "isAliveE:%d", isAlive_);
-	//int animIndex = MV1GetAttachAnim(modelId_, 0);  // 敵の0番目のアニメ
-	//float blendRate = MV1GetAttachAnimBlendRate(modelId_, animIndex);
-	//DrawFormatString(0, 280, GetColor(255, 255, 0), "BlendRate : %.2f", blendRate);
 
 	//VECTOR centerPos = pos_;
 	//centerPos = VAdd(centerPos, VGet(0, 100, 0));
@@ -161,12 +183,32 @@ void EnemyBase::ChasePlayer()
 }
 
 // 状態を切り替える
-void EnemyBase::ChangeState()
+void EnemyBase::ChangeState(STATE state)
 {
-	if (!isAlive_) {
-		state_ = STATE::DIE;
-		return;
+	state_ = state;
+
+	switch (state_) {
+	case STATE::IDLE:
+		
+		break;
+	case STATE::WALK:
+		
+		break;
+	case STATE::RUN:
+		
+		
+		break;
+	case STATE::ATTACK:
+		
+		break;
+	case STATE::DIE:
+		
+		break;
 	}
+}
+
+void EnemyBase::ChangeStateDist()
+{
 
 	// 状態を切り替える距離
 	if (dist_ < ATTACK_DISTANCE)
@@ -185,63 +227,6 @@ void EnemyBase::ChangeState()
 	{
 		state_ = STATE::IDLE;
 	}
-}
-
-// 行動切り替え
-void EnemyBase::UpdateBehavior()
-{
-	// 状態に応じてアニメーションを切り替える
-	switch (state_) {
-	case STATE::IDLE:
-		PlayIdle();
-		break;
-	case STATE::WALK:
-		PlayWalk();
-		ChasePlayer();
-		break;
-	case STATE::RUN:
-		anim_->Play(ANIM_RUN, 1);
-		ChasePlayer();
-		PlayRun();;
-		break;
-	case STATE::ATTACK:
-		PlayAttack();
-		break;
-	case STATE::DIE:
-		PlayDie();
-		break;
-	}
-}
-
-void EnemyBase::PlayIdle()
-{
-	anim_->Play(ANIM_IDLE, 1);
-	// 追尾なし・待機状態などの処理
-}
-
-void EnemyBase::PlayWalk()
-{
-	anim_->Play(ANIM_WALK, 1);
-	ChasePlayer();
-}
-
-void EnemyBase::PlayRun()
-{
-	anim_->Play(ANIM_RUN, 1);
-	ChasePlayer();
-}
-
-void EnemyBase::PlayAttack()
-{
-	anim_->Play(ANIM_ATTACK, 2.2f);
-	// 攻撃判定など
-}
-
-void EnemyBase::PlayDie()
-{
-	anim_->Play(ANIM_DIE, 1);
-	// 死亡時の処理
-	//SoundManager::GetInstance()->PlayVoice();
 }
 
 bool EnemyBase::GetAlive()
@@ -293,4 +278,75 @@ void EnemyBase::SetPos(VECTOR pos)
 void EnemyBase::SetStop(bool isStop)
 {
 	isStop_ = isStop;	// 停止フラグをセット
+}
+
+void EnemyBase::ChangeIdle(void)
+{
+
+}
+
+void EnemyBase::ChangeWalk(void)
+{
+}
+
+void EnemyBase::ChangeRun(void)
+{
+}
+
+void EnemyBase::ChangeAttack(void)
+{
+}
+
+void EnemyBase::ChangeDie(void)
+{
+}
+
+void EnemyBase::UpdateIdle(void)
+{
+	anim_->Play(ANIM_IDLE, 1);
+}
+
+void EnemyBase::UpdateWalk(void)
+{
+	anim_->Play(ANIM_WALK, 1);
+
+	ChasePlayer();
+}
+
+void EnemyBase::UpdateRun(void)
+{
+	anim_->Play(ANIM_RUN, 1);
+	ChasePlayer();
+}
+
+void EnemyBase::UpdateAttack(void)
+{
+	anim_->Play(ANIM_ATTACK, 2.2f);
+}
+
+void EnemyBase::UpdateDie(void)
+{
+	anim_->Play(ANIM_DIE, 1);
+	// 死亡時の処理
+	//SoundManager::GetInstance()->PlayVoice();
+}
+
+void EnemyBase::DrawIdle(void)
+{
+}
+
+void EnemyBase::DrawWalk(void)
+{
+}
+
+void EnemyBase::DrawRun(void)
+{
+}
+
+void EnemyBase::DrawAttack(void)
+{
+}
+
+void EnemyBase::DrawDie(void)
+{
 }

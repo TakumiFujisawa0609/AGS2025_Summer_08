@@ -88,18 +88,8 @@ public:
 	void ChasePlayer();
 
 	void LookPlayer();
-	void ChangeState();	// アニメーション変更
-	void UpdateBehavior();	// プレイヤー追尾
-
-	void PlayIdle();
-
-	void PlayWalk();
-
-	void PlayRun();
-
-	void PlayAttack();
-
-	void PlayDie();
+	void ChangeState(STATE state);	// アニメーション変更
+	void ChangeStateDist();
 
 	bool GetAlive();
 	void SetAlive(bool isAlive);
@@ -142,7 +132,24 @@ protected:
 	// 生存判定
 	bool isAlive_;
 
-	
+	// 状態遷移
+	void ChangeIdle(void);
+	void ChangeWalk(void);
+	void ChangeRun(void);
+	void ChangeAttack(void);
+	void ChangeDie(void);
+	// 状態別更新
+	void UpdateIdle(void);
+	void UpdateWalk(void);
+	void UpdateRun(void);
+	void UpdateAttack(void);
+	void UpdateDie(void);
+	// 状態別描画
+	void DrawIdle(void);
+	void DrawWalk(void);
+	void DrawRun(void);
+	void DrawAttack(void);
+	void DrawDie(void);
 
 	// パラメータ設定(純粋仮想関数)
 	virtual void SetParam() = 0;

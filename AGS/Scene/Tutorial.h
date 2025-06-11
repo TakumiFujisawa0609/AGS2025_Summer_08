@@ -1,16 +1,16 @@
 #pragma once
 #include "SceneBase.h"
 
-class T : public SceneBase
+class Tutorial : public SceneBase
 {
 
 public:
 
 	// コンストラクタ
-	T(void);
+	Tutorial(void);
 
 	// デストラクタ
-	~T(void);
+	~Tutorial(void);
 
 	void Init(void) override;
 	void Update(void) override;
@@ -20,7 +20,7 @@ public:
 private:
 
 
-	int tImg_;
+	int tutorialImg_;
 
 
 };

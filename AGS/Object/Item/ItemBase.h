@@ -28,10 +28,10 @@ public:
        {700.0f, 0.0f, 1400.0f}
     };
 
-    static constexpr SpawnPoint vaccineSpawnPoints[1] = {
-       {0.0f, 0.0f, 7750.0f}
-       //{100.0f, 0.0f, 100.0f}
-       //{700.0f, 0.0f, 1400.0f}
+    static constexpr SpawnPoint vaccineSpawnPoints[3] = {
+       {0.0f, 0.0f, 7750.0f},
+       {100.0f, 0.0f, 100.0f},
+       {700.0f, 0.0f, 1400.0f}
     };
 
 
@@ -58,8 +58,8 @@ public:
     void Draw();        // 描画
     void Release();     // 解放
 
-    void SetPickUp(bool isPickUp);   // 取得したかどうか
-    void SetPickUp();
+    void TakePickUp(int number);
+    void PickUp();
     bool GetPickUp();
 
     VECTOR GetPos() const; // 座標取得
@@ -76,12 +76,14 @@ protected:
     VECTOR scale_;   // サイズ
     VECTOR angle_;   // 角度
 
-    bool isPickUp_;
+    bool isPickUpV_;
     bool isActive_;    // 使用判定
 
     bool isVaccineAlive_;
 
     int pickUpTime_;   // 拾った時間（ミリ秒）
+
+    int vNumber_;
 
     virtual void SetParam() = 0;    // パラメータ設定
     virtual void SetApplyEffect() = 0;  // 効果適用

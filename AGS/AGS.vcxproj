@@ -161,7 +161,7 @@
     <ClCompile Include="Object\Item\ItemKit.cpp" />
     <ClCompile Include="Object\Item\ItemVaccine.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
-    <ClCompile Include="Scene\T.cpp" />
+    <ClCompile Include="Scene\Tutorial.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Common\AnimControl.h" />
     <ClInclude Include="Common\Collision.h" />
@@ -189,7 +189,7 @@
     <ClInclude Include="Scene\GameClear.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
-    <ClInclude Include="Scene\T.h" />
+    <ClInclude Include="Scene\Tutorial.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Stage\StageBase.h" />
     <ClCompile Include="Common\AnimControl.cpp" />

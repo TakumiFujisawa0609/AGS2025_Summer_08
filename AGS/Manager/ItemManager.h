@@ -11,7 +11,7 @@ public:
 	// アイテムの数
 	static constexpr int BULLET_NUM = 0;
 	static constexpr int KIT_NUM = 2;
-	static constexpr int VACCINE_NUM = 1;
+	static constexpr int VACCINE_NUM = 3;
 
 	// コンストラクタ・デストラクタ
 	ItemManager(void);

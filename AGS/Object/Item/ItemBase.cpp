@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "../../Manager/SoundManager.h"
+#include "../../Manager/ItemManager.h"
 #include "ItemBase.h"
 
 ItemBase::ItemBase()
@@ -21,9 +22,12 @@ void ItemBase::Init(TYPE type, int baseModelId)
     vImage_ = LoadGraph("Data/Image/GetVaccine.png");
 
     isActive_ = false;
-    isPickUp_ = false;
+
+    isPickUpV_ = false;
 
     pickUpTime_ = 0;
+
+    vNumber_ = ItemManager::VACCINE_NUM;
 
     // パラメータ設定
     SetParam();
@@ -45,8 +49,9 @@ void ItemBase::Update()
 
 void ItemBase::Draw()
 {
-    if(!isPickUp_) MV1DrawModel(modelId_);
-    else {
+    if(!isPickUpV_) MV1DrawModel(modelId_);
+
+    if(!isPickUpV_ && vNumber_ ==2) {
 
         int now = GetNowCount();
         if (now - pickUpTime_ <= SHOW_DURATION)
@@ -56,7 +61,7 @@ void ItemBase::Draw()
         }
     }
 
-    if (!isPickUp_)
+    if (!isPickUpV_)
     {
         DrawFormatString(0, 50, 0xffffff, "ワクチンを回収");
     }
@@ -65,6 +70,7 @@ void ItemBase::Draw()
         DrawFormatString(0, 50, 0xffffff, "ドアから脱出");
     }
 
+    DrawFormatString(0, 80, 0xffffff, "ワクチン残り個数:%d", vNumber_);
 
     // スポーン位置の球体を描画
     /*for (const auto& point : bulletSpawnPoints)
@@ -96,16 +102,20 @@ void ItemBase::SetApplyEffect()
 {
 }
 
-void ItemBase::SetPickUp(bool isPickUp)
+void ItemBase::TakePickUp(int number)
 {
-    isPickUp_ = isPickUp;
+    // ワクチンの残り個数計算 (減らしていく)
+    vNumber_ = ItemManager::VACCINE_NUM - number;
+
+    PickUp();
 }
 
-void ItemBase::SetPickUp()
+void ItemBase::PickUp()
 {
-    if (!isPickUp_)
+    // 残りワクチン個数が０になったら
+    if (vNumber_ == 0)
     {
-        isPickUp_ = true;
+        isPickUpV_ = true;
         pickUpTime_ = GetNowCount();
 
         SoundManager::GetInstance()->PlayPickUp();
@@ -114,7 +124,7 @@ void ItemBase::SetPickUp()
 
 bool ItemBase::GetPickUp()
 {
-    return isPickUp_;
+    return isPickUpV_;
 }
 
 VECTOR ItemBase::GetPos() const

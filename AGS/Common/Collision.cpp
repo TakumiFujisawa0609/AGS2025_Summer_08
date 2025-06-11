@@ -74,57 +74,6 @@ void Collision::Update()
 
 void Collision::Draw()
 {
-	////DrawSphere3D(pCenterPos_, 45, 10, 0x00ff00, 0x00ff00, false);	// プレイヤーの当たり判定の球体を描画
-	////DrawFormatString(0, 400, 0xffffff, "pCenterPos_:(%.2f, %.2f, %.2f)", pCenterPos_.x, pCenterPos_.y, pCenterPos_.z);
-	//// プレイヤー座標
-	//player_->GetPPos();
-	//DrawFormatString(0, 420, 0xffffff, "コリジョン内のpPos:(%.2f, %.2f, %.2f)", player_->GetPPos().x, player_->GetPPos().y, player_->GetPPos().z);
-
-	//DrawFormatString(0, 320, 0xffffff, "Hit_E_S:%d", hitPoly_E_S.HitFlag);
-	//DrawFormatString(0, 640, 0xffffff, "Hit_E_P:%d", isHit_E_P_);
-
-	//DrawFormatString(600, 0, 0xffffff, "Hit_P_S:%d", isHit_P_S_);
-	////DrawFormatString(600, 20, 0xffffff, "Hit_PShot_E:%d", hitPoly_PShot_E.HitFlag);
-
-	//DrawFormatString(0, 360, 0xffffff, "StartPos:(%.2f, %.2f, %.2f)", enemyPosS_.x, enemyPosS_.y, enemyPosS_.z);
-	//DrawFormatString(0, 380, 0xffffff, "EndPos(%.2f, %.2f, %.2f)", enemyPosE_.x, enemyPosE_.x, enemyPosE_.z);
-
-	////DrawLine3D(enemyPosS_, enemyPosE_, 0xff0000);
-	//DrawLine3D(a, b, 0xff0000);
-	////DrawSphere3D(enemyPosS_, 10, 10, 0xff0000, 0xff0000, false);	// 球を描画
-
-	//DrawFormatString(600, 20, 0xffffff, "HitP_V:%d", isHitP_V_);
-
-	//int y = 500;
-	//for (const auto& pair : enemyAttackHit_)
-	//{
-	//	DrawFormatString(700, y, 0xffffff, "Enemy[%p] Hit:%d", pair.first, pair.second);
-	//	y += 30;
-	//}
-	//// アイテム
-	//int y2 = 650;
-	//for (const auto& pair : itemHit_)
-	//{
-	//	DrawFormatString(700, y2, 0xffffff, "item[%p] Hit:%d", pair.first, pair.second);
-	//	y += 30;
-	//}
-
-	//int animRateY = 100;
-	//for (const auto& pair : enemy_->GetEnemies())
-	//{
-	//	for (EnemyBase* enemy : pair.second)
-	//	{
-	//		if (enemy->GetState() == EnemyBase::STATE::ATTACK)
-	//		{
-	//			{
-	//				float animRate = enemy->GetAnimRate(); // 0.0〜1.0 の範囲
-	//				DrawFormatString(900, animRateY, 0xffaa00, "Enemy[%p] AnimRate: %.2f", enemy, animRate);
-	//				animRateY += 30;
-	//			}
-	//		}
-	//	}
-	//}
-
 
 }
 
@@ -382,7 +331,7 @@ void Collision::CollisionPAndV()
 
 			if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 			{
-				item->SetPickUp();
+				item->TakePickUp(1);
 
 				itemHit_[item] = true;
 			}
