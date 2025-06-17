@@ -10,6 +10,7 @@ ItemKit::~ItemKit(void)
 
 void ItemKit::SetParam()
 {
+
 	scale_ = DEFAULT_KIT_SCALE;
 }
 

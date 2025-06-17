@@ -83,7 +83,7 @@ public:
 
 	void SetStop(bool isStop);
 
-	//void TakeDamage(int damage);
+	//void Damage(int damage);
 
 	void ChasePlayer();
 

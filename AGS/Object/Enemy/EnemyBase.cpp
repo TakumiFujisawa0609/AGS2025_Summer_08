@@ -46,9 +46,9 @@ void EnemyBase::Init(TYPE type, int baseModelId, Player* player)
 	MV1SetPosition(modelId_, pos_);
 
 	// 初期状態
-	state_ = STATE::IDLE;
+	ChangeState(STATE::IDLE);
 	// 初期アニメーション設定
-	anim_->Play(ANIM_IDLE, 1);
+	//anim_->Play(ANIM_IDLE, 1);
 
 	// 敵の移動限界フラグ
 	isStop_ = false;
@@ -113,10 +113,14 @@ void EnemyBase::Draw()
 	// 敵モデル描画
 	MV1DrawModel(modelId_); 
 
+#ifdef DEBUG
 	//VECTOR centerPos = pos_;
-	//centerPos = VAdd(centerPos, VGet(0, 100, 0));
+//centerPos = VAdd(centerPos, VGet(0, 100, 0));
 
-	//DrawSphere3D(centerPos, 60, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+//DrawSphere3D(centerPos, 60, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+
+
+#endif // DEBUG
 }
 
 void EnemyBase::Release()
@@ -189,43 +193,41 @@ void EnemyBase::ChangeState(STATE state)
 
 	switch (state_) {
 	case STATE::IDLE:
-		
+		ChangeIdle();
 		break;
 	case STATE::WALK:
-		
+		ChangeWalk();
 		break;
 	case STATE::RUN:
-		
-		
+		ChangeRun();
 		break;
 	case STATE::ATTACK:
-		
+		ChangeAttack();
 		break;
 	case STATE::DIE:
-		
+		ChangeDie();
 		break;
 	}
 }
 
 void EnemyBase::ChangeStateDist()
 {
-
 	// 状態を切り替える距離
 	if (dist_ < ATTACK_DISTANCE)
 	{
-		state_ = STATE::ATTACK;
+		ChangeState(STATE::ATTACK);
 	}
 	else if (dist_ < RUN_DISTANCE)
 	{
-		state_ = STATE::RUN;
+		ChangeState(STATE::RUN);
 	}
 	else if (dist_ < WALK_DISTANCE)
 	{
-		state_ = STATE::WALK;
+		ChangeState(STATE::WALK);
 	}
 	else if (dist_ > WALK_DISTANCE)
 	{
-		state_ = STATE::IDLE;
+		ChangeState(STATE::IDLE);
 	}
 }
 
@@ -240,7 +242,7 @@ void EnemyBase::SetAlive(bool isAlive)
 
 	if (!isAlive_)
 	{
-		state_ = STATE::DIE;  // 死亡状態に変えるなど必要なら
+		ChangeState(STATE::DIE);  // 死亡状態に変える
 		speed_ = 0.0f;       // 止めるなど
 	}
 }
@@ -282,53 +284,58 @@ void EnemyBase::SetStop(bool isStop)
 
 void EnemyBase::ChangeIdle(void)
 {
-
+	// アニメ再生
+	anim_->Play(ANIM_IDLE, 1);
 }
 
 void EnemyBase::ChangeWalk(void)
 {
+	//アニメ再生
+	anim_->Play(ANIM_WALK, 1);
 }
 
 void EnemyBase::ChangeRun(void)
 {
+	// アニメ再生
+	anim_->Play(ANIM_RUN, 1);
 }
 
 void EnemyBase::ChangeAttack(void)
 {
+	// アニメ再生
+	anim_->Play(ANIM_ATTACK, 2.2f);
 }
 
 void EnemyBase::ChangeDie(void)
 {
+	// アニメ再生
+	anim_->Play(ANIM_DIE, 1);
+
+	// 死亡時の処理
+	//SoundManager::GetInstance()->PlayVoice();
 }
 
 void EnemyBase::UpdateIdle(void)
 {
-	anim_->Play(ANIM_IDLE, 1);
 }
 
 void EnemyBase::UpdateWalk(void)
 {
-	anim_->Play(ANIM_WALK, 1);
-
 	ChasePlayer();
 }
 
 void EnemyBase::UpdateRun(void)
 {
-	anim_->Play(ANIM_RUN, 1);
 	ChasePlayer();
 }
 
 void EnemyBase::UpdateAttack(void)
 {
-	anim_->Play(ANIM_ATTACK, 2.2f);
 }
 
 void EnemyBase::UpdateDie(void)
 {
-	anim_->Play(ANIM_DIE, 1);
-	// 死亡時の処理
-	//SoundManager::GetInstance()->PlayVoice();
+	
 }
 
 void EnemyBase::DrawIdle(void)

@@ -19,8 +19,6 @@ void ItemBase::Init(TYPE type, int baseModelId)
     // モデルロード
     modelId_ = MV1DuplicateModel(baseModelId);
 
-    vImage_ = LoadGraph("Data/Image/GetVaccine.png");
-
     isActive_ = false;
 
     isPickUpV_ = false;
@@ -34,8 +32,7 @@ void ItemBase::Init(TYPE type, int baseModelId)
 
     // 大きさ設定
     MV1SetScale(modelId_, scale_);
-    
-
+   
     // 効果設定
     SetApplyEffect();
 }
@@ -49,9 +46,11 @@ void ItemBase::Update()
 
 void ItemBase::Draw()
 {
+    // ワクチンが拾われたら描画
     if(!isPickUpV_) MV1DrawModel(modelId_);
 
-    if(!isPickUpV_ && vNumber_ ==2) {
+    // 最初のワクチン取得時に
+    if( !isPickUpV_ && vNumber_ == 2 ) {
 
         int now = GetNowCount();
         if (now - pickUpTime_ <= SHOW_DURATION)
@@ -117,9 +116,10 @@ void ItemBase::PickUp()
     {
         isPickUpV_ = true;
         pickUpTime_ = GetNowCount();
-
-        SoundManager::GetInstance()->PlayPickUp();
     }
+
+    // 取得音再生
+    SoundManager::GetInstance()->PlayPickUp();
 }
 
 bool ItemBase::GetPickUp()

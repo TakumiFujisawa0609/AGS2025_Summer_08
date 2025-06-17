@@ -74,7 +74,7 @@ void Collision::Update()
 
 void Collision::Draw()
 {
-
+	
 }
 
 void Collision::Release()
@@ -163,6 +163,7 @@ void Collision::CollisionPShotAndE(void)
 
 	if (!pShot_->GetAlive()) return; // 弾が無いなら判定しない
 
+	// 敵取得
 	const auto& enemies = enemy_->GetEnemies();
 
 	// 連想配列（map）を for で回す
@@ -189,6 +190,7 @@ void Collision::CollisionPShotAndE(void)
 			{
 				enemy->SetAlive(false);
 				pShot_->SetAlive(false);  // 弾を消す
+
 
 				blood_->Emit();
 				blood_->SetAlive(true);

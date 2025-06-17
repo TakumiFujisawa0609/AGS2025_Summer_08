@@ -63,10 +63,12 @@ void PlayerShot::Update(void)
 
 		SoundManager::GetInstance()->PlayShot();
 	}
-	// ’e”­ŽË
+
+	// ’eØ‚ê
 	if (!isAlive_
 		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
 		&& ammo_ == 0) {
+		// ’eØ‚ê‰¹Ä¶
 		SoundManager::GetInstance()->PlayNoAmmo();
 	}
 
@@ -96,8 +98,8 @@ void PlayerShot::Draw(void)
 {
 	//if(isAlive_) MV1DrawModel(modelId_);
 
-	//if(isAlive_) DrawSphere3D(pos_, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
-	//DrawFormatString(0, 540, 0xffffff, "isShotAlive:%d", isAlive_ );
+	if(isAlive_) DrawSphere3D(pos_, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
+	DrawFormatString(0, 540, 0xffffff, "isShotAlive:%d", isAlive_ );
 	//DrawFormatString(0, 500, 0xffffff, "ShotPos:(%f,%f,%f)", pos_.x, pos_.y, pos_.z);
 	//DrawFormatString(0, 520, 0xffffff, "dir_: (%.2f, %.2f, %.2f)", dir_.x, dir_.y, dir_.z);
 	//DrawFormatString(0, 560, 0xffffff, "Dist:%f", dist_);

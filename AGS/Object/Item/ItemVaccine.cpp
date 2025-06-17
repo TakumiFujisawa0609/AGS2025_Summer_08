@@ -11,6 +11,7 @@ ItemVaccine::~ItemVaccine(void)
 
 void ItemVaccine::SetParam()
 {
+
 	scale_ = DEFAULT_VACCINE_SCALE;
 }
 

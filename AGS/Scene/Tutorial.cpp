@@ -1,6 +1,6 @@
 #include "DxLib.h"
-#include "../../Manager/SceneManager.h"
-#include "../../Manager/SoundManager.h"
+#include "../Manager/SceneManager.h"
+#include "../Manager/SoundManager.h"
 #include "Tutorial.h"
 
 Tutorial::Tutorial(void)

@@ -1,5 +1,5 @@
 #include "DxLib.h"
-#include "../../Manager/Application.h"
+#include "../Manager/Application.h"
 #include "StageBase.h"
 
 StageBase::StageBase()
@@ -13,7 +13,7 @@ StageBase::~StageBase()
 void StageBase::Init(void)
 {
 	//ステージモデルのロード
-	modelId_ = MV1LoadModel("Data/Model/Stage/stage.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Stage/ReStage.mv1");
 	dModelId_ = MV1LoadModel("Data/Model/Stage/Door/Door.mv1");
 
 
@@ -24,7 +24,7 @@ void StageBase::Init(void)
 ;
 	//ステージ位置
 	Pos_ = STAGE_POS;
-	scale_ = { 1,1,1 };
+	scale_ = { 0.4, 0.4, 0.4 };
 	
 	// ステージ設定
 	MV1SetPosition(modelId_, Pos_);
