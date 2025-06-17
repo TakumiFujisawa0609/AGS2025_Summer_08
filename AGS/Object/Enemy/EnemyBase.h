@@ -83,7 +83,7 @@ public:
 
 	void SetStop(bool isStop);
 
-	//void Damage(int damage);
+	void Damage(int damage);
 
 	void ChasePlayer();
 
@@ -131,6 +131,9 @@ protected:
 
 	// ¶‘¶”»’è
 	bool isAlive_;
+
+	// HP
+	int hp_;
 
 	// ó‘Ô‘JˆÚ
 	void ChangeIdle(void);

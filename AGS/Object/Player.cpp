@@ -97,7 +97,8 @@ void Player::Damage(int damage)
 	// ƒ_ƒ[ƒW‚ğó‚¯‚é
 	hp_ -= damage;
 
-	if (hp_ < 0) hp_ = 0;
+	// ‘Ì—Í‚ª0‚É‚È‚Á‚½‚ç0‚ÉŒÅ’è
+	if (hp_ <= 0) { hp_ = 0; }
 }
 
 void Player::SetStop(bool isStop)

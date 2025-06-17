@@ -188,7 +188,7 @@ void Collision::CollisionPShotAndE(void)
 			// 当たったら
 			if (dis < radiusNum)
 			{
-				enemy->SetAlive(false);
+				enemy->Damage(1);
 				pShot_->SetAlive(false);  // 弾を消す
 
 

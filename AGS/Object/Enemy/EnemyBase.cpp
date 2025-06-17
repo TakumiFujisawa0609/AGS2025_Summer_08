@@ -47,8 +47,6 @@ void EnemyBase::Init(TYPE type, int baseModelId, Player* player)
 
 	// 初期状態
 	ChangeState(STATE::IDLE);
-	// 初期アニメーション設定
-	//anim_->Play(ANIM_IDLE, 1);
 
 	// 敵の移動限界フラグ
 	isStop_ = false;
@@ -212,6 +210,8 @@ void EnemyBase::ChangeState(STATE state)
 
 void EnemyBase::ChangeStateDist()
 {
+	if (!isAlive_) { return; }
+
 	// 状態を切り替える距離
 	if (dist_ < ATTACK_DISTANCE)
 	{
@@ -280,6 +280,21 @@ void EnemyBase::SetPos(VECTOR pos)
 void EnemyBase::SetStop(bool isStop)
 {
 	isStop_ = isStop;	// 停止フラグをセット
+}
+
+void EnemyBase::Damage(int damage)
+{
+	// ダメージを受ける
+	hp_ -= damage;
+
+	// hpが０になったら死亡状態に
+	if (hp_ <= 0) {
+		ChangeState(STATE::DIE);
+
+		hp_ = 0; // hpを０に固定
+
+		isAlive_ = false; // 生存フラグをfalseにする
+	}
 }
 
 void EnemyBase::ChangeIdle(void)

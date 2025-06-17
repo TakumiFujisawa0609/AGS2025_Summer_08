@@ -32,6 +32,9 @@ void ItemBase::Init(TYPE type, int baseModelId)
 
     // 大きさ設定
     MV1SetScale(modelId_, scale_);
+
+    // モデルを座標にセット
+    MV1SetPosition(modelId_, pos_);
    
     // 効果設定
     SetApplyEffect();
@@ -39,9 +42,8 @@ void ItemBase::Init(TYPE type, int baseModelId)
 
 void ItemBase::Update()
 {
-    // 位置をモデルに反映
-    MV1SetPosition(modelId_, pos_);
-
+    // モデルを座標にセット
+    //MV1SetPosition(modelId_, pos_);
 }
 
 void ItemBase::Draw()
@@ -50,8 +52,9 @@ void ItemBase::Draw()
     if(!isPickUpV_) MV1DrawModel(modelId_);
 
     // 最初のワクチン取得時に
-    if( !isPickUpV_ && vNumber_ == 2 ) {
+    if( vNumber_ == 2 ) {
 
+		// 今の時間を保存
         int now = GetNowCount();
         if (now - pickUpTime_ <= SHOW_DURATION)
         {
@@ -111,12 +114,14 @@ void ItemBase::TakePickUp(int number)
 
 void ItemBase::PickUp()
 {
-    // 残りワクチン個数が０になったら
-    if (vNumber_ == 0)
-    {
-        isPickUpV_ = true;
-        pickUpTime_ = GetNowCount();
-    }
+    //// 残りワクチン個数が０になったら
+    //if (vNumber_ == 0)
+    //{
+    //    isPickUpV_ = true;
+    //    pickUpTime_ = GetNowCount();
+    //}
+
+    isPickUpV_ = false;
 
     // 取得音再生
     SoundManager::GetInstance()->PlayPickUp();
