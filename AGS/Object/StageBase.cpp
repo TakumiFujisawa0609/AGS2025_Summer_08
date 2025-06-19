@@ -13,7 +13,7 @@ StageBase::~StageBase()
 void StageBase::Init(void)
 {
 	//ステージモデルのロード
-	modelId_ = MV1LoadModel("Data/Model/Stage/ReStage.mv1");
+	modelId_ = MV1LoadModel("Data/Model/Stage/Stage.mv1");
 	dModelId_ = MV1LoadModel("Data/Model/Stage/Door/Door.mv1");
 
 
@@ -24,11 +24,19 @@ void StageBase::Init(void)
 ;
 	//ステージ位置
 	Pos_ = STAGE_POS;
-	scale_ = { 0.4, 0.4, 0.4 };
+	scale_ = { 1.0, 1.0, 1.0 };
 	
 	// ステージ設定
 	MV1SetPosition(modelId_, Pos_);
 	MV1SetScale(modelId_, scale_);
+
+	// エミッシブカラー設定
+	MV1SetMaterialEmiColor(modelId_, 3, GetColorF(0.5f , 0.5f, 0.5f, 1.0f)); // 最初の部屋の壁
+	MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 天井と床
+	MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 台座
+	MV1SetMaterialEmiColor(modelId_, 0, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// ステージ内壁
+	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// ステージ外壁
+
 
 	dPos_ = { 0,-70,-754 };
 	// ドア
