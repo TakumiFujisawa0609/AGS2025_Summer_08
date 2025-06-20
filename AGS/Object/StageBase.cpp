@@ -1,5 +1,5 @@
 #include "DxLib.h"
-#include "../../Manager/Application.h"
+#include "../Manager/Application.h"
 #include "StageBase.h"
 
 StageBase::StageBase()

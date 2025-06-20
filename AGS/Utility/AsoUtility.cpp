@@ -29,3 +29,4 @@ bool AsoUtility::EqualsVZero(const VECTOR& v1)
     }
     return false;
 }
+

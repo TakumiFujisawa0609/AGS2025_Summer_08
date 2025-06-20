@@ -5,6 +5,7 @@
 #include "Application.h"
 #include "../Common/FpsControl.h"
 
+
 Application* Application::instance_ = nullptr;
 
 //const std::string Application::PATH_IMAGE = PATH_DATA + "Image/";
@@ -16,6 +17,7 @@ Application::Application(void)
 {
 	isError_ = false;
 	fps_ = nullptr;
+
 }
 
 Application::Application(const Application& ins)
@@ -74,6 +76,8 @@ void Application::Init(void)
 	// FPS‰Šú‰»
 	fps_ = new FpsControl;
 	fps_->Init();
+
+
 }
 
 void Application::Run(void)
@@ -126,3 +130,5 @@ bool Application::IsError(void)
 {
 	return isError_;
 }
+
+
