@@ -302,9 +302,9 @@ void Collision::CollisionEAndS()
 #endif // _DEBUG
 		}
 	}
-
 }
 
+// ワクチンとプレイヤーとの当たり判定
 void Collision::CollisionPAndV()
 {
 	const auto& items = item_->GetItems();
@@ -314,6 +314,15 @@ void Collision::CollisionPAndV()
 	{
 		for (ItemBase* item : pair.second)
 		{
+			// items = itemManager
+			// item = itemBase
+
+			// 衝突が有効状態なら、処理通過
+			if (!item->IsCollisionState())
+			{
+				continue;
+			}
+
 			VECTOR pPos = player_->GetPPos();
 			VECTOR vPos = item->GetPos();
 
@@ -331,9 +340,14 @@ void Collision::CollisionPAndV()
 			// 半径の合計
 			float radiusNum = radiusP + radiusV;
 
+			// 範囲内にいる状態でFを押したら
 			if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 			{
-				item->TakePickUp(1);
+				// ワクチンを拾う→ワクチン数を減らす
+				item_->PickVaccine();
+
+				// ワクチンを拾ったらアイテムを削除
+				item->TakePickUpV();
 
 				itemHit_[item] = true;
 			}
@@ -345,6 +359,7 @@ void Collision::CollisionPAndV()
 	}
 }
 
+// プレイヤーとドアの当たり判定
 void Collision::CollisionPAndD()
 {
 	VECTOR pPos = player_->GetPPos();
@@ -366,19 +381,17 @@ void Collision::CollisionPAndD()
 
 	const auto& items = item_->GetItems();
 
-	// 連想配列（map）を for で回す
-	for (auto pair : items)
+	// ワクチンがすべて拾われているか確認
+	if (item_->GetVaccine() == 0)
 	{
-		for (ItemBase* item : pair.second)
+		// 範囲内にいる状態でFを押したら
+		if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 		{
-			if (dis < radiusNum
-				&& InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F)
-				&& item->GetPickUp())
-			{
-				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+			// ドアが開いた音を再生
+			SoundManager::GetInstance()->PlayOpen();
 
-				SoundManager::GetInstance()->PlayOpen();
-			}
+			// ワクチンがすべて拾われていたらゲームクリアへ遷移
+			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
 		}
 	}
 }

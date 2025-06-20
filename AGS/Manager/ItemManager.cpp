@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "SoundManager.h"
 #include "../Object/Item/ItemBase.h"
 #include "../Object/Item/ItemBullet.h"
 #include "../Object/Item/ItemKit.h"
@@ -23,40 +24,43 @@ void ItemManager::Init(void)
 	itemModelIds_.emplace_back(
 		MV1LoadModel("Data/Model/Item/vaccine.mv1"));
 
-	//// 決められた数配置
-	//for (int i = 0; i < BULLET_NUM; i++)
-	//{
-	//	// 弾生成
-	//	ItemBase* bullet = new ItemBullet();
-
-	//	//初期化　
-	//	bullet->Init(ItemBase::TYPE::BULLET,
-	//		itemModelIds_[static_cast<int>(ItemBase::TYPE::BULLET)]);
-
-	//	// スポーン位置設定
-	//	bullet->SetPos(ItemBullet::bulletSpawnPoints[i].pos);
-
-	//	// アイテムを登録
-	//	items_[ItemBase::TYPE::BULLET].emplace_back(bullet);
-	//}
-
-
 	// 決められた数配置
-	for (int i = 0; i < VACCINE_NUM; i++)
+	for (int i = 0; i < BULLET_NUM; i++)
 	{
 		// 弾生成
-		ItemBase* vaccine = new ItemVaccine();
+		ItemBase* bullet = new ItemBullet();
 
 		//初期化　
-		vaccine->Init(ItemBase::TYPE::VACCINE,
-			itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)]);
+		bullet->Init(ItemBase::TYPE::BULLET,
+			itemModelIds_[static_cast<int>(ItemBase::TYPE::BULLET)]);
 
 		// スポーン位置設定
-		vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
+		bullet->SetPos(ItemBullet::bulletSpawnPoints[i].pos);
 
 		// アイテムを登録
-		items_[ItemBase::TYPE::VACCINE].emplace_back(vaccine);
+		items_[ItemBase::TYPE::BULLET].emplace_back(bullet);
 	}
+
+
+	//// 決められた数配置
+	//for (int i = 0; i < VACCINE_NUM; i++)
+	//{
+	//	// 弾生成
+	//	ItemBase* vaccine = new ItemVaccine();
+
+	//	//初期化　
+	//	vaccine->Init(ItemBase::TYPE::VACCINE,
+	//		itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)]);
+
+	//	// スポーン位置設定
+	//	vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
+
+	//	// アイテムを登録
+	//	items_[ItemBase::TYPE::VACCINE].emplace_back(vaccine);
+
+	//	// ワクチンの数をカウント
+	//	vaccineNum++;
+	//}
 
 	//// 決められた数配置
 	//for (int i = 0; i < KIT_NUM; i++)
@@ -78,7 +82,6 @@ void ItemManager::Init(void)
 
 void ItemManager::Update(void)
 {
-	
 	// すべてのアイテムを更新
 	for (const auto pair : items_)
 	{
@@ -87,12 +90,11 @@ void ItemManager::Update(void)
 			item->Update();
 		}
 	}
-
-
 }
 
 void ItemManager::Draw(void)
 {
+
 	// すべてのアイテムを描画
 	for (const auto pair : items_)
 	{
@@ -101,6 +103,20 @@ void ItemManager::Draw(void)
 			item->Draw();
 		}
 	}
+
+	// ワクチンがすべて拾われていない場合は
+	if (vaccineNum > 0)
+	{
+		DrawFormatString(0, 50, 0xffffff, "ワクチンを回収");
+	}
+	// ワクチンがすべて拾われたら
+	else if(vaccineNum == 0)
+	{
+		DrawFormatString(0, 50, 0xffffff, "ドアから脱出");
+	}
+
+	 // ワクチンの現在数
+	DrawFormatString(0, 80, 0xffffff, "ワクチン残り個数:%d", vaccineNum);
 }
 
 void ItemManager::Release(void)
@@ -120,6 +136,22 @@ void ItemManager::Release(void)
 	{
 		MV1DeleteModel(id);
 	}
+}
+
+// ワクチンを拾う
+void ItemManager::PickVaccine(void)
+{
+	// ワクチンの数を減らす
+	vaccineNum--;
+
+	// ワクチンの数がマイナスにならないようにする
+	if (vaccineNum < 0)
+	{
+		vaccineNum = 0;
+	}
+
+	// 取得音再生
+	SoundManager::GetInstance()->PlayPickUp();
 }
 
 const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& ItemManager::GetItems()

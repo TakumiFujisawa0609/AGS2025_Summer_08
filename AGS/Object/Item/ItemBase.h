@@ -3,6 +3,12 @@
 
 class ItemBase {
 public:
+    enum class STATE
+    {
+        STANBY,
+		PICKUP,
+        MAX
+    };
 
     enum class TYPE
     {
@@ -19,8 +25,8 @@ public:
     };
 
     static constexpr SpawnPoint bulletSpawnPoints[2] = {
-        {100.0f, 0.0f, 100.0f},
-        {700.0f, 0.0f, 1400.0f}
+       {-800.0f, 0.0f, -500.0f},
+       {-200.0f, 0.0f, -600.0f},
     };
 
     static constexpr SpawnPoint kitSpawnPoints[2] = {
@@ -29,9 +35,9 @@ public:
     };
 
     static constexpr SpawnPoint vaccineSpawnPoints[3] = {
-       {0.0f, 0.0f, 7750.0f},
-       {100.0f, 0.0f, 100.0f},
-       {700.0f, 0.0f, 1400.0f}
+       {-800.0f, 0.0f, -500.0f},
+       {-200.0f, 0.0f, -600.0f},
+       {-200.0f, 0.0f, 400.0f}
     };
 
 
@@ -55,18 +61,25 @@ public:
 
     void Init(TYPE type, int baseModel);        // 初期化
     void Update();      // 更新
-    void Draw();        // 描画
+    virtual void Draw() = 0;      // 描画
     void Release();     // 解放
 
-    void TakePickUp(int number);
+    void ChangeState(STATE state);
+
+    void TakePickUpV();
     void PickUp();
     bool GetPickUp();
 
     VECTOR GetPos() const; // 座標取得
     void SetPos(VECTOR pos);  //座標設定
 
+    // 衝突判定が有効な状態
+    bool IsCollisionState(void);
+
 protected:
 
+    // 状態
+    STATE state_;
     // 種別
     TYPE type_;
 
@@ -77,6 +90,7 @@ protected:
     VECTOR angle_;   // 角度
 
     bool isPickUpV_;
+    bool isPickUpAllV_;
     bool isActive_;    // 使用判定
 
     bool isVaccineAlive_;

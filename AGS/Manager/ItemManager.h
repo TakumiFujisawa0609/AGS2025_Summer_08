@@ -9,7 +9,7 @@ class ItemManager
 public:
 
 	// アイテムの数
-	static constexpr int BULLET_NUM = 0;
+	static constexpr int BULLET_NUM = 2;
 	static constexpr int KIT_NUM = 2;
 	static constexpr int VACCINE_NUM = 3;
 
@@ -22,6 +22,12 @@ public:
 	void Draw(void);
 	void Release(void);
 
+	// ワクチンを取得
+	void PickVaccine(void);
+
+	// ワクチンの数を取得
+	int GetVaccine(void) { return vaccineNum; }
+
 	const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& GetItems();
 
 private:
@@ -31,4 +37,7 @@ private:
 
 	// アイテム用モデルハンドルID
 	std::vector<int> itemModelIds_;
+
+	// ワクチンの数
+	int vaccineNum;
 };

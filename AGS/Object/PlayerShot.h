@@ -28,7 +28,8 @@ public:
 	bool GetAlive(void);
 	void SetAlive(bool isAlive);
 
-	void SetHave(bool isHave);
+	// ƒ}ƒKƒWƒ“æ“¾
+	void SetMagazine(int magazine);
 
 private:
 	Camera* camera_;
@@ -51,7 +52,8 @@ private:
 
 	bool isAlive_;
 
-	bool isHave_;
+	// ƒ}ƒKƒWƒ“”
+	int magazine_;
 
 	// ’e”
 	int ammo_;

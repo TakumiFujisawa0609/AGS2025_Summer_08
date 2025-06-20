@@ -85,7 +85,6 @@ void EnemyBase::Update()
 
 	// アニメーションの時間更新
 	anim_->Update();
-	
 }
 
 void EnemyBase::Draw()

@@ -22,10 +22,13 @@ void ItemBase::Init(TYPE type, int baseModelId)
     isActive_ = false;
 
     isPickUpV_ = false;
+	isPickUpAllV_ = false;
 
     pickUpTime_ = 0;
 
     vNumber_ = ItemManager::VACCINE_NUM;
+
+	ChangeState(STATE::STANBY);
 
     // パラメータ設定
     SetParam();
@@ -35,6 +38,9 @@ void ItemBase::Init(TYPE type, int baseModelId)
 
     // モデルを座標にセット
     MV1SetPosition(modelId_, pos_);
+
+    // 少し明るくする
+    MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f)); // アイテム
    
     // 効果設定
     SetApplyEffect();
@@ -43,54 +49,7 @@ void ItemBase::Init(TYPE type, int baseModelId)
 void ItemBase::Update()
 {
     // モデルを座標にセット
-    //MV1SetPosition(modelId_, pos_);
-}
-
-void ItemBase::Draw()
-{
-    // ワクチンが拾われたら描画
-    if(!isPickUpV_) MV1DrawModel(modelId_);
-
-    // 最初のワクチン取得時に
-    if( vNumber_ == 2 ) {
-
-		// 今の時間を保存
-        int now = GetNowCount();
-        if (now - pickUpTime_ <= SHOW_DURATION)
-        {
-            // 拾ってから3秒以内なら画像表示
-            DrawRotaGraph(955, 540, 0.5, 0, vImage_, true);
-        }
-    }
-
-    if (!isPickUpV_)
-    {
-        DrawFormatString(0, 50, 0xffffff, "ワクチンを回収");
-    }
-    else
-    {
-        DrawFormatString(0, 50, 0xffffff, "ドアから脱出");
-    }
-
-    DrawFormatString(0, 80, 0xffffff, "ワクチン残り個数:%d", vNumber_);
-
-    // スポーン位置の球体を描画
-    /*for (const auto& point : bulletSpawnPoints)
-    {
-        DrawSphere3D(point.pos, 20.0f, 16, GetColor(0, 255, 0), GetColor(255, 0, 0), false);
-    }*/
-
-    /*for (const auto& point : kitSpawnPoints)
-    {
-        DrawSphere3D(point.pos, 20.0f, 16, GetColor(0, 255, 0), GetColor(0, 255, 0), false);
-    }*/
-
-    //for (auto point : vaccineSpawnPoints)
-    //{
-    //    point.pos = VAdd(point.pos, { 0, 50, -0 });
-
-    //    DrawSphere3D(point.pos, 230, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
-    //}
+    MV1SetPosition(modelId_, pos_);
 }
 
 void ItemBase::Release()
@@ -100,36 +59,35 @@ void ItemBase::Release()
     DeleteGraph(vImage_);
 }
 
-void ItemBase::SetApplyEffect()
+// 状態遷移
+void ItemBase::ChangeState(STATE state)
 {
+	state_ = state;
+
+    switch (state_)
+    {
+    case STATE::STANBY:
+		isPickUpV_ = false;
+	case STATE::PICKUP:
+		isPickUpV_ = true;
+		break;
+    }
 }
 
-void ItemBase::TakePickUp(int number)
+// ワクチン取得処理
+void ItemBase::TakePickUpV()
 {
-    // ワクチンの残り個数計算 (減らしていく)
-    vNumber_ = ItemManager::VACCINE_NUM - number;
-
-    PickUp();
+    // ワクチン取得状態にする
+    ChangeState(STATE::PICKUP);
 }
 
 void ItemBase::PickUp()
 {
-    //// 残りワクチン個数が０になったら
-    //if (vNumber_ == 0)
-    //{
-    //    isPickUpV_ = true;
-    //    pickUpTime_ = GetNowCount();
-    //}
-
-    isPickUpV_ = false;
-
-    // 取得音再生
-    SoundManager::GetInstance()->PlayPickUp();
 }
 
 bool ItemBase::GetPickUp()
 {
-    return isPickUpV_;
+    return isPickUpAllV_;
 }
 
 VECTOR ItemBase::GetPos() const
@@ -140,6 +98,12 @@ VECTOR ItemBase::GetPos() const
 void ItemBase::SetPos(VECTOR pos)
 {
     pos_ = pos;
+}
+
+// 衝突判定が有効な状態
+bool ItemBase::IsCollisionState(void)
+{
+    return state_ == STATE::STANBY;
 }
 
 void ItemBase::SetParam()

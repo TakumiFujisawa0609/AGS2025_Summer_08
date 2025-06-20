@@ -29,8 +29,8 @@ void PlayerShot::Init(Camera* camera)
 	ammo_ = MAX_AMMO;
 
 	isAlive_ = false;
-	isHave_ = false;
 
+	magazine_ = 0;
 
 	MV1SetScale(modelId_, scale_);
 }
@@ -38,8 +38,12 @@ void PlayerShot::Init(Camera* camera)
 void PlayerShot::Update(void)
 {
 	// リロード
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R)) //&& isHave_) 
+	// マガジン取得状態でRを押したら
+	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && magazine_ >= 1) 
 	{
+		// マガジン数を減らす
+		magazine_--;
+		// 弾数を最大にする
 		ammo_ = MAX_AMMO;
 
 		SoundManager::GetInstance()->PlayReLoad();
@@ -89,9 +93,7 @@ void PlayerShot::Update(void)
 		}
 
 		MV1SetPosition(modelId_, pos_);
-
 	}
-
 }
 
 void PlayerShot::Draw(void)
@@ -156,7 +158,8 @@ void PlayerShot::SetAlive(bool isAlive)
 	isAlive_ = isAlive;
 }
 
-void PlayerShot::SetHave(bool isHave)
+// マガジン取得
+void PlayerShot::SetMagazine(int magazine)
 {
-	isHave_ = isHave;
+	magazine_ = magazine;
 }

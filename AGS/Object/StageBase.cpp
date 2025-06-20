@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "../Manager/Application.h"
+#include "../Utility/AsoUtility.h"
 #include "StageBase.h"
 
 StageBase::StageBase()
@@ -31,16 +32,19 @@ void StageBase::Init(void)
 	MV1SetScale(modelId_, scale_);
 
 	// エミッシブカラー設定
-	MV1SetMaterialEmiColor(modelId_, 3, GetColorF(0.5f , 0.5f, 0.5f, 1.0f)); // 最初の部屋の壁
-	MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 天井と床
-	MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 台座
-	MV1SetMaterialEmiColor(modelId_, 0, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// ステージ内壁
-	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// ステージ外壁
+	MV1SetMaterialEmiColor(modelId_, 0, GetColorF(0.5f , 0.5f, 0.5f, 1.0f)); // 内壁
+	MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 外壁
+	MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 追加した外壁2
+	MV1SetMaterialEmiColor(modelId_, 3, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 追加した外壁1
+	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 最初の部屋の外壁
+	MV1SetMaterialEmiColor(modelId_, 5, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 天井
+	MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 台座
 
-
-	dPos_ = { 0,-70,-754 };
+	dPos_ = { -1432,-3,50 };
 	// ドア
 	MV1SetPosition(dModelId_, dPos_);
+	MV1SetScale(dModelId_, {0.85, 0.66, 1});
+	MV1SetRotationXYZ(dModelId_, {0,  AsoUtility::Deg2RadF(90.0f), 0 });
 
 }
 

@@ -8,6 +8,8 @@ public:
 	ItemVaccine(void);
 	~ItemVaccine(void);
 
+	void Draw() override;
+
 protected:
 
 	// ƒpƒ‰ƒ[ƒ^İ’è

@@ -8,6 +8,8 @@ public:
 	ItemKit(void);
 	~ItemKit(void);
 
+	void Draw() override;
+
 protected:
 
 	// ƒpƒ‰ƒ[ƒ^İ’è

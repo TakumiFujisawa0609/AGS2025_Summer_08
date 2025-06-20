@@ -8,6 +8,8 @@ public:
 	ItemBullet(void);
 	~ItemBullet(void);
 
+	void Draw() override;
+
 	bool isVaccineAlive();
 	VECTOR GetVPos();
 
