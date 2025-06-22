@@ -12,7 +12,7 @@ public:
 	static constexpr float P_SHOT_MOVE_LIMIT = 4000.0f;
 
 	// ç≈ëÂãÖêî
-	static constexpr int MAX_AMMO = 12;
+	static constexpr int MAX_AMMO = 21;
 
 	PlayerShot();
 	~PlayerShot();
@@ -20,6 +20,9 @@ public:
 	void Update(void);
 	void Draw(void);
 	void Release(void);
+
+	void Shot(void);
+	void ReLoad(void);
 
 	int GetModelId() const;
 	VECTOR GetPos();

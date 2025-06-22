@@ -28,8 +28,8 @@ void GameScene::Init(void)
 	camera_ = new Camera();
 	enemy_ = new EnemyManager(player_);
 	stage_ = new StageBase();
-	item_ = new ItemManager();
 	pShot_ = new PlayerShot();
+	item_ = new ItemManager();
 	blood_ = new Blood();
 	collision_ = new Collision();
 
@@ -37,13 +37,12 @@ void GameScene::Init(void)
 	camera_->Init(player_);
 	enemy_->Init();
 	stage_->Init();
-	item_->Init();
 	pShot_->Init(camera_);
+	item_->Init(player_, pShot_);
 	blood_->Init();
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);
 
 	gameOverImg_ = LoadGraph("Data/Image/gameover.png");
-
 }
 
 // XVˆ—
@@ -52,8 +51,6 @@ void GameScene::Update(void)
 	player_->Update(camera_->GetAngles());
 
 	enemy_->Update();
-
-	item_->Update();
 
 	// ŒŒ
 	blood_->Update();
@@ -82,6 +79,8 @@ void GameScene::Update(void)
 
 	pShot_->Update();
 
+	item_->Update();
+
 	gameOverTimer_ += SceneManager::GetInstance()->GetDeltaTime();
 
 	if (isGameOver)
@@ -106,11 +105,11 @@ void GameScene::Draw(void)
 
 	enemy_->Draw();
 
-	item_->Draw();
-
 	camera_->Draw();
 
 	pShot_->Draw();
+
+	item_->Draw();
 
 	// ŒŒ
 	blood_->Draw();
@@ -135,11 +134,11 @@ void GameScene::Release(void)
 	enemy_->Release();
 	delete enemy_;
 
-	item_->Release();
-	delete item_;
-
 	pShot_->Release();
 	delete pShot_;
+
+	item_->Release();
+	delete item_;
 
 	blood_->Release();
 	delete blood_;

@@ -37,63 +37,11 @@ void PlayerShot::Init(Camera* camera)
 
 void PlayerShot::Update(void)
 {
-	// リロード
-	// マガジン取得状態でRを押したら
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && magazine_ >= 1) 
-	{
-		// マガジン数を減らす
-		magazine_--;
-		// 弾数を最大にする
-		ammo_ = MAX_AMMO;
-
-		SoundManager::GetInstance()->PlayReLoad();
-	}
-	
 	// 弾発射
-	if (!isAlive_ 
-		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
-		&& ammo_ > 0)
-	{
-		// カメラ位置と方向取得→発射位置に設定
-		startPos_ = pos_ = camera_->GetPos();
-		// 正規化して向きを取得（符号反転して前に飛ばす）
-		dir_ = VScale(VNorm(camera_->GetForward()), -1.0f);
+	Shot();
 
-		// 生存フラグ立てる
-		isAlive_ = true;
-
-		// 弾数を減らす
-		ammo_--;
-
-		SoundManager::GetInstance()->PlayShot();
-	}
-
-	// 弾切れ
-	if (!isAlive_
-		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
-		&& ammo_ == 0) {
-		// 弾切れ音再生
-		SoundManager::GetInstance()->PlayNoAmmo();
-	}
-
-	// 弾移動
-	if (isAlive_)
-	{
-		// 前に進む
-		pos_ = VAdd(pos_, VScale(dir_, SHOT_SPEED));
-
-		// 発射地点との距離を計算
-		dist_ = VSize(VSub(pos_, startPos_));
-
-		// 100以上離れたらフラグを折る
-		if (dist_ >= P_SHOT_MOVE_LIMIT)
-		{
-			isAlive_ = false;
-
-		}
-
-		MV1SetPosition(modelId_, pos_);
-	}
+	// リロード
+	ReLoad();
 }
 
 void PlayerShot::Draw(void)
@@ -102,6 +50,7 @@ void PlayerShot::Draw(void)
 
 	if(isAlive_) DrawSphere3D(pos_, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
 	DrawFormatString(0, 540, 0xffffff, "isShotAlive:%d", isAlive_ );
+	DrawFormatString(0, 560, 0xffffff, "magazine_:%d", magazine_);
 	//DrawFormatString(0, 500, 0xffffff, "ShotPos:(%f,%f,%f)", pos_.x, pos_.y, pos_.z);
 	//DrawFormatString(0, 520, 0xffffff, "dir_: (%.2f, %.2f, %.2f)", dir_.x, dir_.y, dir_.z);
 	//DrawFormatString(0, 560, 0xffffff, "Dist:%f", dist_);
@@ -133,6 +82,72 @@ void PlayerShot::Release(void)
 	MV1DeleteModel(modelId_);
 }
 
+void PlayerShot::Shot(void)
+{
+	// 弾発射
+	if (!isAlive_
+		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
+		&& ammo_ > 0)
+	{
+		// カメラ位置と方向取得→発射位置に設定
+		startPos_ = pos_ = camera_->GetPos();
+		// 正規化して向きを取得（符号反転して前に飛ばす）
+		dir_ = VScale(VNorm(camera_->GetForward()), -1.0f);
+
+		// 生存フラグ立てる
+		isAlive_ = true;
+
+		// 弾数を減らす
+		ammo_--;
+
+		SoundManager::GetInstance()->PlayShot();
+	}
+
+	// 弾移動
+	if (isAlive_)
+	{
+		// 前に進む
+		pos_ = VAdd(pos_, VScale(dir_, SHOT_SPEED));
+
+		// 発射地点との距離を計算
+		dist_ = VSize(VSub(pos_, startPos_));
+
+		// 100以上離れたらフラグを折る
+		if (dist_ >= P_SHOT_MOVE_LIMIT)
+		{
+			isAlive_ = false;
+
+		}
+		// モデルセット
+		MV1SetPosition(modelId_, pos_);
+	}
+
+}
+
+void PlayerShot::ReLoad(void)
+{
+	// 弾切れ
+	if (!isAlive_
+		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
+		&& ammo_ == 0) {
+		// 弾切れ音再生
+		SoundManager::GetInstance()->PlayNoAmmo();
+	}
+
+	// リロード
+	// マガジン取得状態でRを押したら
+	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && magazine_ >= 1 && ammo_ < 21)
+	{
+		// マガジン数を減らす
+		magazine_--;
+		// 弾数を最大にする
+		ammo_ = MAX_AMMO;
+
+		// リロード音再生
+		SoundManager::GetInstance()->PlayReLoad();
+	}
+}
+
 int PlayerShot::GetModelId() const
 {
 	return modelId_;
@@ -161,5 +176,5 @@ void PlayerShot::SetAlive(bool isAlive)
 // マガジン取得
 void PlayerShot::SetMagazine(int magazine)
 {
-	magazine_ = magazine;
+	magazine_ += magazine;
 }

@@ -12,30 +12,17 @@ ItemVaccine::~ItemVaccine(void)
 void ItemVaccine::Draw()
 {
     // ワクチンが拾われてなかったら描画
-    if (!isPickUpV_) MV1DrawModel(modelId_);
+    if (state_ != STATE::PICKUP_V) MV1DrawModel(modelId_);
 
-    // 最初のワクチン取得時に
-    if (vNumber_ == 2)
-    {
-        // 今の時間を保存
-        int now = GetNowCount();
-        if (now - pickUpTime_ <= SHOW_DURATION)
-        {
-            // 拾ってから3秒以内なら画像表示
-            DrawRotaGraph(955, 540, 0.5, 0, vImage_, true);
-        }
-    }
+	// スポーン位置の球体を描画
+	for (const auto& point : vaccineSpawnPoints)
+	{
+		DrawSphere3D(point.pos, 230, 16, GetColor(0, 255, 0), GetColor(255, 0, 0), false);
+	}
 }
 
 void ItemVaccine::SetParam()
 {
-
 	scale_ = DEFAULT_VACCINE_SCALE;
 }
-
-
-void ItemVaccine::SetApplyEffect()
-{
-}
-
 

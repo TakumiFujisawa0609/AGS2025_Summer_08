@@ -10,18 +10,16 @@ ItemKit::~ItemKit(void)
 
 void ItemKit::Draw()
 {
-    /*for (const auto& point : kitSpawnPoints)
+    // ÉèÉNÉ`ÉìÇ™èEÇÌÇÍÇƒÇ»Ç©Ç¡ÇΩÇÁï`âÊ
+    if (state_ != STATE::PICKUP_K) MV1DrawModel(modelId_);
+
+    for (const auto& point : kitSpawnPoints)
    {
-       DrawSphere3D(point.pos, 20.0f, 16, GetColor(0, 255, 0), GetColor(0, 255, 0), false);
-   }*/
+        DrawSphere3D(point.pos, 230, 16, GetColor(0, 255, 0), GetColor(255, 0, 0), false);
+   }
 }
 
 void ItemKit::SetParam()
 {
-
 	scale_ = DEFAULT_KIT_SCALE;
-}
-
-void ItemKit::SetApplyEffect()
-{
 }

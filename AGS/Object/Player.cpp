@@ -26,6 +26,9 @@ void Player::Init(void)
 	// 体力初期化
 	hp_ = DEFAULT_HP;
 
+	// 回復可能数
+	heal_ = 0;
+
 	isStop_ = false;
 
 	isAlive_ = true;
@@ -40,11 +43,9 @@ void Player::Update(VECTOR angle)
 	ProcessMove(cameraAngle_);
 	//SetRotation();
 
-	if (hp_ == 0)
-	{
-		isStop_ = true;
-		isAlive_ = false;
-	}
+	// HP
+	Hp();
+
 
 	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
 
@@ -52,12 +53,10 @@ void Player::Update(VECTOR angle)
 	{
 		SoundManager::GetInstance()->PlayDie();
 	}
-
 }
 
 void Player::Draw(void)
 {
-
 	//VECTOR startPos = VAdd(playerPos_, VGet(0.0f, 30.0f, 0));                          // 敵の座標
 	//VECTOR endPos = VAdd(playerPos_, VGet(0.0f, 160.0f, 0));  // カプセルの上端（高さ60の例）
 	//float radius = 45.0f;	// 半径45（調整可）
@@ -71,14 +70,41 @@ void Player::Draw(void)
 
 	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
 	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
-	//DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
-	
-	
+	DrawFormatString(0, 720, 0xffffff, "hp:%d", hp_);
 }
 
 void Player::Release(void)
 {
 	
+}
+
+// HP
+void Player::Hp(void)
+{
+	// 体力が0になったら
+	if (hp_ == 0)
+	{
+		isStop_ = true;
+		isAlive_ = false;
+	}
+
+	// 体力が最大値を超えないようにする
+	if (hp_ >= DEFAULT_HP)
+	{
+		hp_ = DEFAULT_HP;
+	}
+
+	// ヒール可能回数が１以上でHPが削れてる状態にQキーで体力を回復
+	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_Q) && heal_ > 0 && hp_ < DEFAULT_HP)
+	{
+		// 回復
+		hp_ += 1;
+
+		// 回復可能数を減らす
+		heal_ -= 1;
+
+		//SoundManager::GetInstance()->PlayHeal();
+	}
 }
 
 void Player::ModelReflect()
@@ -104,6 +130,12 @@ void Player::Damage(int damage)
 void Player::SetStop(bool isStop)
 {
 	isStop_ = isStop;
+}
+
+// 回復可能数
+void Player::Heal(int heal)
+{
+	heal_ += heal;
 }
 																	
 VECTOR Player::GetPPos(void)

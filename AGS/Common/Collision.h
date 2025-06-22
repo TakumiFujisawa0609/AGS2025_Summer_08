@@ -52,7 +52,8 @@ public:
     void CollisionEAndS();
 
     // プレイヤーとワクチンの当たり判定
-    void CollisionPAndV();
+    void CollisionPAndItem();
+
 
     // プレイヤーとドアの当たり判定
     void CollisionPAndD();

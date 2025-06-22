@@ -18,6 +18,9 @@ public:
 	void Draw(void);
 	void Release(void);
 
+	// HP
+	void Hp(void);
+
 	// ƒ‚ƒfƒ‹‚ÌÀ•Wî•ñ‚ğ”½‰f‚³‚¹‚é
 	void ModelReflect();
 
@@ -25,6 +28,9 @@ public:
 
 	// ˆÚ“®’â~
 	void SetStop(bool isStop);
+
+	// ‰ñ•œ
+	void Heal(int heal);
 
 
 	VECTOR GetPPos(void);
@@ -73,4 +79,7 @@ private:
 
 	// ‘Ì—Í
 	int hp_;
+
+	// ‰ñ•œ‰Â”\‰ñ”
+	int heal_;
 };

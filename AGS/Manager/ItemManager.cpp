@@ -4,6 +4,8 @@
 #include "../Object/Item/ItemBullet.h"
 #include "../Object/Item/ItemKit.h"
 #include "../Object/Item/ItemVaccine.h"
+#include "../Object/Player.h"
+#include "../Object/PlayerShot.h"
 #include "ItemManager.h"
 
 ItemManager::ItemManager()
@@ -14,8 +16,11 @@ ItemManager::~ItemManager()
 {
 }
 
-void ItemManager::Init(void)
+void ItemManager::Init(Player* player, PlayerShot* pShot)
 {
+	player_ = player;
+	pShot_ = pShot;
+
 	// アイテムモデルロード
 	itemModelIds_.emplace_back(
 		MV1LoadModel("Data/Model/Item/AmmoBox.mv1"));
@@ -39,8 +44,10 @@ void ItemManager::Init(void)
 
 		// アイテムを登録
 		items_[ItemBase::TYPE::BULLET].emplace_back(bullet);
-	}
 
+		// 弾薬箱をカウント
+		bulletBoxNum_++;
+	}
 
 	//// 決められた数配置
 	//for (int i = 0; i < VACCINE_NUM; i++)
@@ -62,22 +69,25 @@ void ItemManager::Init(void)
 	//	vaccineNum++;
 	//}
 
-	//// 決められた数配置
-	//for (int i = 0; i < KIT_NUM; i++)
-	//{
-	//	// 弾生成
-	//	ItemBase* kit = new ItemKit();
+	// 決められた数配置
+	for (int i = 0; i < KIT_NUM; i++)
+	{
+		// 弾生成
+		ItemBase* kit = new ItemKit();
 
-	//	//初期化　
-	//	kit->Init(ItemBase::TYPE::KIT,
-	//		itemModelIds_[static_cast<int>(ItemBase::TYPE::KIT)]);
+		//初期化　
+		kit->Init(ItemBase::TYPE::KIT,
+			itemModelIds_[static_cast<int>(ItemBase::TYPE::KIT)]);
 
-	//	// スポーン位置設定
-	//	kit->SetPos(ItemKit::kitSpawnPoints[i].pos);
+		// スポーン位置設定
+		kit->SetPos(ItemKit::kitSpawnPoints[i].pos);
 
-	//	// アイテムを登録
-	//	items_[ItemBase::TYPE::KIT].emplace_back(kit);
-	//}
+		// アイテムを登録
+		items_[ItemBase::TYPE::KIT].emplace_back(kit);
+
+		// 弾薬箱をカウント
+		kitBoxNum_++;
+	}
 }
 
 void ItemManager::Update(void)
@@ -105,18 +115,36 @@ void ItemManager::Draw(void)
 	}
 
 	// ワクチンがすべて拾われていない場合は
-	if (vaccineNum > 0)
+	if (vaccineNum_ > 0)
 	{
 		DrawFormatString(0, 50, 0xffffff, "ワクチンを回収");
 	}
 	// ワクチンがすべて拾われたら
-	else if(vaccineNum == 0)
+	else if(vaccineNum_ == 0)
 	{
 		DrawFormatString(0, 50, 0xffffff, "ドアから脱出");
 	}
 
+	// 最初のワクチン取得時に
+	if (vaccineNum_ == 2)
+	{
+		// 今の時間を保存
+		int now = GetNowCount();
+		if (now - pickUpTime_ <= SHOW_DURATION)
+		{
+			// 拾ってから3秒以内なら画像表示
+			DrawRotaGraph(955, 540, 0.5, 0, vImage_, true);
+		}
+	}
+
 	 // ワクチンの現在数
-	DrawFormatString(0, 80, 0xffffff, "ワクチン残り個数:%d", vaccineNum);
+	DrawFormatString(0, 60, 0xffffff, "ワクチン残り個数:%d", vaccineNum_);
+
+	// 弾薬箱の現在数
+	DrawFormatString(0, 80, 0xffffff, "弾薬箱残り個数:%d", bulletBoxNum_);
+
+	// 救急箱の現在数
+	DrawFormatString(0, 100, 0xffffff, "救急箱残り個数:%d", kitBoxNum_);
 }
 
 void ItemManager::Release(void)
@@ -136,22 +164,65 @@ void ItemManager::Release(void)
 	{
 		MV1DeleteModel(id);
 	}
+
+	DeleteGraph(vImage_);
 }
 
 // ワクチンを拾う
 void ItemManager::PickVaccine(void)
 {
 	// ワクチンの数を減らす
-	vaccineNum--;
+	vaccineNum_--;
 
 	// ワクチンの数がマイナスにならないようにする
-	if (vaccineNum < 0)
+	if (vaccineNum_ < 0)
 	{
-		vaccineNum = 0;
+		vaccineNum_ = 0;
 	}
 
 	// 取得音再生
 	SoundManager::GetInstance()->PlayPickUp();
+}
+
+void ItemManager::PickBulletBox(void)
+{
+	// 弾薬箱の数を減らす
+	bulletBoxNum_--;
+
+	// 弾薬箱の数がマイナスにならないようにする
+	if (bulletBoxNum_ < 0)
+	{
+		bulletBoxNum_ = 0;
+	}
+
+	// 取得音再生
+	SoundManager::GetInstance()->PlayPickUp();
+
+	// マガジンを１つ増やす
+	pShot_->SetMagazine(1);
+}
+
+void ItemManager::PickKitBox(void)
+{
+	// 救急箱の数を減らす
+	kitBoxNum_--;
+
+	// 救急箱の数がマイナスにならないようにする
+	if (kitBoxNum_ < 0)
+	{
+		kitBoxNum_ = 0;
+	}
+
+	// 取得音再生
+	SoundManager::GetInstance()->PlayPickUp();
+
+	// プレイヤーの体力を回復可能数を増やす
+	player_->Heal(1);
+}
+
+int ItemManager::GetVaccine(void)
+{
+	return vaccineNum_;
 }
 
 const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& ItemManager::GetItems()

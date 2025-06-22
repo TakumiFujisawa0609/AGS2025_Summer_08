@@ -14,6 +14,4 @@ protected:
 
 	// ƒpƒ‰ƒ[ƒ^İ’è
 	void SetParam() override;
-	// Œø‰Êİ’è
-	void SetApplyEffect() override;
 };

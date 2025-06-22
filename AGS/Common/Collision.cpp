@@ -66,7 +66,7 @@ void Collision::Update()
 	CollisionEAndS();
 
 	// プレイヤーとワクチンの当たり判定
-	CollisionPAndV();
+	CollisionPAndItem();
 
 	// プレイヤーとドアの当たり判定
 	CollisionPAndD();
@@ -304,8 +304,8 @@ void Collision::CollisionEAndS()
 	}
 }
 
-// ワクチンとプレイヤーとの当たり判定
-void Collision::CollisionPAndV()
+// ワクチンとアイテムとの当たり判定
+void Collision::CollisionPAndItem()
 {
 	const auto& items = item_->GetItems();
 
@@ -328,7 +328,7 @@ void Collision::CollisionPAndV()
 
 			// プレイヤーの当たり判定の球体の中心点
 			VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
-			// 敵の当たり判定の球体の中心点
+			// ワクチンの当たり判定の球体の中心点
 			VECTOR vCenterPos = VAdd(vPos, VGet(0, 50, 0));
 
 			float radiusP = 45.0f;
@@ -343,21 +343,44 @@ void Collision::CollisionPAndV()
 			// 範囲内にいる状態でFを押したら
 			if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 			{
-				// ワクチンを拾う→ワクチン数を減らす
-				item_->PickVaccine();
+				// アイテム別処理
+				switch (item->GetType())
+				{
+					// ワクチンの処理
+				case ItemBase::TYPE::VACCINE:
 
-				// ワクチンを拾ったらアイテムを削除
-				item->TakePickUpV();
+					// ワクチンを拾う
+					item_->PickVaccine();
 
-				itemHit_[item] = true;
-			}
-			else
-			{
-				itemHit_[item] = false;
+					// アイテムの状態を変更
+					item->ChangeState(ItemBase::STATE::PICKUP_V);
+					break;
+
+					// 弾薬箱の処理
+				case ItemBase::TYPE::BULLET:
+
+					// 弾薬箱を拾う
+					item_->PickBulletBox();
+
+					// アイテムの状態を変更
+					item->ChangeState(ItemBase::STATE::PICKUP_B);
+					break;
+					// 救急キットの処理
+				case ItemBase::TYPE::KIT:
+
+					// 救急キットを拾う
+					item_->PickKitBox();
+
+					// アイテムの状態を変更
+					item->ChangeState(ItemBase::STATE::PICKUP_K);
+					break;
+
+				}
 			}
 		}
 	}
 }
+
 
 // プレイヤーとドアの当たり判定
 void Collision::CollisionPAndD()

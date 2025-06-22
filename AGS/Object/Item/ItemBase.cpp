@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../../Utility/AsoUtility.h"
 #include "../../Manager/SoundManager.h"
 #include "../../Manager/ItemManager.h"
 #include "ItemBase.h"
@@ -21,13 +22,7 @@ void ItemBase::Init(TYPE type, int baseModelId)
 
     isActive_ = false;
 
-    isPickUpV_ = false;
-	isPickUpAllV_ = false;
-
-    pickUpTime_ = 0;
-
-    vNumber_ = ItemManager::VACCINE_NUM;
-
+	// 待機状態にする
 	ChangeState(STATE::STANBY);
 
     // パラメータ設定
@@ -39,11 +34,11 @@ void ItemBase::Init(TYPE type, int baseModelId)
     // モデルを座標にセット
     MV1SetPosition(modelId_, pos_);
 
+	// 向き設定
+    MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(90.0f), AsoUtility::Deg2RadF(90.0f) });
+
     // 少し明るくする
     MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f)); // アイテム
-   
-    // 効果設定
-    SetApplyEffect();
 }
 
 void ItemBase::Update()
@@ -55,8 +50,6 @@ void ItemBase::Update()
 void ItemBase::Release()
 {
     MV1DeleteModel(modelId_);
-
-    DeleteGraph(vImage_);
 }
 
 // 状態遷移
@@ -67,27 +60,18 @@ void ItemBase::ChangeState(STATE state)
     switch (state_)
     {
     case STATE::STANBY:
-		isPickUpV_ = false;
-	case STATE::PICKUP:
-		isPickUpV_ = true;
+
+	case STATE::PICKUP_V:
+
+    case STATE::PICKUP_B:
+
+    case STATE::PICKUP_K:
 		break;
     }
 }
 
-// ワクチン取得処理
-void ItemBase::TakePickUpV()
-{
-    // ワクチン取得状態にする
-    ChangeState(STATE::PICKUP);
-}
-
 void ItemBase::PickUp()
 {
-}
-
-bool ItemBase::GetPickUp()
-{
-    return isPickUpAllV_;
 }
 
 VECTOR ItemBase::GetPos() const
@@ -98,6 +82,12 @@ VECTOR ItemBase::GetPos() const
 void ItemBase::SetPos(VECTOR pos)
 {
     pos_ = pos;
+}
+
+// アイテムの種別を取得
+ItemBase::TYPE ItemBase::GetType() const
+{
+    return type_;
 }
 
 // 衝突判定が有効な状態
