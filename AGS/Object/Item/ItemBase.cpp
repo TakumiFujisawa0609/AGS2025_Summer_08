@@ -50,6 +50,8 @@ void ItemBase::Update()
 void ItemBase::Release()
 {
     MV1DeleteModel(modelId_);
+
+	DeleteGraph(kitImg_);
 }
 
 // ó‘Ô‘JˆÚ

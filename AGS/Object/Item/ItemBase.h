@@ -1,5 +1,6 @@
 #pragma once
 #include <DxLib.h>
+class Player;
 
 
 class ItemBase {
@@ -92,6 +93,8 @@ protected:
     bool isActive_;    // 使用判定
 
     bool isVaccineAlive_;
+
+    int kitImg_; // キットの画像ID
 
     virtual void SetParam() = 0;    // パラメータ設定
 
