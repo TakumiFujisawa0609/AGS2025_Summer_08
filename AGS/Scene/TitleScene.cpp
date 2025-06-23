@@ -31,10 +31,10 @@ void TitleScene::Init(void)
 	camera_ = new Camera();
 	testTitleImg_ = LoadGraph("Data/Image/ReTitle.png");
 
-	button_ = new Button(700,900,500,200);
+	button_ = new Button(500,900,500,200);
 	button_->Init();
 
-	exitButton_ = new ExitButton(1600, 900, 500, 200);
+	exitButton_ = new ExitButton(1400, 900, 500, 200);
 	exitButton_->Init();
 
 	frameImage_ = LoadGraph("Data/Image/Frame.png");
@@ -53,6 +53,7 @@ void TitleScene::Update(void)
 	if (button_->GetButtonState() == Button::BUTTON_STATE::DISABLED)
 	{
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::T);
+		SoundManager::GetInstance()->PlayCleck();
 	}
 
 	if (exitButton_->GetButtonState() == ExitButton::BUTTON_STATE::DISABLED)

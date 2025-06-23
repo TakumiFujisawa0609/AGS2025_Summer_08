@@ -23,7 +23,7 @@ void Tutorial::Update(void)
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
 
-		SoundManager::GetInstance()->PlayClose();
+		
 	}
 }
 

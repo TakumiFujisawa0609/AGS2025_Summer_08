@@ -10,6 +10,7 @@
 #define SHOT_PATH "Data/Sound/shot.wav"
 #define PICKUP_PATH "Data/Sound/pickUp.wav"
 #define VOICE_PATH "Data/Sound/voice.wav"
+#define CLECK_PATH "Data/Sound/Cleck.wav"
 
 class SoundManager
 {
@@ -25,7 +26,7 @@ public:
 	static constexpr int SHOT_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int PICKUP_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int VOICE_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-
+	static constexpr int CLECK_VOLUME = 100;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃê∂ê¨
 	static void CreateInstance(void);
@@ -49,6 +50,10 @@ public:
 	void PlayReLoad();	// ï‡Ç≠
 	void PlayVoice();	// ëñÇÈ
 	void PlayShot();	// ï‡Ç≠
+
+	void PlayCleck();	// ï‡Ç≠
+
+
 
 	
 	//âπåπí‚é~
@@ -84,6 +89,9 @@ private:
 	int reLoadHundle_;
 	int voiceHundle_;
 	int shotHundle_;
+
+	//ÉNÉäÉbÉNâπ
+	int cleckHundle_;
 
 };
 
