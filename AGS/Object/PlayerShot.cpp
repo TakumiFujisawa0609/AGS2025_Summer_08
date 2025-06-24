@@ -30,7 +30,7 @@ void PlayerShot::Init(Camera* camera)
 
 	isAlive_ = false;
 
-	magazine_ = 0;
+	maxMagazine_ = MAX_AMMO;
 
 	MV1SetScale(modelId_, scale_);
 }
@@ -50,7 +50,7 @@ void PlayerShot::Draw(void)
 
 	if(isAlive_) DrawSphere3D(pos_, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
 	DrawFormatString(0, 540, 0xffffff, "isShotAlive:%d", isAlive_ );
-	DrawFormatString(0, 560, 0xffffff, "magazine_:%d", magazine_);
+	DrawFormatString(0, 560, 0xffffff, "maxMagazine_:%d", maxMagazine_);
 	//DrawFormatString(0, 500, 0xffffff, "ShotPos:(%f,%f,%f)", pos_.x, pos_.y, pos_.z);
 	//DrawFormatString(0, 520, 0xffffff, "dir_: (%.2f, %.2f, %.2f)", dir_.x, dir_.y, dir_.z);
 	//DrawFormatString(0, 560, 0xffffff, "Dist:%f", dist_);
@@ -65,15 +65,15 @@ void PlayerShot::Draw(void)
 	int ammoOffsetX = (ammo_ < 10) ? 16 : 0;  // 1åÖÇ»ÇÁè≠ÇµâEÇ÷
 	int maxOffsetX = (MAX_AMMO < 10) ? 12 : 0; // ç≈ëÂíeêîë§Ç…Ç‡ïKóvÇ»ÇÁí≤êÆ
 
-	SetFontSize(32);
+	SetFontSize(38);
 	// écíeÅEÉXÉâÉbÉVÉÖÅEç≈ëÂíeêîÇècÇ…ï\é¶ÅAè≠ÇµÇ∏ÇÁÇµÇƒï`âÊ
 	DrawFormatString(x - 34 + ammoOffsetX, y + 0, white, "%d", ammo_); // écíe
-	SetFontSize(55);
+	SetFontSize(65);
 	DrawString(x, y, "/", white);   // ÉXÉâÉbÉVÉÖ
-	SetFontSize(32);
-	DrawFormatString(x + 22 + maxOffsetX, y + 25, white, "%d", MAX_AMMO); // ç≈ëÂíeêî
+	SetFontSize(40);
+	DrawFormatString(x + 27 + maxOffsetX, y + 25, white, "%d", maxMagazine_); // ç≈ëÂíeêî
 
-	float scale = 0.07f;  // èkè¨
+	float scale = 0.1f;  // èkè¨
 	DrawRotaGraph(60, 1020, scale, 0.0f, image_, true);
 }
 
@@ -128,23 +128,39 @@ void PlayerShot::ReLoad(void)
 {
 	// íeêÿÇÍ
 	if (!isAlive_
-		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
-		&& ammo_ == 0) {
+		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT))
+	{
 		// íeêÿÇÍâπçƒê∂
 		SoundManager::GetInstance()->PlayNoAmmo();
 	}
 
+	// ÉäÉçÅ[ÉhÉtÉâÉO
+	bool isReLoad;
+
 	// ÉäÉçÅ[Éh
 	// É}ÉKÉWÉìéÊìæèÛë‘Ç≈RÇâüÇµÇΩÇÁ
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && magazine_ >= 1 && ammo_ < 21)
+	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
 	{
-		// É}ÉKÉWÉìêîÇå∏ÇÁÇ∑
-		magazine_--;
-		// íeêîÇç≈ëÂÇ…Ç∑ÇÈ
-		ammo_ = MAX_AMMO;
+		// ëçíeêîÇ©ÇÁëïìUÇµÇΩï™à¯Ç≠
+		maxMagazine_ -= (MAX_AMMO - ammo_);
+
+		// íeêîÇëïìU
+		if (maxMagazine_ >= MAX_AMMO)
+		{
+			ammo_ = MAX_AMMO;
+		}
+		else
+		{
+			isReLoad = true;
+		}
 
 		// ÉäÉçÅ[Éhâπçƒê∂
 		SoundManager::GetInstance()->PlayReLoad();
+	}
+
+	if (isReLoad)
+	{
+
 	}
 }
 
@@ -174,7 +190,8 @@ void PlayerShot::SetAlive(bool isAlive)
 }
 
 // É}ÉKÉWÉìéÊìæ
-void PlayerShot::SetMagazine(int magazine)
+void PlayerShot::SetMagazine()
 {
-	magazine_ += magazine;
+	// éËéùÇøç≈ëÂíeêîÇëùÇ‚Ç∑
+	maxMagazine_ += MAX_AMMO;
 }

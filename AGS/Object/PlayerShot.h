@@ -12,7 +12,7 @@ public:
 	static constexpr float P_SHOT_MOVE_LIMIT = 4000.0f;
 
 	// Å‘å‹…”
-	static constexpr int MAX_AMMO = 21;
+	static constexpr int MAX_AMMO = 20;
 
 	PlayerShot();
 	~PlayerShot();
@@ -32,7 +32,7 @@ public:
 	void SetAlive(bool isAlive);
 
 	// ƒ}ƒKƒWƒ“æ“¾
-	void SetMagazine(int magazine);
+	void SetMagazine();
 
 private:
 	Camera* camera_;
@@ -57,6 +57,9 @@ private:
 
 	// ƒ}ƒKƒWƒ“”
 	int magazine_;
+
+	// Å‘å’e”
+	int maxMagazine_;
 
 	// ’e”
 	int ammo_;

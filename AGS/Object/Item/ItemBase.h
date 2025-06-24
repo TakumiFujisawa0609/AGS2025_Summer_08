@@ -95,6 +95,7 @@ protected:
     bool isVaccineAlive_;
 
     int kitImg_; // キットの画像ID
+	int keyImg_; // キーアイコンの画像ID
 
     virtual void SetParam() = 0;    // パラメータ設定
 

@@ -70,8 +70,10 @@ void Player::Draw(void)
 
 	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
 	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
-	DrawString(0, 720, "Å~", 0xffffff, heal_);
-	DrawFormatString(20, 720, 0xffffff, "%d", heal_);
+	// 1042
+	// âÒïúâ¬î\êî
+	DrawFormatString(366, 966, 0xffffff, "%d", heal_);
+
 }
 
 void Player::Release(void)

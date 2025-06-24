@@ -13,7 +13,8 @@
 #include "Collision.h"
 
 // 初期化
-void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera, ItemManager* item)
+void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy, 
+	Blood* blood, PlayerShot* pShot, Camera* camera, ItemManager* item)
 {
 	// ゲームシーンから渡されたインスタンスを使用
 	player_ = player;

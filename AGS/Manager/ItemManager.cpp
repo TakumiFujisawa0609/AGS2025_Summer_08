@@ -137,14 +137,20 @@ void ItemManager::Draw(void)
 		}
 	}
 
-	 // ワクチンの現在数
-	DrawFormatString(0, 60, 0xffffff, "ワクチン残り個数:%d", vaccineNum_);
+	// // ワクチンの現在数
+	//DrawFormatString(0, 60, 0xffffff, "ワクチン残り個数:%d", vaccineNum_);
 
-	// 弾薬箱の現在数
-	DrawFormatString(0, 80, 0xffffff, "弾薬箱残り個数:%d", bulletBoxNum_);
+	if (pickedVaccineNum_ < 3)
+	{
+		// ワクチンの現在数
+		DrawFormatString(0, 100, 0xffffff, "ワクチンを回収:%d", pickedVaccineNum_);
+	}
 
-	// 救急箱の現在数
-	DrawFormatString(0, 100, 0xffffff, "救急箱残り個数:%d", kitBoxNum_);
+	//// 弾薬箱の現在数
+	//DrawFormatString(0, 80, 0xffffff, "弾薬箱残り個数:%d", bulletBoxNum_);
+
+	//// 救急箱の現在数
+	//DrawFormatString(0, 100, 0xffffff, "救急箱残り個数:%d", kitBoxNum_);
 }
 
 void ItemManager::Release(void)
@@ -174,6 +180,9 @@ void ItemManager::PickVaccine(void)
 	// ワクチンの数を減らす
 	vaccineNum_--;
 
+	// 取得ワクチンを増やす
+	pickedVaccineNum_++;
+
 	// ワクチンの数がマイナスにならないようにする
 	if (vaccineNum_ < 0)
 	{
@@ -199,7 +208,7 @@ void ItemManager::PickBulletBox(void)
 	SoundManager::GetInstance()->PlayPickUp();
 
 	// マガジンを１つ増やす
-	pShot_->SetMagazine(1);
+	pShot_->SetMagazine();
 }
 
 void ItemManager::PickKitBox(void)

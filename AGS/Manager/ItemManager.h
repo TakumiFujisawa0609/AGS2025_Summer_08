@@ -54,6 +54,8 @@ private:
 
 	// ワクチンの数
 	int vaccineNum_;
+	// 取得ワクチン
+	int pickedVaccineNum_ = 0;
 
 	// 弾薬箱の数
 	int bulletBoxNum_;

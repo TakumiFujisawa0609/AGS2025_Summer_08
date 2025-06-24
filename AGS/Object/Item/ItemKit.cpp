@@ -19,7 +19,9 @@ void ItemKit::Draw()
    }
 
 	// キット画像を描画
-    DrawRotaGraph(500, 1020, 0.4, 0.0f, kitImg_, true);
+    DrawRotaGraph(330, 1013, 0.1, 0.0f, kitImg_, true);
+    // キーアイコンを描画
+    DrawRotaGraph(330, 1020, 0.1, 0.0f, keyImg_, true);
 }
 
 void ItemKit::SetParam()
@@ -28,4 +30,6 @@ void ItemKit::SetParam()
 
     // キット画像
 	kitImg_ = LoadGraph("Data/Image/Kit.png");
+    // キーアイコン画像
+    keyImg_ = LoadGraph("Data/Image/Q_Key.png");
 }
