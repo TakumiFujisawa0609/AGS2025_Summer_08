@@ -19,9 +19,9 @@ ExitButton::~ExitButton()
 
 void ExitButton::Init(void)
 {
-	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/ExitButton_0.png");
-	handle_[HOVER] = LoadGraph("Data/Image/Button/ExitButton_2.png");
-	handle_[DISABLED] = LoadGraph("Data/Image/Button/ExitButton_1.png");
+	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/Exit.png");
+	handle_[HOVER] = LoadGraph("Data/Image/Button/Exit_0.png");
+	handle_[DISABLED] = LoadGraph("Data/Image/Button/Exit.png");
 }
 
 void ExitButton::Update(void)

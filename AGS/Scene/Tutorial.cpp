@@ -25,6 +25,12 @@ void Tutorial::Update(void)
 
 		
 	}
+
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	{
+		//ƒNƒŠƒbƒN‚³‚ê‚Ä‚¢‚é
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
+	}
 }
 
 void Tutorial::Draw(void)

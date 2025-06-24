@@ -49,7 +49,7 @@ void Application::Init(void)
 
 	// ウィンドウサイズ
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DIPTH);
-	ChangeWindowMode(false);
+	ChangeWindowMode(true);
 
 
 	// DxLib初期化
@@ -88,6 +88,8 @@ void Application::Run(void)
 		// フレームレート更新
 		// 1/60秒経過していないなら再ループさせる
 		if (!fps_->UpdateFrameRate()) continue;
+		if (SceneManager::GetInstance()->IsGameEnd())
+			return;
 
 		InputManager::GetInstance()->Update();
 		SceneManager::GetInstance()->Update();

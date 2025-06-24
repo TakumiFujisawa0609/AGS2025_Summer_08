@@ -50,6 +50,7 @@ void TitleScene::Update(void)
 	//ボタン更新
 	exitButton_->Update();
 
+
 	if (button_->GetButtonState() == Button::BUTTON_STATE::DISABLED)
 	{
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::T);
@@ -58,7 +59,7 @@ void TitleScene::Update(void)
 
 	if (exitButton_->GetButtonState() == ExitButton::BUTTON_STATE::DISABLED)
 	{
-		
+		SceneManager::GetInstance()->SetGameEnd();
 	}
 
 

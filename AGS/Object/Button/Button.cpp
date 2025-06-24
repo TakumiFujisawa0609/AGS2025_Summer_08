@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "../../Manager/SoundManager.h"
 #include  <DxLib.h>
 
 
@@ -19,9 +20,9 @@ Button::~Button()
 
 void Button::Init(void)
 {
-	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/StartButton_0.png");
-	handle_[HOVER] = LoadGraph("Data/Image/Button/StartButton_2.png");
-	handle_[DISABLED] = LoadGraph("Data/Image/Button/StartButton_1.png");
+	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/GameStart.png");
+	handle_[HOVER] = LoadGraph("Data/Image/Button/GameStartHover.png");
+	handle_[DISABLED] = LoadGraph("Data/Image/Button/GameStart.png");
 }
 
 void Button::Update(void)
@@ -40,6 +41,10 @@ void Button::Update(void)
 	{
 		//マウスボタンの上にある状態
 		buttonState_ = HOVER;
+		if (buttonState_ == HOVER)
+		{
+			SoundManager::GetInstance()->PlayHover();
+		}
 
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 		{

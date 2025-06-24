@@ -11,6 +11,7 @@
 #define PICKUP_PATH "Data/Sound/pickUp.wav"
 #define VOICE_PATH "Data/Sound/voice.wav"
 #define CLECK_PATH "Data/Sound/Cleck.wav"
+#define HOVER_PATH "Data/Sound/Hover.mp3"
 
 class SoundManager
 {
@@ -52,6 +53,7 @@ public:
 	void PlayShot();	// •à‚­
 
 	void PlayCleck();	// •à‚­
+	void PlayHover();
 
 
 
@@ -89,6 +91,7 @@ private:
 	int reLoadHundle_;
 	int voiceHundle_;
 	int shotHundle_;
+	int hoverHundle_;
 
 	//ƒNƒŠƒbƒN‰¹
 	int cleckHundle_;
