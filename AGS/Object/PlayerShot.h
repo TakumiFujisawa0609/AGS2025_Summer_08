@@ -63,5 +63,8 @@ private:
 
 	// íeêî
 	int ammo_;
+
+	// íe
+	int gunCircleImg_;
 };
 

@@ -76,14 +76,14 @@ void Camera::Draw(void)
 	int centerX = Application::SCREEN_SIZE_X / 2;
 	int centerY = Application::SCREEN_SIZE_Y / 2;
 
-	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150); // 薄暗くする
-	//DrawBox(0, 0, 1920, 1080, GetColor(0, 0, 0), TRUE);
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150); // 薄暗くする
+	DrawBox(0, 0, 1920, 1080, GetColor(0, 0, 0), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-	//// 円の明かり（ここは好みに応じて画像でも可）
-	//SetDrawBlendMode(DX_BLENDMODE_ADD, 120);
-	//DrawCircle(centerX, centerY, 200, GetColor(255, 255, 200), TRUE);
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	// 円の明かり（ここは好みに応じて画像でも可）
+	SetDrawBlendMode(DX_BLENDMODE_ADD, 120);
+	DrawCircle(centerX, centerY, 200, GetColor(255, 255, 200), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 void Camera::Release(void)
