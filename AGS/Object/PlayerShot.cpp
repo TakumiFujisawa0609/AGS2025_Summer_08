@@ -134,34 +134,35 @@ void PlayerShot::ReLoad(void)
 		SoundManager::GetInstance()->PlayNoAmmo();
 	}
 
-	// リロードフラグ
-	bool isReLoad;
 
 	// リロード
 	// マガジン取得状態でRを押したら
 	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
 	{
-		// 総弾数から装填した分引く
-		maxMagazine_ -= (MAX_AMMO - ammo_);
+		// 必要な弾数を計算（例：20発MAXで今5発なら15発必要）
+		int needAmmo = MAX_AMMO - ammo_;
+		int reloadAmmo;
 
-		// 弾数を装填
-		if (maxMagazine_ >= MAX_AMMO)
+		// 小さい方を選ぶ（std::minを使わずに）
+		if (needAmmo < maxMagazine_)
 		{
-			ammo_ = MAX_AMMO;
+			reloadAmmo = needAmmo;
 		}
 		else
 		{
-			isReLoad = true;
+			reloadAmmo = maxMagazine_;
 		}
+
+		// 弾を追加
+		ammo_ += reloadAmmo;
+
+		// マガジンから引く
+		maxMagazine_ -= reloadAmmo;
 
 		// リロード音再生
 		SoundManager::GetInstance()->PlayReLoad();
 	}
 
-	if (isReLoad)
-	{
-
-	}
 }
 
 int PlayerShot::GetModelId() const
