@@ -32,6 +32,11 @@ void Button::Update(void)
 	int mousePosY = 0;
 
 	GetMousePoint(&mousePosX, &mousePosY);
+
+	// 前フレームの状態を保持する変数を用意（クラスメンバ変数にする必要あり）
+	Button::BUTTON_STATE prevButtonState_ = buttonState_;
+
+
 	//ボタンの状態
 	buttonState_ = DEFOAULT;
 	if (posX_ - (sizeW_ / 2) < mousePosX &&//右判定
@@ -39,19 +44,24 @@ void Button::Update(void)
 		posY_ - (sizeH_ / 2) < mousePosY &&//上判定
 		posY_ - (sizeH_ / 2) + sizeH_ > mousePosY)//下判定
 	{
-		//マウスボタンの上にある状態
+		// マウスがボタンの上にある
 		buttonState_ = HOVER;
-		if (buttonState_ == HOVER)
+
+		// 前フレームがHOVER以外 → 今フレームHOVER になったタイミングでだけサウンド再生
+		if (prevButtonState_ != HOVER)
 		{
 			SoundManager::GetInstance()->PlayHover();
 		}
 
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 		{
-			//クリックされている
+			// クリックされている
 			buttonState_ = DISABLED;
 		}
 	}
+
+	// フレームの最後で前回状態を更新
+	prevButtonState_ = buttonState_;
 }
 
 void Button::Draw(void)

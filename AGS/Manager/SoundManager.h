@@ -70,6 +70,7 @@ public:
 	void StopVoice();	// 走る
 	void StopShot();	// 走る
 
+
 private:
 
 	//コンストラクタ・デストラクタ（外部からの生成防止）
@@ -97,5 +98,3 @@ private:
 	int cleckHundle_;
 
 };
-
-

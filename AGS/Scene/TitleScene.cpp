@@ -38,11 +38,13 @@ void TitleScene::Init(void)
 	exitButton_->Init();
 
 	frameImage_ = LoadGraph("Data/Image/Frame.png");
-
+	
 }
 
 void TitleScene::Update(void)
 {
+	// 毎フレーム呼ばれる処理内で
+
 	GetMousePoint(&mousePos_X, &mousePos_Y);
 
 	//ボタン更新
@@ -53,43 +55,15 @@ void TitleScene::Update(void)
 
 	if (button_->GetButtonState() == Button::BUTTON_STATE::DISABLED)
 	{
+		//チュートリアルシーン遷移
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::T);
-		SoundManager::GetInstance()->PlayCleck();
+		SoundManager::GetInstance()->PlayOpen();
 	}
 
 	if (exitButton_->GetButtonState() == ExitButton::BUTTON_STATE::DISABLED)
 	{
 		SceneManager::GetInstance()->SetGameEnd();
 	}
-
-
-
-	//シーン切り替え
-
-	//if (CheckHitKey(KEY_INPUT_SPACE))
-	//{
-	//	// スペースキーが押下されたら、ゲームシーンへ遷移する
-	//	SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::T);
-	//
-	//	SoundManager::GetInstance()->PlayOpen();
-	//}
-
-	//if (camera_->Getmouse_().x < 0)
-	//{
-	//	SetMousePoint(0,camera_->Getmouse_().y);
-	//}
-	//if (camera_->Getmouse_().x > Application::SCREEN_SIZE_X)
-	//{
-	//	SetMousePoint(Application::SCREEN_SIZE_X, camera_->Getmouse_().y);
-	//}
-	//if (camera_->Getmouse_().y < 0)
-	//{
-	//	SetMousePoint(camera_->Getmouse_().x,0);
-	//}
-	//if (camera_->Getmouse_().y > Application::SCREEN_SIZE_Y)
-	//{
-	//	SetMousePoint(camera_->Getmouse_().x, Application::SCREEN_SIZE_Y);
-	//}
 
 }
 
@@ -110,10 +84,6 @@ void TitleScene::Draw(void)
 	
 	DrawFormatString(0, 50, 0xffffff, "mousePos:%d ,%d", mousePos_X, mousePos_Y, true);
 	
-
-
-
-
 }
 
 void TitleScene::Release(void)
