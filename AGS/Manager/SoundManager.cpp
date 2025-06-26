@@ -62,6 +62,8 @@ void SoundManager::Init(void)
 	reLoadHundle_ = LoadSoundMem(RELOAD_PATH);
 	voiceHundle_ = LoadSoundMem(VOICE_PATH);
 	shotHundle_ = LoadSoundMem(SHOT_PATH);
+	hoverHundle_ = LoadSoundMem(HOVER_PATH);
+	cleckHundle_ = LoadSoundMem(CLECK_PATH);
 }
 
 void SoundManager::Update(void)
@@ -179,6 +181,23 @@ void SoundManager::PlayShot()
 	ChangeVolumeSoundMem(SHOT_VOLUME, shotHundle_);
 }
 
+void SoundManager::PlayCleck()
+{
+	// çƒê∂
+	PlaySoundMem(cleckHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(CLECK_VOLUME, cleckHundle_);
+}
+
+void SoundManager::PlayHover()
+{
+
+	// çƒê∂
+	PlaySoundMem(hoverHundle_, DX_PLAYTYPE_BACK, true);
+}
+
+
 //// ëñÇÈâπ
 //void SoundManager::PlayRun1()
 //{
@@ -231,3 +250,4 @@ void SoundManager::StopVoice()
 void SoundManager::StopShot()
 {
 }
+

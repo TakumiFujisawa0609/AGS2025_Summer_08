@@ -1,6 +1,12 @@
 #pragma once
 #include "SceneBase.h"
+
+
+
 class Camera;
+class Button;
+class ExitButton;
+
 
 class TitleScene : public SceneBase
 {
@@ -20,11 +26,20 @@ public:
 
 private:
 
+	int mousePos_X;
+	int mousePos_Y;
+
 	// testタイトル画像
 	int testTitleImg_;
 
-	// スタート画像
+	int gameText_;
+	int tutorialText_;
+	int frameImage_;
 
+	// スタート画像
 	Camera* camera_;
+	Button* button_;
+	ExitButton* exitButton_;
+
 
 };

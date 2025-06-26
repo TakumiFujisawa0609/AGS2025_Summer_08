@@ -5,6 +5,7 @@
 #include "Application.h"
 #include "../Common/FpsControl.h"
 
+
 Application* Application::instance_ = nullptr;
 
 //const std::string Application::PATH_IMAGE = PATH_DATA + "Image/";
@@ -16,6 +17,7 @@ Application::Application(void)
 {
 	isError_ = false;
 	fps_ = nullptr;
+
 }
 
 Application::Application(const Application& ins)
@@ -74,6 +76,8 @@ void Application::Init(void)
 	// FPS初期化
 	fps_ = new FpsControl;
 	fps_->Init();
+
+
 }
 
 void Application::Run(void)
@@ -84,6 +88,8 @@ void Application::Run(void)
 		// フレームレート更新
 		// 1/60秒経過していないなら再ループさせる
 		if (!fps_->UpdateFrameRate()) continue;
+		if (SceneManager::GetInstance()->IsGameEnd())
+			return;
 
 		InputManager::GetInstance()->Update();
 		SceneManager::GetInstance()->Update();
@@ -126,3 +132,5 @@ bool Application::IsError(void)
 {
 	return isError_;
 }
+
+

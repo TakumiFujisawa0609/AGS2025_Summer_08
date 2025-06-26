@@ -41,6 +41,7 @@ public:
 	// エラー判定
 	bool IsError(void);
 
+
 private:
 
 	// 静的インスタンス
@@ -60,6 +61,5 @@ private:
 
 	// FPS
 	FpsControl* fps_;
-
 
 };

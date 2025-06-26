@@ -153,6 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Button\ExitButton.cpp" />
+    <ClCompile Include="Object\Button\Button.cpp" />
     <ClCompile Include="Manager\EnemyManager.cpp" />
     <ClCompile Include="Manager\ItemManager.cpp" />
     <ClCompile Include="Object\Enemy\EnemyNormal.cpp" />
@@ -163,6 +165,8 @@
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\Tutorial.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
+    <ClInclude Include="Object\Button\ExitButton.h" />
+    <ClInclude Include="Object\Button\Button.h" />
     <ClInclude Include="Common\AnimControl.h" />
     <ClInclude Include="Common\Collision.h" />
     <ClInclude Include="Common\Fader.h" />

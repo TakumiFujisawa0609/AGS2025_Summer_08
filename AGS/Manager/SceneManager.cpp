@@ -52,6 +52,8 @@ void SceneManager::Init(void)
 	fader_ = new Fader();
 	fader_->Init();
 
+	
+
 	isSceneChanging_ = false;
 
 	// ‰ŠúƒV[ƒ“‚Ìİ’è
@@ -161,6 +163,10 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 
 	switch (sceneId_)
 	{
+
+	case SCENE_ID::NONE:
+		waitSceneId_ = SCENE_ID::NONE;
+		return;
 	case SCENE_ID::TITLE:
 		scene_ = new TitleScene();
 		break;

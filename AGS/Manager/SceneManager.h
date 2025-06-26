@@ -41,6 +41,9 @@ public:
 
 	float GetDeltaTime(void) const;
 
+	void SetGameEnd() { isGameEnd = true; }
+	bool IsGameEnd() { return isGameEnd; }
+
 private:
 
 	// 静的インスタンス
@@ -48,6 +51,8 @@ private:
 
 	SCENE_ID sceneId_;
 	SCENE_ID waitSceneId_;
+
+	bool isGameEnd;
 
 	// フェード
 	Fader* fader_;
