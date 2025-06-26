@@ -2,6 +2,7 @@
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
+#include "../Manager/Application.h"
 #include "../Common/AnimControl.h"
 #include "../Object/Player.h"
 #include "../Object/StageBase.h"
@@ -48,6 +49,8 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 		}
 	}
 
+	fKeyImg_ = LoadGraph("Data/Image/FKey.png");
+
 }
 
 void Collision::Update()
@@ -75,7 +78,12 @@ void Collision::Update()
 
 void Collision::Draw()
 {
-	
+	if (isPickKey_)
+	{
+		// リロード中のキー画像を表示
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "拾う");
+	}
 }
 
 void Collision::Release()
@@ -342,42 +350,51 @@ void Collision::CollisionPAndItem()
 			float radiusNum = radiusP + radiusV;
 
 			// 範囲内にいる状態でFを押したら
-			if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			if (dis < radiusNum)
 			{
-				// アイテム別処理
-				switch (item->GetType())
+				isPickKey_ = true;
+
+				if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 				{
-					// ワクチンの処理
-				case ItemBase::TYPE::VACCINE:
+					// アイテム別処理
+					switch (item->GetType())
+					{
+						// ワクチンの処理
+					case ItemBase::TYPE::VACCINE:
 
-					// ワクチンを拾う
-					item_->PickVaccine();
+						// ワクチンを拾う
+						item_->PickVaccine();
 
-					// アイテムの状態を変更
-					item->ChangeState(ItemBase::STATE::PICKUP_V);
-					break;
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_V);
+						break;
 
-					// 弾薬箱の処理
-				case ItemBase::TYPE::BULLET:
+						// 弾薬箱の処理
+					case ItemBase::TYPE::BULLET:
 
-					// 弾薬箱を拾う
-					item_->PickBulletBox();
+						// 弾薬箱を拾う
+						item_->PickBulletBox();
 
-					// アイテムの状態を変更
-					item->ChangeState(ItemBase::STATE::PICKUP_B);
-					break;
-					// 救急キットの処理
-				case ItemBase::TYPE::KIT:
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_B);
+						break;
+						// 救急キットの処理
+					case ItemBase::TYPE::KIT:
 
-					// 救急キットを拾う
-					item_->PickKitBox();
+						// 救急キットを拾う
+						item_->PickKitBox();
 
-					// アイテムの状態を変更
-					item->ChangeState(ItemBase::STATE::PICKUP_K);
-					break;
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_K);
+						break;
+
+					}
 
 				}
 			}
+
+			// 範囲外に出るとキー非表示
+			if (dis > radiusNum) isPickKey_ = false;
 		}
 	}
 }

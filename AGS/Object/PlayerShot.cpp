@@ -188,8 +188,8 @@ void PlayerShot::KeyDraw(void)
 	if (isReload_)
 	{
 		// リロード中のキー画像を表示
-		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 58, 0.12f, 0.0f, rKeyImg_, true);
-		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 5, Application::SCREEN_SIZE_Y / 2 + 50, 0xffffff, "リロード");
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 58, 0.14f, 0.0f, rKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 5, Application::SCREEN_SIZE_Y / 2 + 49, 0xffffff, "リロード");
 	}
 }
 
