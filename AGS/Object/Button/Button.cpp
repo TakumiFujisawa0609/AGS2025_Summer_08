@@ -23,6 +23,10 @@ void Button::Init(void)
 	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/GameStart.png");
 	handle_[HOVER] = LoadGraph("Data/Image/Button/GameStartHover.png");
 	handle_[DISABLED] = LoadGraph("Data/Image/Button/GameStart.png");
+
+	//handle_[DEFOAULT] = LoadGraph("Data/Image/Button/Return.png");
+	//handle_[HOVER] = LoadGraph("Data/Image/Button/ReturnHover.png");
+	//handle_[DISABLED] = LoadGraph("Data/Image/Button/Return.png");
 }
 
 void Button::Update(void)
