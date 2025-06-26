@@ -75,14 +75,11 @@ void TitleScene::Draw(void)
 
 	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, testTitleImg_, true);
 
-	SetFontSize(30);
-	DrawString(0, 0, "※難易度選択は未実装→今はSPACEでゲームシーンへ", 0xffffff);
+	
 
 
 	button_->Draw();
 	exitButton_->Draw();
-	
-	DrawFormatString(0, 50, 0xffffff, "mousePos:%d ,%d", mousePos_X, mousePos_Y, true);
 	
 }
 

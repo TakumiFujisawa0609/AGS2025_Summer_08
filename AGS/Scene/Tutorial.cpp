@@ -2,6 +2,7 @@
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
 #include "Tutorial.h"
+#include "../Manager/Application.h"
 
 Tutorial::Tutorial(void)
 {
@@ -13,7 +14,7 @@ Tutorial::~Tutorial(void)
 
 void Tutorial::Init(void)
 {
-	tutorialImg_ = LoadGraph("Data/Image/Operation.png");
+	tutorialImg_ = LoadGraph("Data/Image/TutoRial.png");
 }
 
 void Tutorial::Update(void)
@@ -36,7 +37,7 @@ void Tutorial::Update(void)
 void Tutorial::Draw(void)
 {
 	float scale = 1.0f;  // èkè¨
-	DrawRotaGraph(958, 538, scale, 0.0f, tutorialImg_, true);
+	DrawRotaGraph(Application::SCREEN_SIZE_X/2, Application::SCREEN_SIZE_Y/2, scale, 0.0f, tutorialImg_, true);
 }
 
 void Tutorial::Release(void)
