@@ -34,9 +34,6 @@ void ItemBase::Init(TYPE type, int baseModelId)
     // モデルを座標にセット
     MV1SetPosition(modelId_, pos_);
 
-	// 向き設定
-    MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(90.0f), AsoUtility::Deg2RadF(90.0f) });
-
     // 少し明るくする
     MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f)); // アイテム
 }

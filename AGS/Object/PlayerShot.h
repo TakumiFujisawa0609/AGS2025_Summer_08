@@ -24,6 +24,8 @@ public:
 	void Shot(void);
 	void ReLoad(void);
 
+	void KeyDraw(void);
+
 	int GetModelId() const;
 	VECTOR GetPos();
 	VECTOR GetDir();
@@ -41,6 +43,11 @@ private:
 	int modelId_;
 	// 弾画像
 	int image_;
+
+	// キー画像
+	int rKeyImg_;
+	// リロードフラグ
+	bool isReload_ = false;
 
 	// 大きさ
 	VECTOR scale_;

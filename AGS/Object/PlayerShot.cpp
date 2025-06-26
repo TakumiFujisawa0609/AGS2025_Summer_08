@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../Manager/Application.h"
 #include "../Object/Camera.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/SoundManager.h"
@@ -21,6 +22,8 @@ void PlayerShot::Init(Camera* camera)
 
 	image_ = LoadGraph("Data/Image/gun.png");
 	gunCircleImg_ = LoadGraph("Data/Image/gunCircle.png");
+
+	rKeyImg_ = LoadGraph("Data/Image/RKey.png");
 
 	pos_ = DEFAULT_POS;
 	startPos_ = DEFAULT_POS;
@@ -56,8 +59,8 @@ void PlayerShot::Draw(void)
 	//DrawFormatString(0, 520, 0xffffff, "dir_: (%.2f, %.2f, %.2f)", dir_.x, dir_.y, dir_.z);
 	//DrawFormatString(0, 560, 0xffffff, "Dist:%f", dist_);
 
-	DrawRotaGraph(100, 990, 0.16f, 0.0f, gunCircleImg_, true);
-	DrawRotaGraph(100, 970, 0.23f, 0.0f, image_, true);
+	DrawRotaGraph(120, 990, 0.16f, 0.0f, gunCircleImg_, true);
+	DrawRotaGraph(120, 970, 0.23f, 0.0f, image_, true);
 
 	// 表示座標
 	int x = 130;
@@ -70,11 +73,11 @@ void PlayerShot::Draw(void)
 
 	SetFontSize(36);
 	// 残弾・スラッシュ・最大弾数を縦に表示、少しずらして描画
-	DrawFormatString(x - 70 + ammoOffsetX, y + 18, 0x00ff00, "%d", ammo_); // 残弾
+	DrawFormatString(x - 50 + ammoOffsetX, y + 18, 0x00ff00, "%d", ammo_); // 残弾
 	SetFontSize(21);
-	DrawString(x - 29, y + 30, "/", 0xd3d3d3);   // スラッシュ
+	DrawString(x - 11, y + 30, "/", 0xd3d3d3);   // スラッシュ
 	SetFontSize(20);
-	DrawFormatString(x - 13 + maxOffsetX, y + 32, 0xd3d3d3, "%d", maxMagazine_); // 最大弾数
+	DrawFormatString(x + 3 + maxOffsetX, y + 32, 0xd3d3d3, "%d", maxMagazine_); // 最大弾数
 
 	float scale = 0.1f;  // 縮小
 	//DrawRotaGraph(60, 1020, scale, 0.0f, image_, true);
@@ -85,6 +88,7 @@ void PlayerShot::Release(void)
 	MV1DeleteModel(modelId_);
 
 	DeleteGraph(gunCircleImg_);
+	DeleteGraph(rKeyImg_);
 }
 
 void PlayerShot::Shot(void)
@@ -137,6 +141,13 @@ void PlayerShot::ReLoad(void)
 	{
 		// 弾切れ音再生
 		SoundManager::GetInstance()->PlayNoAmmo();
+
+		isReload_ = true;
+
+		if (maxMagazine_ <= 0)
+		{
+			isReload_ = false;
+		}
 	}
 
 
@@ -148,7 +159,7 @@ void PlayerShot::ReLoad(void)
 		int needAmmo = MAX_AMMO - ammo_;
 		int reloadAmmo;
 
-		// 小さい方を選ぶ（std::minを使わずに）
+		// 小さい方を選ぶ
 		if (needAmmo < maxMagazine_)
 		{
 			reloadAmmo = needAmmo;
@@ -164,10 +175,22 @@ void PlayerShot::ReLoad(void)
 		// マガジンから引く
 		maxMagazine_ -= reloadAmmo;
 
+		isReload_ = false;
+
 		// リロード音再生
 		SoundManager::GetInstance()->PlayReLoad();
 	}
 
+}
+
+void PlayerShot::KeyDraw(void)
+{
+	if (isReload_)
+	{
+		// リロード中のキー画像を表示
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 58, 0.12f, 0.0f, rKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 5, Application::SCREEN_SIZE_Y / 2 + 50, 0xffffff, "リロード");
+	}
 }
 
 int PlayerShot::GetModelId() const

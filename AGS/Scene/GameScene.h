@@ -28,6 +28,9 @@ public:
 	void Release(void) override;
 
 	void GameOver();
+
+	void View();
+	void Reticule();
 private:
 
 

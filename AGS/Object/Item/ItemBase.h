@@ -29,11 +29,11 @@ public:
     };
 
     static constexpr SpawnPoint bulletSpawnPoints[1] = {
-       {200.0f, 146.0f, -300.0f}
+       {195.0f, 125.0f, -327.0f}
     };
 
     static constexpr SpawnPoint kitSpawnPoints[1] = {
-       {200.0f, 146.0f, 550.0f}
+       {200.0f, 146.0f, 455.0f}
     };
 
     static constexpr SpawnPoint vaccineSpawnPoints[3] = {
@@ -43,7 +43,7 @@ public:
     };
 
     // 初期サイズ
-    static constexpr VECTOR DEFAULT_BULLET_SCALE = { 1,1,1 };
+    static constexpr VECTOR DEFAULT_BULLET_SCALE = { 2,2,2 };
 
     // 初期サイズ
     static constexpr VECTOR DEFAULT_KIT_SCALE = { 0.15,0.15,0.15 };

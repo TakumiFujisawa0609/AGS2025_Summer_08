@@ -1,3 +1,4 @@
+#include "../../utility/AsoUtility.h"
 #include "ItemKit.h"
 
 ItemKit::ItemKit(void)
@@ -32,4 +33,7 @@ void ItemKit::SetParam()
 	kitImg_ = LoadGraph("Data/Image/Kit.png");
     // キーアイコン画像
     keyImg_ = LoadGraph("Data/Image/Q_Key.png");
+
+    // 向き設定
+    MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(90.0f), AsoUtility::Deg2RadF(90.0f) });
 }

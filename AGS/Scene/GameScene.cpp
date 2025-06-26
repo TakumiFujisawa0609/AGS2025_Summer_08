@@ -88,7 +88,6 @@ void GameScene::Update(void)
 		if (gameOverTimer_ >= 3.0f)
 		{
 			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
-			
 		}
 	}
 
@@ -98,6 +97,9 @@ void GameScene::Update(void)
 void GameScene::Draw(void)
 {
 	stage_->Draw();
+
+	// 景色
+	//View();
 
 	player_->Draw();
 
@@ -115,6 +117,12 @@ void GameScene::Draw(void)
 	blood_->Draw();
 
 	collision_->Draw();
+
+	// リロードキーの表示
+	pShot_->KeyDraw();
+
+	// レティクル
+	Reticule();
 
 	GameOver();
 
@@ -159,6 +167,42 @@ void GameScene::GameOver()
 		isGameOver = true;
 
 	}
+}
+
+void GameScene::View()
+{
+	// 2. 加算合成で中心を光らせる（スポットライト風）
+	int centerX = Application::SCREEN_SIZE_X / 2;
+	int centerY = Application::SCREEN_SIZE_Y / 2;
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150); // 薄暗くする
+	DrawBox(0, 0, 1920, 1080, GetColor(0, 0, 0), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	// 円の明かり（ここは好みに応じて画像でも可）
+	SetDrawBlendMode(DX_BLENDMODE_ADD, 120);
+	DrawCircle(centerX, centerY, 200, GetColor(255, 255, 200), TRUE);
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+}
+
+void GameScene::Reticule()
+{
+	int centerX_ = Application::SCREEN_SIZE_X / 2;
+	int centerY_ = Application::SCREEN_SIZE_Y / 2;
+
+	int size = 8;    // 各矢印の長さ
+	int gap = 4;         // 中心からの間隔
+	int color = GetColor(255, 255, 255);
+
+	// 上
+	DrawLine(centerX_, centerY_ - gap, centerX_, centerY_ - (gap + size), color);
+	// 下
+	DrawLine(centerX_, centerY_ + gap, centerX_, centerY_ + (gap + size), color);
+	// 左
+	DrawLine(centerX_ - gap, centerY_, centerX_ - (gap + size), centerY_, color);
+	// 右
+	DrawLine(centerX_ + gap, centerY_, centerX_ + (gap + size), centerY_, color);
 }
 
 

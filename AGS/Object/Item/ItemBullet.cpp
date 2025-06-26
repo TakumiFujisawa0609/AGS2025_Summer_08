@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../../Utility/AsoUtility.h"
 #include "ItemBullet.h"
 
 ItemBullet::ItemBullet(void)
@@ -28,5 +29,7 @@ VECTOR ItemBullet::GetVPos()
 void ItemBullet::SetParam()
 {
 	scale_ = DEFAULT_BULLET_SCALE;
-	angle_ = DEFAULT_BULLET_ANGLE;
+
+	// å¸Ç´ê›íË
+	MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(-90.0f), 0 });
 }
