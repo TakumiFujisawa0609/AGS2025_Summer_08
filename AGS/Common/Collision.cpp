@@ -84,6 +84,15 @@ void Collision::Draw()
 		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
 		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "拾う");
 	}
+
+	if (isOpenKey_)
+	{
+		// 開くキー画像を表示
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "開く");
+	}
+
+	DrawFormatString(500, 0,0xffffff, "isPickKey:%d", isPickKey_);
 }
 
 void Collision::Release()
@@ -318,6 +327,8 @@ void Collision::CollisionPAndItem()
 {
 	const auto& items = item_->GetItems();
 
+	isPickKey_ = false;
+
 	// 連想配列（map）を for で回す
 	for (auto pair : items)
 	{
@@ -349,11 +360,13 @@ void Collision::CollisionPAndItem()
 			// 半径の合計
 			float radiusNum = radiusP + radiusV;
 
-			// 範囲内にいる状態でFを押したら
+			// 範囲内にいる状態で
 			if (dis < radiusNum)
 			{
+
 				isPickKey_ = true;
 
+				// Fを押したら
 				if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 				{
 					// アイテム別処理
@@ -392,9 +405,6 @@ void Collision::CollisionPAndItem()
 
 				}
 			}
-
-			// 範囲外に出るとキー非表示
-			if (dis > radiusNum) isPickKey_ = false;
 		}
 	}
 }
@@ -425,14 +435,24 @@ void Collision::CollisionPAndD()
 	// ワクチンがすべて拾われているか確認
 	if (item_->GetVaccine() == 0)
 	{
-		// 範囲内にいる状態でFを押したら
-		if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+		// 範囲内にいる状態で
+		if (dis < radiusNum)
 		{
-			// ドアが開いた音を再生
-			SoundManager::GetInstance()->PlayOpen();
+			isOpenKey_ = true;
 
-			// ワクチンがすべて拾われていたらゲームクリアへ遷移
-			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+			// Fを押したら
+			if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			{
+				// ドアが開いた音を再生
+				SoundManager::GetInstance()->PlayOpen();
+
+				// ワクチンがすべて拾われていたらゲームクリアへ遷移
+				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+			}
+		}
+		else
+		{
+			isOpenKey_ = false;
 		}
 	}
 }

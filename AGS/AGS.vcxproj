@@ -164,6 +164,7 @@
     <ClCompile Include="Object\Item\ItemVaccine.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\Tutorial.cpp" />
+    <ClCompile Include="Manager\ShotManager.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Object\Button\ExitButton.h" />
     <ClInclude Include="Object\Button\Button.h" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\Tutorial.h" />
     <ClInclude Include="Scene\TitleScene.h" />
+    <ClInclude Include="Manager\ShotManager.h" />
     <ClInclude Include="Stage\StageBase.h" />
     <ClCompile Include="Common\AnimControl.cpp" />
     <ClCompile Include="Common\Collision.cpp" />

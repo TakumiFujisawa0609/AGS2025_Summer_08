@@ -17,9 +17,6 @@ void PlayerShot::Init(Camera* camera)
 {
 	camera_ = camera;
 
-	// ƒ‚ƒfƒ‹ƒ[ƒh
-	//modelId_ = MV1LoadModel("Data/Model/bullet/bullet.mv1");
-
 	image_ = LoadGraph("Data/Image/gun.png");
 	gunCircleImg_ = LoadGraph("Data/Image/gunCircle.png");
 
@@ -85,8 +82,6 @@ void PlayerShot::Draw(void)
 
 void PlayerShot::Release(void)
 {
-	MV1DeleteModel(modelId_);
-
 	DeleteGraph(gunCircleImg_);
 	DeleteGraph(rKeyImg_);
 }
@@ -108,8 +103,6 @@ void PlayerShot::Shot(void)
 
 		// ’e”‚ðŒ¸‚ç‚·
 		ammo_--;
-
-		SoundManager::GetInstance()->PlayShot();
 	}
 
 	// ’eˆÚ“®

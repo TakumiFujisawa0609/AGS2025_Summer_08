@@ -28,18 +28,23 @@ public:
         VECTOR pos;
     };
 
-    static constexpr SpawnPoint bulletSpawnPoints[1] = {
-       {195.0f, 125.0f, -327.0f}
+    static constexpr SpawnPoint bulletSpawnPoints[5] = {
+       {195.0f, 125.0f, -327.0f},
+        {2575.0f, 125.0f, 3796.0f },
+        {3656.0f, 125.0f, -2980.0f},
+        {7432.0f, 125.0f, -1430.0f},
+        {7432.0f, 125.0f, 1520.0f}
     };
 
-    static constexpr SpawnPoint kitSpawnPoints[1] = {
-       {200.0f, 146.0f, 455.0f}
+    static constexpr SpawnPoint kitSpawnPoints[2] = {
+       {200.0f, 146.0f, 455.0f},
+        {4841.0f, 146.0f, 820.0f }
     };
 
     static constexpr SpawnPoint vaccineSpawnPoints[3] = {
-       {-800.0f, 0.0f, -500.0f},
-       {-200.0f, 0.0f, -600.0f},
-       {-200.0f, 0.0f, 400.0f}
+       {4815.0f, 129.0f, 1550.0f},
+       {3466.0f, 129.0f, -3455.0f},
+       {8830.0f, 129.0f, -12.0f}
     };
 
     // 初期サイズ
@@ -49,7 +54,7 @@ public:
     static constexpr VECTOR DEFAULT_KIT_SCALE = { 0.15,0.15,0.15 };
 
     // 初期サイズ
-    static constexpr VECTOR DEFAULT_VACCINE_SCALE = { 0.1,0.1,0.1 };
+    static constexpr VECTOR DEFAULT_VACCINE_SCALE = { 0.057, 0.057,0.057 };
 
     // 初期角度
     static constexpr VECTOR DEFAULT_BULLET_ANGLE = { 0.0f, 0.0f, 0.0f };

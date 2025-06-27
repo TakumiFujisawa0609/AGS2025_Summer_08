@@ -94,6 +94,8 @@ private:
     int fKeyImg_;
     // 拾うフラグ
     int isPickKey_ = false;
+    // 開くフラグ
+    bool isOpenKey_ = false;
 
 
 #ifdef _DEBUG
