@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Common\Vector2.cpp" />
     <ClCompile Include="Object\Button\ExitButton.cpp" />
     <ClCompile Include="Object\Button\Button.cpp" />
     <ClCompile Include="Manager\EnemyManager.cpp" />
@@ -162,9 +163,12 @@
     <ClCompile Include="Object\Item\ItemBullet.cpp" />
     <ClCompile Include="Object\Item\ItemKit.cpp" />
     <ClCompile Include="Object\Item\ItemVaccine.cpp" />
+    <ClCompile Include="Object\Button\ReturnButton.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\Tutorial.cpp" />
+    <ClCompile Include="Object\Button\TitleButton.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
+    <ClInclude Include="Common\Vector2.h" />
     <ClInclude Include="Object\Button\ExitButton.h" />
     <ClInclude Include="Object\Button\Button.h" />
     <ClInclude Include="Common\AnimControl.h" />
@@ -190,6 +194,7 @@
     <ClInclude Include="Object\Player.h" />
     <ClInclude Include="Object\PlayerShot.h" />
     <ClInclude Include="Object\StageBase.h" />
+    <ClInclude Include="Object\Button\ReturnButton.h" />
     <ClInclude Include="Scene\GameClear.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />
@@ -215,6 +220,7 @@
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClInclude Include="Object\Button\TitleButton.h" />
     <ClInclude Include="Utility\AsoUtility.h" />
   </ItemGroup>
   <ItemGroup>

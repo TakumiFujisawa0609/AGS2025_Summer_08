@@ -95,7 +95,7 @@ void PlayerShot::Shot(void)
 {
 	// 弾発射
 	if (!isAlive_
-		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)
+		&& InputManager::GetInstance().IsTrgMouseLeft()
 		&& ammo_ > 0)
 	{
 		// カメラ位置と方向取得→発射位置に設定
@@ -137,7 +137,7 @@ void PlayerShot::ReLoad(void)
 {
 	// 弾切れ
 	if (!isAlive_
-		&& InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT))
+		&& InputManager::GetInstance().IsTrgMouseLeft())
 	{
 		// 弾切れ音再生
 		SoundManager::GetInstance()->PlayNoAmmo();
@@ -153,7 +153,7 @@ void PlayerShot::ReLoad(void)
 
 	// リロード
 	// マガジン取得状態でRを押したら
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
 	{
 		// 必要な弾数を計算（例：20発MAXで今5発なら15発必要）
 		int needAmmo = MAX_AMMO - ammo_;

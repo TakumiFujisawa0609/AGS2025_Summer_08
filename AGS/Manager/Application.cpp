@@ -49,7 +49,7 @@ void Application::Init(void)
 
 	// ウィンドウサイズ
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DIPTH);
-	ChangeWindowMode(false);
+	ChangeWindowMode(true);
 
 
 	// DxLib初期化
@@ -63,7 +63,7 @@ void Application::Init(void)
 	// 入力制御初期化
 	SetUseDirectInputFlag(true);
 	InputManager::CreateInstance();
-	InputManager::GetInstance()->Init();
+	InputManager::GetInstance().Init();
 
 	// シーン管理初期化
 	SceneManager::CreateInstance();
@@ -83,7 +83,7 @@ void Application::Init(void)
 void Application::Run(void)
 {
 	// ゲームループ
-	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_0) == 0)
 	{
 		// フレームレート更新
 		// 1/60秒経過していないなら再ループさせる
@@ -91,7 +91,7 @@ void Application::Run(void)
 		if (SceneManager::GetInstance()->IsGameEnd())
 			return;
 
-		InputManager::GetInstance()->Update();
+		InputManager::GetInstance().Update();
 		SceneManager::GetInstance()->Update();
 		SceneManager::GetInstance()->Draw();
 
@@ -106,9 +106,6 @@ void Application::Run(void)
 
 void Application::Destroy(void)
 {
-	// キー制御破棄
-	InputManager::GetInstance()->DeleteInstance();
-
 	// シーン管理破棄
 	SceneManager::GetInstance()->Destroy();
 

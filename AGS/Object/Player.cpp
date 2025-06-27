@@ -98,7 +98,7 @@ void Player::Hp(void)
 	}
 
 	// ƒq[ƒ‹‰Â”\‰ñ”‚ª‚PˆÈã‚ÅHP‚ªí‚ê‚Ä‚éó‘Ô‚ÉQƒL[‚Å‘Ì—Í‚ð‰ñ•œ
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_Q) && heal_ > 0 && hp_ < DEFAULT_HP)
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_Q) && heal_ > 0 && hp_ < DEFAULT_HP)
 	{
 		// ‰ñ•œ
 		hp_ += 1;
@@ -184,19 +184,19 @@ void Player::ProcessMove(VECTOR angle)
 
 	// ˆÚ“®•ûŒü‚ðŒˆ‚ß‚é
 	moveVec_ = AsoUtility::VECTOR_ZERO;
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_S)) {
+	if (InputManager::GetInstance().IsNew(KEY_INPUT_S)) {
 		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_F);
 		SoundManager::GetInstance()->PlayWalk();
 	}
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_W)) { 
+	if (InputManager::GetInstance().IsNew(KEY_INPUT_W)) { 
 		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_B);
 		SoundManager::GetInstance()->PlayWalk();
 	}
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_A)) {
+	if (InputManager::GetInstance().IsNew(KEY_INPUT_A)) {
 		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_R);
 		SoundManager::GetInstance()->PlayWalk();
 	}
-	if (InputManager::GetInstance()->IsNew(KEY_INPUT_D)) { 
+	if (InputManager::GetInstance().IsNew(KEY_INPUT_D)) { 
 		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_L); 
 		SoundManager::GetInstance()->PlayWalk();
 	}

@@ -342,7 +342,7 @@ void Collision::CollisionPAndItem()
 			float radiusNum = radiusP + radiusV;
 
 			// 範囲内にいる状態でFを押したら
-			if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
 			{
 				// アイテム別処理
 				switch (item->GetType())
@@ -409,7 +409,7 @@ void Collision::CollisionPAndD()
 	if (item_->GetVaccine() == 0)
 	{
 		// 範囲内にいる状態でFを押したら
-		if (dis < radiusNum && InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+		if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
 		{
 			// ドアが開いた音を再生
 			SoundManager::GetInstance()->PlayOpen();
