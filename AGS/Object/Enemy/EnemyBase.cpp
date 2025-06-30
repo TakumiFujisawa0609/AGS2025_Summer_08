@@ -256,6 +256,13 @@ float EnemyBase::GetAnimRate()
 	return anim_->GetCurrentAnimRate();
 }
 
+bool EnemyBase::IsHitWall(const VECTOR& from, const VECTOR& to)
+{
+
+	// ラインによる当たり判定（Collisionクラスなどで使ってるのと同じでOK）
+	return MV1CollCheck_Line(modelId_, -1, from, to, -1)
+}
+
 int EnemyBase::GetModelId() const
 {
 	return modelId_;

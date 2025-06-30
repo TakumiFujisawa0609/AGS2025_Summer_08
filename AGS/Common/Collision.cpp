@@ -234,7 +234,7 @@ void Collision::CollisionPAndS()
 	VECTOR movedPos = player_->GetMovedPos();
 
 	// 移動ベクトル（向き）
-	VECTOR dir = VSub(movedPos, pos);   // 移動方向ベクトル
+	VECTOR dir = VSub(movedPos, pos);  // 移動方向ベクトル
 	dir = VNorm(dir);             // 正規化（長さを1にする）
 	dir = VScale(dir, 150.0f);    // 任意の長さにスケーリング
 	VECTOR endPos = VAdd(pos, dir); // pos から伸ばした終点
@@ -299,8 +299,6 @@ void Collision::CollisionEAndS()
 
 
 #ifdef _DEBUG
-
-
 			enemyPosS_ = pos;
 			enemyPosE_ = movedPos;
 #endif // _DEBUG

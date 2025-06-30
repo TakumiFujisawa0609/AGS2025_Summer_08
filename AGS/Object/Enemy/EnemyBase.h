@@ -93,6 +93,8 @@ public:
 
 	float GetAnimRate();
 
+	bool IsHitWall(const VECTOR& from, const VECTOR& to);
+
 protected:
 
 	AnimControl* anim_;	// アニメーションクラス
