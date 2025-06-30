@@ -87,7 +87,7 @@ void PlayerShot::Release(void)
 void PlayerShot::Shot(void)
 {
 	if (shotTimer_ > 0) return;
-	if (!InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT)) return;
+	if (!InputManager::GetInstance().IsClickMouseLeft()) return;
 	if (ammo_ <= 0) return;
 
 	for (auto& shot : shots_)
@@ -110,14 +110,14 @@ void PlayerShot::Shot(void)
 void PlayerShot::ReLoad(void)
 {
 	// 左クリック時、弾が0なら弾切れ音
-	if (InputManager::GetInstance()->IsTrgDown(MOUSE_INPUT_LEFT) && ammo_ == 0)
+	if (InputManager::GetInstance().IsClickMouseLeft() && ammo_ == 0)
 	{
 		SoundManager::GetInstance()->PlayNoAmmo();
 		isReload_ = (maxMagazine_ > 0);
 	}
 
 	// Rキーでリロード
-	if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
+	if (InputManager::GetInstance().IsClickMouseLeft() && ammo_ < MAX_AMMO && maxMagazine_ > 0)
 	{
 		int needAmmo = MAX_AMMO - ammo_;
 		int reloadAmmo;

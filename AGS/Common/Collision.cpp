@@ -346,19 +346,14 @@ void Collision::CollisionPAndItem()
 			// 半径の合計
 			float radiusNum = radiusP + radiusV;
 
-<<<<<<< HEAD
-			// 範囲内にいる状態でFを押したら
-			if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
-=======
 			// 範囲内にいる状態で
 			if (dis < radiusNum)
->>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
 			{
 
 				isPickKey_ = true;
 
 				// Fを押したら
-				if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+				if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
 				{
 					// アイテム別処理
 					switch (item->GetType())
@@ -427,18 +422,18 @@ void Collision::CollisionPAndD()
 	// ワクチンがすべて拾われているか確認
 	if (item_->GetVaccine() == 0)
 	{
-<<<<<<< HEAD
+
 		// 範囲内にいる状態でFを押したら
 		if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
-=======
+
 		// 範囲内にいる状態で
 		if (dis < radiusNum)
->>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
+
 		{
 			isOpenKey_ = true;
 
 			// Fを押したら
-			if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
 			{
 				// ドアが開いた音を再生
 				SoundManager::GetInstance()->PlayOpen();

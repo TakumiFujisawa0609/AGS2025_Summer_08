@@ -167,11 +167,7 @@
     <ClCompile Include="Object\Button\PauseExit.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\Tutorial.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Object\Button\TitleButton.cpp" />
-=======
-    <ClCompile Include="Manager\ShotManager.cpp" />
->>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Common\Vector2.h" />
     <ClInclude Include="Object\Button\ExitButton.h" />
@@ -206,7 +202,6 @@
     <ClInclude Include="Scene\SceneBase.h" />
     <ClInclude Include="Scene\Tutorial.h" />
     <ClInclude Include="Scene\TitleScene.h" />
-    <ClInclude Include="Manager\ShotManager.h" />
     <ClInclude Include="Stage\StageBase.h" />
     <ClCompile Include="Common\AnimControl.cpp" />
     <ClCompile Include="Common\Collision.cpp" />
