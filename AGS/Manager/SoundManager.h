@@ -12,6 +12,7 @@
 #define VOICE_PATH "Data/Sound/voice.wav"
 #define CLECK_PATH "Data/Sound/Cleck.wav"
 #define HOVER_PATH "Data/Sound/Hover.mp3"
+#define PAUSE_PATH "Data/Sound/Pause.wav"
 
 class SoundManager
 {
@@ -54,7 +55,7 @@ public:
 
 	void PlayCleck();	// 歩く
 	void PlayHover();
-
+	void PlayPause();
 
 
 	
@@ -96,5 +97,6 @@ private:
 
 	//クリック音
 	int cleckHundle_;
-
+	//ポーズ決定音
+	int pauseHundle_;
 };

@@ -108,7 +108,20 @@
     <ClCompile Include="Object\Button\ExitButton.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Object\Button\ReturnButton.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Button\TitleButton.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Vector2.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Button\PauseExit.cpp">
+=======
     <ClCompile Include="Manager\ShotManager.cpp">
+>>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -209,7 +222,20 @@
     <ClInclude Include="Object\Button\ExitButton.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Object\Button\ReturnButton.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Button\TitleButton.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Vector2.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Button\PauseExit.h">
+=======
     <ClInclude Include="Manager\ShotManager.h">
+>>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

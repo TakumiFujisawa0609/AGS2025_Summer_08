@@ -12,6 +12,9 @@
 #include "../Manager/InputManager.h"
 #include "../Manager/SoundManager.h"
 #include "GameScene.h"
+#include "../Object/Button/ReturnButton.h"
+#include "../Object/Button/PauseExit.h"
+#include "../Object/Button/TitleButton.h"
 
 GameScene::GameScene(void)
 {
@@ -43,11 +46,24 @@ void GameScene::Init(void)
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);
 
 	gameOverImg_ = LoadGraph("Data/Image/gameover.png");
+	pauseImg_ = LoadGraph("Data/Image/Button/Pause.png");
+	taskuImg_ = LoadGraph("Data/Image/Button/Pause.png");
+
+	isPauseAlive = false;
+	isPauseInit = false;
 }
 
 // 更新処理
 void GameScene::Update(void)
 {
+	// ポーズの更新
+	Pause();
+
+	// ポーズ中だったら処理しない
+	if (isPauseAlive == true)
+		return;
+
+
 	player_->Update(camera_->GetAngles());
 
 	enemy_->Update();
@@ -91,6 +107,7 @@ void GameScene::Update(void)
 		}
 	}
 
+
 }
 
 // 描画処理
@@ -126,7 +143,11 @@ void GameScene::Draw(void)
 
 	GameOver();
 
-	
+	if (isPauseAlive == true)
+	{
+		//ポーズ画面の描画
+		PauseDraw();
+	}
 }
 
 //解放処理
@@ -150,6 +171,8 @@ void GameScene::Release(void)
 
 	blood_->Release();
 	delete blood_;
+
+
 
 	DeleteGraph(gameOverImg_);
 }
@@ -203,6 +226,89 @@ void GameScene::Reticule()
 	DrawLine(centerX_ - gap, centerY_, centerX_ - (gap + size), centerY_, color);
 	// 右
 	DrawLine(centerX_ + gap, centerY_, centerX_ + (gap + size), centerY_, color);
+}
+
+void GameScene::Pause(void)
+{
+
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
+	{
+		isPauseAlive = true;
+		
+	}
+	
+
+	//ポーズ画面の継続確認
+	if (isPauseAlive == true)
+	{
+		//ポーズの初期化
+		if (isPauseInit == false)
+		{
+
+			pauseExit_ = new PauseExit(Application::SCREEN_SIZE_X/2, 850, 500, 200);
+			pauseExit_->Init();
+
+			returnButton_ = new ReturnButton(Application::SCREEN_SIZE_X / 2, 450, 500, 200);
+			returnButton_->Init();
+
+			titleButton_ = new TitleButton(Application::SCREEN_SIZE_X / 2, 650, 500, 200);
+			titleButton_ -> Init();
+
+			isPauseInit = true;
+			return;
+		}
+	}
+	// ここでEscapeキー判定を追加する
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
+	{
+		isPauseAlive = false;
+		isPauseInit = false;  
+		SetMouseDispFlag(false);
+		return;
+	}
+
+	//初期化終わったおわっているか確認
+	if (isPauseInit == true && isPauseAlive == true)
+	{
+		SetMouseDispFlag(true);
+		GetMousePoint(&mousePos_X, &mousePos_Y);
+		//ボタン更新
+		pauseExit_->Update();
+		returnButton_->Update();
+		titleButton_->Update();
+
+		if (pauseExit_->GetButtonState() == PauseExit::BUTTON_STATE::DISABLED)
+		{
+			SceneManager::GetInstance()->SetGameEnd();
+			SetMouseDispFlag(false);
+		}
+
+		if (returnButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
+		{
+			isPauseAlive = false;
+			SetMouseDispFlag(false);
+		}
+
+
+		if (titleButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
+		{
+			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
+	
+		}
+		
+		
+	}
+
+}
+
+void GameScene::PauseDraw(void)
+{
+	DrawGraph(0, 0, pauseImg_, true);
+
+
+	pauseExit_->Draw();
+	returnButton_->Draw();
+	titleButton_->Draw();
 }
 
 
