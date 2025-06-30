@@ -57,7 +57,7 @@ void PlayerShot::Draw(void)
 	{
 		if (shot.isAlive)
 		{
-	//		DrawSphere3D(shot.pos, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
+			DrawSphere3D(shot.pos, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
 		}
 	}
 
@@ -117,7 +117,7 @@ void PlayerShot::ReLoad(void)
 	}
 
 	// Rキーでリロード
-	if (InputManager::GetInstance().IsClickMouseLeft() && ammo_ < MAX_AMMO && maxMagazine_ > 0)
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
 	{
 		int needAmmo = MAX_AMMO - ammo_;
 		int reloadAmmo;
