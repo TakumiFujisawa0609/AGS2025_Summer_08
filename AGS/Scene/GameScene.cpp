@@ -24,19 +24,19 @@ GameScene::~GameScene(void)
 //‰Šú‰»ˆ—
 void GameScene::Init(void)
 {
+	stage_ = new StageBase();
 	player_ = new Player();
 	camera_ = new Camera();
 	enemy_ = new EnemyManager(player_);
-	stage_ = new StageBase();
 	pShot_ = new PlayerShot();
 	item_ = new ItemManager();
 	blood_ = new Blood();
 	collision_ = new Collision();
 
+	stage_->Init();
 	player_->Init();
 	camera_->Init(player_);
 	enemy_->Init();
-	stage_->Init();
 	pShot_->Init(camera_);
 	item_->Init(player_, pShot_);
 	blood_->Init();

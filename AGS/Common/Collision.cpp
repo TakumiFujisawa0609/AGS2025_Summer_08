@@ -126,7 +126,7 @@ void Collision::CollisionPAndE()
 
 			// 中心間の距離
 			float dis = VSize(VSub(pCenterPos,eCenterPos));
-			dis = dis - 100;
+			dis = dis - 150;
 
 			// 半径の合計
 			float radiusNum = radiusP + radiusE;
@@ -137,14 +137,19 @@ void Collision::CollisionPAndE()
 			// 攻撃中だったら
 			if (dis < radiusNum)
 			{
-				if (!enemyAttackHit_[enemy]) // 前のフレームで当たってなかったら
+				// 攻撃アニメの特定範囲内だけ当たり判定を有効にする（例）
+				if (animRate >= 0.4f && animRate <= 0.6f)
 				{
-					// 指定したアニメ範囲内でしか攻撃ヒットを認めない
-					//if (animRate >= 0.5f && animRate <= 0.6f)
-					//{
+					if (!enemyAttackHit_[enemy])
+					{
 						player_->Damage(1);
-					//}
-					enemyAttackHit_[enemy] = true;
+						enemyAttackHit_[enemy] = true;
+					}
+				}
+				else
+				{
+					// 攻撃範囲外ならフラグを戻す
+					enemyAttackHit_[enemy] = false;
 				}
 			}
 			else
@@ -158,82 +163,63 @@ void Collision::CollisionPAndE()
 
 void Collision::CollisionPShotAndE(void)
 {
-	//int eModelId = enemy_->GetModelId();
-
-	//// 
-	//VECTOR shotPos = pShot_->GetPos();
-	//VECTOR dir = pShot_->GetDir();
-	//float maxShotPos = 1000.0f;
-
-	//// endPos は shotPos から dir 方向に maxDistance 進んだ地点
-	//VECTOR endPos = VAdd(shotPos, VScale(dir, maxShotPos));
-
-	//// 球体と敵モデルとの当たり判定
-	//hitPoly_PShot_E = MV1CollCheck_Line(eModelId, -1, shotPos, endPos, -1);
-
-	//if (hitPoly_PShot_E.HitFlag == 1)
-	//{
-	//	enemy_->SetAlive(false);
-
-	//	a = shotPos;
-	//	b = endPos;
-	//}
-
-	if (!pShot_->GetAlive()) return; // 弾が無いなら判定しない
-
-	// 敵取得
 	const auto& enemies = enemy_->GetEnemies();
+	auto& shots = pShot_->GetShots();  // 非constで書き換え可能に（SetAlive代わり）
 
-	// 連想配列（map）を for で回す
-	for (auto pair : enemies)
+	for (auto& shot : shots)
 	{
-		for (EnemyBase* enemy : pair.second)
+		if (!shot.isAlive) continue;  // 死んでたらスキップ
+
+		// プレイヤーショットの中心点（高さ調整）
+		VECTOR centerPosPShot = VAdd(shot.pos, VGet(0, 0, 0));  // 調整不要ならそのまま
+
+		for (auto pair : enemies)
 		{
-			if (!enemy->GetAlive()) continue;  // 死んだ敵はスキップ
-			// 中心点
-			VECTOR centerPosE = enemy->GetPos();
-			centerPosE = VAdd(centerPosE, VGet(0, 100, 0));
-			// 中心点
-			VECTOR centerPosPShot = pShot_->GetPos();
-
-			// 中心点間の距離
-			float dis = VSize(VSub(centerPosE, centerPosPShot));
-			// 半径
-			float rEnemy = 60.0f;
-			float rPShot = 10.0f;
-			float radiusNum = rEnemy + rPShot;
-
-			// 当たったら
-			if (dis < radiusNum)
+			for (EnemyBase* enemy : pair.second)
 			{
-				enemy->Damage(1);
-				pShot_->SetAlive(false);  // 弾を消す
+				if (!enemy->GetAlive()) continue;
 
+				// 敵の当たり判定用中心
+				VECTOR centerPosE = VAdd(enemy->GetPos(), VGet(0, 100, 0));
 
-				blood_->Emit();
-				blood_->SetAlive(true);
-				blood_->SetPos(centerPosE);
+				float dis = VSize(VSub(centerPosE, centerPosPShot));
+				float rEnemy = 60.0f;
+				float rPShot = 10.0f;
+				float radiusNum = rEnemy + rPShot;
+
+				if (dis < radiusNum)
+				{
+					enemy->Damage(1);
+					shot.isAlive = false;  // 弾を消す
+
+					blood_->Emit();
+					blood_->SetAlive(true);
+					blood_->SetPos(centerPosE);
+
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
 			}
 		}
 	}
-
-#ifdef DEBUG
-		a = shotPos;
-		b = endPos;
-#endif // DEBUG
 }
 
 // プレイヤー弾とステージの当たり判定
 void Collision::CollisionPShotAndS()
 {
 	int modelId = stage_->GetModelId();
-	VECTOR pos = pShot_->GetPos();
+	auto& shots = pShot_->GetShots();  // 複数弾に対応
 
-	hitPoly_PShot_S = MV1CollCheck_Sphere(modelId, -1, pos, 10, -1);
-
-	if (hitPoly_PShot_S.HitNum > 0)
+	for (auto& shot : shots)
 	{
-		pShot_->SetAlive(false);
+		if (!shot.isAlive) continue;
+
+		// 球体とステージの当たり判定
+		hitPoly_PShot_S = MV1CollCheck_Sphere(modelId, -1, shot.pos, 10, -1);
+
+		if (hitPoly_PShot_S.HitNum > 0)
+		{
+			shot.isAlive = false;
+		}
 	}
 }
 
@@ -431,6 +417,7 @@ void Collision::CollisionPAndD()
 	float radiusNum = radiusP + radiusD;
 
 	const auto& items = item_->GetItems();
+
 
 	// ワクチンがすべて拾われているか確認
 	if (item_->GetVaccine() == 0)

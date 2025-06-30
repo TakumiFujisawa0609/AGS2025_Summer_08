@@ -9,7 +9,7 @@ class EnemyManager
 {
 public:
 
-	static constexpr int ENEMY_NUM = 20;
+	static constexpr int ENEMY_NUM = 15;
 
 	// コンストラクタ
 	EnemyManager(Player* player);

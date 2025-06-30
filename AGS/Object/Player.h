@@ -25,6 +25,7 @@ public:
 	void ModelReflect();
 
 	void Damage(int damage);
+	void DamageEffect();
 
 	// 移動停止
 	void SetStop(bool isStop);
@@ -82,4 +83,7 @@ private:
 
 	// 回復可能回数
 	int heal_;
+
+	int redEffectAlpha_ = 0;       // 点滅アルファ値
+	bool redEffectIncreasing_ = true; // アルファ増加中かどうか
 };

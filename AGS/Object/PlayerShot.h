@@ -1,18 +1,27 @@
 #pragma once
+#include <vector>
 class Camera;
 
 class PlayerShot
 {
 public:
+
+	struct ShotData {
+		bool isAlive = false;
+		VECTOR pos = { 0,0,0 };
+		VECTOR startPos = { 0,0,0 };
+		VECTOR dir = { 0,0,0 };
+		float dist = 0.0f;
+	};
+
+
 	static constexpr VECTOR DEFAULT_POS = { 0,0,0 };
 	static constexpr VECTOR DEFAULT_SCALE = { 0.05f,0.05f,0.05f };
-
-	static constexpr float SHOT_SPEED = 50.0f;
-
+	static constexpr float SHOT_SPEED = 60.0f;
 	static constexpr float P_SHOT_MOVE_LIMIT = 4000.0f;
-
-	// 最大球数
 	static constexpr int MAX_AMMO = 20;
+	static constexpr int MAX_SHOTS = 10; // 同時に飛ばせる弾数
+	static constexpr int SHOT_INTERVAL = 15; // 発射間隔（フレーム）
 
 	PlayerShot();
 	~PlayerShot();
@@ -23,7 +32,6 @@ public:
 
 	void Shot(void);
 	void ReLoad(void);
-
 	void KeyDraw(void);
 
 	int GetModelId() const;
@@ -33,43 +41,26 @@ public:
 	bool GetAlive(void);
 	void SetAlive(bool isAlive);
 
+	std::vector<ShotData>& GetShots();
+
 	// マガジン取得
 	void SetMagazine();
 
 private:
+
 	Camera* camera_;
 
-	// モデルID
 	int modelId_;
-	// 弾画像
 	int image_;
-
-	// キー画像
 	int rKeyImg_;
-	// リロードフラグ
+	int gunCircleImg_;
+
 	bool isReload_ = false;
-
-	// 大きさ
 	VECTOR scale_;
-
-	VECTOR pos_;
-	// 発射地点
-	VECTOR startPos_;
-	// 向き
-	VECTOR dir_;
-
-	// 距離
-	float dist_;
-
-	bool isAlive_;
-
-	// 最大弾数
 	int maxMagazine_;
-
-	// 弾数
 	int ammo_;
 
-	// 弾
-	int gunCircleImg_;
-};
+	std::vector<ShotData> shots_;
+	int shotTimer_ = 0;
 
+};

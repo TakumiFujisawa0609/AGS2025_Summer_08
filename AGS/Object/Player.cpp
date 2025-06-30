@@ -46,6 +46,9 @@ void Player::Update(VECTOR angle)
 	// HP
 	Hp();
 
+	// ダメージ表現
+	DamageEffect();
+
 
 	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
 
@@ -70,9 +73,33 @@ void Player::Draw(void)
 
 	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
 	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
-	// 1042
+	
+	DrawFormatString(500, 0, 0xffffff, "%d", hp_);
 	// 回復可能数
 	DrawFormatString(366, 966, 0xffffff, "%d", heal_);
+
+
+	if (redEffectAlpha_ > 0)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, redEffectAlpha_);
+
+		int thickness = 50; // 赤い縁の太さ（調整可）
+		int screenW = 1920;
+		int screenH = 1080;
+
+		int red = GetColor(255, 0, 0);
+
+		// 上
+		DrawBox(0, 0, screenW, thickness, red, TRUE);
+		// 下
+		DrawBox(0, screenH - thickness, screenW, screenH, red, TRUE);
+		// 左
+		DrawBox(0, thickness, thickness, screenH - thickness, red, TRUE);
+		// 右
+		DrawBox(screenW - thickness, thickness, screenW, screenH - thickness, red, TRUE);
+
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
 
 }
 
@@ -128,6 +155,38 @@ void Player::Damage(int damage)
 
 	// 体力が0になったら0に固定
 	if (hp_ <= 0) { hp_ = 0; }
+}
+
+void Player::DamageEffect()
+{
+	// HPが1なら赤点滅演出
+	if (hp_ == 1)
+	{
+		// アルファ値変化
+		if (redEffectIncreasing_)
+		{
+			redEffectAlpha_ += 2; // 増やす
+			if (redEffectAlpha_ >= 150)
+			{
+				redEffectAlpha_ = 150;
+				redEffectIncreasing_ = false;
+			}
+		}
+		else
+		{
+			redEffectAlpha_ -= 2; // 減らす
+			if (redEffectAlpha_ <= 0)
+			{
+				redEffectAlpha_ = 0;
+				redEffectIncreasing_ = true;
+			}
+		}
+	}
+	else
+	{
+		// HPが1以外なら消す
+		redEffectAlpha_ = 0;
+	}
 }
 
 void Player::SetStop(bool isStop)
