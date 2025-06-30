@@ -49,25 +49,25 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 		bulletBoxNum_++;
 	}
 
-	//// 決められた数配置
-	//for (int i = 0; i < VACCINE_NUM; i++)
-	//{
-	//	// 弾生成
-	//	ItemBase* vaccine = new ItemVaccine();
+	// 決められた数配置
+	for (int i = 0; i < VACCINE_NUM; i++)
+	{
+		// 弾生成
+		ItemBase* vaccine = new ItemVaccine();
 
-	//	//初期化　
-	//	vaccine->Init(ItemBase::TYPE::VACCINE,
-	//		itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)]);
+		//初期化　
+		vaccine->Init(ItemBase::TYPE::VACCINE,
+			itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)]);
 
-	//	// スポーン位置設定
-	//	vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
+		// スポーン位置設定
+		vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
 
-	//	// アイテムを登録
-	//	items_[ItemBase::TYPE::VACCINE].emplace_back(vaccine);
+		// アイテムを登録
+		items_[ItemBase::TYPE::VACCINE].emplace_back(vaccine);
 
-	//	// ワクチンの数をカウント
-	//	vaccineNum++;
-	//}
+		// ワクチンの数をカウント
+		vaccineNum_++;
+	}
 
 	// 決められた数配置
 	for (int i = 0; i < KIT_NUM; i++)

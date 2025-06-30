@@ -17,9 +17,6 @@ void PlayerShot::Init(Camera* camera)
 {
 	camera_ = camera;
 
-	// モデルロード
-	//modelId_ = MV1LoadModel("Data/Model/bullet/bullet.mv1");
-
 	image_ = LoadGraph("Data/Image/gun.png");
 	gunCircleImg_ = LoadGraph("Data/Image/gunCircle.png");
 
@@ -85,8 +82,6 @@ void PlayerShot::Draw(void)
 
 void PlayerShot::Release(void)
 {
-	MV1DeleteModel(modelId_);
-
 	DeleteGraph(gunCircleImg_);
 	DeleteGraph(rKeyImg_);
 }
@@ -108,8 +103,6 @@ void PlayerShot::Shot(void)
 
 		// 弾数を減らす
 		ammo_--;
-
-		SoundManager::GetInstance()->PlayShot();
 	}
 
 	// 弾移動
@@ -188,8 +181,8 @@ void PlayerShot::KeyDraw(void)
 	if (isReload_)
 	{
 		// リロード中のキー画像を表示
-		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 58, 0.12f, 0.0f, rKeyImg_, true);
-		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 5, Application::SCREEN_SIZE_Y / 2 + 50, 0xffffff, "リロード");
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 58, 0.14f, 0.0f, rKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 5, Application::SCREEN_SIZE_Y / 2 + 49, 0xffffff, "リロード");
 	}
 }
 

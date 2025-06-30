@@ -90,6 +90,13 @@ private:
     // 敵とステージの当たり判定
 	MV1_COLL_RESULT_POLY hitPoly_E_S;
 
+    // 拾うキー画像
+    int fKeyImg_;
+    // 拾うフラグ
+    int isPickKey_ = false;
+    // 開くフラグ
+    bool isOpenKey_ = false;
+
 
 #ifdef _DEBUG
     // デバッグ用

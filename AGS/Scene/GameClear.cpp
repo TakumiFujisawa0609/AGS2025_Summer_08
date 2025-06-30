@@ -14,7 +14,7 @@ GameClear::~GameClear(void)
 
 void GameClear::Init(void)
 {
-	gameClearImg_ = LoadGraph("Data/Image/gameclear.png");
+	gameClearImg_ = LoadGraph("Data/Image/gameclear1.png");
 }
 
 void GameClear::Update(void)
@@ -28,8 +28,8 @@ void GameClear::Update(void)
 
 void GameClear::Draw(void)
 {
-	float scale = 1.1f;  // èkè¨
-	DrawRotaGraph(958, 538, scale, 0.0f, gameClearImg_, true);
+	float scale = 1.1f;  // èkè¨ 958
+	DrawRotaGraph(564.5, 538, scale, 0.0f, gameClearImg_, true);
 }
 
 void GameClear::Release(void)

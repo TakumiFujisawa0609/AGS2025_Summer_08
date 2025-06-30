@@ -2,6 +2,7 @@
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
+#include "../Manager/Application.h"
 #include "../Common/AnimControl.h"
 #include "../Object/Player.h"
 #include "../Object/StageBase.h"
@@ -48,6 +49,8 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 		}
 	}
 
+	fKeyImg_ = LoadGraph("Data/Image/FKey.png");
+
 }
 
 void Collision::Update()
@@ -75,7 +78,21 @@ void Collision::Update()
 
 void Collision::Draw()
 {
-	
+	if (isPickKey_)
+	{
+		// リロード中のキー画像を表示
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "拾う");
+	}
+
+	if (isOpenKey_)
+	{
+		// 開くキー画像を表示
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "開く");
+	}
+
+	DrawFormatString(500, 0,0xffffff, "isPickKey:%d", isPickKey_);
 }
 
 void Collision::Release()
@@ -310,6 +327,8 @@ void Collision::CollisionPAndItem()
 {
 	const auto& items = item_->GetItems();
 
+	isPickKey_ = false;
+
 	// 連想配列（map）を for で回す
 	for (auto pair : items)
 	{
@@ -341,40 +360,53 @@ void Collision::CollisionPAndItem()
 			// 半径の合計
 			float radiusNum = radiusP + radiusV;
 
+<<<<<<< HEAD
 			// 範囲内にいる状態でFを押したら
 			if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
+=======
+			// 範囲内にいる状態で
+			if (dis < radiusNum)
+>>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
 			{
-				// アイテム別処理
-				switch (item->GetType())
+
+				isPickKey_ = true;
+
+				// Fを押したら
+				if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
 				{
-					// ワクチンの処理
-				case ItemBase::TYPE::VACCINE:
+					// アイテム別処理
+					switch (item->GetType())
+					{
+						// ワクチンの処理
+					case ItemBase::TYPE::VACCINE:
 
-					// ワクチンを拾う
-					item_->PickVaccine();
+						// ワクチンを拾う
+						item_->PickVaccine();
 
-					// アイテムの状態を変更
-					item->ChangeState(ItemBase::STATE::PICKUP_V);
-					break;
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_V);
+						break;
 
-					// 弾薬箱の処理
-				case ItemBase::TYPE::BULLET:
+						// 弾薬箱の処理
+					case ItemBase::TYPE::BULLET:
 
-					// 弾薬箱を拾う
-					item_->PickBulletBox();
+						// 弾薬箱を拾う
+						item_->PickBulletBox();
 
-					// アイテムの状態を変更
-					item->ChangeState(ItemBase::STATE::PICKUP_B);
-					break;
-					// 救急キットの処理
-				case ItemBase::TYPE::KIT:
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_B);
+						break;
+						// 救急キットの処理
+					case ItemBase::TYPE::KIT:
 
-					// 救急キットを拾う
-					item_->PickKitBox();
+						// 救急キットを拾う
+						item_->PickKitBox();
 
-					// アイテムの状態を変更
-					item->ChangeState(ItemBase::STATE::PICKUP_K);
-					break;
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_K);
+						break;
+
+					}
 
 				}
 			}
@@ -408,14 +440,29 @@ void Collision::CollisionPAndD()
 	// ワクチンがすべて拾われているか確認
 	if (item_->GetVaccine() == 0)
 	{
+<<<<<<< HEAD
 		// 範囲内にいる状態でFを押したら
 		if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
+=======
+		// 範囲内にいる状態で
+		if (dis < radiusNum)
+>>>>>>> 6c270b0c17dfc5e79464922d672cffbd55253cd1
 		{
-			// ドアが開いた音を再生
-			SoundManager::GetInstance()->PlayOpen();
+			isOpenKey_ = true;
 
-			// ワクチンがすべて拾われていたらゲームクリアへ遷移
-			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+			// Fを押したら
+			if (InputManager::GetInstance()->IsTrgDown(KEY_INPUT_F))
+			{
+				// ドアが開いた音を再生
+				SoundManager::GetInstance()->PlayOpen();
+
+				// ワクチンがすべて拾われていたらゲームクリアへ遷移
+				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+			}
+		}
+		else
+		{
+			isOpenKey_ = false;
 		}
 	}
 }

@@ -58,12 +58,10 @@ private:
 	// Œü‚«
 	VECTOR dir_;
 
+	// ‹——£
 	float dist_;
 
 	bool isAlive_;
-
-	// ƒ}ƒKƒWƒ“”
-	int magazine_;
 
 	// Å‘å’e”
 	int maxMagazine_;

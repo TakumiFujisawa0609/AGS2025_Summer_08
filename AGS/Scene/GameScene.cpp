@@ -115,14 +115,14 @@ void GameScene::Draw(void)
 {
 	stage_->Draw();
 
-	// ŒiF
-	//View();
-
 	player_->Draw();
 
-	grid_->Draw();
+	//grid_->Draw();
 
 	enemy_->Draw();
+
+	// ŒiF
+	//View();
 
 	camera_->Draw();
 
