@@ -1,9 +1,9 @@
-#include "TitleButton.h"
+#include "PauseExit.h"
 #include  <DxLib.h>
 #include "../../Manager/SoundManager.h"
 
 
-TitleButton::TitleButton(int posX, int posY, int sizeW, int sizsH)
+PauseExit::PauseExit(int posX, int posY, int sizeW, int sizsH)
 {
 	posX_ = posX;
 	posY_ = posY;
@@ -14,18 +14,18 @@ TitleButton::TitleButton(int posX, int posY, int sizeW, int sizsH)
 	buttonState_ = BUTTON_STATE::DISABLED;
 }
 
-TitleButton::~TitleButton()
+PauseExit::~PauseExit()
 {
 }
 
-void TitleButton::Init(void)
+void PauseExit::Init(void)
 {
-	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/GoTitle.png");
-	handle_[HOVER] = LoadGraph("Data/Image/Button/GoTitleHover.png");
-	handle_[DISABLED] = LoadGraph("Data/Image/Button/GoTitle.png");
+	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/Exit_01.png");
+	handle_[HOVER] = LoadGraph("Data/Image/Button/Exit_02.png");
+	handle_[DISABLED] = LoadGraph("Data/Image/Button/Exit_01.png");
 }
 
-void TitleButton::Update(void)
+void PauseExit::Update(void)
 {
 	//マウス座標
 	int mousePosX = 0;
@@ -33,7 +33,7 @@ void TitleButton::Update(void)
 
 
 	// 前フレームの状態を保持する変数を用意（クラスメンバ変数にする必要あり）
-ExitButton:BUTTON_STATE prevButtonState_ = buttonState_;
+PauseExit:BUTTON_STATE prevButtonState_ = buttonState_;
 
 
 	GetMousePoint(&mousePosX, &mousePosY);
@@ -64,16 +64,12 @@ ExitButton:BUTTON_STATE prevButtonState_ = buttonState_;
 	prevButtonState_ = buttonState_;
 }
 
-
-void TitleButton::Draw(void)
+void PauseExit::Draw(void)
 {
-	{
-		DrawRotaGraph(posX_, posY_, 1.0f, 0, handle_[buttonState_], true);
-	}
-
+	DrawRotaGraph(posX_, posY_, 1.0f, 0, handle_[buttonState_], true);
 }
 
-void TitleButton::Release(void)
+void PauseExit::Release(void)
 {
 	for (int i = 0; i < BUTTON_STATE::MAX; i++)
 	{
@@ -81,7 +77,7 @@ void TitleButton::Release(void)
 	}
 }
 
-TitleButton::BUTTON_STATE TitleButton::GetButtonState(void)
+PauseExit::BUTTON_STATE PauseExit::GetButtonState(void)
 {
-    return buttonState_;
+	return buttonState_;
 }

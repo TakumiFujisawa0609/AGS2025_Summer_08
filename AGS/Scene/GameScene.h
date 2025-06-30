@@ -9,7 +9,9 @@ class EnemyManager;
 class ItemManager;
 class Collision;
 class Grid;
-class ExitButton;
+class PauseExit;
+class ReturnButton;
+class TitleButton;
 
 class GameScene : public SceneBase
 {
@@ -56,7 +58,11 @@ private:
 	// グリッド
 	Grid* grid_;
 	//ゲーム終了ボタン
-	ExitButton* exitButton_;
+	PauseExit* pauseExit_;
+	//ゲームにも戻る
+	ReturnButton* returnButton_;
+	//タイトルに戻る
+	TitleButton* titleButton_;
 
 	//testゲームシーン
 	int testGameSceneImg_;
@@ -71,10 +77,13 @@ private:
 	int mousePos_Y;
 
 
-
+	//ゲームオーバー画像ハンドル
 	int gameOverImg_;
+	//ゲームオーバーフラグ
 	bool isGameOver = false;
+	//ポーズフラグ
 	bool isPauseAlive;
+	//ポーズの初期読み込みハンドル
 	bool isPauseInit;
 	
 	float gameOverTimer_ = 0.0f;

@@ -164,6 +164,7 @@
     <ClCompile Include="Object\Item\ItemKit.cpp" />
     <ClCompile Include="Object\Item\ItemVaccine.cpp" />
     <ClCompile Include="Object\Button\ReturnButton.cpp" />
+    <ClCompile Include="Object\Button\PauseExit.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\Tutorial.cpp" />
     <ClCompile Include="Object\Button\TitleButton.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Object\PlayerShot.h" />
     <ClInclude Include="Object\StageBase.h" />
     <ClInclude Include="Object\Button\ReturnButton.h" />
+    <ClInclude Include="Object\Button\PauseExit.h" />
     <ClInclude Include="Scene\GameClear.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\SceneBase.h" />

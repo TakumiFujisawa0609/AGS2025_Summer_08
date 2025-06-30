@@ -20,9 +20,9 @@ ReturnButton::~ReturnButton()
 void ReturnButton::Init(void)
 {
 
-	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/Exit.png");
-	handle_[HOVER] = LoadGraph("Data/Image/Button/Exit_0.png");
-	handle_[DISABLED] = LoadGraph("Data/Image/Button/Exit.png");
+	handle_[DEFOAULT] = LoadGraph("Data/Image/Button/Return.png");
+	handle_[HOVER] = LoadGraph("Data/Image/Button/ReturnHover.png");
+	handle_[DISABLED] = LoadGraph("Data/Image/Button/Return.png");
 }
 
 void ReturnButton::Update(void)
@@ -50,7 +50,7 @@ ExitButton:BUTTON_STATE prevButtonState_ = buttonState_;
 		// 前フレームがHOVER以外 → 今フレームHOVER になったタイミングでだけサウンド再生
 		if (prevButtonState_ != HOVER)
 		{
-			SoundManager::GetInstance()->PlayHover();
+			SoundManager::GetInstance()->PlayPause();
 		}
 
 		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)

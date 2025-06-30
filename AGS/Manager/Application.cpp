@@ -49,7 +49,7 @@ void Application::Init(void)
 
 	// ウィンドウサイズ
 	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, COLOR_BIT_DIPTH);
-	ChangeWindowMode(true);
+	ChangeWindowMode(false);
 
 
 	// DxLib初期化

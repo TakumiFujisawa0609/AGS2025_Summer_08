@@ -13,8 +13,9 @@
 #include "../Manager/SoundManager.h"
 #include "GameScene.h"
 #include "../Object/Button/ReturnButton.h"
-#include "../Object/Button/ExitButton.h"
+#include "../Object/Button/PauseExit.h"
 #include "../Object/Button/TitleButton.h"
+
 GameScene::GameScene(void)
 {
 }
@@ -61,6 +62,7 @@ void GameScene::Update(void)
 	// ポーズ中だったら処理しない
 	if (isPauseAlive == true)
 		return;
+
 
 	player_->Update(camera_->GetAngles());
 
@@ -232,6 +234,7 @@ void GameScene::Pause(void)
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
 	{
 		isPauseAlive = true;
+		
 	}
 	
 
@@ -242,35 +245,57 @@ void GameScene::Pause(void)
 		if (isPauseInit == false)
 		{
 
-			exitButton_ = new ExitButton(1400, 900, 500, 200);
-			exitButton_->Init();
+			pauseExit_ = new PauseExit(Application::SCREEN_SIZE_X/2, 850, 500, 200);
+			pauseExit_->Init();
+
+			returnButton_ = new ReturnButton(Application::SCREEN_SIZE_X / 2, 450, 500, 200);
+			returnButton_->Init();
+
+			titleButton_ = new TitleButton(Application::SCREEN_SIZE_X / 2, 650, 500, 200);
+			titleButton_ -> Init();
 
 			isPauseInit = true;
+			return;
 		}
+	}
+	// ここでEscapeキー判定を追加する
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
+	{
+		isPauseAlive = false;
+		isPauseInit = false;  
+		SetMouseDispFlag(false);
+		return;
 	}
 
 	//初期化終わったおわっているか確認
 	if (isPauseInit == true && isPauseAlive == true)
 	{
-		//SetMouseDispFlag(true);
+		SetMouseDispFlag(true);
 		GetMousePoint(&mousePos_X, &mousePos_Y);
 		//ボタン更新
-		exitButton_->Update();
+		pauseExit_->Update();
+		returnButton_->Update();
+		titleButton_->Update();
 
-		if (exitButton_->GetButtonState() == ExitButton::BUTTON_STATE::DISABLED)
+		if (pauseExit_->GetButtonState() == PauseExit::BUTTON_STATE::DISABLED)
 		{
 			SceneManager::GetInstance()->SetGameEnd();
+			SetMouseDispFlag(false);
 		}
 
-		//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
-		//{
-		//	exitButton_->Release();
-		//	delete exitButton_;
+		if (returnButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
+		{
+			isPauseAlive = false;
+			SetMouseDispFlag(false);
+		}
 
-		//	//ポーズ画面の終了
-		//	isPauseAlive = false;
-		//	isPauseInit = false;
-		//}
+
+		if (titleButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
+		{
+			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
+	
+		}
+		
 		
 	}
 
@@ -281,7 +306,9 @@ void GameScene::PauseDraw(void)
 	DrawGraph(0, 0, pauseImg_, true);
 
 
-	exitButton_->Draw();
+	pauseExit_->Draw();
+	returnButton_->Draw();
+	titleButton_->Draw();
 }
 
 
