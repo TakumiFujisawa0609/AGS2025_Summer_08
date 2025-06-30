@@ -29,6 +29,20 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 	itemModelIds_.emplace_back(
 		MV1LoadModel("Data/Model/Item/vaccine.mv1"));
 
+	task_01 = LoadGraph("Data/Image/Task/Task_01.png");
+	task_02 = LoadGraph("Data/Image/Task/Task_02.png");
+	task_03 = LoadGraph("Data/Image/Task/Task_03.png");
+	task_04 = LoadGraph("Data/Image/Task/Task_04.png");
+	lastTask = LoadGraph("Data/Image/Task/LastTask.png");
+
+
+	 //task01_Alive = true;
+	 task02_Alive = true;
+	 task03_Alive = true;
+	 task04_Alive = true;
+	 lasttask_Alive = false;
+	
+
 	// 決められた数配置
 	for (int i = 0; i < BULLET_NUM; i++)
 	{
@@ -114,16 +128,11 @@ void ItemManager::Draw(void)
 		}
 	}
 
-	// ワクチンがすべて拾われていない場合は
-	if (vaccineNum_ > 0)
-	{
-		DrawFormatString(0, 50, 0xffffff, "ワクチンを回収");
-	}
-	// ワクチンがすべて拾われたら
-	else if(vaccineNum_ == 0)
-	{
-		DrawFormatString(0, 50, 0xffffff, "ドアから脱出");
-	}
+	//DrawGraph(0, 0, task_01, true);
+	//DrawGraph(0, 0, task_02, task02_Alive);
+
+
+
 
 	// 最初のワクチン取得時に
 	if (vaccineNum_ == 2)
@@ -146,11 +155,7 @@ void ItemManager::Draw(void)
 		DrawFormatString(0, 100, 0xffffff, "ワクチンを回収:%d", pickedVaccineNum_);
 	}
 
-	//// 弾薬箱の現在数
-	//DrawFormatString(0, 80, 0xffffff, "弾薬箱残り個数:%d", bulletBoxNum_);
-
-	//// 救急箱の現在数
-	//DrawFormatString(0, 100, 0xffffff, "救急箱残り個数:%d", kitBoxNum_);
+	
 }
 
 void ItemManager::Release(void)

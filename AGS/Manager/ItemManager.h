@@ -65,4 +65,18 @@ private:
 
 	int vImage_;
 	int pickUpTime_ = 0;   // E‚Á‚½ŠÔiƒ~ƒŠ•bj
+
+
+	bool task01_Alive;
+	bool task02_Alive;
+	bool task03_Alive;
+	bool task04_Alive;
+	bool lasttask_Alive;
+
+
+	int task_01;
+	int task_02;
+	int task_03;
+	int task_04;
+	int lastTask;
 };
