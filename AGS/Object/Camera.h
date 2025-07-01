@@ -32,6 +32,8 @@ public:
 	VECTOR GetForward() const;
 	// カメラ座標取得
 	VECTOR GetPos() const;
+
+	void UpdateDeathCamera();
 private:
 	// プレイヤー
 	Player* player_;

@@ -65,7 +65,7 @@ public:
     virtual ~ItemBase();
 
     void Init(TYPE type, int baseModel, Player* player);        // 初期化
-    void Update();      // 更新
+    virtual void Update();      // 更新
     virtual void Draw() = 0;      // 描画
     void Release();     // 解放
 

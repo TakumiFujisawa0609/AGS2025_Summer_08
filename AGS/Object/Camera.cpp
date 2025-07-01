@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "Camera.h"
 #include "Player.h"
+#include "../Manager/SceneManager.h"
 #include "../Manager/Application.h"
 #include "../Manager/InputManager.h"
 #include "../Utility/AsoUtility.h"
@@ -148,6 +149,105 @@ VECTOR Camera::GetForward() const
 VECTOR Camera::GetPos() const
 {
 	return pos_;
+}
+
+void Camera::UpdateDeathCamera()
+{
+	static auto EaseInOutCubic = [](float t) -> float
+		{
+			if (t < 0.5f)
+				return 4.0f * t * t * t;
+			else
+			{
+				float f = (-2.0f * t + 2.0f);
+				return 1.0f - (f * f * f) / 2.0f;
+			}
+		};
+
+	static bool isInit = false;
+	static float timer = 0.0f;
+	static float duration = 2.5f;
+
+	static VECTOR startPos;
+	static VECTOR targetPos;
+
+	static VECTOR startLookPos;
+	static VECTOR targetLookPos;
+
+	// deltaTimeは演出終了後も計算するが使わない
+	float deltaTime = SceneManager::GetInstance()->GetDeltaTime();
+
+	if (!isInit)
+	{
+		isInit = true;
+		timer = 0.0f;
+
+		startPos = pos_;
+
+		VECTOR playerPos = player_->GetPPos();
+
+		targetPos = VAdd(playerPos, VGet(0.0f, HEIGHT * 0.1f, 0.3f));
+
+		startLookPos = VGet(playerPos.x, playerPos.y + HEIGHT, playerPos.z);
+
+		targetLookPos = VGet(playerPos.x, playerPos.y + HEIGHT * 0.2f, playerPos.z);
+	}
+
+	// 演出中だけtimerを増やす
+	if (timer < duration)
+	{
+		timer += deltaTime;
+		if (timer > duration) timer = duration;
+	}
+	// 演出終了後はtimerをdurationで固定
+
+	float t = timer / duration;
+
+	float easeT = EaseInOutCubic(t);
+
+	if (t < 1.0f)
+	{
+		// 補間＋揺れの処理
+		VECTOR basePos;
+		basePos.x = startPos.x + (targetPos.x - startPos.x) * easeT;
+		basePos.y = startPos.y + (targetPos.y - startPos.y) * easeT;
+		basePos.z = startPos.z + (targetPos.z - startPos.z) * easeT;
+
+		float shakeAmplitude = (1.0f - t) * 0.05f;
+		float shakeFrequency = 20.0f;
+
+		float shakeX = shakeAmplitude * sinf(timer * shakeFrequency);
+		float shakeY = shakeAmplitude * 0.5f * sinf(timer * shakeFrequency * 1.5f + 1.0f);
+		float shakeZ = shakeAmplitude * sinf(timer * shakeFrequency * 1.2f + 0.5f);
+
+		pos_.x = basePos.x + shakeX;
+		pos_.y = basePos.y + shakeY;
+		pos_.z = basePos.z + shakeZ;
+	}
+	else
+	{
+		// 演出終了後は位置を固定（揺れなし）
+		pos_ = VAdd(player_->GetPPos(), VGet(0.0f, HEIGHT * 0.1f, 0.3f));
+	}
+
+	VECTOR lookPos;
+	lookPos.x = startLookPos.x + (targetLookPos.x - startLookPos.x) * easeT;
+	lookPos.y = startLookPos.y + (targetLookPos.y - startLookPos.y) * easeT;
+	lookPos.z = startLookPos.z + (targetLookPos.z - startLookPos.z) * easeT;
+
+	VECTOR dir = VSub(lookPos, pos_);
+	dir = VNorm(dir);
+
+	yaw_ = atan2f(dir.x, dir.z);
+	pitch_ = asinf(dir.y);
+	forward_ = dir;
+
+	SetCameraPositionAndTargetAndUpVec(
+		pos_,
+		lookPos,
+		VGet(0, 1, 0)
+	);
+
 }
 
 

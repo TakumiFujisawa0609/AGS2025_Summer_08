@@ -36,6 +36,7 @@
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\SceneBase.cpp" />
     <ClCompile Include="Scene\TitleScene.cpp" />
+    <ClCompile Include="Object\Item\ItemLight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Vector2.h" />
@@ -74,6 +75,7 @@
     <ClInclude Include="Stage\StageBase.h" />
     <ClInclude Include="Object\Button\TitleButton.h" />
     <ClInclude Include="Utility\AsoUtility.h" />
+    <ClInclude Include="Object\Item\ItemLight.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Data\Image\TestGameScene.png" />

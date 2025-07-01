@@ -88,7 +88,7 @@ private:
 	//ポーズの初期読み込みハンドル
 	bool isPauseInit;
 	
-	float gameOverTimer_ = 0.0f;
+	float gameOverTimer_;
 
 	
 	float clearTime_;      // プレイ開始からの経過時間

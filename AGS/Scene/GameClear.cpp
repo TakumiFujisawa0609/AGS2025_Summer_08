@@ -54,7 +54,7 @@ void GameClear::Draw(void)
 	// 小数部は少し小さくして整数部の右に少しスペースを空けて描画
 	SetFontSize(60);
 	snprintf(timeStr, sizeof(timeStr), "%02d", decimalPart);
-	DrawFormatString(1400 + intPartWidth, Application::SCREEN_SIZE_Y / 2 + 40, 0xffffff, "%s秒", timeStr);
+	DrawFormatString(1380 + intPartWidth, Application::SCREEN_SIZE_Y / 2 + 32, 0xffffff, "%s秒", timeStr);
 }
 
 void GameClear::Release(void)

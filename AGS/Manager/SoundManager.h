@@ -13,12 +13,16 @@
 #define CLECK_PATH "Data/Sound/Cleck.wav"
 #define HOVER_PATH "Data/Sound/Hover.mp3"
 #define PAUSE_PATH "Data/Sound/Pause.wav"
+#define IMPACT_PATH "Data/Sound/impact.wav"
+#define HEAL_PATH "Data/Sound/heal.wav"
+#define BGM1_PATH "Data/Sound/BGM.mp3"
+#define HEALVOICE_PATH "Data/Sound/healVoice.wav"
 
 class SoundManager
 {
 public:
 
-	static constexpr int BGM_VOLUME = 255;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int BGM1_VOLUME = 120;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int WALK_VOLUME = 255;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int OPEN_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int CLOSE_VOLUME = 255;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
@@ -29,6 +33,8 @@ public:
 	static constexpr int PICKUP_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int VOICE_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int CLECK_VOLUME = 100;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int HEAL_VOLUME = 240;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int HEALVOICE_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 
 	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
 	static void CreateInstance(void);
@@ -42,7 +48,7 @@ public:
 	void Release(void);
 
 	// ‰¹Œ¹Ä¶
-	//void PlayBgm1();	// BGM
+	void PlayBgm1();	// BGM
 	void PlayWalk();	// •à‚­
 	void PlayOpen();	// ‘–‚é
 	void PlayClose();	// •à‚­
@@ -52,10 +58,12 @@ public:
 	void PlayReLoad();	// •à‚­
 	void PlayVoice();	// ‘–‚é
 	void PlayShot();	// •à‚­
-
 	void PlayCleck();	// •à‚­
 	void PlayHover();
 	void PlayPause();
+	void PlayImpact();	// €–S‚ÌƒCƒ[ƒW
+	void PlayHeal();	// ‰ñ•œ
+	void PlayHealVoice();
 
 
 	
@@ -70,6 +78,7 @@ public:
 	void StopReLoad();	// •à‚­
 	void StopVoice();	// ‘–‚é
 	void StopShot();	// ‘–‚é
+	void StopHeal();	// ‘–‚é
 
 
 private:
@@ -94,6 +103,9 @@ private:
 	int voiceHundle_;
 	int shotHundle_;
 	int hoverHundle_;
+	int impactHundle_;
+	int healHundle_;
+	int healVoiceHundle_;
 
 	//ƒNƒŠƒbƒN‰¹
 	int cleckHundle_;

@@ -136,7 +136,7 @@ void Collision::CollisionPAndE()
 			float animRate = enemy->GetAnimRate(); // 再生位置割合
 
 			// 攻撃中だったら
-			if (dis < radiusNum)
+			if (dis < radiusNum && player_->GetAlive())
 			{
 				// 攻撃アニメの特定範囲内だけ当たり判定を有効にする（例）
 				if (animRate >= 0.4f && animRate <= 0.6f)

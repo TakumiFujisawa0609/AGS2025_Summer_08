@@ -52,8 +52,8 @@ public:
 	static constexpr VECTOR INIT_ENEMY_ANGLE = { 0.0f, 0.0f, 0.0f };
 
 	// 移動速度
-	static constexpr float MOVE_WALK_SPEED = 2.0f;	// 歩き
-	static constexpr float MOVE_RUN_SPEED = 4.0f;	// 走り
+	static constexpr float MOVE_WALK_SPEED = 3.0f;	// 歩き
+	static constexpr float MOVE_RUN_SPEED = 6.0f;	// 走り
 
 	// アニメーションが切り替わる距離
 	static constexpr float WALK_DISTANCE = 1500.0f;	// 歩き

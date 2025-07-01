@@ -5,7 +5,7 @@ class Player
 public:
 	static constexpr VECTOR DEFAULT_POS = { 0.0f,0.0f,0.0f };
 	static constexpr VECTOR DEFAULT_ANGLE = { 0.0f,0.0f,0.0f };
-	static constexpr float MOVE_SPEED = 10.0f;
+	static constexpr float MOVE_SPEED = 8.5f;
 
 	// 初期モデル補正角度
 	static constexpr VECTOR INIT_MODEL_ROT_OFFSET = { 0.0f, DX_PI_F, 0.0f };
@@ -83,6 +83,9 @@ private:
 
 	// 回復可能回数
 	int heal_;
+
+	bool isHeal_;
+	bool isHoldingQ_ = false;  // Q長押し中かどうか
 
 	int redEffectAlpha_ = 0;       // 点滅アルファ値
 	bool redEffectIncreasing_ = true; // アルファ増加中かどうか

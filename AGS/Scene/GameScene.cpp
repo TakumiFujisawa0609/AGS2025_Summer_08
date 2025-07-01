@@ -45,7 +45,7 @@ void GameScene::Init(void)
 	blood_->Init();
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);
 
-	gameOverImg_ = LoadGraph("Data/Image/gameover.png");
+	gameOverImg_ = LoadGraph("Data/Image/die.png");
 	pauseImg_ = LoadGraph("Data/Image/Button/Pause.png");
 	taskuImg_ = LoadGraph("Data/Image/Button/Pause.png");
 
@@ -53,6 +53,7 @@ void GameScene::Init(void)
 	isPauseInit = false;
 
 	clearTime_ = 0.0f;
+	gameOverTimer_ = 0.0f;
 }
 
 // 更新処理
@@ -65,10 +66,23 @@ void GameScene::Update(void)
 	if (isPauseAlive == true)
 		return;
 
+	SoundManager::GetInstance()->PlayBgm1();
 
-	player_->Update(camera_->GetAngles());
+	// プレイヤー生きてるかで分岐
+	if (player_->GetAlive())
+	{
+		player_->Update(camera_->GetAngles());
+		camera_->Update(); // 通常カメラ
+	}
+	else
+	{
+		camera_->UpdateDeathCamera(); // 死亡時カメラ演出
+
+		SoundManager::GetInstance()->StopBgm1();
+	}
 
 	enemy_->Update();
+
 
 	// 血
 	blood_->Update();
@@ -93,22 +107,23 @@ void GameScene::Update(void)
 		}
 	}
 
-	camera_->Update();
-
 	pShot_->Update();
 
 	item_->Update();
 
-	gameOverTimer_ += SceneManager::GetInstance()->GetDeltaTime();
-
 	if (isGameOver)
 	{
-		if (gameOverTimer_ >= 3.0f)
+		// 時間を加算（1フレームあたりの経過時間）
+		gameOverTimer_ += SceneManager::GetInstance()->GetDeltaTime();
+
+		if (gameOverTimer_ >= 6.0f)
 		{
+
 			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
 		}
 	}
 
+	// クリアタイム
 	ClearTime();
 }
 
@@ -177,23 +192,51 @@ void GameScene::Release(void)
 	blood_->Release();
 	delete blood_;
 
-
-
 	DeleteGraph(gameOverImg_);
 }
 
 void GameScene::GameOver()
 {
-	bool isAliveP = true;
-	isAliveP = player_->GetAlive();
+	static float deathTimer = 0.0f;
+	static bool isSEPlayed = false;
 
-	if (isAliveP == false)
+	bool isAliveP = player_->GetAlive();
+	float deltaTime = SceneManager::GetInstance()->GetDeltaTime();
+
+	if (!isAliveP)
 	{
-		float scale = 1.1f;  // 縮小
-		DrawRotaGraph(958, 538, scale, 0.0f, gameOverImg_, true);
-
 		isGameOver = true;
+		deathTimer += deltaTime;
 
+		float fadeStart = 2.0f;
+		float showDuration = 2.0f;
+
+		if (deathTimer >= fadeStart)
+		{
+			// フェードイン進行
+			float t = (deathTimer - fadeStart) / showDuration;
+			if (t > 1.0f) t = 1.0f;
+
+			// ここでt==0.0になる瞬間が「ちょうど画像を表示し始めたタイミング」
+			if (!isSEPlayed && t <= 0.01f)
+			{
+				SoundManager::GetInstance()->PlayImpact();
+				isSEPlayed = true;
+			}
+
+			float eased = t * t * (3 - 2 * t);  // easeInOut
+			int alpha = static_cast<int>(255 * eased);
+
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+			DrawRotaGraph(958, 538, 1.0f, 0.0f, gameOverImg_, true);
+			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+		}
+	}
+	else
+	{
+		// プレイヤーが生きている間はフラグをリセット（リトライ対応）
+		deathTimer = 0.0f;
+		isSEPlayed = false;
 	}
 }
 
@@ -324,6 +367,8 @@ void GameScene::ClearTime()
 
 	if (collision_->GetClear())
 	{
+		SoundManager::GetInstance()->StopWalk();
+
 		SceneManager::GetInstance()->SetClearTime(clearTime_);
 
 		// ワクチンがすべて拾われていたらゲームクリアへ遷移

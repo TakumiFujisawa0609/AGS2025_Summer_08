@@ -51,7 +51,7 @@ void SoundManager::DeleteInstance(void)
 void SoundManager::Init(void)
 {
 	// BGM読み込み
-	//bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
+	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 
 	walkHundle_ = LoadSoundMem(WALK_PATH);
 	openHundle_ = LoadSoundMem(OPEN_PATH);
@@ -65,6 +65,9 @@ void SoundManager::Init(void)
 	hoverHundle_ = LoadSoundMem(HOVER_PATH);
 	cleckHundle_ = LoadSoundMem(CLECK_PATH);
 	pauseHundle_ = LoadSoundMem(PAUSE_PATH);
+	impactHundle_ = LoadSoundMem(IMPACT_PATH);
+	healHundle_ = LoadSoundMem(HEAL_PATH);
+	healVoiceHundle_ = LoadSoundMem(HEALVOICE_PATH);
 }
 
 void SoundManager::Update(void)
@@ -75,26 +78,25 @@ void SoundManager::Update(void)
 
 void SoundManager::Release(void)
 {
-	//DeleteSoundMem(bgmHundle_);
+	DeleteSoundMem(bgm1Hundle_);
 	DeleteSoundMem(walkHundle_);
-
 
 	// インスタンスの削除
 	DeleteInstance();
 }
 
-//// BGM１再生
-//void SoundManager::PlayBgm1()
-//{
-//	// 再生
-//	if (CheckSoundMem(bgm1Hundle_) == 0)
-//	{
-//		PlaySoundMem(bgm1Hundle_, DX_PLAYTYPE_LOOP, true);
-//	}
-//
-//	// 音量調整
-//	ChangeVolumeSoundMem(BGM1_VOLUME, bgm1Hundle_);
-//}
+// BGM１再生
+void SoundManager::PlayBgm1()
+{
+	// 再生
+	if (CheckSoundMem(bgm1Hundle_) == 0)
+	{
+		PlaySoundMem(bgm1Hundle_, DX_PLAYTYPE_LOOP, true);
+	}
+
+	// 音量調整
+	ChangeVolumeSoundMem(BGM1_VOLUME, bgm1Hundle_);
+}
 
 void SoundManager::PlayWalk()
 {
@@ -204,6 +206,34 @@ void SoundManager::PlayPause()
 	PlaySoundMem(pauseHundle_, DX_PLAYTYPE_BACK, true);
 }
 
+void SoundManager::PlayImpact()
+{
+	// 再生
+	PlaySoundMem(impactHundle_, DX_PLAYTYPE_BACK, true);
+}
+
+void SoundManager::PlayHeal()
+{
+	// 再生
+	if (CheckSoundMem(healHundle_) == 0)
+	{
+		// 再生
+		PlaySoundMem(healHundle_, DX_PLAYTYPE_BACK, true);
+	}
+
+	// 音量調整
+	ChangeVolumeSoundMem(HEAL_VOLUME, cleckHundle_);
+}
+
+void SoundManager::PlayHealVoice()
+{
+	// 再生
+	PlaySoundMem(healVoiceHundle_, DX_PLAYTYPE_BACK, true);
+
+	// 音量調整
+	ChangeVolumeSoundMem(HEALVOICE_VOLUME, cleckHundle_);
+}
+
 
 //// 走る音
 //void SoundManager::PlayRun1()
@@ -256,5 +286,10 @@ void SoundManager::StopVoice()
 
 void SoundManager::StopShot()
 {
+}
+
+void SoundManager::StopHeal()
+{
+	StopSoundMem(healHundle_);
 }
 

@@ -172,11 +172,6 @@ void EnemyBase::LookPlayer()
 // プレイヤー追尾
 void EnemyBase::ChasePlayer()
 {
-	// スピード設定
-	if (state_ == STATE::WALK) speed_ = MOVE_WALK_SPEED;  // 歩き速度
-	else if (state_ == STATE::RUN) speed_ = MOVE_RUN_SPEED; // 走り速度
-	else speed_ = 0.0f; // それ以外なら止まる
-
 	// 移動方向がゼロベクトルでない場合
 	if (!AsoUtility::EqualsVZero(moveDir_))
 	{
@@ -221,6 +216,13 @@ void EnemyBase::ChangeState(STATE state)
 void EnemyBase::ChangeStateDist()
 {
 	if (!isAlive_) { return; }
+
+	// プレイヤーが死んでいたら常にIDLEにする
+	if (!player_->GetAlive())
+	{
+		ChangeState(STATE::IDLE);
+		return;
+	}
 
 	// 状態を切り替える距離
 	if (dist_ < ATTACK_DISTANCE)
@@ -311,30 +313,40 @@ void EnemyBase::ChangeIdle(void)
 {
 	// アニメ再生
 	anim_->Play(ANIM_IDLE, 1);
+
+	speed_ = 0.0f;
 }
 
 void EnemyBase::ChangeWalk(void)
 {
 	//アニメ再生
 	anim_->Play(ANIM_WALK, 1);
+
+	speed_ = MOVE_WALK_SPEED;  // 歩き速度
 }
 
 void EnemyBase::ChangeRun(void)
 {
 	// アニメ再生
 	anim_->Play(ANIM_RUN, 1);
+
+	speed_ = MOVE_RUN_SPEED; // 走り速度
 }
 
 void EnemyBase::ChangeAttack(void)
 {
 	// アニメ再生
 	anim_->Play(ANIM_ATTACK, 2.2f);
+
+	speed_ = 0.0f;
 }
 
 void EnemyBase::ChangeDie(void)
 {
 	// アニメ再生
 	anim_->Play(ANIM_DIE, 1);
+
+	speed_ = 0.0f;
 
 	// 死亡時の処理
 	//SoundManager::GetInstance()->PlayVoice();

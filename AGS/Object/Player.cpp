@@ -28,6 +28,7 @@ void Player::Init(void)
 
 	// 回復可能数
 	heal_ = 0;
+	isHeal_ = false;
 
 	isStop_ = false;
 
@@ -51,11 +52,6 @@ void Player::Update(VECTOR angle)
 
 
 	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
-
-	if (!isAlive_)
-	{
-		SoundManager::GetInstance()->PlayDie();
-	}
 }
 
 void Player::Draw(void)
@@ -111,29 +107,60 @@ void Player::Release(void)
 // HP
 void Player::Hp(void)
 {
-	// 体力が0になったら
+	static float holdTime = 0.0f;
+	float deltaTime = SceneManager::GetInstance()->GetDeltaTime();
+
+	// 死亡処理
 	if (hp_ == 0)
 	{
 		isStop_ = true;
 		isAlive_ = false;
+
+		SoundManager::GetInstance()->StopWalk();
 	}
 
-	// 体力が最大値を超えないようにする
+	// HP最大制限
 	if (hp_ >= DEFAULT_HP)
-	{
 		hp_ = DEFAULT_HP;
-	}
 
-	// ヒール可能回数が１以上でHPが削れてる状態にQキーで体力を回復
+	// Qキーを押した瞬間
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_Q) && heal_ > 0 && hp_ < DEFAULT_HP)
 	{
-		// 回復
-		hp_ += 1;
+		isHoldingQ_ = true;
+		holdTime = 0.0f;
 
-		// 回復可能数を減らす
-		heal_ -= 1;
+		isHeal_ = false;
+	}
 
-		//SoundManager::GetInstance()->PlayHeal();
+	// Qキーを離した瞬間
+	if (InputManager::GetInstance().IsTrgUp(KEY_INPUT_Q))
+	{
+		isHoldingQ_ = false;
+		holdTime = 0.0f;
+
+		SoundManager::GetInstance()->StopHeal();
+	}
+
+	// Qを押し続けている間は時間を加算
+	if (isHoldingQ_)
+	{
+		SoundManager::GetInstance()->PlayHeal();
+		holdTime += deltaTime;
+
+		if (holdTime >= 2.0f)
+		{
+			hp_ += 1;
+			heal_ -= 1;
+
+			SoundManager::GetInstance()->PlayHeal();
+			SoundManager::GetInstance()->PlayHealVoice();
+
+			isHeal_ = true;
+
+			// リセット
+			isHoldingQ_ = false;
+			holdTime = 0.0f;
+		}
 	}
 }
 
@@ -154,7 +181,11 @@ void Player::Damage(int damage)
 	hp_ -= damage;
 
 	// 体力が0になったら0に固定
-	if (hp_ <= 0) { hp_ = 0; }
+	if (hp_ <= 0)
+	{ 
+		hp_ = 0; 
+		SoundManager::GetInstance()->PlayDie();
+	}
 }
 
 void Player::DamageEffect()
@@ -240,7 +271,6 @@ void Player::SetRotation(void)
 // 移動処理
 void Player::ProcessMove(VECTOR angle)
 {
-
 	// 移動方向を決める
 	moveVec_ = AsoUtility::VECTOR_ZERO;
 	if (InputManager::GetInstance().IsNew(KEY_INPUT_S)) {
@@ -274,7 +304,10 @@ void Player::ProcessMove(VECTOR angle)
 
 		// 座標更新
 		moveVec_ = VNorm(moveVec_);
-		moveVec_ = VScale(moveVec_, MOVE_SPEED);
+
+		// Q長押し中は半分の速度
+		float speed = isHoldingQ_ ? MOVE_SPEED * 0.5f : MOVE_SPEED;
+		moveVec_ = VScale(moveVec_, speed);
 
 		// 移動予定位置に移動処理を代入
 		movedPos_ = VAdd(pos_, moveVec_); 
