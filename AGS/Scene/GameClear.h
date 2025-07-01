@@ -22,5 +22,5 @@ private:
 
 	int gameClearImg_;
 
-
+	float clearTime_;
 };

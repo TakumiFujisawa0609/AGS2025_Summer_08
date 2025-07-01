@@ -76,7 +76,7 @@ void Player::Draw(void)
 	
 	DrawFormatString(500, 0, 0xffffff, "%d", hp_);
 	// ‰ñ•œ‰Â”\”
-	DrawFormatString(366, 966, 0xffffff, "%d", heal_);
+	DrawFormatString(1606, 967, 0xffffff, "%d", heal_);
 
 
 	if (redEffectAlpha_ > 0)

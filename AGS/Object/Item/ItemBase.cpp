@@ -2,6 +2,7 @@
 #include "../../Utility/AsoUtility.h"
 #include "../../Manager/SoundManager.h"
 #include "../../Manager/ItemManager.h"
+#include "../Player.h"
 #include "ItemBase.h"
 
 ItemBase::ItemBase()
@@ -12,8 +13,10 @@ ItemBase::~ItemBase()
 {
 }
 
-void ItemBase::Init(TYPE type, int baseModelId)
+void ItemBase::Init(TYPE type, int baseModelId, Player* player)
 {
+    player_ = player;
+
     // Ží•Ê
     type_ = type;
 
@@ -46,6 +49,7 @@ void ItemBase::Update()
 
 void ItemBase::Release()
 {
+
     MV1DeleteModel(modelId_);
 
 	DeleteGraph(kitImg_);

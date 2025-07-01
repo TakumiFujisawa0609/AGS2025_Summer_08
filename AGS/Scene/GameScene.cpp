@@ -51,6 +51,8 @@ void GameScene::Init(void)
 
 	isPauseAlive = false;
 	isPauseInit = false;
+
+	clearTime_ = 0.0f;
 }
 
 // 更新処理
@@ -107,7 +109,7 @@ void GameScene::Update(void)
 		}
 	}
 
-
+	ClearTime();
 }
 
 // 描画処理
@@ -309,6 +311,22 @@ void GameScene::PauseDraw(void)
 	pauseExit_->Draw();
 	returnButton_->Draw();
 	titleButton_->Draw();
+}
+
+void GameScene::ClearTime()
+{
+	if (!collision_->GetClear())  // ポーズ中でなく、クリアしていなければ時間を進める
+	{
+		clearTime_ += SceneManager::GetInstance()->GetDeltaTime();
+	}
+
+	if (collision_->GetClear())
+	{
+		SceneManager::GetInstance()->SetClearTime(clearTime_);
+
+		// ワクチンがすべて拾われていたらゲームクリアへ遷移
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+	}
 }
 
 

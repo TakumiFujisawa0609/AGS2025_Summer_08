@@ -58,6 +58,8 @@ public:
     // プレイヤーとドアの当たり判定
     void CollisionPAndD();
 
+    bool GetClear();
+
 private:
 
     Player* player_;
@@ -97,6 +99,9 @@ private:
     // 開くフラグ
     bool isOpenKey_ = false;
 
+    bool isGameClear_;
+
+
 
 #ifdef _DEBUG
     // デバッグ用
@@ -121,6 +126,5 @@ private:
 
     VECTOR a;
     VECTOR b;
-
 #endif // _DEBUG
 };

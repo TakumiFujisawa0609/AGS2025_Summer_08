@@ -64,7 +64,7 @@ public:
     ItemBase();
     virtual ~ItemBase();
 
-    void Init(TYPE type, int baseModel);        // ‰Šú‰»
+    void Init(TYPE type, int baseModel, Player* player);        // ‰Šú‰»
     void Update();      // XV
     virtual void Draw() = 0;      // •`‰æ
     void Release();     // ‰ğ•ú
@@ -84,6 +84,7 @@ public:
     bool IsCollisionState(void);
 
 protected:
+    Player* player_;
 
     // ó‘Ô
     STATE state_;

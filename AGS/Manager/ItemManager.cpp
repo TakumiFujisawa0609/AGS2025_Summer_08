@@ -51,7 +51,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 
 		//初期化　
 		bullet->Init(ItemBase::TYPE::BULLET,
-			itemModelIds_[static_cast<int>(ItemBase::TYPE::BULLET)]);
+			itemModelIds_[static_cast<int>(ItemBase::TYPE::BULLET)],
+			player_);
 
 		// スポーン位置設定
 		bullet->SetPos(ItemBullet::bulletSpawnPoints[i].pos);
@@ -71,7 +72,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 
 		//初期化　
 		vaccine->Init(ItemBase::TYPE::VACCINE,
-			itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)]);
+			itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)],
+			player_);
 
 		// スポーン位置設定
 		vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
@@ -91,7 +93,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 
 		//初期化　
 		kit->Init(ItemBase::TYPE::KIT,
-			itemModelIds_[static_cast<int>(ItemBase::TYPE::KIT)]);
+			itemModelIds_[static_cast<int>(ItemBase::TYPE::KIT)],
+			player_);
 
 		// スポーン位置設定
 		kit->SetPos(ItemKit::kitSpawnPoints[i].pos);
@@ -114,11 +117,12 @@ void ItemManager::Update(void)
 			item->Update();
 		}
 	}
+
+	if (CheckHitKey(KEY_INPUT_1)) vaccineNum_ = 0;
 }
 
 void ItemManager::Draw(void)
 {
-
 	// すべてのアイテムを描画
 	for (const auto pair : items_)
 	{
@@ -130,9 +134,6 @@ void ItemManager::Draw(void)
 
 	//DrawGraph(0, 0, task_01, true);
 	//DrawGraph(0, 0, task_02, task02_Alive);
-
-
-
 
 	// 最初のワクチン取得時に
 	if (vaccineNum_ == 2)

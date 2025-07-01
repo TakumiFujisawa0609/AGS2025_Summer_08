@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../Player.h"
 #include "ItemVaccine.h"
 
 ItemVaccine::ItemVaccine(void)
@@ -11,8 +12,14 @@ ItemVaccine::~ItemVaccine(void)
 
 void ItemVaccine::Draw()
 {
+    VECTOR pPos = player_->GetPPos();
+    float dis = VSize(VSub(pPos, pos_));
+
     // ワクチンが拾われてなかったら描画
-    if (state_ != STATE::PICKUP_V) MV1DrawModel(modelId_);
+    if (dis < 2400 && state_ != STATE::PICKUP_V)
+    {
+        MV1DrawModel(modelId_);
+    }
 
 	// スポーン位置の球体を描画
 	for (const auto& point : vaccineSpawnPoints)

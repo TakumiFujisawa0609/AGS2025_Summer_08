@@ -36,6 +36,8 @@ public:
 
 	void Pause(void);//ポーズ画面
 	void PauseDraw(void);
+
+	void ClearTime();
 private:
 
 
@@ -89,5 +91,5 @@ private:
 	float gameOverTimer_ = 0.0f;
 
 	
-
+	float clearTime_;      // プレイ開始からの経過時間
 };

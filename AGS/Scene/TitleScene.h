@@ -1,8 +1,5 @@
 #pragma once
 #include "SceneBase.h"
-
-
-
 class Camera;
 class Button;
 class ExitButton;
@@ -19,7 +16,7 @@ public:
 	// デストラクタ
 	~TitleScene(void);
 
-	void Init(void) override;
+	void Init() override;
 	void Update(void) override;
 	void Draw(void) override;
 	void Release(void) override;
@@ -40,6 +37,4 @@ private:
 	Camera* camera_;
 	Button* button_;
 	ExitButton* exitButton_;
-
-
 };

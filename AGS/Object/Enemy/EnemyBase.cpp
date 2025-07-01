@@ -107,8 +107,19 @@ void EnemyBase::Draw()
 		break;
 	}
 
-	// 敵モデル描画
-	MV1DrawModel(modelId_); 
+
+	// 敵の当たり判定用中心
+	VECTOR centerPosE = VAdd(pos_, VGet(0, 100, 0));
+
+	float dis = VSize(VSub(centerPosE, player_->GetPPos()));
+
+	// 範囲内判定
+	if (dis < 2400)
+	{
+		// 敵モデル描画
+		MV1DrawModel(modelId_);
+	}
+
 
 #ifdef DEBUG
 	//VECTOR centerPos = pos_;
@@ -254,13 +265,6 @@ EnemyBase::STATE EnemyBase::GetState() const
 float EnemyBase::GetAnimRate()
 {
 	return anim_->GetCurrentAnimRate();
-}
-
-bool EnemyBase::IsHitWall(const VECTOR& from, const VECTOR& to)
-{
-
-	// ラインによる当たり判定（Collisionクラスなどで使ってるのと同じでOK）
-	return MV1CollCheck_Line(modelId_, -1, from, to, -1)
 }
 
 int EnemyBase::GetModelId() const

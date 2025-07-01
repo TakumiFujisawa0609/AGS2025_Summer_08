@@ -1,5 +1,6 @@
 #include <DxLib.h>
 #include "../../Utility/AsoUtility.h"
+#include "../Player.h"
 #include "ItemBullet.h"
 
 ItemBullet::ItemBullet(void)
@@ -12,7 +13,14 @@ ItemBullet::~ItemBullet(void)
 
 void ItemBullet::Draw()
 {
-	if (state_ != STATE::PICKUP_B) MV1DrawModel(modelId_);
+	VECTOR pPos = player_->GetPPos();
+	float dis = VSize(VSub(pPos, pos_));
+
+	// キットが拾われてなかったら描画
+	if (dis < 2100 && state_ != STATE::PICKUP_B)
+	{
+		MV1DrawModel(modelId_);
+	}
 
 	// スポーン位置の球体を描画
 	for (const auto& point : bulletSpawnPoints)

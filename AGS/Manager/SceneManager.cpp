@@ -61,28 +61,56 @@ void SceneManager::Init(void)
 
 	// 3Dの初期設定
 	Init3D();
+
+	preTime_ = std::chrono::system_clock::now();  // ここで初期化
+	clearTime_ = 0.0f;
 }
 
 void SceneManager::Update(void)
 {
 
+	//// フェード更新
+	//fader_->Update();
+	//if (isSceneChanging_)
+	//{
+	//	Fade();
+	//}
+	//else
+	//{
+	//	// 更新
+	//	scene_->Update();
+	//}
+
+	//// デルタタイム
+	//auto nowTime = std::chrono::system_clock::now();
+	//deltaTime_ = static_cast<float>(
+	//	std::chrono::duration_cast<std::chrono::nanoseconds>(nowTime - preTime_).count() / 1000000000.0);
+	//preTime_ = nowTime;
+
+	auto nowTime = std::chrono::system_clock::now();
+
+	if (preTime_.time_since_epoch().count() != 0)
+	{
+		deltaTime_ = static_cast<float>(
+			std::chrono::duration_cast<std::chrono::nanoseconds>(nowTime - preTime_).count() / 1000000000.0);
+	}
+	else
+	{
+		deltaTime_ = 0.0f;  // 初回は0秒経過とするなど適宜
+	}
+	preTime_ = nowTime;
+
 	// フェード更新
 	fader_->Update();
+
 	if (isSceneChanging_)
 	{
 		Fade();
 	}
 	else
 	{
-		// 更新
 		scene_->Update();
 	}
-
-	// デルタタイム
-	auto nowTime = std::chrono::system_clock::now();
-	deltaTime_ = static_cast<float>(
-		std::chrono::duration_cast<std::chrono::nanoseconds>(nowTime - preTime_).count() / 1000000000.0);
-	preTime_ = nowTime;
 
 }
 
@@ -126,7 +154,7 @@ void SceneManager::ChangeScene(SCENE_ID nextId)
 void SceneManager::Init3D(void)
 {
 	// 背景色設定
-	SetBackgroundColor(128, 128, 128);
+	SetBackgroundColor(0,0,0);
 
 	// Zバッファを有効にする
 	SetUseZBuffer3D(true);
@@ -146,6 +174,16 @@ void SceneManager::Init3D(void)
 float SceneManager::GetDeltaTime(void) const
 {
 	return deltaTime_;
+}
+
+void SceneManager::SetClearTime(float clearTime)
+{
+	clearTime_ = clearTime;
+}
+
+float SceneManager::GetClearTime()
+{
+	return clearTime_;;
 }
 
 void SceneManager::DoChangeScene(SCENE_ID sceneId)

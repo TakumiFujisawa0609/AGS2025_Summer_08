@@ -44,6 +44,8 @@ public:
 	void SetGameEnd() { isGameEnd = true; }
 	bool IsGameEnd() { return isGameEnd; }
 
+	void SetClearTime(float clearTime);
+	float GetClearTime();
 private:
 
 	// 静的インスタンス
@@ -77,5 +79,7 @@ private:
 
 	// フェード処理
 	void Fade(void);
+
+	float clearTime_;
 
 };

@@ -18,8 +18,9 @@ TitleScene::~TitleScene(void)
 {
 }
 
-void TitleScene::Init(void)
+void TitleScene::Init()
 {	
+
 	mousePos_X = Application::SCREEN_SIZE_X / 2;
 	mousePos_Y = Application::SCREEN_SIZE_Y / 2;
 	
@@ -74,8 +75,6 @@ void TitleScene::Draw(void)
 	DrawRotaGraph(958, 538, scale, 0.0f, testTitleImg_, true);
 
 	DrawExtendGraph(0, 0, Application::SCREEN_SIZE_X, Application::SCREEN_SIZE_Y, testTitleImg_, true);
-
-	
 
 
 	button_->Draw();

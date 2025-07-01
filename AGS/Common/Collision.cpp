@@ -51,6 +51,7 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 
 	fKeyImg_ = LoadGraph("Data/Image/FKey.png");
 
+	isGameClear_ = false;
 }
 
 void Collision::Update()
@@ -426,7 +427,6 @@ void Collision::CollisionPAndD()
 
 		// 範囲内にいる状態で
 		if (dis < radiusNum)
-
 		{
 			isOpenKey_ = true;
 
@@ -435,9 +435,8 @@ void Collision::CollisionPAndD()
 			{
 				// ドアが開いた音を再生
 				SoundManager::GetInstance()->PlayOpen();
-
-				// ワクチンがすべて拾われていたらゲームクリアへ遷移
-				SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAMECLEAR);
+				
+				isGameClear_ = true;
 			}
 		}
 		else
@@ -445,5 +444,10 @@ void Collision::CollisionPAndD()
 			isOpenKey_ = false;
 		}
 	}
+}
+
+bool Collision::GetClear()
+{
+	return isGameClear_;
 }
 

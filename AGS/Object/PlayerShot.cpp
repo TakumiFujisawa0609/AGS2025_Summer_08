@@ -61,20 +61,20 @@ void PlayerShot::Draw(void)
 		}
 	}
 
-	DrawRotaGraph(120, 990, 0.16f, 0.0f, gunCircleImg_, true);
-	DrawRotaGraph(120, 970, 0.23f, 0.0f, image_, true);
+	DrawRotaGraph(1770, 950, 0.23f, 0.0f, gunCircleImg_, true);
+	DrawRotaGraph(1770, 928, 0.35f, 0.0f, image_, true);
 
-	int x = 130;
+	int x = 1770;
 	int y = 990;
 	int ammoOffsetX = (ammo_ < 10) ? 16 : 0;
-	int maxOffsetX = (MAX_AMMO < 10) ? 12 : 0;
+	int maxOffsetX = (maxMagazine_ < 10) ? 3 : 0;
 
-	SetFontSize(36);
-	DrawFormatString(x - 50 + ammoOffsetX, y + 18, 0x00ff00, "%d", ammo_);
-	SetFontSize(21);
-	DrawString(x - 11, y + 30, "/", 0xd3d3d3);
-	SetFontSize(20);
-	DrawFormatString(x + 3 + maxOffsetX, y + 32, 0xd3d3d3, "%d", maxMagazine_);
+	SetFontSize(42);
+	DrawFormatString(x - 50 + ammoOffsetX, y - 2, 0x00ff00, "%d", ammo_);
+	SetFontSize(23);
+	DrawString(x + 0, y + 12, "/", 0xd3d3d3);
+	SetFontSize(26);
+	DrawFormatString(x + 17 + maxOffsetX, y + 12, 0xd3d3d3, "%d", maxMagazine_);
 }
 
 void PlayerShot::Release(void)

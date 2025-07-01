@@ -42,7 +42,7 @@ public:
 		{7443, 0, 1222},
 		{9811, 0, 577},
 		{6761, 0, -1254},
-		{7689, 0, -946},
+		{7659, 0, -986},
 		{8786, 0, -623}
 	};
 
@@ -92,8 +92,6 @@ public:
 	EnemyBase::STATE GetState() const;
 
 	float GetAnimRate();
-
-	bool IsHitWall(const VECTOR& from, const VECTOR& to);
 
 protected:
 
