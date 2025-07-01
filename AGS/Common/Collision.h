@@ -103,7 +103,6 @@ private:
 
 
 
-#ifdef _DEBUG
     // デバッグ用
     VECTOR enemyPosS_, enemyPosE_;
 
@@ -126,5 +125,4 @@ private:
 
     VECTOR a;
     VECTOR b;
-#endif // _DEBUG
 };

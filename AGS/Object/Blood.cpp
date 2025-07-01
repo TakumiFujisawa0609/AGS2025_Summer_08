@@ -45,23 +45,22 @@ void Blood::Update()
 
 void Blood::Draw()
 {
+    DrawFormatString(500, 200, 0xffffff, "isAliveB:%d", isAlive_);
+    if (!isAlive_) return;                                                                    
 
-    //DrawFormatString(500, 200, 0xffffff, "isAliveB:%d", isAlive_);
-    //if (!isAlive_) return;                                                                    
+    for (int i = 0; i < PARTICLE_NUM; i++) {
+        const Particle& p = particles_[i];
+        if (p.life > 0.0f) {
+            float alpha = p.life / MAX_LIFE;
+            int red = 255;
+            int alphaColor = (int)(255 * alpha);
+            int color = GetColor(red, 0, 0);
 
-    //for (int i = 0; i < PARTICLE_NUM; i++) {
-    //    const Particle& p = particles_[i];
-    //    if (p.life > 0.0f) {
-    //        float alpha = p.life / MAX_LIFE;
-    //        int red = 255;
-    //        int alphaColor = (int)(255 * alpha);
-    //        int color = GetColor(red, 0, 0);
-
-    //        SetDrawBlendMode(DX_BLENDMODE_ALPHA, alphaColor);
-    //        DrawSphere3D(p.pos, p.scale * 0.3f, 4, color, color, TRUE);
-    //        SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-    //    }
-    //}
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, alphaColor);
+            DrawSphere3D(p.pos, p.scale * 0.1f, 4, color, color, TRUE);
+            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+        }
+    }
 }
 
 void Blood::Release()

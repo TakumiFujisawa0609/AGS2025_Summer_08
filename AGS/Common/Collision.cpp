@@ -193,9 +193,9 @@ void Collision::CollisionPShotAndE(void)
 					enemy->Damage(1);
 					shot.isAlive = false;  // 弾を消す
 
-					blood_->Emit();
 					blood_->SetAlive(true);
 					blood_->SetPos(centerPosE);
+					blood_->Emit();
 
 					break;  // 1体に当たったら他の敵はスキップ（弾1発）
 				}

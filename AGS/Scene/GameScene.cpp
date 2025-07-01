@@ -123,8 +123,11 @@ void GameScene::Draw(void)
 
 	enemy_->Draw();
 
+	// 血
+	blood_->Draw();
+
 	// 景色
-	//View();
+	View();
 
 	camera_->Draw();
 
@@ -207,7 +210,6 @@ void GameScene::View()
 	// 円の明かり（ここは好みに応じて画像でも可）
 	SetDrawBlendMode(DX_BLENDMODE_ADD, 120);
 	DrawCircle(centerX, centerY, 200, GetColor(255, 255, 200), TRUE);
-
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
