@@ -10,8 +10,6 @@ public:
 	// 初期モデル補正角度
 	static constexpr VECTOR INIT_MODEL_ROT_OFFSET = { 0.0f, DX_PI_F, 0.0f };
 
-	int count = 0;
-
 	// ヒットポイント
 	static constexpr int DEFAULT_HP = 2;
 
@@ -44,8 +42,6 @@ private:
 
 	// プレイヤーモデル
 	int modelId_;
-	//ダメージエフェクトハンドル
-	int damegeHandle_;
 	
 	// プレイヤーの移動前座標
 	VECTOR movedPos_;

@@ -15,8 +15,6 @@ public:
 	static constexpr int KIT_NUM = 2;
 	static constexpr int VACCINE_NUM = 3;
 
-	static constexpr int LAST_COUNT_SPAN = 180;
-
 	static constexpr int SHOW_DURATION = 2500;
 
 	// コンストラクタ・デストラクタ
@@ -75,13 +73,10 @@ private:
 	bool task04_Alive;
 	bool lasttask_Alive;
 
-	//タスク表示画像ハンドル
+
 	int task_01;
 	int task_02;
 	int task_03;
 	int task_04;
 	int lastTask;
-
-	//脱出タスク変更までの時間
-	int count_span ;
 };

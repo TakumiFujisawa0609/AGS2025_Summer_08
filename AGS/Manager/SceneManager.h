@@ -53,7 +53,6 @@ private:
 	SCENE_ID waitSceneId_;
 
 	bool isGameEnd;
-	
 
 	// フェード
 	Fader* fader_;
