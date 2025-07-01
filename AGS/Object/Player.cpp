@@ -1,4 +1,4 @@
-#include <DxLib.h>
+ï»¿#include <DxLib.h>
 #include "../Manager/InputManager.h"
 #include "../Manager/Application.h"
 #include "../Manager/SceneManager.h"
@@ -12,41 +12,42 @@ void Player::Init(void)
 	pos_ = { 0.0f, 0.0f, 0.0f };
 	MV1SetPosition(modelId_, pos_);
 
-	// ˆÚ“®ƒxƒNƒgƒ‹‰Šú‰»
+	// ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ«åˆæœŸåŒ–
 	moveVec_ = AsoUtility::VECTOR_ZERO;
 
-	// ƒ‚ƒfƒ‹‚ÌŠp“xİ’è
+	// ãƒ¢ãƒ‡ãƒ«ã®è§’åº¦è¨­å®š
 	rot_ = { 0.0f, 0.0f, 0.0f };
-	// ƒ‚ƒfƒ‹‚ÌŠp“x
+	// ãƒ¢ãƒ‡ãƒ«ã®è§’åº¦
 	localRot_ = INIT_MODEL_ROT_OFFSET;
 
-	// ƒJƒƒ‰ƒAƒ“ƒOƒ‹
+	// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«
 	cameraAngle_ = { 0.0f, 0.0f, 0.0f };
 
-	// ‘Ì—Í‰Šú‰»
+	// ä½“åŠ›åˆæœŸåŒ–
 	hp_ = DEFAULT_HP;
 
-	// ‰ñ•œ‰Â”\”
+	// å›å¾©å¯èƒ½æ•°
 	heal_ = 0;
 
 	isStop_ = false;
-
 	isAlive_ = true;
+
+	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
 }
 
 void Player::Update(VECTOR angle)
 {
-	// ƒJƒƒ‰ƒAƒ“ƒOƒ‹æ“¾
+	// ã‚«ãƒ¡ãƒ©ã‚¢ãƒ³ã‚°ãƒ«å–å¾—
 	cameraAngle_ = angle;
 
-	// ˆÚ“®ˆ—
+	// ç§»å‹•å‡¦ç†
 	ProcessMove(cameraAngle_);
 	//SetRotation();
 
 	// HP
 	Hp();
 
-	// ƒ_ƒ[ƒW•\Œ»
+	// ãƒ€ãƒ¡ãƒ¼ã‚¸è¡¨ç¾
 	DamageEffect();
 
 
@@ -56,26 +57,28 @@ void Player::Update(VECTOR angle)
 	{
 		SoundManager::GetInstance()->PlayDie();
 	}
+
+	
 }
 
 void Player::Draw(void)
 {
-	//VECTOR startPos = VAdd(playerPos_, VGet(0.0f, 30.0f, 0));                          // “G‚ÌÀ•W
-	//VECTOR endPos = VAdd(playerPos_, VGet(0.0f, 160.0f, 0));  // ƒJƒvƒZƒ‹‚Ìã’[i‚‚³60‚Ì—áj
-	//float radius = 45.0f;	// ”¼Œa45i’²®‰Âj
+	//VECTOR startPos = VAdd(playerPos_, VGet(0.0f, 30.0f, 0));                          // æ•µã®åº§æ¨™
+	//VECTOR endPos = VAdd(playerPos_, VGet(0.0f, 160.0f, 0));  // ã‚«ãƒ—ã‚»ãƒ«ã®ä¸Šç«¯ï¼ˆé«˜ã•60ã®ä¾‹ï¼‰
+	//float radius = 45.0f;	// åŠå¾„45ï¼ˆèª¿æ•´å¯ï¼‰
 
 	//VECTOR centerPos = VAdd(pos_, VGet(0.0f, 110, 0));
 
-	//DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);	// ‹…‚ğ•`‰æ
+	//DrawSphere3D(centerPos, radius, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);	// çƒã‚’æç”»
 
-	// ƒvƒŒƒCƒ„[À•W
+	// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åº§æ¨™
 	DrawFormatString(0, 40, 0xffffff, "playerPos:(%.2f, %.2f, %.2f)", pos_.x, pos_.y, pos_.z);
 
 	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
 	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
 	
 	DrawFormatString(500, 0, 0xffffff, "%d", hp_);
-	// ‰ñ•œ‰Â”\”
+	// å›å¾©å¯èƒ½æ•°
 	DrawFormatString(366, 966, 0xffffff, "%d", heal_);
 
 
@@ -83,54 +86,72 @@ void Player::Draw(void)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, redEffectAlpha_);
 
-		int thickness = 50; // Ô‚¢‰‚Ì‘¾‚³i’²®‰Âj
+		int thickness = 50; // èµ¤ã„ç¸ã®å¤ªã•ï¼ˆèª¿æ•´å¯ï¼‰
 		int screenW = 1920;
 		int screenH = 1080;
 
 		int red = GetColor(255, 0, 0);
 
-		// ã
+		// ä¸Š
 		DrawBox(0, 0, screenW, thickness, red, TRUE);
-		// ‰º
+		// ä¸‹
 		DrawBox(0, screenH - thickness, screenW, screenH, red, TRUE);
-		// ¶
+		// å·¦
 		DrawBox(0, thickness, thickness, screenH - thickness, red, TRUE);
-		// ‰E
+		// å³
 		DrawBox(screenW - thickness, thickness, screenW, screenH - thickness, red, TRUE);
 
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
+	if (hp_ == 1)
+	{
+		
+		// alphaå€¤è¨ˆç®—
+		int alpha = (int)(((sin(count * 0.05) * 0.5) + 0.5) * 255+30); // 0ã€œ255
+		SoundManager::GetInstance()->PlayDamage();
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawGraph(0, 0, damegeHandle_, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		count= count+1; // æ¯ãƒ•ãƒ¬ãƒ¼ãƒ å¢—ã‚„ã™
+	}
+	else
+	{
+		SoundManager::GetInstance()->StopDamege();
+	}
 }
 
 void Player::Release(void)
 {
-	
+	DeleteGraph(damegeHandle_);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 // HP
 void Player::Hp(void)
 {
-	// ‘Ì—Í‚ª0‚É‚È‚Á‚½‚ç
+	// ä½“åŠ›ãŒ0ã«ãªã£ãŸã‚‰
 	if (hp_ == 0)
 	{
 		isStop_ = true;
 		isAlive_ = false;
 	}
 
-	// ‘Ì—Í‚ªÅ‘å’l‚ğ’´‚¦‚È‚¢‚æ‚¤‚É‚·‚é
+	// ä½“åŠ›ãŒæœ€å¤§å€¤ã‚’è¶…ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
 	if (hp_ >= DEFAULT_HP)
 	{
 		hp_ = DEFAULT_HP;
 	}
 
-	// ƒq[ƒ‹‰Â”\‰ñ”‚ª‚PˆÈã‚ÅHP‚ªí‚ê‚Ä‚éó‘Ô‚ÉQƒL[‚Å‘Ì—Í‚ğ‰ñ•œ
+	// ãƒ’ãƒ¼ãƒ«å¯èƒ½å›æ•°ãŒï¼‘ä»¥ä¸Šã§HPãŒå‰Šã‚Œã¦ã‚‹çŠ¶æ…‹ã«Qã‚­ãƒ¼ã§ä½“åŠ›ã‚’å›å¾©
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_Q) && heal_ > 0 && hp_ < DEFAULT_HP)
 	{
-		// ‰ñ•œ
+		// å›å¾©
 		hp_ += 1;
 
-		// ‰ñ•œ‰Â”\”‚ğŒ¸‚ç‚·
+		// å›å¾©å¯èƒ½æ•°ã‚’æ¸›ã‚‰ã™
 		heal_ -= 1;
 
 		//SoundManager::GetInstance()->PlayHeal();
@@ -139,7 +160,7 @@ void Player::Hp(void)
 
 void Player::ModelReflect()
 {
-	// i‚ñ‚Å‚æ‚©‚Á‚½‚ç
+	// é€²ã‚“ã§ã‚ˆã‹ã£ãŸã‚‰
 	if (!isStop_)
 	{
 		pos_ = movedPos_;
@@ -150,41 +171,44 @@ void Player::ModelReflect()
 
 void Player::Damage(int damage)
 {
-	// ƒ_ƒ[ƒW‚ğó‚¯‚é
+	// ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹
 	hp_ -= damage;
 
-	// ‘Ì—Í‚ª0‚É‚È‚Á‚½‚ç0‚ÉŒÅ’è
+	// ä½“åŠ›ãŒ0ã«ãªã£ãŸã‚‰0ã«å›ºå®š
 	if (hp_ <= 0) { hp_ = 0; }
 }
 
 void Player::DamageEffect()
 {
-	// HP‚ª1‚È‚çÔ“_–Å‰‰o
+	// HPãŒ1ãªã‚‰èµ¤ç‚¹æ»…æ¼”å‡º
 	if (hp_ == 1)
 	{
-		// ƒAƒ‹ƒtƒ@’l•Ï‰»
-		if (redEffectIncreasing_)
-		{
-			redEffectAlpha_ += 2; // ‘‚â‚·
-			if (redEffectAlpha_ >= 150)
-			{
-				redEffectAlpha_ = 150;
-				redEffectIncreasing_ = false;
-			}
-		}
-		else
-		{
-			redEffectAlpha_ -= 2; // Œ¸‚ç‚·
-			if (redEffectAlpha_ <= 0)
-			{
-				redEffectAlpha_ = 0;
-				redEffectIncreasing_ = true;
-			}
-		}
+		// ã‚¢ãƒ«ãƒ•ã‚¡å€¤å¤‰åŒ–
+		//if (redEffectIncreasing_)
+		//{
+		//	redEffectAlpha_ += 2; // å¢—ã‚„ã™
+		//	if (redEffectAlpha_ >= 150)
+		//	{
+		//		redEffectAlpha_ = 150;
+		//		redEffectIncreasing_ = false;
+		//	}
+		//}
+		//else
+		//{
+		//	redEffectAlpha_ -= 2; // æ¸›ã‚‰ã™
+		//	if (redEffectAlpha_ <= 0)
+		//	{
+		//		redEffectAlpha_ = 0;
+		//		redEffectIncreasing_ = true;
+		//	}
+		//}
+
+		
+		
 	}
 	else
 	{
-		// HP‚ª1ˆÈŠO‚È‚çÁ‚·
+		// HPãŒ1ä»¥å¤–ãªã‚‰æ¶ˆã™
 		redEffectAlpha_ = 0;
 	}
 }
@@ -194,7 +218,7 @@ void Player::SetStop(bool isStop)
 	isStop_ = isStop;
 }
 
-// ‰ñ•œ‰Â”\”
+// å›å¾©å¯èƒ½æ•°
 void Player::Heal(int heal)
 {
 	heal_ += heal;
@@ -215,33 +239,33 @@ bool Player::GetAlive(void)
 	return isAlive_;
 }
 
-// ‰ñ“]İ’è
+// å›è»¢è¨­å®š
 void Player::SetRotation(void)
 {
-	// ‰ñ“]s—ñ‚ğg—p‚µ‚½Šp“xİ’è
+	// å›è»¢è¡Œåˆ—ã‚’ä½¿ç”¨ã—ãŸè§’åº¦è¨­å®š
 	// ---------------------------
-	// ’PˆÊs—ñ‚ğİ’è‚·‚é
+	// å˜ä½è¡Œåˆ—ã‚’è¨­å®šã™ã‚‹
 	MATRIX mat = MGetIdent();
 
-	// ƒ‚ƒfƒ‹©‘Ì‚ÌY²‰ñ“]s—ñ‚ğì¬‚·‚é
+	// ãƒ¢ãƒ‡ãƒ«è‡ªä½“ã®Yè»¸å›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	MATRIX mGetRotY = MGetRotY(rot_.y);
 
-	// ƒ‚ƒfƒ‹‚Ì•â³—pY²‰ñ“]s—ñ‚ğì¬‚·‚é
+	// ãƒ¢ãƒ‡ãƒ«ã®è£œæ­£ç”¨Yè»¸å›è»¢è¡Œåˆ—ã‚’ä½œæˆã™ã‚‹
 	MATRIX mGetLocalRotY = MGetRotY(localRot_.y);
 
-	// s—ñ‚ğ‡¬
+	// è¡Œåˆ—ã‚’åˆæˆ
 	mat = MMult(mat, mGetRotY);
 	mat = MMult(mat, mGetLocalRotY);
 
-	// s—ñ‚ğg—p‚µ‚Äƒ‚ƒfƒ‹‚ÌŠp“x‚ğİ’è
+	// è¡Œåˆ—ã‚’ä½¿ç”¨ã—ã¦ãƒ¢ãƒ‡ãƒ«ã®è§’åº¦ã‚’è¨­å®š
 	MV1SetRotationMatrix(modelId_, mat);
 }
 
-// ˆÚ“®ˆ—
+// ç§»å‹•å‡¦ç†
 void Player::ProcessMove(VECTOR angle)
 {
 
-	// ˆÚ“®•ûŒü‚ğŒˆ‚ß‚é
+	// ç§»å‹•æ–¹å‘ã‚’æ±ºã‚ã‚‹
 	moveVec_ = AsoUtility::VECTOR_ZERO;
 	if (InputManager::GetInstance().IsNew(KEY_INPUT_S)) {
 		moveVec_ = VAdd(moveVec_, AsoUtility::DIR_F);
@@ -264,25 +288,25 @@ void Player::ProcessMove(VECTOR angle)
 		SoundManager::GetInstance()->StopWalk();
 	}
 
-	// ˆÚ“®ˆ—
-	// “®‚¢‚Ä‚¢‚½‚ç
+	// ç§»å‹•å‡¦ç†
+	// å‹•ã„ã¦ã„ãŸã‚‰
 	if (!AsoUtility::EqualsVZero(moveVec_))
 	{
-		// ƒJƒƒ‰Šp“x•ªİ’è‚·‚é
+		// ã‚«ãƒ¡ãƒ©è§’åº¦åˆ†è¨­å®šã™ã‚‹
 		MATRIX cameraMatY = MGetRotY(angle.y);
 		moveVec_ = VTransform(moveVec_, cameraMatY);
 
-		// À•WXV
+		// åº§æ¨™æ›´æ–°
 		moveVec_ = VNorm(moveVec_);
 		moveVec_ = VScale(moveVec_, MOVE_SPEED);
 
-		// ˆÚ“®—\’èˆÊ’u‚ÉˆÚ“®ˆ—‚ğ‘ã“ü
+		// ç§»å‹•äºˆå®šä½ç½®ã«ç§»å‹•å‡¦ç†ã‚’ä»£å…¥
 		movedPos_ = VAdd(pos_, moveVec_); 
 
-		// •ûŒü‚ğŠp“x‚É•ÏŠ·‚·‚é(XZ•½–Ê@Y²)
+		// æ–¹å‘ã‚’è§’åº¦ã«å¤‰æ›ã™ã‚‹(XZå¹³é¢ã€€Yè»¸)
 		moveVecRad_.y = atan2f(moveVec_.x, moveVec_.z);
 
-		// ŒvZŠp“x‚ğİ’è
+		// è¨ˆç®—è§’åº¦ã‚’è¨­å®š
 		rot_.y = moveVecRad_.y;
 	}
 }

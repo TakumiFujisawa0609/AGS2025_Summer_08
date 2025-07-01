@@ -7,6 +7,7 @@
 #include "../Object/Player.h"
 #include "../Object/PlayerShot.h"
 #include "ItemManager.h"
+#include "../Manager/InputManager.h"
 
 ItemManager::ItemManager()
 {
@@ -42,6 +43,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 	 task04_Alive = true;
 	 lasttask_Alive = false;
 	
+
+	 count_span = 0;
 
 	// 決められた数配置
 	for (int i = 0; i < BULLET_NUM; i++)
@@ -114,6 +117,10 @@ void ItemManager::Update(void)
 			item->Update();
 		}
 	}
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_2))
+	{
+		pickedVaccineNum_ = pickedVaccineNum_ + 1;
+	}
 }
 
 void ItemManager::Draw(void)
@@ -128,12 +135,45 @@ void ItemManager::Draw(void)
 		}
 	}
 
-	//DrawGraph(0, 0, task_01, true);
-	//DrawGraph(0, 0, task_02, task02_Alive);
+	
 
+	//獲得ワクチンが0個
+	if (pickedVaccineNum_ == 0)
+	{
+		DrawExtendGraph(0, 100, 400, 200, task_01, true);
+	}
+	//獲得ワクチンが１個
+	if (pickedVaccineNum_ == 1)
+	{
+		DrawExtendGraph(0, 100, 400, 200, task_02, true);
+	}
+	//獲得ワクチンが2個
+	if (pickedVaccineNum_ == 2)
+	{
+		DrawExtendGraph(0, 100, 400, 200, task_03, true);
+	}
 
+	if (lasttask_Alive == false)
+	{
+		//獲得ワクチンが3個
+		if (pickedVaccineNum_ == 3)
+		{
+			DrawExtendGraph(0, 100, 400, 200, task_04, true);
+			count_span++;
+		}
+	}
+	//最後のタスク表示するまでのカウント
+	if (count_span >= LAST_COUNT_SPAN)
+	{
+		lasttask_Alive = true;
+	}
 
-
+	//最後のタスク表示
+	if(	lasttask_Alive == true)
+	{
+		count_span = 0;
+		DrawExtendGraph(0,100, 400, 200, lastTask, true);
+	}
 	// 最初のワクチン取得時に
 	if (vaccineNum_ == 2)
 	{
@@ -145,16 +185,6 @@ void ItemManager::Draw(void)
 			DrawRotaGraph(955, 540, 0.5, 0, vImage_, true);
 		}
 	}
-
-	// // ワクチンの現在数
-	//DrawFormatString(0, 60, 0xffffff, "ワクチン残り個数:%d", vaccineNum_);
-
-	if (pickedVaccineNum_ < 3)
-	{
-		// ワクチンの現在数
-		DrawFormatString(0, 100, 0xffffff, "ワクチンを回収:%d", pickedVaccineNum_);
-	}
-
 	
 }
 

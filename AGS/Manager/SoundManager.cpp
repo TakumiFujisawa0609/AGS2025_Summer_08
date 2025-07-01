@@ -65,6 +65,10 @@ void SoundManager::Init(void)
 	hoverHundle_ = LoadSoundMem(HOVER_PATH);
 	cleckHundle_ = LoadSoundMem(CLECK_PATH);
 	pauseHundle_ = LoadSoundMem(PAUSE_PATH);
+
+	damageHundle_= LoadSoundMem(DAMEGE_PATH);
+
+	isDamegeEnd_ = true;
 }
 
 void SoundManager::Update(void)
@@ -77,7 +81,7 @@ void SoundManager::Release(void)
 {
 	//DeleteSoundMem(bgmHundle_);
 	DeleteSoundMem(walkHundle_);
-
+	//DeleteSoundMem(damageHundle_);
 
 	// インスタンスの削除
 	DeleteInstance();
@@ -204,6 +208,18 @@ void SoundManager::PlayPause()
 	PlaySoundMem(pauseHundle_, DX_PLAYTYPE_BACK, true);
 }
 
+void SoundManager::PlayDamage()
+{
+	if (CheckSoundMem(damageHundle_) == 0)
+	{
+		// 再生
+		PlaySoundMem(damageHundle_, DX_PLAYTYPE_LOOP, true);
+	}
+
+	// 音量調整
+	ChangeVolumeSoundMem(OPEN_VOLUME, damageHundle_);
+}
+
 
 //// 走る音
 //void SoundManager::PlayRun1()
@@ -256,5 +272,15 @@ void SoundManager::StopVoice()
 
 void SoundManager::StopShot()
 {
+}
+
+void SoundManager::StopDamege()
+{
+	StopSoundMem(damageHundle_);
+}
+
+bool SoundManager::GetisDamegeEnd_()
+{
+	return isDamegeEnd_;
 }
 

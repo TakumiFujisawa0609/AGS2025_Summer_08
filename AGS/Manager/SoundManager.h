@@ -13,6 +13,8 @@
 #define CLECK_PATH "Data/Sound/Cleck.wav"
 #define HOVER_PATH "Data/Sound/Hover.mp3"
 #define PAUSE_PATH "Data/Sound/Pause.wav"
+#define DAMEGE_PATH "Data/Sound/Damege.mp3"
+
 
 class SoundManager
 {
@@ -56,6 +58,7 @@ public:
 	void PlayCleck();	// 歩く
 	void PlayHover();
 	void PlayPause();
+	void PlayDamage();
 
 
 	
@@ -71,6 +74,9 @@ public:
 	void StopVoice();	// 走る
 	void StopShot();	// 走る
 
+	void StopDamege();
+
+	bool GetisDamegeEnd_();
 
 private:
 
@@ -99,4 +105,8 @@ private:
 	int cleckHundle_;
 	//ポーズ決定音
 	int pauseHundle_;
+	//ダメージ音ハンドル
+	int damageHundle_;
+
+	bool isDamegeEnd_;
 };
