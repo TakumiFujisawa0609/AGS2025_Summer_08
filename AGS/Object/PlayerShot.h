@@ -21,7 +21,7 @@ public:
 	static constexpr float P_SHOT_MOVE_LIMIT = 4000.0f;
 	static constexpr int MAX_AMMO = 20;
 	static constexpr int MAX_SHOTS = 10; // 同時に飛ばせる弾数
-	static constexpr int SHOT_INTERVAL = 15; // 発射間隔（フレーム）
+	static constexpr int SHOT_INTERVAL = 25; // 発射間隔（フレーム）
 
 	PlayerShot();
 	~PlayerShot();
@@ -62,5 +62,8 @@ private:
 
 	std::vector<ShotData> shots_;
 	int shotTimer_ = 0;
+
+	bool isReloading_ = false;     // リロード中フラグ
+	float reloadTimer_ = 0.0f;     // リロード経過時間
 
 };

@@ -94,10 +94,14 @@ private:
 
     // 拾うキー画像
     int fKeyImg_;
+    int qKeyImg_;
+    
     // 拾うフラグ
     int isPickKey_ = false;
     // 開くフラグ
     bool isOpenKey_ = false;
+
+    bool isHealKey_ = false;
 
     bool isGameClear_;
 

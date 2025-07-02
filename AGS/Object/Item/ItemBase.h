@@ -11,6 +11,7 @@ public:
 		PICKUP_V,    // ワクチン取得
         PICKUP_B,    // 弾薬箱取得
 		PICKUP_K,    // 医療キット取得
+        PICKUP_L,
         MAX
     };
 
@@ -19,6 +20,7 @@ public:
         BULLET,
         KIT,
         VACCINE,
+        LIGHT,
         MAX
     };
 

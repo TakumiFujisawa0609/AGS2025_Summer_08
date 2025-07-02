@@ -155,8 +155,6 @@ void ItemManager::Draw(void)
 		// ワクチンの現在数
 		DrawFormatString(0, 100, 0xffffff, "ワクチンを回収:%d", pickedVaccineNum_);
 	}
-
-	
 }
 
 void ItemManager::Release(void)

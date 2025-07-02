@@ -69,11 +69,8 @@ void Player::Draw(void)
 
 	//DrawFormatString(0, 700, 0xffffff, "isStop_P:%d", isStop_);
 	//DrawFormatString(0, 740, 0xffffff, "isAlive_P:%d", isAlive_);
-	
-	DrawFormatString(500, 0, 0xffffff, "%d", hp_);
-	// ‰ñ•œ‰Â”\”
-	DrawFormatString(1606, 967, 0xffffff, "%d", heal_);
-
+	//
+	//DrawFormatString(500, 0, 0xffffff, "%d", hp_);
 
 	if (redEffectAlpha_ > 0)
 	{
@@ -101,7 +98,6 @@ void Player::Draw(void)
 
 void Player::Release(void)
 {
-	
 }
 
 // HP
@@ -186,6 +182,10 @@ void Player::Damage(int damage)
 		hp_ = 0; 
 		SoundManager::GetInstance()->PlayDie();
 	}
+	else if (hp_ == 1)
+	{
+		SoundManager::GetInstance()->PlayHit();
+	}
 }
 
 void Player::DamageEffect()
@@ -244,6 +244,16 @@ VECTOR Player::GetMovedPos(void)
 bool Player::GetAlive(void)
 {
 	return isAlive_;
+}
+
+int Player::GetHp()
+{
+	return hp_;
+}
+
+int Player::GetHeal()
+{
+	return heal_;
 }
 
 // ‰ñ“]İ’è

@@ -4,9 +4,10 @@
 #define WALK_PATH "Data/Sound/walk.wav"
 #define OPEN_PATH "Data/Sound/open.wav"
 #define CLOSE_PATH "Data/Sound/close.wav"
+#define HIT_PATH "Data/Sound/hit.wav"
 #define DIE_PATH "Data/Sound/die.wav"
 #define NOBULLET_PATH "Data/Sound/noBullet.wav"
-#define RELOAD_PATH "Data/Sound/reLoad.wav"
+#define RELOAD_PATH "Data/Sound/reload.wav"
 #define SHOT_PATH "Data/Sound/shot.wav"
 #define PICKUP_PATH "Data/Sound/pickUp.wav"
 #define VOICE_PATH "Data/Sound/voice.wav"
@@ -22,19 +23,23 @@ class SoundManager
 {
 public:
 
-	static constexpr int BGM1_VOLUME = 120;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int WALK_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int OPEN_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int CLOSE_VOLUME = 255;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int DIE_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int NOBULLET_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int RELOAD_VOLUME = 255;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int SHOT_VOLUME = 255;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int PICKUP_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int VOICE_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int CLECK_VOLUME = 100;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int HEAL_VOLUME = 240;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int BGM1_VOLUME = 110;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int WALK_VOLUME = 144;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int OPEN_VOLUME = 122;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int CLOSE_VOLUME = 102;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int DIE_VOLUME = 142;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int HIT_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int NOBULLET_VOLUME = 227;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int RELOAD_VOLUME = 232;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int SHOT_VOLUME = 182;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PICKUP_VOLUME = 242;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int VOICE_VOLUME = 152;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PAUSE_VOLUME = 100;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int CLECK_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int HOVER_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int HEAL_VOLUME = 247;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HEALVOICE_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int IMPACT_VOLUME = 249;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃê∂ê¨
 	static void CreateInstance(void);
@@ -52,6 +57,7 @@ public:
 	void PlayWalk();	// ï‡Ç≠
 	void PlayOpen();	// ëñÇÈ
 	void PlayClose();	// ï‡Ç≠
+	void PlayHit();
 	void PlayDie();	// ëñÇÈ
 	void PlayNoAmmo();	// ï‡Ç≠
 	void PlayPickUp();	// ëñÇÈ
@@ -96,6 +102,7 @@ private:
 	int walkHundle_;
 	int openHundle_;
 	int closeHundle_;
+	int hitHundle_;
 	int dieHundle_;
 	int noAmmoHundle_;
 	int pickUpHundle_;

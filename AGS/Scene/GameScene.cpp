@@ -252,7 +252,7 @@ void GameScene::View()
 
 	// ‰~‚Ì–¾‚©‚èi‚±‚±‚ÍD‚İ‚É‰‚¶‚Ä‰æ‘œ‚Å‚à‰Âj
 	SetDrawBlendMode(DX_BLENDMODE_ADD, 120);
-	DrawCircle(centerX, centerY, 200, GetColor(255, 255, 200), TRUE);
+	DrawCircle(centerX, centerY, 280, GetColor(255, 255, 200), TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 

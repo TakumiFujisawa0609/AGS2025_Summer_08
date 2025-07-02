@@ -56,6 +56,7 @@ void SoundManager::Init(void)
 	walkHundle_ = LoadSoundMem(WALK_PATH);
 	openHundle_ = LoadSoundMem(OPEN_PATH);
 	closeHundle_ = LoadSoundMem(CLOSE_PATH);
+	hitHundle_ = LoadSoundMem(HIT_PATH);
 	dieHundle_ = LoadSoundMem(DIE_PATH);
 	noAmmoHundle_ = LoadSoundMem(NOBULLET_PATH);
 	pickUpHundle_ = LoadSoundMem(PICKUP_PATH);
@@ -130,6 +131,15 @@ void SoundManager::PlayClose()
 	ChangeVolumeSoundMem(CLOSE_VOLUME, closeHundle_);
 }
 
+void SoundManager::PlayHit()
+{
+	// Н─Р╢
+	PlaySoundMem(hitHundle_, DX_PLAYTYPE_BACK, true);
+
+	// Й╣Ч╩Т▓Ро
+	ChangeVolumeSoundMem(HIT_VOLUME, hitHundle_);
+}
+
 void SoundManager::PlayDie()
 {
 	// Н─Р╢
@@ -195,22 +205,31 @@ void SoundManager::PlayCleck()
 
 void SoundManager::PlayHover()
 {
-
 	// Н─Р╢
 	PlaySoundMem(hoverHundle_, DX_PLAYTYPE_BACK, true);
+
+	// Й╣Ч╩Т▓Ро
+	ChangeVolumeSoundMem(HOVER_VOLUME, hoverHundle_);
 }
 
 void SoundManager::PlayPause()
 {
 	// Н─Р╢
 	PlaySoundMem(pauseHundle_, DX_PLAYTYPE_BACK, true);
+
+	// Й╣Ч╩Т▓Ро
+	ChangeVolumeSoundMem(PAUSE_VOLUME, pauseHundle_);
 }
 
 void SoundManager::PlayImpact()
 {
 	// Н─Р╢
 	PlaySoundMem(impactHundle_, DX_PLAYTYPE_BACK, true);
+
+	// Й╣Ч╩Т▓Ро
+	ChangeVolumeSoundMem(IMPACT_VOLUME, impactHundle_);
 }
+
 
 void SoundManager::PlayHeal()
 {

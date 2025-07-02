@@ -252,7 +252,6 @@ void InputManager::SetJPadInState(JOYPAD_NO jpNo)
 		stateNow.AKeyLY = stateNew.AKeyLY;
 		stateNow.AKeyRX = stateNew.AKeyRX;
 		stateNow.AKeyRY = stateNew.AKeyRY;
-
 	}
 
 }

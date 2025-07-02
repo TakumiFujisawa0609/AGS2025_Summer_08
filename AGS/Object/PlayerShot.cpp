@@ -1,8 +1,9 @@
 #include <DxLib.h>
 #include "../Manager/Application.h"
 #include "../Object/Camera.h"
-#include "../Manager/InputManager.h"
 #include "../Manager/SoundManager.h"
+#include "../Manager/InputManager.h"
+#include "../Manager/SceneManager.h"
 #include "PlayerShot.h"
 
 PlayerShot::PlayerShot() {}
@@ -31,9 +32,11 @@ void PlayerShot::Update(void)
 {
 	if (shotTimer_ > 0) --shotTimer_;
 
+	// 撃つ・リロード
 	Shot();
 	ReLoad();
 
+	// 弾の配列を回す
 	for (auto& shot : shots_)
 	{
 		if (!shot.isAlive) continue;
@@ -86,16 +89,23 @@ void PlayerShot::Release(void)
 
 void PlayerShot::Shot(void)
 {
+	// リロード中なら撃てない
+	if (isReloading_) return;
+
 	if (shotTimer_ > 0) return;
-	if (!InputManager::GetInstance().IsClickMouseLeft()) return;
+	if (!InputManager::GetInstance().IsTrgMouseLeft()) return;
 	if (ammo_ <= 0) return;
 
 	for (auto& shot : shots_)
 	{
 		if (!shot.isAlive)
 		{
-			shot.pos = shot.startPos = camera_->GetPos();
-			shot.dir = VScale(VNorm(camera_->GetForward()), -1.0f);
+			VECTOR forward = VNorm(camera_->GetForward());
+			VECTOR offset = VScale(forward, -30.0f); // 後ろ方向へ20ずらす
+			VECTOR startPos = VAdd(camera_->GetPos(), offset);
+
+			shot.pos = shot.startPos = startPos;
+			shot.dir = VScale(forward, -1.0f);
 			shot.dist = 0.0f;
 			shot.isAlive = true;
 
@@ -109,32 +119,42 @@ void PlayerShot::Shot(void)
 
 void PlayerShot::ReLoad(void)
 {
-	// 左クリック時、弾が0なら弾切れ音
-	if (InputManager::GetInstance().IsClickMouseLeft() && ammo_ == 0)
+	float deltaTime = SceneManager::GetInstance()->GetDeltaTime();
+
+	// 弾切れ時に左クリックで空撃ち音
+	if (InputManager::GetInstance().IsTrgMouseLeft() && ammo_ == 0 && !isReloading_)
 	{
 		SoundManager::GetInstance()->PlayNoAmmo();
 		isReload_ = (maxMagazine_ > 0);
 	}
 
-	// Rキーでリロード
-	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0)
+	// Rキーを押した瞬間にリロード開始
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0 && !isReloading_)
 	{
-		int needAmmo = MAX_AMMO - ammo_;
-		int reloadAmmo;
+		isReloading_ = true;
+		reloadTimer_ = 0.0f;
 
-		if (needAmmo < maxMagazine_) {
-			reloadAmmo = needAmmo;
-		}
-		else {
-			reloadAmmo = maxMagazine_;
-		}
+		SoundManager::GetInstance()->PlayReLoad();
+	}
 
-		ammo_ += reloadAmmo;
-		maxMagazine_ -= reloadAmmo;
+	// リロード中処理
+	if (isReloading_)
+	{
+		reloadTimer_ += deltaTime;
 
 		isReload_ = false;
 
-		SoundManager::GetInstance()->PlayReLoad();
+		// 3秒経過したらリロード完了
+		if (reloadTimer_ >= 1.8f)
+		{
+			int needAmmo = MAX_AMMO - ammo_;
+			int reloadAmmo = (needAmmo < maxMagazine_) ? needAmmo : maxMagazine_;
+
+			ammo_ += reloadAmmo;
+			maxMagazine_ -= reloadAmmo;
+
+			isReloading_ = false;
+		}
 	}
 }
 
@@ -142,8 +162,9 @@ void PlayerShot::KeyDraw(void)
 {
 	if (isReload_)
 	{
-		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 58, 0.14f, 0.0f, rKeyImg_, true);
-		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 5, Application::SCREEN_SIZE_Y / 2 + 49, 0xffffff, "リロード");
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 46, 0.23f, 0.0f, rKeyImg_, true);
+		SetFontSize(23);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 34, 0xffffff, "リロード");
 	}
 }
 

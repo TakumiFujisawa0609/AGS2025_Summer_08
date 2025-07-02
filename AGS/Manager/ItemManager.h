@@ -14,6 +14,7 @@ public:
 	static constexpr int BULLET_NUM = 5;
 	static constexpr int KIT_NUM = 2;
 	static constexpr int VACCINE_NUM = 3;
+	static constexpr int LIGHT_NUM = 10;
 
 	static constexpr int SHOW_DURATION = 2500;
 

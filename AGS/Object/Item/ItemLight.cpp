@@ -13,6 +13,7 @@ ItemLight::~ItemLight(void)
 
 void ItemLight::Update()
 {
+	
 }
 
 void ItemLight::Draw()

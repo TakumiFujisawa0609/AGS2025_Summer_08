@@ -50,6 +50,7 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 	}
 
 	fKeyImg_ = LoadGraph("Data/Image/FKey.png");
+	qKeyImg_ = LoadGraph("Data/Image/QKey.png");
 
 	isGameClear_ = false;
 }
@@ -82,22 +83,36 @@ void Collision::Draw()
 	if (isPickKey_)
 	{
 		// リロード中のキー画像を表示
-		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
-		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "拾う");
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.23f, 0.0f, fKeyImg_, true);
+		SetFontSize(23);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 + 5, Application::SCREEN_SIZE_Y / 2 + 61, 0xffffff, "拾う");
 	}
 
 	if (isOpenKey_)
 	{
 		// 開くキー画像を表示
-		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 72, 0.14f, 0.0f, fKeyImg_, true);
-		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 3, Application::SCREEN_SIZE_Y / 2 + 64, 0xffffff, "開く");
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 95, 0.23f, 0.0f, fKeyImg_, true);
+		SetFontSize(23);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 + 4, Application::SCREEN_SIZE_Y / 2 + 83, 0xffffff, "開く");
 	}
 
+	if (player_->GetHp() == 1 && player_->GetHeal() >= 1)
+	{
+		// 開くキー画像を表示
+		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 38, Application::SCREEN_SIZE_Y / 2 + 98, 0.23f, 0.0f, qKeyImg_, true);
+		SetFontSize(23);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 17, Application::SCREEN_SIZE_Y / 2 + 86, 0xffffff, "長押しで回復");
+	}
+
+	SetFontSize(20);
+	// 回復可能数
+	DrawFormatString(1606, 967, 0xffffff, "%d", player_->GetHeal());
 	DrawFormatString(500, 0,0xffffff, "isPickKey:%d", isPickKey_);
 }
 
 void Collision::Release()
 {
+	DeleteGraph(qKeyImg_);
 }
 
 void Collision::CollisionPAndE()
@@ -421,10 +436,6 @@ void Collision::CollisionPAndD()
 	// ワクチンがすべて拾われているか確認
 	if (item_->GetVaccine() == 0)
 	{
-
-		// 範囲内にいる状態でFを押したら
-		if (dis < radiusNum && InputManager::GetInstance().IsTrgDown(KEY_INPUT_F))
-
 		// 範囲内にいる状態で
 		if (dis < radiusNum)
 		{

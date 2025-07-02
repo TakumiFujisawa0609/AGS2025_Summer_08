@@ -38,6 +38,8 @@ public:
 	VECTOR GetMovedPos(void);
 
 	bool GetAlive(void);
+	int GetHp();
+	int GetHeal();
 private:
 
 	// プレイヤーモデル
