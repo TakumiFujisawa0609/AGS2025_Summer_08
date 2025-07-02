@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../Manager/Application.h"
 #include "../Object/Camera.h"
+#include "../Object/Player.h"
 #include "../Manager/SoundManager.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
@@ -9,9 +10,10 @@
 PlayerShot::PlayerShot() {}
 PlayerShot::~PlayerShot() {}
 
-void PlayerShot::Init(Camera* camera)
+void PlayerShot::Init(Camera* camera, Player* player)
 {
 	camera_ = camera;
+	player_ = player;
 
 	image_ = LoadGraph("Data/Image/gun.png");
 	gunCircleImg_ = LoadGraph("Data/Image/gunCircle.png");
@@ -90,7 +92,7 @@ void PlayerShot::Release(void)
 void PlayerShot::Shot(void)
 {
 	// ƒŠƒ[ƒh’†‚È‚çŒ‚‚Ä‚È‚¢
-	if (isReloading_) return;
+	if (isReloading_ || !player_->GetAlive()) return;
 
 	if (shotTimer_ > 0) return;
 	if (!InputManager::GetInstance().IsTrgMouseLeft()) return;

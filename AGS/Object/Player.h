@@ -44,12 +44,6 @@ private:
 
 	// プレイヤーモデル
 	int modelId_;
-<<<<<<< HEAD
-=======
-	//ダメージエフェクトハンドル
-	int damegeHandle_;
-	int defoHandle_;
->>>>>>> origin/ando_Ui
 	
 	// プレイヤーの移動前座標
 	VECTOR movedPos_;
@@ -94,7 +88,4 @@ private:
 
 	bool isHeal_;
 	bool isHoldingQ_ = false;  // Q長押し中かどうか
-
-	int redEffectAlpha_ = 0;       // 点滅アルファ値
-	bool redEffectIncreasing_ = true; // アルファ増加中かどうか
 };

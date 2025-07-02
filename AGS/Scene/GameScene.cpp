@@ -40,7 +40,7 @@ void GameScene::Init(void)
 	player_->Init();
 	camera_->Init(player_);
 	enemy_->Init();
-	pShot_->Init(camera_);
+	pShot_->Init(camera_, player_);
 	item_->Init(player_, pShot_);
 	blood_->Init();
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);

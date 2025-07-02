@@ -16,6 +16,8 @@ public:
 	static constexpr int VACCINE_NUM = 3;
 	static constexpr int LIGHT_NUM = 10;
 
+	static constexpr int LAST_COUNT_SPAN = 180;
+
 	static constexpr int SHOW_DURATION = 2500;
 
 	// コンストラクタ・デストラクタ
@@ -82,4 +84,7 @@ private:
 	int task_03;
 	int task_04;
 	int lastTask;
+
+	// 脱出タスクまでの時間
+	int count_span;
 };

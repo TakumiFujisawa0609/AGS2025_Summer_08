@@ -45,6 +45,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 	 hasPlayed = true;
 	 countPlay = true;
 
+	 count_span = 0;
+
 	// 決められた数配置
 	for (int i = 0; i < BULLET_NUM; i++)
 	{
@@ -137,8 +139,7 @@ void ItemManager::Draw(void)
 	//DrawGraph(0, 0, task_01, true);
 	//DrawGraph(0, 0, task_02, task02_Alive);
 
-<<<<<<< HEAD
-=======
+
 	//獲得ワクチンが0個
 	if (pickedVaccineNum_ == 0)
 	{
@@ -202,7 +203,7 @@ void ItemManager::Draw(void)
 
 		DrawExtendGraph(0,100, 400, 200, lastTask, true);
 	}
->>>>>>> origin/ando_Ui
+
 	// 最初のワクチン取得時に
 	if (vaccineNum_ == 2)
 	{

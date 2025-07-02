@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+class Player;
 class Camera;
 
 class PlayerShot
@@ -25,7 +26,7 @@ public:
 
 	PlayerShot();
 	~PlayerShot();
-	void Init(Camera* camera);
+	void Init(Camera* camera, Player* player);
 	void Update(void);
 	void Draw(void);
 	void Release(void);
@@ -47,7 +48,7 @@ public:
 	void SetMagazine();
 
 private:
-
+	Player* player_;
 	Camera* camera_;
 
 	int modelId_;

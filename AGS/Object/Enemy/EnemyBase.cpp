@@ -172,6 +172,7 @@ void EnemyBase::LookPlayer()
 // プレイヤー追尾
 void EnemyBase::ChasePlayer()
 {
+
 	// 移動方向がゼロベクトルでない場合
 	if (!AsoUtility::EqualsVZero(moveDir_))
 	{
@@ -215,8 +216,6 @@ void EnemyBase::ChangeState(STATE state)
 
 void EnemyBase::ChangeStateDist()
 {
-	if (!isAlive_) { return; }
-
 	// プレイヤーが死んでいたら常にIDLEにする
 	if (!player_->GetAlive())
 	{

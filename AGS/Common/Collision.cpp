@@ -52,6 +52,9 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 	fKeyImg_ = LoadGraph("Data/Image/FKey.png");
 	qKeyImg_ = LoadGraph("Data/Image/QKey.png");
 
+	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
+	defoHandle_ = LoadGraph("Data/Image/Effect/Damege_01.png");
+
 	isGameClear_ = false;
 }
 
@@ -104,6 +107,25 @@ void Collision::Draw()
 		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 17, Application::SCREEN_SIZE_Y / 2 + 86, 0xffffff, "長押しで回復");
 	}
 
+	if (player_->GetHp() == 1)
+	{
+		DrawGraph(0, 0, defoHandle_, true);
+
+		// alpha値計算
+		int alpha = (int)(((sin(count * 0.05) * 0.5) + 0.5) * 255 + 30); // 0〜255
+		SoundManager::GetInstance()->PlayDamage();
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawGraph(0, 0, damegeHandle_, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		count = count + 1; // 毎フレーム増やす
+	}
+	else
+	{
+		SoundManager::GetInstance()->StopDamage();
+	}
+
 	SetFontSize(20);
 	// 回復可能数
 	DrawFormatString(1606, 967, 0xffffff, "%d", player_->GetHeal());
@@ -113,6 +135,9 @@ void Collision::Draw()
 void Collision::Release()
 {
 	DeleteGraph(qKeyImg_);
+
+	DeleteGraph(damegeHandle_);
+	DeleteGraph(defoHandle_);
 }
 
 void Collision::CollisionPAndE()

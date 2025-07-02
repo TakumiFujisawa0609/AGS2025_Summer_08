@@ -95,6 +95,11 @@ private:
     // 拾うキー画像
     int fKeyImg_;
     int qKeyImg_;
+
+    //ダメージエフェクトハンドル
+    int damegeHandle_;
+    int defoHandle_;
+    int count = 0;
     
     // 拾うフラグ
     int isPickKey_ = false;
