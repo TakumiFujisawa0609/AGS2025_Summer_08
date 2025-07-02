@@ -96,6 +96,10 @@ private:
     int fKeyImg_;
     int qKeyImg_;
 
+    int vImage_;
+    int sImage_;
+    int kImage_;
+
     //ダメージエフェクトハンドル
     int damegeHandle_;
     int defoHandle_;
@@ -103,6 +107,7 @@ private:
     
     // 拾うフラグ
     int isPickKey_ = false;
+
     // 開くフラグ
     bool isOpenKey_ = false;
 

@@ -124,14 +124,16 @@ void PlayerShot::ReLoad(void)
 	float deltaTime = SceneManager::GetInstance()->GetDeltaTime();
 
 	// 弾切れ時に左クリックで空撃ち音
-	if (InputManager::GetInstance().IsTrgMouseLeft() && ammo_ == 0 && !isReloading_)
+	if (InputManager::GetInstance().IsTrgMouseLeft() && ammo_ == 0 
+		&& !isReloading_ && player_->GetAlive())
 	{
 		SoundManager::GetInstance()->PlayNoAmmo();
 		isReload_ = (maxMagazine_ > 0);
 	}
 
 	// Rキーを押した瞬間にリロード開始
-	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO && maxMagazine_ > 0 && !isReloading_)
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_R) && ammo_ < MAX_AMMO 
+		&& maxMagazine_ > 0 && !isReloading_ && player_->GetAlive())
 	{
 		isReloading_ = true;
 		reloadTimer_ = 0.0f;
@@ -162,7 +164,7 @@ void PlayerShot::ReLoad(void)
 
 void PlayerShot::KeyDraw(void)
 {
-	if (isReload_)
+	if (isReload_ && player_->GetAlive())
 	{
 		DrawRotaGraph(Application::SCREEN_SIZE_X / 2 - 18, Application::SCREEN_SIZE_Y / 2 + 46, 0.23f, 0.0f, rKeyImg_, true);
 		SetFontSize(23);

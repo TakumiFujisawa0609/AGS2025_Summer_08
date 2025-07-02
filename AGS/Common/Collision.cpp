@@ -52,6 +52,10 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 	fKeyImg_ = LoadGraph("Data/Image/FKey.png");
 	qKeyImg_ = LoadGraph("Data/Image/QKey.png");
 
+	vImage_ = LoadGraph("Data/Image/GetVaccine.png");
+	sImage_ = LoadGraph("Data/Image/GetShot.png");
+	kImage_ = LoadGraph("Data/Image/GeyKit.png");
+
 	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
 	defoHandle_ = LoadGraph("Data/Image/Effect/Damege_01.png");
 
@@ -107,6 +111,11 @@ void Collision::Draw()
 		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 17, Application::SCREEN_SIZE_Y / 2 + 86, 0xffffff, "長押しで回復");
 	}
 
+	SetFontSize(20);
+	// 回復可能数
+	DrawFormatString(1606, 967, 0xffffff, "%d", player_->GetHeal());
+	DrawFormatString(500, 0,0xffffff, "isPickKey:%d", isPickKey_);
+
 	if (player_->GetHp() == 1)
 	{
 		DrawGraph(0, 0, defoHandle_, true);
@@ -126,15 +135,64 @@ void Collision::Draw()
 		SoundManager::GetInstance()->StopDamage();
 	}
 
-	SetFontSize(20);
-	// 回復可能数
-	DrawFormatString(1606, 967, 0xffffff, "%d", player_->GetHeal());
-	DrawFormatString(500, 0,0xffffff, "isPickKey:%d", isPickKey_);
+	if (item_->IsShowingGetVaccine())
+	{
+		// 表示する画像
+		DrawRotaGraph(960, 540, 0.6, 0, vImage_, true);
+
+		// マウス左クリックで非表示にして再開
+		if (InputManager::GetInstance().IsTrgMouseLeft())
+		{
+			item_->SetIsShowingGetVaccine(false);
+		}
+	}
+	if (item_->IsShowingGetShot())
+	{
+		// 表示する画像
+		DrawRotaGraph(960, 540, 0.6, 0, sImage_, true);
+
+		// マウス左クリックで非表示にして再開
+		if (InputManager::GetInstance().IsTrgMouseLeft())
+		{
+			item_->SetIsShowingGetShot(false);
+		}
+	}
+	if (item_->IsShowingGetKit())
+	{
+		// 表示する画像
+		DrawRotaGraph(960, 540, 0.6, 0, kImage_, true);
+
+		// マウス左クリックで非表示にして再開
+		if (InputManager::GetInstance().IsTrgMouseLeft())
+		{
+			item_->SetIsShowingGetKit(false);
+		}
+	}
+
+	const auto& enemies = enemy_->GetEnemies();
+	for (auto pair : enemies)
+	{
+		for (EnemyBase* enemy : pair.second)
+		{
+			if (!enemy->GetAlive()) continue;
+
+			// 敵の当たり判定用中心
+			VECTOR centerPosE = VAdd(enemy->GetPos(), VGet(0, 95, 0));
+
+			float rEnemy = 65.0f;
+
+			//DrawSphere3D(centerPosE, rEnemy, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+		}
+	}
 }
 
 void Collision::Release()
 {
 	DeleteGraph(qKeyImg_);
+
+	DeleteGraph(vImage_);
+	DeleteGraph(sImage_);
+	DeleteGraph(kImage_);
 
 	DeleteGraph(damegeHandle_);
 	DeleteGraph(defoHandle_);
@@ -160,10 +218,10 @@ void Collision::CollisionPAndE()
 			// プレイヤーの当たり判定の球体の中心点
 			VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
 			// 敵の当たり判定の球体の中心点
-			VECTOR eCenterPos = VAdd(ePos, VGet(0, 100, 0));
+			VECTOR eCenterPos = VAdd(ePos, VGet(0, 95, 0));
 
 			float radiusP = 45.0f;
-			float radiusE = 60.0f;
+			float radiusE = 70.0f;
 
 			// 中心間の距離
 			float dis = VSize(VSub(pCenterPos,eCenterPos));
@@ -221,10 +279,12 @@ void Collision::CollisionPShotAndE(void)
 				if (!enemy->GetAlive()) continue;
 
 				// 敵の当たり判定用中心
-				VECTOR centerPosE = VAdd(enemy->GetPos(), VGet(0, 100, 0));
+				VECTOR centerPosE = VAdd(enemy->GetPos(), VGet(0, 95, 0));
+
+				VECTOR centerPosE1 = VAdd(centerPosE, VGet(0, 40, 0));
 
 				float dis = VSize(VSub(centerPosE, centerPosPShot));
-				float rEnemy = 60.0f;
+				float rEnemy = 65.0f;
 				float rPShot = 10.0f;
 				float radiusNum = rEnemy + rPShot;
 
@@ -234,7 +294,7 @@ void Collision::CollisionPShotAndE(void)
 					shot.isAlive = false;  // 弾を消す
 
 					blood_->SetAlive(true);
-					blood_->SetPos(centerPosE);
+					blood_->SetPos(centerPosE1);
 					blood_->Emit();
 
 					break;  // 1体に当たったら他の敵はスキップ（弾1発）
@@ -290,6 +350,7 @@ void Collision::CollisionPAndS()
 	if (hitPoly_P_S.HitFlag == 1)
 	{
 		player_->SetStop(true);	// 停止
+		SoundManager::GetInstance()->StopWalk();
 	}
 	else
 	{

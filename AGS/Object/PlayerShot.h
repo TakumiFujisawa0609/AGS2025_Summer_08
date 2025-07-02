@@ -18,8 +18,8 @@ public:
 
 	static constexpr VECTOR DEFAULT_POS = { 0,0,0 };
 	static constexpr VECTOR DEFAULT_SCALE = { 0.05f,0.05f,0.05f };
-	static constexpr float SHOT_SPEED = 60.0f;
-	static constexpr float P_SHOT_MOVE_LIMIT = 4000.0f;
+	static constexpr float SHOT_SPEED = 100.0f;
+	static constexpr float P_SHOT_MOVE_LIMIT = 4200.0f;
 	static constexpr int MAX_AMMO = 20;
 	static constexpr int MAX_SHOTS = 10; // 同時に飛ばせる弾数
 	static constexpr int SHOT_INTERVAL = 25; // 発射間隔（フレーム）

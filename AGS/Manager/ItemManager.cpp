@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "InputManager.h"
 #include "SoundManager.h"
 #include "../Object/Item/ItemBase.h"
 #include "../Object/Item/ItemBullet.h"
@@ -148,12 +149,11 @@ void ItemManager::Draw(void)
 	//獲得ワクチンが１個
 	if (pickedVaccineNum_ == 1)
 	{
-
 		if (task01_Alive == true)
 		{
 			task01_Alive = false;
-			SoundManager::GetInstance()->PlayCount();
-			
+			// SoundManager::GetInstance()->PlayCount();
+
 		}
 		DrawExtendGraph(0, 100, 400, 200, task_02, true);
 	}
@@ -164,7 +164,7 @@ void ItemManager::Draw(void)
 		
 		if (task02_Alive == true)
 		{
-			SoundManager::GetInstance()->PlayCount();
+			//SoundManager::GetInstance()->PlayCount();
 			task02_Alive = false;
 		}
 		DrawExtendGraph(0, 100, 400, 200, task_03, true);
@@ -177,7 +177,7 @@ void ItemManager::Draw(void)
 		{
 			if (task03_Alive == true)
 			{
-				SoundManager::GetInstance()->PlayCount();
+				//SoundManager::GetInstance()->PlayCount();
 				task03_Alive = false;
 			}
 			
@@ -197,25 +197,12 @@ void ItemManager::Draw(void)
 		count_span = 0;
 		if (hasPlayed == true)
 		{
-			SoundManager::GetInstance()->PlayCount();
+			//SoundManager::GetInstance()->PlayCount();
 			hasPlayed = false;
 		}
 
 		DrawExtendGraph(0,100, 400, 200, lastTask, true);
 	}
-
-	// 最初のワクチン取得時に
-	if (vaccineNum_ == 2)
-	{
-		// 今の時間を保存
-		int now = GetNowCount();
-		if (now - pickUpTime_ <= SHOW_DURATION)
-		{
-			// 拾ってから3秒以内なら画像表示
-			DrawRotaGraph(955, 540, 0.5, 0, vImage_, true);
-		}
-	}
-
 	// // ワクチンの現在数
 	//DrawFormatString(0, 60, 0xffffff, "ワクチン残り個数:%d", vaccineNum_);
 
@@ -243,8 +230,6 @@ void ItemManager::Release(void)
 	{
 		MV1DeleteModel(id);
 	}
-
-	DeleteGraph(vImage_);
 }
 
 // ワクチンを拾う
@@ -255,6 +240,13 @@ void ItemManager::PickVaccine(void)
 
 	// 取得ワクチンを増やす
 	pickedVaccineNum_++;
+
+	// 取得タイミングを記録（1つ目だけ）
+	if (pickedVaccineNum_ == 1)
+	{
+		isShowingGetVaccine_ = true;  // ← 画像表示開始
+		SoundManager::GetInstance()->StopWalk();
+	}
 
 	// ワクチンの数がマイナスにならないようにする
 	if (vaccineNum_ < 0)
@@ -270,6 +262,13 @@ void ItemManager::PickBulletBox(void)
 {
 	// 弾薬箱の数を減らす
 	bulletBoxNum_--;
+
+	// 取得タイミングを記録（1つ目だけ）
+	if (bulletBoxNum_ == 4)
+	{
+		isShowingGetShot_ = true;  // ← 画像表示開始
+		SoundManager::GetInstance()->StopWalk();
+	}
 
 	// 弾薬箱の数がマイナスにならないようにする
 	if (bulletBoxNum_ < 0)
@@ -289,6 +288,13 @@ void ItemManager::PickKitBox(void)
 	// 救急箱の数を減らす
 	kitBoxNum_--;
 
+	// 取得タイミングを記録（1つ目だけ）
+	if (kitBoxNum_ == 1)
+	{
+		isShowingGetKit_ = true;  // ← 画像表示開始
+		SoundManager::GetInstance()->StopWalk();
+	}
+
 	// 救急箱の数がマイナスにならないようにする
 	if (kitBoxNum_ < 0)
 	{
@@ -305,6 +311,36 @@ void ItemManager::PickKitBox(void)
 int ItemManager::GetVaccine(void)
 {
 	return vaccineNum_;
+}
+
+bool ItemManager::IsShowingGetVaccine() const
+{
+	return isShowingGetVaccine_;
+}
+
+void ItemManager::SetIsShowingGetVaccine(bool isShow)
+{
+	isShowingGetVaccine_ = isShow;
+}
+
+bool ItemManager::IsShowingGetShot() const
+{
+	return isShowingGetShot_;
+}
+
+void ItemManager::SetIsShowingGetShot(bool isShow)
+{
+	isShowingGetShot_ = isShow;
+}
+
+bool ItemManager::IsShowingGetKit() const
+{
+	return isShowingGetKit_;
+}
+
+void ItemManager::SetIsShowingGetKit(bool isShow)
+{
+	isShowingGetKit_ = isShow;
 }
 
 const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& ItemManager::GetItems()

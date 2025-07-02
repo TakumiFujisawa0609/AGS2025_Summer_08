@@ -99,7 +99,7 @@ void Camera::Angle(void)
 	int deltaY = movedPosY_ - centerY_;
 
 	// 角度更新（感度調整）
-	const float sensitivity = 0.001f; // センシ調整
+	const float sensitivity = 0.0004f; // センシ調整
 	// 更新
 	yaw_ += deltaX * sensitivity;
 	pitch_ += deltaY * sensitivity;

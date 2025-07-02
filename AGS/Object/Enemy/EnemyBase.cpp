@@ -63,7 +63,11 @@ void EnemyBase::Update()
 	LookPlayer();   
 
 	// 状態に応じた行動（追尾・攻撃など）
-	ChangeStateDist();
+	// 生きているときだけ状態変更を行う
+	if (isAlive_) 
+	{
+		ChangeStateDist();
+	}
 	
 	switch (state_) {
 	case STATE::IDLE:
@@ -120,7 +124,6 @@ void EnemyBase::Draw()
 		MV1DrawModel(modelId_);
 	}
 
-
 #ifdef DEBUG
 	//VECTOR centerPos = pos_;
 //centerPos = VAdd(centerPos, VGet(0, 100, 0));
@@ -172,7 +175,6 @@ void EnemyBase::LookPlayer()
 // プレイヤー追尾
 void EnemyBase::ChasePlayer()
 {
-
 	// 移動方向がゼロベクトルでない場合
 	if (!AsoUtility::EqualsVZero(moveDir_))
 	{
@@ -193,6 +195,9 @@ void EnemyBase::ChasePlayer()
 // 状態を切り替える
 void EnemyBase::ChangeState(STATE state)
 {
+	// 死亡後に他の状態に変更しないようブロック
+	if (!isAlive_ && state != STATE::DIE) return;
+
 	state_ = state;
 
 	switch (state_) {
@@ -299,7 +304,8 @@ void EnemyBase::Damage(int damage)
 	hp_ -= damage;
 
 	// hpが０になったら死亡状態に
-	if (hp_ <= 0) {
+	if (hp_ <= 0) 
+	{
 		ChangeState(STATE::DIE);
 
 		hp_ = 0; // hpを０に固定

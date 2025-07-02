@@ -35,8 +35,9 @@ void AnimControl::Init(int modelHandle)
 // アニメーション再生
 void AnimControl::Play(ANIM_TYPE animType, float speed) 
 {
-    // 攻撃中はアニメーションを切り替えない
-    if (isAttack_ && animType != ANIM_ATTACK) return;
+    // 死亡状態以外攻撃中はアニメーションを切り替えない
+    if (isAttack_ && animType != ANIM_ATTACK 
+        && animType != ANIM_DIE) return;
 
     // 同じアニメを再生しようとしてたら何もしない
     if ( animType == currentAnim_ )

@@ -66,6 +66,13 @@ void GameScene::Update(void)
 	if (isPauseAlive == true)
 		return;
 
+	// １つ目のワクチン回収時
+	if (item_->IsShowingGetVaccine() || item_->IsShowingGetShot() || item_->IsShowingGetKit())
+	{
+		// ワクチン画像表示中は更新しない
+		return;
+	}
+
 	SoundManager::GetInstance()->PlayBgm1();
 
 	// プレイヤー生きてるかで分岐
@@ -153,13 +160,13 @@ void GameScene::Draw(void)
 	// 血
 	blood_->Draw();
 
+	// レティクル
+	Reticule();
+
 	collision_->Draw();
 
 	// リロードキーの表示
 	pShot_->KeyDraw();
-
-	// レティクル
-	Reticule();
 
 	GameOver();
 

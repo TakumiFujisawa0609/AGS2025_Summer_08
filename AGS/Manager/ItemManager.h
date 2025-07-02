@@ -41,6 +41,14 @@ public:
 
 	// ワクチンの数を取得
 	int GetVaccine(void);
+	bool IsShowingGetVaccine() const;
+	void SetIsShowingGetVaccine(bool isShow);
+
+	bool IsShowingGetShot() const;
+	void SetIsShowingGetShot(bool isShow);
+
+	bool IsShowingGetKit() const;
+	void SetIsShowingGetKit(bool isShow);
 
 	const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& GetItems();
 
@@ -66,7 +74,6 @@ private:
 	// 救急箱の数
 	int kitBoxNum_;
 
-	int vImage_;
 	int pickUpTime_ = 0;   // 拾った時間（ミリ秒）
 
 
@@ -87,4 +94,8 @@ private:
 
 	// 脱出タスクまでの時間
 	int count_span;
+
+	bool isShowingGetVaccine_ = false;
+	bool isShowingGetShot_ = false;
+	bool isShowingGetKit_ = false;
 };
