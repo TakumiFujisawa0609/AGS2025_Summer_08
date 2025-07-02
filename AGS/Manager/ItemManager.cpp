@@ -37,12 +37,14 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 	lastTask = LoadGraph("Data/Image/Task/LastTask.png");
 
 
-	 //task01_Alive = true;
+	 task01_Alive = true;
 	 task02_Alive = true;
 	 task03_Alive = true;
 	 task04_Alive = true;
 	 lasttask_Alive = false;
 	
+	 hasPlayed = true;
+	 countPlay = true;
 
 	 count_span = 0;
 
@@ -145,11 +147,25 @@ void ItemManager::Draw(void)
 	//獲得ワクチンが１個
 	if (pickedVaccineNum_ == 1)
 	{
+
+		if (task01_Alive == true)
+		{
+			task01_Alive = false;
+			SoundManager::GetInstance()->PlayCount();
+			
+		}
 		DrawExtendGraph(0, 100, 400, 200, task_02, true);
 	}
+
 	//獲得ワクチンが2個
 	if (pickedVaccineNum_ == 2)
 	{
+		
+		if (task02_Alive == true)
+		{
+			SoundManager::GetInstance()->PlayCount();
+			task02_Alive = false;
+		}
 		DrawExtendGraph(0, 100, 400, 200, task_03, true);
 	}
 
@@ -158,6 +174,12 @@ void ItemManager::Draw(void)
 		//獲得ワクチンが3個
 		if (pickedVaccineNum_ == 3)
 		{
+			if (task03_Alive == true)
+			{
+				SoundManager::GetInstance()->PlayCount();
+				task03_Alive = false;
+			}
+			
 			DrawExtendGraph(0, 100, 400, 200, task_04, true);
 			count_span++;
 		}
@@ -172,6 +194,12 @@ void ItemManager::Draw(void)
 	if(	lasttask_Alive == true)
 	{
 		count_span = 0;
+		if (hasPlayed == true)
+		{
+			SoundManager::GetInstance()->PlayCount();
+			hasPlayed = false;
+		}
+
 		DrawExtendGraph(0,100, 400, 200, lastTask, true);
 	}
 	// 最初のワクチン取得時に

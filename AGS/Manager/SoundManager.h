@@ -14,6 +14,7 @@
 #define HOVER_PATH "Data/Sound/Hover.mp3"
 #define PAUSE_PATH "Data/Sound/Pause.wav"
 #define DAMEGE_PATH "Data/Sound/Damege.mp3"
+#define COUNT_PATH "Data/Sound/Count.wav"
 
 
 class SoundManager
@@ -31,6 +32,8 @@ public:
 	static constexpr int PICKUP_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int VOICE_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int CLECK_VOLUME = 100;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int COUNT_VOLUME = 150;
+
 
 	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
 	static void CreateInstance(void);
@@ -59,6 +62,7 @@ public:
 	void PlayHover();
 	void PlayPause();
 	void PlayDamage();
+	void PlayCount();
 
 
 	
@@ -108,5 +112,6 @@ private:
 	//ƒ_ƒ[ƒW‰¹ƒnƒ“ƒhƒ‹
 	int damageHundle_;
 
+	int countHundle_;
 	bool isDamegeEnd_;
 };

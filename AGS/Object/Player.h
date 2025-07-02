@@ -46,6 +46,7 @@ private:
 	int modelId_;
 	//ダメージエフェクトハンドル
 	int damegeHandle_;
+	int defoHandle_;
 	
 	// プレイヤーの移動前座標
 	VECTOR movedPos_;

@@ -33,6 +33,8 @@ void Player::Init(void)
 	isAlive_ = true;
 
 	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
+	defoHandle_ = LoadGraph("Data/Image/Effect/Damege_01.png");
+
 }
 
 void Player::Update(VECTOR angle)
@@ -106,7 +108,8 @@ void Player::Draw(void)
 
 	if (hp_ == 1)
 	{
-		
+		DrawGraph(0, 0, defoHandle_, true);
+
 		// alpha値計算
 		int alpha = (int)(((sin(count * 0.05) * 0.5) + 0.5) * 255+30); // 0〜255
 		SoundManager::GetInstance()->PlayDamage();
@@ -126,6 +129,7 @@ void Player::Draw(void)
 void Player::Release(void)
 {
 	DeleteGraph(damegeHandle_);
+	DeleteGraph(defoHandle_);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 

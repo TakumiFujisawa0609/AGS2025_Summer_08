@@ -74,6 +74,8 @@ private:
 	bool task03_Alive;
 	bool task04_Alive;
 	bool lasttask_Alive;
+	bool hasPlayed;
+	bool countPlay;
 
 	//タスク表示画像ハンドル
 	int task_01;

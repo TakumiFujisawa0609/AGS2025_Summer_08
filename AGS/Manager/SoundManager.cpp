@@ -67,6 +67,7 @@ void SoundManager::Init(void)
 	pauseHundle_ = LoadSoundMem(PAUSE_PATH);
 
 	damageHundle_= LoadSoundMem(DAMEGE_PATH);
+	countHundle_ = LoadSoundMem(COUNT_PATH);
 
 	isDamegeEnd_ = true;
 }
@@ -219,6 +220,16 @@ void SoundManager::PlayDamage()
 	// âπó í≤êÆ
 	ChangeVolumeSoundMem(OPEN_VOLUME, damageHundle_);
 }
+
+void SoundManager::PlayCount()
+{
+	// çƒê∂
+	PlaySoundMem(countHundle_, DX_PLAYTYPE_BACK, true);
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(COUNT_VOLUME, countHundle_);
+	
+}
+
 
 
 //// ëñÇÈâπ
