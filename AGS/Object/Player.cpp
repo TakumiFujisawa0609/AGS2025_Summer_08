@@ -32,7 +32,13 @@ void Player::Init(void)
 
 	isStop_ = false;
 
+<<<<<<< HEAD
 	isAlive_ = true;
+=======
+	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
+	defoHandle_ = LoadGraph("Data/Image/Effect/Damege_01.png");
+
+>>>>>>> origin/ando_Ui
 }
 
 void Player::Update(VECTOR angle)
@@ -94,10 +100,37 @@ void Player::Draw(void)
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
 
+<<<<<<< HEAD
+=======
+	if (hp_ == 1)
+	{
+		DrawGraph(0, 0, defoHandle_, true);
+
+		// alpha値計算
+		int alpha = (int)(((sin(count * 0.05) * 0.5) + 0.5) * 255+30); // 0〜255
+		SoundManager::GetInstance()->PlayDamage();
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
+		DrawGraph(0, 0, damegeHandle_, true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		count= count+1; // 毎フレーム増やす
+	}
+	else
+	{
+		SoundManager::GetInstance()->StopDamege();
+	}
+>>>>>>> origin/ando_Ui
 }
 
 void Player::Release(void)
 {
+<<<<<<< HEAD
+=======
+	DeleteGraph(damegeHandle_);
+	DeleteGraph(defoHandle_);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+>>>>>>> origin/ando_Ui
 }
 
 // HP

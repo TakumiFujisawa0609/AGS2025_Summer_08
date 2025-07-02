@@ -14,15 +14,22 @@
 #define CLECK_PATH "Data/Sound/Cleck.wav"
 #define HOVER_PATH "Data/Sound/Hover.mp3"
 #define PAUSE_PATH "Data/Sound/Pause.wav"
+<<<<<<< HEAD
 #define IMPACT_PATH "Data/Sound/impact.wav"
 #define HEAL_PATH "Data/Sound/heal.wav"
 #define BGM1_PATH "Data/Sound/BGM.mp3"
 #define HEALVOICE_PATH "Data/Sound/healVoice.wav"
+=======
+#define DAMEGE_PATH "Data/Sound/Damege.mp3"
+#define COUNT_PATH "Data/Sound/Count.wav"
+
+>>>>>>> origin/ando_Ui
 
 class SoundManager
 {
 public:
 
+<<<<<<< HEAD
 	static constexpr int BGM1_VOLUME = 110;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int WALK_VOLUME = 144;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int OPEN_VOLUME = 122;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
@@ -40,6 +47,21 @@ public:
 	static constexpr int HEAL_VOLUME = 247;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int HEALVOICE_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int IMPACT_VOLUME = 249;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+=======
+	static constexpr int BGM_VOLUME = 255;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int WALK_VOLUME = 255;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int OPEN_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int CLOSE_VOLUME = 255;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int DIE_VOLUME = 255;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int NOBULLET_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int RELOAD_VOLUME = 255;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int SHOT_VOLUME = 255;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int PICKUP_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int VOICE_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int CLECK_VOLUME = 100;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int COUNT_VOLUME = 150;
+
+>>>>>>> origin/ando_Ui
 
 	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
 	static void CreateInstance(void);
@@ -67,9 +89,14 @@ public:
 	void PlayCleck();	// •à‚­
 	void PlayHover();
 	void PlayPause();
+<<<<<<< HEAD
 	void PlayImpact();	// €–S‚ÌƒCƒ[ƒW
 	void PlayHeal();	// ‰ñ•œ
 	void PlayHealVoice();
+=======
+	void PlayDamage();
+	void PlayCount();
+>>>>>>> origin/ando_Ui
 
 
 	
@@ -118,4 +145,12 @@ private:
 	int cleckHundle_;
 	//ƒ|[ƒYŒˆ’è‰¹
 	int pauseHundle_;
+<<<<<<< HEAD
+=======
+	//ƒ_ƒ[ƒW‰¹ƒnƒ“ƒhƒ‹
+	int damageHundle_;
+
+	int countHundle_;
+	bool isDamegeEnd_;
+>>>>>>> origin/ando_Ui
 };

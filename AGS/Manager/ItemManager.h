@@ -73,6 +73,8 @@ private:
 	bool task03_Alive;
 	bool task04_Alive;
 	bool lasttask_Alive;
+	bool hasPlayed;
+	bool countPlay;
 
 
 	int task_01;

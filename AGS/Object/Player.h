@@ -44,6 +44,12 @@ private:
 
 	// プレイヤーモデル
 	int modelId_;
+<<<<<<< HEAD
+=======
+	//ダメージエフェクトハンドル
+	int damegeHandle_;
+	int defoHandle_;
+>>>>>>> origin/ando_Ui
 	
 	// プレイヤーの移動前座標
 	VECTOR movedPos_;

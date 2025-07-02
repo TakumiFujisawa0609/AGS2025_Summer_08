@@ -66,9 +66,17 @@ void SoundManager::Init(void)
 	hoverHundle_ = LoadSoundMem(HOVER_PATH);
 	cleckHundle_ = LoadSoundMem(CLECK_PATH);
 	pauseHundle_ = LoadSoundMem(PAUSE_PATH);
+<<<<<<< HEAD
 	impactHundle_ = LoadSoundMem(IMPACT_PATH);
 	healHundle_ = LoadSoundMem(HEAL_PATH);
 	healVoiceHundle_ = LoadSoundMem(HEALVOICE_PATH);
+=======
+
+	damageHundle_= LoadSoundMem(DAMEGE_PATH);
+	countHundle_ = LoadSoundMem(COUNT_PATH);
+
+	isDamegeEnd_ = true;
+>>>>>>> origin/ando_Ui
 }
 
 void SoundManager::Update(void)
@@ -252,6 +260,16 @@ void SoundManager::PlayHealVoice()
 	// âπó í≤êÆ
 	ChangeVolumeSoundMem(HEALVOICE_VOLUME, cleckHundle_);
 }
+
+void SoundManager::PlayCount()
+{
+	// çƒê∂
+	PlaySoundMem(countHundle_, DX_PLAYTYPE_BACK, true);
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(COUNT_VOLUME, countHundle_);
+	
+}
+
 
 
 //// ëñÇÈâπ
