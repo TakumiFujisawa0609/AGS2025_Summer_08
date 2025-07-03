@@ -311,6 +311,8 @@ void EnemyBase::Damage(int damage)
 		hp_ = 0; // hp‚ð‚O‚ÉŒÅ’è
 
 		isAlive_ = false; // ¶‘¶ƒtƒ‰ƒO‚ðfalse‚É‚·‚é
+
+		SoundManager::GetInstance()->PlayKill();
 	}
 }
 
@@ -336,6 +338,13 @@ void EnemyBase::ChangeRun(void)
 	anim_->Play(ANIM_RUN, 1);
 
 	speed_ = MOVE_RUN_SPEED; // ‘–‚è‘¬“x
+
+	// Ä¶Ï‚Ý‚Å‚È‚¯‚ê‚ÎÄ¶
+	if (!hasPlayedRunSound_)
+	{
+		SoundManager::GetInstance()->PlayVoice();
+		hasPlayedRunSound_ = true;
+	}
 }
 
 void EnemyBase::ChangeAttack(void)
@@ -354,7 +363,7 @@ void EnemyBase::ChangeDie(void)
 	speed_ = 0.0f;
 
 	// Ž€–SŽž‚Ìˆ—
-	//SoundManager::GetInstance()->PlayVoice();
+
 }
 
 void EnemyBase::UpdateIdle(void)

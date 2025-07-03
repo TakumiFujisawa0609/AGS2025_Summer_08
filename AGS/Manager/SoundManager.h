@@ -20,6 +20,7 @@
 #define HEALVOICE_PATH "Data/Sound/healVoice.wav"
 #define DAMEGE_PATH "Data/Sound/Damege.mp3"
 #define COUNT_PATH "Data/Sound/Count.wav"
+#define KILL_PATH "Data/Sound/kill.wav"
 
 class SoundManager
 {
@@ -35,7 +36,7 @@ public:
 	static constexpr int RELOAD_VOLUME = 232;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int SHOT_VOLUME = 182;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int PICKUP_VOLUME = 242;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int VOICE_VOLUME = 152;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int VOICE_VOLUME = 220;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int PAUSE_VOLUME = 100;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int CLECK_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HOVER_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
@@ -44,6 +45,7 @@ public:
 	static constexpr int IMPACT_VOLUME = 249;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int COUNT_VOLUME = 150;
 	static constexpr int DAMEGE_VOLUME = 200;
+	static constexpr int KILL_VOLUME = 210;
 
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃê∂ê¨
@@ -77,6 +79,7 @@ public:
 	void PlayHealVoice();
 	void PlayDamage();
 	void PlayCount();
+	void PlayKill();
 	
 	//âπåπí‚é~
 	void StopBgm1();	// BGM
@@ -91,6 +94,7 @@ public:
 	void StopShot();	// ëñÇÈ
 	void StopHeal();	// ëñÇÈ
 	void StopDamage();
+	void StopKill();
 
 
 private:
@@ -119,6 +123,7 @@ private:
 	int impactHundle_;
 	int healHundle_;
 	int healVoiceHundle_;
+	int killHundle_;
 
 	//ÉNÉäÉbÉNâπ
 	int cleckHundle_;

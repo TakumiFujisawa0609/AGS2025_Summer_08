@@ -15,11 +15,8 @@ void Camera::Init(Player* player)
 	centerY_ = Application::SCREEN_SIZE_Y / 2;
 
 	//水平・垂直の角度初期化
-	yaw_ = 0.0f;
+	yaw_ = DX_PI_F / 2.0f;;
 	pitch_ = 0.0f;
-	
-	// カメラの初期位置
-	pos_ = { 0.0f, 0.0f, 0.0f };
 
 	// ゲーム内フラグ
 	isInGame_ = true;
@@ -35,7 +32,24 @@ void Camera::Init(Player* player)
 	// 追従対象からのローカル座標の回転値
 	localRotFrom_ = { 0.0f, 0.0f, 0.0f };
 
+	//----------------------------------------
+	// プレイヤーの目線にセット
+	VECTOR followPos = player_->GetPPos();
+	pos_ = VGet(followPos.x, followPos.y + HEIGHT, followPos.z);
 
+	forward_ = {
+		cosf(pitch_) * sinf(yaw_),
+		sinf(pitch_),
+		cosf(pitch_) * cosf(yaw_)
+	};
+
+	pos_ = VAdd(pos_, forward_);
+
+	SetCameraPositionAndTargetAndUpVec(
+		pos_,
+		VGet(followPos.x, followPos.y + HEIGHT, followPos.z),
+		VGet(0, 1, 0)
+	);
 }
 
 void Camera::Update(void)

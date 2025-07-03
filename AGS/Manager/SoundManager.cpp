@@ -71,6 +71,8 @@ void SoundManager::Init(void)
 	healVoiceHundle_ = LoadSoundMem(HEALVOICE_PATH);
 	damageHundle_= LoadSoundMem(DAMEGE_PATH);
 	countHundle_ = LoadSoundMem(COUNT_PATH);
+	killHundle_ = LoadSoundMem(KILL_PATH);
+
 	isDamegeEnd_ = true;
 
 }
@@ -183,7 +185,11 @@ void SoundManager::PlayReLoad()
 void SoundManager::PlayVoice()
 {
 	// çƒê∂
-	PlaySoundMem(voiceHundle_, DX_PLAYTYPE_BACK, true);
+	if (CheckSoundMem(voiceHundle_) == 0)
+	{
+		// çƒê∂
+		PlaySoundMem(voiceHundle_, DX_PLAYTYPE_BACK, true);
+	}
 
 	// âπó í≤êÆ
 	ChangeVolumeSoundMem(VOICE_VOLUME, voiceHundle_);
@@ -278,6 +284,14 @@ void SoundManager::PlayCount()
 	
 }
 
+void SoundManager::PlayKill()
+{
+	// çƒê∂
+	PlaySoundMem(killHundle_, DX_PLAYTYPE_BACK, true);
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(KILL_VOLUME, killHundle_);
+}
+
 
 
 //// ëñÇÈâπ
@@ -341,5 +355,9 @@ void SoundManager::StopHeal()
 void SoundManager::StopDamage()
 {
 	StopSoundMem(damageHundle_);
+}
+
+void SoundManager::StopKill()
+{
 }
 

@@ -8,8 +8,8 @@
 
 void Player::Init(void)
 {
-	movedPos_ = { 0.0f, 0.0f, 0.0f };
-	pos_ = { 0.0f, 0.0f, 0.0f };
+	movedPos_ = { -1000.0f, 0.0f, 45.0f };
+	pos_ = {-1000.0f, 0.0f, 47.0f };
 	MV1SetPosition(modelId_, pos_);
 
 	// 移動ベクトル初期化

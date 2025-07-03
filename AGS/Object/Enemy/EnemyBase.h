@@ -130,6 +130,9 @@ protected:
 	// HP
 	int hp_;
 
+	// ‘–‚èºÄ¶‚µ‚½‚©
+	bool hasPlayedRunSound_ = false;
+
 	// ó‘Ô‘JˆÚ
 	void ChangeIdle(void);
 	void ChangeWalk(void);

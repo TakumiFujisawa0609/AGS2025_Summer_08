@@ -93,6 +93,7 @@ void Application::Run(void)
 
 		InputManager::GetInstance().Update();
 		SceneManager::GetInstance()->Update();
+
 		SceneManager::GetInstance()->Draw();
 
 		fps_->CalcFrameRate();	// フレームレート計算
