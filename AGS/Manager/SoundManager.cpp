@@ -66,6 +66,7 @@ void SoundManager::Init(void)
 	shotHundle_ = LoadSoundMem(SHOT_PATH);
 	hoverHundle_ = LoadSoundMem(HOVER_PATH);
 	cleckHundle_ = LoadSoundMem(CLECK_PATH);
+	choiceHundle_ = LoadSoundMem(CHOICE_PATH);
 	pauseHundle_ = LoadSoundMem(PAUSE_PATH);
 	impactHundle_ = LoadSoundMem(IMPACT_PATH);
 	healHundle_ = LoadSoundMem(HEAL_PATH);
@@ -75,7 +76,6 @@ void SoundManager::Init(void)
 	killHundle_ = LoadSoundMem(KILL_PATH);
 
 	isDamegeEnd_ = true;
-
 }
 
 void SoundManager::Update(void)
@@ -238,6 +238,15 @@ void SoundManager::PlayCleck()
 
 	// âπó í≤êÆ
 	ChangeVolumeSoundMem(CLECK_VOLUME, cleckHundle_);
+}
+
+void SoundManager::PlayChoice()
+{
+	// çƒê∂
+	PlaySoundMem(choiceHundle_, DX_PLAYTYPE_BACK, true);
+
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(Choice_VOLUME, choiceHundle_);
 }
 
 void SoundManager::PlayHover()

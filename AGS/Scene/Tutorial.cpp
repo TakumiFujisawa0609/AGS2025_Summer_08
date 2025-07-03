@@ -22,17 +22,15 @@ void Tutorial::Update(void)
 	if (CheckHitKey(KEY_INPUT_SPACE))
 	{
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
-		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
-
-		SoundManager::GetInstance()->PlayClose();
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::MOVIE);
+		SoundManager::GetInstance()->PlayChoice();
 	}
 
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
 		//クリックされている
-		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
-
-		SoundManager::GetInstance()->PlayClose();
+		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::MOVIE);
+		SoundManager::GetInstance()->PlayChoice();
 	}
 }
 

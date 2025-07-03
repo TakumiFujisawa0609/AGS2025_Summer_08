@@ -59,7 +59,7 @@ void TitleScene::Update(void)
 	{
 		//チュートリアルシーン遷移
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::T);
-		SoundManager::GetInstance()->PlayOpen();
+		SoundManager::GetInstance()->PlayChoice();
 	}
 
 	if (exitButton_->GetButtonState() == ExitButton::BUTTON_STATE::DISABLED)

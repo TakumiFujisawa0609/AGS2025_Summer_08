@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Common\Vector2.cpp" />
+    <ClCompile Include="Scene\MovieScene.cpp" />
     <ClCompile Include="Object\Item\ItemLight.cpp" />
     <ClCompile Include="Object\Button\ExitButton.cpp" />
     <ClCompile Include="Object\Button\Button.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Object\Button\TitleButton.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Common\Vector2.h" />
+    <ClInclude Include="Scene\MovieScene.h" />
     <ClInclude Include="Object\Item\ItemLight.h" />
     <ClInclude Include="Object\Button\ExitButton.h" />
     <ClInclude Include="Object\Button\Button.h" />

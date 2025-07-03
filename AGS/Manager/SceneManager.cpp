@@ -8,6 +8,7 @@
 #include "../Scene/GameScene.h"
 #include "../Scene/GameClear.h"
 #include "../Scene/Tutorial.h"
+#include "../Scene/MovieScene.h"
 #include "SceneManager.h"
 
 SceneManager* SceneManager::instance_ = nullptr;
@@ -215,6 +216,10 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		scene_ = new Tutorial();
 		SoundManager::GetInstance()->StopBgm2();
 		break;
+	case SCENE_ID::MOVIE:
+		scene_ = new MovieScene();
+		SetMouseDispFlag(false);
+		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
 		SoundManager::GetInstance()->PlayBgm1();
@@ -235,7 +240,6 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 
 void SceneManager::Fade(void)
 {
-
 	Fader::STATE fState = fader_->GetState();
 	switch (fState)
 	{

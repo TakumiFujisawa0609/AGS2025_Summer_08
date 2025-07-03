@@ -16,6 +16,7 @@ public:
 		NONE,
 		TITLE,
 		T,
+		MOVIE,
 		GAME,
 		GAMECLEAR
 	};

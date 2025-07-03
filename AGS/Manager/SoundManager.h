@@ -12,6 +12,7 @@
 #define PICKUP_PATH "Data/Sound/pickUp.wav"
 #define VOICE_PATH "Data/Sound/voice.wav"
 #define CLECK_PATH "Data/Sound/Cleck.wav"
+#define CHOICE_PATH "Data/Sound/choice.wav"
 #define HOVER_PATH "Data/Sound/Hover.mp3"
 #define PAUSE_PATH "Data/Sound/Pause.wav"
 #define IMPACT_PATH "Data/Sound/impact.wav"
@@ -28,12 +29,13 @@ class SoundManager
 {
 public:
 
-	static constexpr int BGM1_VOLUME = 143;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int BGM1_VOLUME = 153;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int BGM2_VOLUME = 250;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int BGM3_VOLUME = 220;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int WALK_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int OPEN_VOLUME = 173;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int CLOSE_VOLUME = 173;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int OPEN_VOLUME = 176;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int CLOSE_VOLUME = 170;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int Choice_VOLUME = 160;
 	static constexpr int DIE_VOLUME = 172;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HIT_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int NOBULLET_VOLUME = 227;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
@@ -78,6 +80,7 @@ public:
 	void PlayVoice();	// ëñÇÈ
 	void PlayShot();	// ï‡Ç≠
 	void PlayCleck();	// ï‡Ç≠
+	void PlayChoice();
 	void PlayHover();
 	void PlayPause();
 	void PlayImpact();	// éÄñSéûÇÃÉCÉÅÅ[ÉW
@@ -122,6 +125,7 @@ private:
 	int walkHundle_;
 	int openHundle_;
 	int closeHundle_;
+	int choiceHundle_;
 	int hitHundle_;
 	int dieHundle_;
 	int noAmmoHundle_;

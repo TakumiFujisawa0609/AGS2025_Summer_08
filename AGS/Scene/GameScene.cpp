@@ -45,6 +45,8 @@ void GameScene::Init(void)
 	blood_->Init();
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);
 
+	SoundManager::GetInstance()->PlayClose();
+
 	gameOverImg_ = LoadGraph("Data/Image/die.png");
 	pauseImg_ = LoadGraph("Data/Image/Button/Pause.png");
 	taskuImg_ = LoadGraph("Data/Image/Button/Pause.png");
