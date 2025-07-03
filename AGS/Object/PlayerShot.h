@@ -47,6 +47,8 @@ public:
 	// ƒ}ƒKƒWƒ“æ“¾
 	void SetMagazine();
 
+
+
 private:
 	Player* player_;
 	Camera* camera_;

@@ -52,6 +52,8 @@ void GameScene::Init(void)
 	isPauseAlive = false;
 	isPauseInit = false;
 
+	pauseSpanAlive_ = false;
+
 	clearTime_ = 0.0f;
 	gameOverTimer_ = 0.0f;
 }
@@ -65,6 +67,16 @@ void GameScene::Update(void)
 	// ポーズ中だったら処理しない
 	if (isPauseAlive == true)
 		return;
+
+	if (pauseSpanAlive_ == false)
+	{
+		pauseSpan_ = 0;
+	}
+	else if (pauseSpanAlive_ == true)
+	{
+		pauseSpan_++;
+	}
+
 
 	// １つ目のワクチン回収時
 	if (item_->IsShowingGetVaccine() || item_->IsShowingGetShot() || item_->IsShowingGetKit())
@@ -114,7 +126,15 @@ void GameScene::Update(void)
 		}
 	}
 
-	pShot_->Update();
+	if (pauseSpan_ > 5)
+	{
+		pauseSpanAlive_ = false;
+	}
+	
+	if (pauseSpanAlive_ == false)
+	{
+		pShot_->Update();
+	}
 
 	item_->Update();
 
@@ -132,6 +152,8 @@ void GameScene::Update(void)
 
 	// クリアタイム
 	ClearTime();
+
+	
 }
 
 // 描画処理
@@ -175,6 +197,7 @@ void GameScene::Draw(void)
 		//ポーズ画面の描画
 		PauseDraw();
 	}
+	
 }
 
 //解放処理
@@ -288,6 +311,7 @@ void GameScene::Pause(void)
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
 	{
 		isPauseAlive = true;
+
 		
 	}
 	
@@ -318,6 +342,7 @@ void GameScene::Pause(void)
 		isPauseAlive = false;
 		isPauseInit = false;  
 		SetMouseDispFlag(false);
+
 		return;
 	}
 
@@ -341,6 +366,8 @@ void GameScene::Pause(void)
 		{
 			isPauseAlive = false;
 			SetMouseDispFlag(false);
+			pauseSpanAlive_ = true;
+		
 		}
 
 

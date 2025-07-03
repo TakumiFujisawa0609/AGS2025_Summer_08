@@ -202,3 +202,5 @@ void PlayerShot::SetMagazine()
 {
 	maxMagazine_ += MAX_AMMO;
 }
+
+

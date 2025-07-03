@@ -103,6 +103,12 @@ void Collision::Draw()
 		DrawFormatString(Application::SCREEN_SIZE_X / 2 + 4, Application::SCREEN_SIZE_Y / 2 + 83, 0xffffff, "開く");
 	}
 
+	if (isClosekey_)
+	{
+		SetFontSize(23);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 -100, Application::SCREEN_SIZE_Y / 2 + 350, 0xffffff, "右クリックで閉じる");
+	}
+
 	if (player_->GetHp() == 1 && player_->GetHeal() >= 1)
 	{
 		// 開くキー画像を表示
@@ -139,33 +145,40 @@ void Collision::Draw()
 	{
 		// 表示する画像
 		DrawRotaGraph(960, 540, 0.6, 0, vImage_, true);
+		isClosekey_ = true;
 
 		// マウス左クリックで非表示にして再開
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
+
 			item_->SetIsShowingGetVaccine(false);
+			isClosekey_ = false;
 		}
 	}
 	if (item_->IsShowingGetShot())
 	{
 		// 表示する画像
 		DrawRotaGraph(960, 540, 0.6, 0, sImage_, true);
+		isClosekey_ = true;
 
 		// マウス左クリックで非表示にして再開
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
 			item_->SetIsShowingGetShot(false);
+			isClosekey_ = false;
 		}
 	}
 	if (item_->IsShowingGetKit())
 	{
 		// 表示する画像
 		DrawRotaGraph(960, 540, 0.6, 0, kImage_, true);
+		isClosekey_ = true;
 
 		// マウス左クリックで非表示にして再開
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
 			item_->SetIsShowingGetKit(false);
+			isClosekey_ = false;
 		}
 	}
 

@@ -113,6 +113,8 @@ private:
 
     bool isHealKey_ = false;
 
+    bool isClosekey_ = false;
+
     bool isGameClear_;
 
 
