@@ -49,7 +49,6 @@ void ItemBase::Update()
 
 void ItemBase::Release()
 {
-
     MV1DeleteModel(modelId_);
 
 	DeleteGraph(kitImg_);
@@ -86,6 +85,16 @@ VECTOR ItemBase::GetPos() const
 void ItemBase::SetPos(VECTOR pos)
 {
     pos_ = pos;
+}
+
+bool ItemBase::IsActive() const
+{
+    return isActive_;
+}
+
+void ItemBase::SetActive(bool flag)
+{
+    isActive_ = flag;
 }
 
 // ƒAƒCƒeƒ€‚ÌŽí•Ê‚ðŽæ“¾

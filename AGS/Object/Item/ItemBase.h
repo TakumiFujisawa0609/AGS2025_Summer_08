@@ -33,7 +33,7 @@ public:
     static constexpr SpawnPoint bulletSpawnPoints[5] = {
        {195.0f, 125.0f, -327.0f},
         {2575.0f, 125.0f, 3796.0f },
-        {3656.0f, 125.0f, -2980.0f},
+        {4820.0f, 125.0f, -3700.0f},
         {7432.0f, 125.0f, -1430.0f},
         {7432.0f, 125.0f, 1520.0f}
     };
@@ -78,6 +78,10 @@ public:
 
     VECTOR GetPos() const; // ç¿ïWéÊìæ
     void SetPos(VECTOR pos);  //ç¿ïWê›íË
+
+    bool IsActive() const;
+    void SetActive(bool flag);
+
 
     // éÌï éÊìæ
     ItemBase:: TYPE GetType() const;

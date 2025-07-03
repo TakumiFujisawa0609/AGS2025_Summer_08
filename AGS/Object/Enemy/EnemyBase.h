@@ -35,7 +35,7 @@ public:
 		{4596, 0, 2034},
 		{3679, 0, 2965},
 		{2857, 0, 2194},
-		{4640, 0, -1713},
+		{4680, 0, -3500.0f},
 		{2739, 0, -1770},
 		{3070, 0, -3560},
 		{6215, 0, 460},
@@ -56,7 +56,7 @@ public:
 	static constexpr float MOVE_RUN_SPEED = 6.0f;	// 走り
 
 	// アニメーションが切り替わる距離
-	static constexpr float WALK_DISTANCE = 1500.0f;	// 歩き
+	static constexpr float WALK_DISTANCE = 1700.0f;	// 歩き
 	static constexpr float RUN_DISTANCE = 1000.0f;	// 走り
 	static constexpr float ATTACK_DISTANCE = 150.0f;	// 攻撃
 
@@ -92,6 +92,8 @@ public:
 	EnemyBase::STATE GetState() const;
 
 	float GetAnimRate();
+
+	VECTOR GetMoveDir() const;
 
 protected:
 

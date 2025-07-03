@@ -52,7 +52,8 @@ void SoundManager::Init(void)
 {
 	// BGM読み込み
 	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
-
+	bgm2Hundle_ = LoadSoundMem(BGM2_PATH);
+	bgm3Hundle_ = LoadSoundMem(BGM3_PATH);
 	walkHundle_ = LoadSoundMem(WALK_PATH);
 	openHundle_ = LoadSoundMem(OPEN_PATH);
 	closeHundle_ = LoadSoundMem(CLOSE_PATH);
@@ -103,6 +104,32 @@ void SoundManager::PlayBgm1()
 
 	// 音量調整
 	ChangeVolumeSoundMem(BGM1_VOLUME, bgm1Hundle_);
+}
+
+// タイトル
+void SoundManager::PlayBgm2()
+{
+	// 再生
+	if (CheckSoundMem(bgm2Hundle_) == 0)
+	{
+		PlaySoundMem(bgm2Hundle_, DX_PLAYTYPE_LOOP, true);
+	}
+
+	// 音量調整
+	ChangeVolumeSoundMem(BGM2_VOLUME, bgm2Hundle_);
+}
+
+// クリアシーン
+void SoundManager::PlayBgm3()
+{
+	// 再生
+	if (CheckSoundMem(bgm3Hundle_) == 0)
+	{
+		PlaySoundMem(bgm3Hundle_, DX_PLAYTYPE_LOOP, true);
+	}
+
+	// 音量調整
+	ChangeVolumeSoundMem(BGM3_VOLUME, bgm3Hundle_);
 }
 
 void SoundManager::PlayWalk()
@@ -310,6 +337,16 @@ void SoundManager::StopBgm1()
 	StopSoundMem(bgm1Hundle_);
 }
 
+void SoundManager::StopBgm2()
+{
+	StopSoundMem(bgm2Hundle_);
+}
+
+void SoundManager::StopBgm3()
+{
+	StopSoundMem(bgm3Hundle_);
+}
+
 void SoundManager::StopWalk()
 {
 	StopSoundMem(walkHundle_);
@@ -341,6 +378,7 @@ void SoundManager::StopReLoad()
 
 void SoundManager::StopVoice()
 {
+	StopSoundMem(voiceHundle_);
 }
 
 void SoundManager::StopShot()

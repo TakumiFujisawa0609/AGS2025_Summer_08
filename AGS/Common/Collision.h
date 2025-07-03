@@ -26,6 +26,9 @@ public:
     // レイの補正値
     static constexpr float RAY_COL_Y = 150.0f;
 
+    // 例：敵の後方10単位でチェック
+    const float BACK_OFFSET = 30.0f;
+
 
     // 初期化
     void Init(Player* player,StageBase* stage, EnemyManager* enemy, Blood* blood, PlayerShot* pShot, Camera* camera, ItemManager* item);
@@ -83,7 +86,7 @@ private:
     // // 照準と敵の当たり判定
     MV1_COLL_RESULT_POLY hitPoly_PShot_E;
     // プレイヤー弾とステージの当たり判定
-    MV1_COLL_RESULT_POLY_DIM hitPoly_PShot_S;
+    MV1_COLL_RESULT_POLY_DIM hitPoly_PShot_S;;
 
     // 敵とプレイヤーのの当たり判定
     MV1_COLL_RESULT_POLY_DIM hitPoly_E_P;
@@ -114,6 +117,8 @@ private:
     bool isHealKey_ = false;
 
     bool isGameClear_;
+
+    bool isClosekey_ = false;
 
 
 

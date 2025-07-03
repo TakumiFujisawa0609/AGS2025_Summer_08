@@ -273,6 +273,11 @@ float EnemyBase::GetAnimRate()
 	return anim_->GetCurrentAnimRate();
 }
 
+VECTOR EnemyBase::GetMoveDir() const
+{
+	return moveDir_;
+}
+
 int EnemyBase::GetModelId() const
 {
 	return modelId_;
@@ -363,7 +368,7 @@ void EnemyBase::ChangeDie(void)
 	speed_ = 0.0f;
 
 	// Ž€–SŽž‚Ìˆ—
-
+	SoundManager::GetInstance()->StopVoice();
 }
 
 void EnemyBase::UpdateIdle(void)

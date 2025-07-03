@@ -1,6 +1,7 @@
 #include <chrono>
 #include <DxLib.h>
 #include "Application.h"
+#include "SoundManager.h"
 #include "../Common/Fader.h"
 #include "../Scene/SceneBase.h"
 #include "../Scene/TitleScene.h"
@@ -57,7 +58,7 @@ void SceneManager::Init(void)
 	isSceneChanging_ = false;
 
 	// ‰ŠúƒV[ƒ“‚ÌÝ’è
-	DoChangeScene(SCENE_ID::GAME);
+	DoChangeScene(SCENE_ID::TITLE);
 
 	// 3D‚Ì‰ŠúÝ’è
 	Init3D();
@@ -207,15 +208,21 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		return;
 	case SCENE_ID::TITLE:
 		scene_ = new TitleScene();
+		SoundManager::GetInstance()->StopBgm3();
+		SoundManager::GetInstance()->StopBgm1();
+		SoundManager::GetInstance()->PlayBgm2();
 		break;
 	case SCENE_ID::T:
 		scene_ = new Tutorial();
+		SoundManager::GetInstance()->StopBgm2();
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
 		break;
 	case SCENE_ID::GAMECLEAR:
 		scene_ = new GameClear();
+		SoundManager::GetInstance()->StopBgm1();
+		SoundManager::GetInstance()->PlayBgm3();
 		break;
 	}
 

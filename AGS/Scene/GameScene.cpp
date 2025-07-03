@@ -52,6 +52,8 @@ void GameScene::Init(void)
 	isPauseAlive = false;
 	isPauseInit = false;
 
+	pauseSpan_ = 0;
+
 	clearTime_ = 0.0f;
 	gameOverTimer_ = 0.0f;
 }
@@ -65,6 +67,15 @@ void GameScene::Update(void)
 	// ポーズ中だったら処理しない
 	if (isPauseAlive == true)
 		return;
+
+	if (pauseSpanAlive_ == false)
+	{
+		pauseSpan_ = 0;
+	}
+	else if (pauseSpanAlive_ == true)
+	{
+		pauseSpan_++;
+	}
 
 	// １つ目のワクチン回収時
 	if (item_->IsShowingGetVaccine() || item_->IsShowingGetShot() || item_->IsShowingGetKit())
@@ -114,7 +125,14 @@ void GameScene::Update(void)
 		}
 	}
 
-	pShot_->Update();
+	if (pauseSpan_ > 5)
+	{
+		pauseSpanAlive_ = false;
+	}
+	if (pauseSpanAlive_ == false)
+	{
+		pShot_->Update();
+	}
 
 	item_->Update();
 
@@ -167,6 +185,8 @@ void GameScene::Draw(void)
 
 	// リロードキーの表示
 	pShot_->KeyDraw();
+
+
 
 	GameOver();
 
@@ -288,9 +308,10 @@ void GameScene::Pause(void)
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
 	{
 		isPauseAlive = true;
-		
+
+
 	}
-	
+
 
 	//ポーズ画面の継続確認
 	if (isPauseAlive == true)
@@ -299,14 +320,14 @@ void GameScene::Pause(void)
 		if (isPauseInit == false)
 		{
 
-			pauseExit_ = new PauseExit(Application::SCREEN_SIZE_X/2, 850, 500, 200);
+			pauseExit_ = new PauseExit(Application::SCREEN_SIZE_X / 2, 850, 500, 200);
 			pauseExit_->Init();
 
 			returnButton_ = new ReturnButton(Application::SCREEN_SIZE_X / 2, 450, 500, 200);
 			returnButton_->Init();
 
 			titleButton_ = new TitleButton(Application::SCREEN_SIZE_X / 2, 650, 500, 200);
-			titleButton_ -> Init();
+			titleButton_->Init();
 
 			isPauseInit = true;
 			return;
@@ -316,8 +337,9 @@ void GameScene::Pause(void)
 	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_ESCAPE))
 	{
 		isPauseAlive = false;
-		isPauseInit = false;  
+		isPauseInit = false;
 		SetMouseDispFlag(false);
+
 		return;
 	}
 
@@ -341,16 +363,15 @@ void GameScene::Pause(void)
 		{
 			isPauseAlive = false;
 			SetMouseDispFlag(false);
+			pauseSpanAlive_ = true;
 		}
 
 
 		if (titleButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
 		{
 			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
-	
 		}
-		
-		
+
 	}
 
 }

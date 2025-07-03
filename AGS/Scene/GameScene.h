@@ -79,6 +79,9 @@ private:
 	int mousePos_Y;
 
 
+	int pauseSpan_;
+	bool pauseSpanAlive_ = false;
+
 	//ゲームオーバー画像ハンドル
 	int gameOverImg_;
 	//ゲームオーバーフラグ

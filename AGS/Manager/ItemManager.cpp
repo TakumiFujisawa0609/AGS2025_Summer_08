@@ -5,6 +5,7 @@
 #include "../Object/Item/ItemBullet.h"
 #include "../Object/Item/ItemKit.h"
 #include "../Object/Item/ItemVaccine.h"
+#include "../Object/Item/ItemLight.h"
 #include "../Object/Player.h"
 #include "../Object/PlayerShot.h"
 #include "ItemManager.h"
@@ -29,6 +30,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 		MV1LoadModel("Data/Model/Item/Kit.mv1"));
 	itemModelIds_.emplace_back(
 		MV1LoadModel("Data/Model/Item/vaccine.mv1"));
+	itemModelIds_.emplace_back(
+		MV1LoadModel("Data/Model/Item/light.mv1"));
 
 	task_01 = LoadGraph("Data/Image/Task/Task_01.png");
 	task_02 = LoadGraph("Data/Image/Task/Task_02.png");
@@ -110,6 +113,26 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 		// 弾薬箱をカウント
 		kitBoxNum_++;
 	}
+
+	//// 決められた数配置
+	//for (int i = 0; i < LIGHT_NUM; i++)
+	//{
+	//	// 弾生成
+	//	ItemBase* light = new ItemLight();
+
+	//	//初期化　
+	//	light->Init(ItemBase::TYPE::LIGHT,
+	//		itemModelIds_[static_cast<int>(ItemBase::TYPE::LIGHT)],
+	//		player_);
+
+	//	light->SetActive(false);
+
+	//	// アイテムを登録
+	//	items_[ItemBase::TYPE::LIGHT].emplace_back(light);
+
+	//	// ライトをカウント
+	//	lightNum_++;
+	//}
 }
 
 void ItemManager::Update(void)
@@ -122,6 +145,23 @@ void ItemManager::Update(void)
 			item->Update();
 		}
 	}
+
+	//// 右クリックでライト設置
+	//if (InputManager::GetInstance().IsTrgMouseRight())
+	//{
+	//	auto& lightItems = items_[ItemBase::TYPE::LIGHT];
+
+	//	for (ItemBase* item : lightItems)
+	//	{
+	//		if (!item->IsActive())
+	//		{
+	//			item->SetPos(player_->GetPPos());
+	//			item->SetActive(true);
+	//			break; // 1つだけ設置
+	//		}
+	//	}
+	//}
+
 
 	if (CheckHitKey(KEY_INPUT_1)) vaccineNum_ = 0;
 }
@@ -202,14 +242,6 @@ void ItemManager::Draw(void)
 		}
 
 		DrawExtendGraph(0,100, 400, 200, lastTask, true);
-	}
-	// // ワクチンの現在数
-	//DrawFormatString(0, 60, 0xffffff, "ワクチン残り個数:%d", vaccineNum_);
-
-	if (pickedVaccineNum_ < 3)
-	{
-		// ワクチンの現在数
-		DrawFormatString(0, 100, 0xffffff, "ワクチンを回収:%d", pickedVaccineNum_);
 	}
 }
 
@@ -306,6 +338,28 @@ void ItemManager::PickKitBox(void)
 
 	// プレイヤーの体力を回復可能数を増やす
 	player_->Heal(1);
+}
+
+void ItemManager::PickLight(void)
+{
+	// 救急箱の数を減らす
+	lightNum_--;
+
+	// 取得タイミングを記録（1つ目だけ）
+	if (lightNum_ == 1)
+	{
+		//isShowingGetKit_ = true;  // ← 画像表示開始
+		SoundManager::GetInstance()->StopWalk();
+	}
+
+	// 救急箱の数がマイナスにならないようにする
+	if (lightNum_ < 0)
+	{
+		lightNum_ = 0;
+	}
+
+	// 取得音再生
+	SoundManager::GetInstance()->PlayPickUp();
 }
 
 int ItemManager::GetVaccine(void)

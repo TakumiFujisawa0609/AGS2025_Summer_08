@@ -103,6 +103,12 @@ void Collision::Draw()
 		DrawFormatString(Application::SCREEN_SIZE_X / 2 + 4, Application::SCREEN_SIZE_Y / 2 + 83, 0xffffff, "開く");
 	}
 
+	if (isClosekey_)
+	{
+		SetFontSize(23);
+		DrawFormatString(Application::SCREEN_SIZE_X / 2 - 100, Application::SCREEN_SIZE_Y / 2 + 350, 0xffffff, "左クリックで閉じる");
+	}
+
 	if (player_->GetHp() == 1 && player_->GetHeal() >= 1)
 	{
 		// 開くキー画像を表示
@@ -114,7 +120,6 @@ void Collision::Draw()
 	SetFontSize(20);
 	// 回復可能数
 	DrawFormatString(1606, 967, 0xffffff, "%d", player_->GetHeal());
-	DrawFormatString(500, 0,0xffffff, "isPickKey:%d", isPickKey_);
 
 	if (player_->GetHp() == 1)
 	{
@@ -139,33 +144,39 @@ void Collision::Draw()
 	{
 		// 表示する画像
 		DrawRotaGraph(960, 540, 0.6, 0, vImage_, true);
+		isClosekey_ = true;
 
 		// マウス左クリックで非表示にして再開
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
 			item_->SetIsShowingGetVaccine(false);
+			isClosekey_ =false;
 		}
 	}
 	if (item_->IsShowingGetShot())
 	{
 		// 表示する画像
 		DrawRotaGraph(960, 540, 0.6, 0, sImage_, true);
+		isClosekey_ = true;
 
 		// マウス左クリックで非表示にして再開
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
 			item_->SetIsShowingGetShot(false);
+			isClosekey_ = false;
 		}
 	}
 	if (item_->IsShowingGetKit())
 	{
 		// 表示する画像
 		DrawRotaGraph(960, 540, 0.6, 0, kImage_, true);
+		isClosekey_ = true;
 
 		// マウス左クリックで非表示にして再開
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
 			item_->SetIsShowingGetKit(false);
+			isClosekey_ = false;
 		}
 	}
 
@@ -375,34 +386,38 @@ void Collision::CollisionEAndS()
 		// pair.second : std::vector<EnemyBase*>（敵リスト）
 		for (EnemyBase* enemy : pair.second)
 		{
-			// ステージのモデルIDを取得
 			int eModelId = stage_->GetModelId();
-			// 敵の座標を取得
-			VECTOR pos = enemy->GetPos();
-			// 敵の移動予定地を取得
+
+			// 移動予定位置（レイの終点）
 			VECTOR movedPos = enemy->GetMovedPos();
+			movedPos.y = RAY_COL_Y;
 
-			// Y座標をレイの補正値に固定
-			pos.y = movedPos.y = RAY_COL_Y;
+			// 進行方向（正規化済み前提）
+			VECTOR moveDir = enemy->GetMoveDir();
 
-			// 敵とステージの当たり判定設定
-			hitPoly_E_S = MV1CollCheck_Line(eModelId, -1, pos, movedPos);
+			// 後方オフセット
+			const float BACK_OFFSET = 10.0f;
 
-			//敵とステージが衝突した場合
+			// 現在位置から後方にずらした点（レイの始点）
+			VECTOR rayStart = VSub(enemy->GetPos(), VScale(moveDir, BACK_OFFSET));
+			rayStart.y = RAY_COL_Y;
+
+			// ステージとの衝突判定（レイ）
+			hitPoly_E_S = MV1CollCheck_Line(eModelId, -1, rayStart, movedPos);
+
 			if (hitPoly_E_S.HitFlag == 1)
 			{
-				enemy->SetStop(true);	// 停止
+				enemy->SetStop(true);
 			}
 			else
 			{
-				enemy->SetStop(false);	// 停止フラグ解除
+				enemy->SetStop(false);
 			}
 
 
 
 #ifdef _DEBUG
-			enemyPosS_ = pos;
-			enemyPosE_ = movedPos;
+
 #endif // _DEBUG
 		}
 	}
@@ -485,6 +500,14 @@ void Collision::CollisionPAndItem()
 
 						// アイテムの状態を変更
 						item->ChangeState(ItemBase::STATE::PICKUP_K);
+						break;
+					case ItemBase::TYPE::LIGHT:
+
+						// 救急キットを拾う
+						item_->PickLight();
+
+						// アイテムの状態を変更
+						item->ChangeState(ItemBase::STATE::PICKUP_L);
 						break;
 
 					}

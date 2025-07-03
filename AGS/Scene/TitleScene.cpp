@@ -40,6 +40,7 @@ void TitleScene::Init()
 
 	frameImage_ = LoadGraph("Data/Image/Frame.png");
 	
+	SoundManager::GetInstance()->PlayBgm2();
 }
 
 void TitleScene::Update(void)

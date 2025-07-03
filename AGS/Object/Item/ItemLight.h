@@ -18,5 +18,6 @@ protected:
 	// ƒpƒ‰ƒ[ƒ^İ’è
 	void SetParam() override;
 
+	int lightHandle_;
 };
 

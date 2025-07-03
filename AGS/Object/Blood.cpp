@@ -45,7 +45,7 @@ void Blood::Update()
 
 void Blood::Draw()
 {
-    DrawFormatString(500, 200, 0xffffff, "isAliveB:%d", isAlive_);
+   // DrawFormatString(500, 200, 0xffffff, "isAliveB:%d", isAlive_);
     if (!isAlive_) return;                                                                    
 
     for (int i = 0; i < PARTICLE_NUM; i++) {

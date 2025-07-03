@@ -17,6 +17,8 @@
 #define IMPACT_PATH "Data/Sound/impact.wav"
 #define HEAL_PATH "Data/Sound/heal.wav"
 #define BGM1_PATH "Data/Sound/BGM.mp3"
+#define BGM2_PATH "Data/Sound/BGM2.mp3"
+#define BGM3_PATH "Data/Sound/BGM3.mp3"
 #define HEALVOICE_PATH "Data/Sound/healVoice.wav"
 #define DAMEGE_PATH "Data/Sound/Damege.mp3"
 #define COUNT_PATH "Data/Sound/Count.wav"
@@ -26,18 +28,20 @@ class SoundManager
 {
 public:
 
-	static constexpr int BGM1_VOLUME = 110;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int WALK_VOLUME = 144;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int OPEN_VOLUME = 122;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int CLOSE_VOLUME = 102;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int BGM1_VOLUME = 143;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int BGM2_VOLUME = 250;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int BGM3_VOLUME = 220;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int WALK_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int OPEN_VOLUME = 173;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int CLOSE_VOLUME = 173;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int DIE_VOLUME = 142;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HIT_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int NOBULLET_VOLUME = 227;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int RELOAD_VOLUME = 232;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int RELOAD_VOLUME = 202;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int SHOT_VOLUME = 182;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int PICKUP_VOLUME = 242;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PICKUP_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int VOICE_VOLUME = 220;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int PAUSE_VOLUME = 100;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PAUSE_VOLUME = 120;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int CLECK_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HOVER_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HEAL_VOLUME = 247;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
@@ -61,6 +65,8 @@ public:
 
 	// âπåπçƒê∂
 	void PlayBgm1();	// BGM
+	void PlayBgm2();	// BGM
+	void PlayBgm3();	// BGM
 	void PlayWalk();	// ï‡Ç≠
 	void PlayOpen();	// ëñÇÈ
 	void PlayClose();	// ï‡Ç≠
@@ -83,6 +89,8 @@ public:
 	
 	//âπåπí‚é~
 	void StopBgm1();	// BGM
+	void StopBgm2();	// BGM
+	void StopBgm3();	// BGM
 	void StopWalk();	// ï‡Ç≠
 	void StopOpen();	// ëñÇÈ
 	void StopClose();	// ï‡Ç≠
@@ -109,6 +117,8 @@ private:
 	static SoundManager* instance_;
 
 	int bgm1Hundle_;
+	int bgm2Hundle_;
+	int bgm3Hundle_;
 	int walkHundle_;
 	int openHundle_;
 	int closeHundle_;

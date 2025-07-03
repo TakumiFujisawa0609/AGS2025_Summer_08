@@ -38,6 +38,9 @@ public:
 	// 救急箱を取得
 	void PickKitBox(void);
 
+	// ライトを取得
+	void PickLight(void);
+
 
 	// ワクチンの数を取得
 	int GetVaccine(void);
@@ -73,6 +76,8 @@ private:
 
 	// 救急箱の数
 	int kitBoxNum_;
+
+	int lightNum_;
 
 	int pickUpTime_ = 0;   // 拾った時間（ミリ秒）
 
