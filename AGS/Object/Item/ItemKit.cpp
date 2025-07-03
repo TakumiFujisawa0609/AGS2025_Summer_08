@@ -23,7 +23,7 @@ void ItemKit::Draw()
 
     for (const auto& point : kitSpawnPoints)
     {
-        DrawSphere3D(point.pos, 230, 16, GetColor(0, 255, 0), GetColor(255, 0, 0), false);
+   //     DrawSphere3D(point.pos, 230, 16, GetColor(0, 255, 0), GetColor(255, 0, 0), false);
     }
 
 	// ƒLƒbƒg‰æ‘œ‚ð•`‰æ

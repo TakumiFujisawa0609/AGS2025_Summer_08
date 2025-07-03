@@ -304,8 +304,11 @@ void SoundManager::PlayDamage()
 
 void SoundManager::PlayCount()
 {
-	// Н─Р╢
-	PlaySoundMem(countHundle_, DX_PLAYTYPE_BACK, true);
+	if (CheckSoundMem(countHundle_) == 0)
+	{
+		// Н─Р╢
+		PlaySoundMem(countHundle_, DX_PLAYTYPE_BACK, true);
+	}
 	// Й╣Ч╩Т▓Ро
 	ChangeVolumeSoundMem(COUNT_VOLUME, countHundle_);
 	

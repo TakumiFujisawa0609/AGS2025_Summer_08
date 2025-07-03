@@ -386,38 +386,35 @@ void Collision::CollisionEAndS()
 		// pair.second : std::vector<EnemyBase*>（敵リスト）
 		for (EnemyBase* enemy : pair.second)
 		{
+			// ステージのモデルIDを取得
 			int eModelId = stage_->GetModelId();
-
-			// 移動予定位置（レイの終点）
+			// 敵の座標を取得
+			VECTOR pos = enemy->GetPos();
+			// 敵の移動予定地を取得
 			VECTOR movedPos = enemy->GetMovedPos();
-			movedPos.y = RAY_COL_Y;
 
-			// 進行方向（正規化済み前提）
-			VECTOR moveDir = enemy->GetMoveDir();
+			// Y座標をレイの補正値に固定
+			pos.y = movedPos.y = RAY_COL_Y;
 
-			// 後方オフセット
-			const float BACK_OFFSET = 10.0f;
+			// 敵とステージの当たり判定設定
+			hitPoly_E_S = MV1CollCheck_Line(eModelId, -1, pos, movedPos);
 
-			// 現在位置から後方にずらした点（レイの始点）
-			VECTOR rayStart = VSub(enemy->GetPos(), VScale(moveDir, BACK_OFFSET));
-			rayStart.y = RAY_COL_Y;
-
-			// ステージとの衝突判定（レイ）
-			hitPoly_E_S = MV1CollCheck_Line(eModelId, -1, rayStart, movedPos);
-
+			//敵とステージが衝突した場合
 			if (hitPoly_E_S.HitFlag == 1)
 			{
-				enemy->SetStop(true);
+				enemy->SetStop(true);	// 停止
 			}
 			else
 			{
-				enemy->SetStop(false);
+				enemy->SetStop(false);	// 停止フラグ解除
 			}
-
 
 
 #ifdef _DEBUG
 
+
+			//enemyPosS_ = pos;
+			//enemyPosE_ = movedPos;
 #endif // _DEBUG
 		}
 	}

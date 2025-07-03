@@ -163,7 +163,7 @@ void ItemManager::Update(void)
 	//}
 
 
-	if (CheckHitKey(KEY_INPUT_1)) vaccineNum_ = 0;
+	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_1)) pickedVaccineNum_ += 1;
 }
 
 void ItemManager::Draw(void)
@@ -237,7 +237,7 @@ void ItemManager::Draw(void)
 		count_span = 0;
 		if (hasPlayed == true)
 		{
-			//SoundManager::GetInstance()->PlayCount();
+			SoundManager::GetInstance()->PlayCount();
 			hasPlayed = false;
 		}
 

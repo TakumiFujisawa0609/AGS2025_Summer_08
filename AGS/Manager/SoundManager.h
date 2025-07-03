@@ -34,7 +34,7 @@ public:
 	static constexpr int WALK_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int OPEN_VOLUME = 173;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int CLOSE_VOLUME = 173;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int DIE_VOLUME = 142;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int DIE_VOLUME = 172;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HIT_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int NOBULLET_VOLUME = 227;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int RELOAD_VOLUME = 202;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
@@ -46,8 +46,8 @@ public:
 	static constexpr int HOVER_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HEAL_VOLUME = 247;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HEALVOICE_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int IMPACT_VOLUME = 249;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int COUNT_VOLUME = 150;
+	static constexpr int IMPACT_VOLUME = 252;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int COUNT_VOLUME = 100;
 	static constexpr int DAMEGE_VOLUME = 200;
 	static constexpr int KILL_VOLUME = 210;
 

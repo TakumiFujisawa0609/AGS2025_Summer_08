@@ -62,7 +62,7 @@ void PlayerShot::Draw(void)
 	{
 		if (shot.isAlive)
 		{
-			DrawSphere3D(shot.pos, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
+		//	DrawSphere3D(shot.pos, 10, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), true);
 		}
 	}
 
@@ -103,7 +103,7 @@ void PlayerShot::Shot(void)
 		if (!shot.isAlive)
 		{
 			VECTOR forward = VNorm(camera_->GetForward());
-			VECTOR offset = VScale(forward, -30.0f); // Œã‚ë•ûŒü‚Ö20‚¸‚ç‚·
+			VECTOR offset = VScale(forward, -40.0f); // Œã‚ë•ûŒü‚Ö‚¸‚ç‚·
 			VECTOR startPos = VAdd(camera_->GetPos(), offset);
 
 			shot.pos = shot.startPos = startPos;

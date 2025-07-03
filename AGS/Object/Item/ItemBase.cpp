@@ -38,7 +38,7 @@ void ItemBase::Init(TYPE type, int baseModelId, Player* player)
     MV1SetPosition(modelId_, pos_);
 
     // 少し明るくする
-    MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.5f, 0.5f, 0.5f, 1.0f)); // アイテム
+    MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.6f, 0.6f, 0.6f, 1.0f)); // アイテム
 }
 
 void ItemBase::Update()

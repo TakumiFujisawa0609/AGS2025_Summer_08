@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "../../Manager/InputManager.h"
 #include "../../Manager/SoundManager.h"
 #include  <DxLib.h>
 
@@ -57,7 +58,7 @@ void Button::Update(void)
 			SoundManager::GetInstance()->PlayHover();
 		}
 
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+		if ((InputManager::GetInstance().IsTrgMouseLeft()) != 0)
 		{
 			// ƒNƒŠƒbƒN‚³‚ê‚Ä‚¢‚é
 			buttonState_ = DISABLED;

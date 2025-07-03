@@ -39,6 +39,8 @@ void StageBase::Init(void)
 	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 最初の部屋の外壁
 	MV1SetMaterialEmiColor(modelId_, 5, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 天井
 	MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// 台座
+	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.8f, 0.8f, 0.8f, 1.0f));	// 台座
+	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.8f, 0.8f, 0.8f, 1.0f));	// 台座
 
 	dPos_ = { -1432,-3,50 };
 	// ドア
