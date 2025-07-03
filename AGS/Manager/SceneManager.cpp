@@ -53,12 +53,11 @@ void SceneManager::Init(void)
 	fader_ = new Fader();
 	fader_->Init();
 
-	
-
 	isSceneChanging_ = false;
 
 	// ‰ŠúƒV[ƒ“‚ÌÝ’è
 	DoChangeScene(SCENE_ID::TITLE);
+	SoundManager::GetInstance()->PlayBgm2();
 
 	// 3D‚Ì‰ŠúÝ’è
 	Init3D();
@@ -218,6 +217,7 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
+		SoundManager::GetInstance()->PlayBgm1();
 		break;
 	case SCENE_ID::GAMECLEAR:
 		scene_ = new GameClear();

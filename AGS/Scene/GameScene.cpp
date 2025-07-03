@@ -66,7 +66,14 @@ void GameScene::Update(void)
 
 	// ポーズ中だったら処理しない
 	if (isPauseAlive == true)
+	{
+		SoundManager::GetInstance()->StopDamage();
 		return;
+	}
+	else
+	{
+		SoundManager::GetInstance()->PlayDamage();
+	}
 
 	if (pauseSpanAlive_ == false)
 	{
@@ -84,7 +91,7 @@ void GameScene::Update(void)
 		return;
 	}
 
-	SoundManager::GetInstance()->PlayBgm1();
+
 
 	// プレイヤー生きてるかで分岐
 	if (player_->GetAlive())
@@ -100,7 +107,6 @@ void GameScene::Update(void)
 	}
 
 	enemy_->Update();
-
 
 	// 血
 	blood_->Update();
@@ -370,6 +376,7 @@ void GameScene::Pause(void)
 		if (titleButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
 		{
 			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
+			SoundManager::GetInstance()->StopDamage();
 		}
 
 	}
@@ -396,6 +403,7 @@ void GameScene::ClearTime()
 	if (collision_->GetClear())
 	{
 		SoundManager::GetInstance()->StopWalk();
+		SoundManager::GetInstance()->StopDamage();
 
 		SceneManager::GetInstance()->SetClearTime(clearTime_);
 

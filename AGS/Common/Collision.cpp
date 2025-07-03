@@ -522,7 +522,7 @@ void Collision::CollisionPAndD()
 	VECTOR pPos = player_->GetPPos();
 	VECTOR dPos = stage_->GetDPos();
 
-	// プレイヤーの当たり判定の球体の中心点
+	// プレイヤーの当たり判定の球体の中心点5
 	VECTOR pCenterPos = VAdd(pPos, VGet(0.0f, 110, 0));
 	// ドアの当たり判定の球体の中心点
 	VECTOR dCenterPos = VAdd(dPos, VGet(0,200, 0));

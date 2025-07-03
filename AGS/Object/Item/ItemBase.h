@@ -39,8 +39,8 @@ public:
     };
 
     static constexpr SpawnPoint kitSpawnPoints[2] = {
-       {200.0f, 146.0f, 455.0f},
-        {4841.0f, 146.0f, 820.0f }
+       {200.0f, 160.0f, 450.0f},
+        {4841.0f, 160.0f, 820.0f }
     };
 
     static constexpr SpawnPoint vaccineSpawnPoints[3] = {

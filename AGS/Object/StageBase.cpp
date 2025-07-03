@@ -40,7 +40,7 @@ void StageBase::Init(void)
 	MV1SetMaterialEmiColor(modelId_, 5, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// ìVà‰
 	MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.5f, 0.5f, 0.5f, 1.0f));	// ë‰ç¿
 	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.8f, 0.8f, 0.8f, 1.0f));	// ë‰ç¿
-	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.8f, 0.8f, 0.8f, 1.0f));	// ë‰ç¿
+	MV1SetMaterialEmiColor(modelId_, 8, GetColorF(0.8f, 0.8f, 0.8f, 1.0f));	// ë‰ç¿
 
 	dPos_ = { -1432,-3,50 };
 	// ÉhÉA

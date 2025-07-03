@@ -16,7 +16,7 @@ public:
 	static constexpr int VACCINE_NUM = 3;
 	static constexpr int LIGHT_NUM = 10;
 
-	static constexpr int LAST_COUNT_SPAN = 180;
+	static constexpr int LAST_COUNT_SPAN = 120;
 
 	static constexpr int SHOW_DURATION = 2500;
 

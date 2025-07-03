@@ -40,4 +40,7 @@ void ItemBullet::SetParam()
 
 	// Œü‚«İ’è
 	MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(-90.0f), 0 });
+
+	// ­‚µ–¾‚é‚­‚·‚é
+	MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.6f, 0.6f, 0.6f, 1.0f)); // ƒAƒCƒeƒ€
 }
