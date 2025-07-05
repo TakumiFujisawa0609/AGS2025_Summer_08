@@ -1,5 +1,6 @@
 #pragma once
 class AnimControl;
+class StageBase;
 class Player;
 
 
@@ -56,24 +57,21 @@ public:
 	static constexpr float MOVE_RUN_SPEED = 6.0f;	// 走り
 
 	// アニメーションが切り替わる距離
-	static constexpr float WALK_DISTANCE = 1700.0f;	// 歩き
-	static constexpr float RUN_DISTANCE = 1000.0f;	// 走り
+	//static constexpr float WALK_DISTANCE = 1700.0f;	// 歩き
+	static constexpr float RUN_DISTANCE = 1830.0f;	// 走り
 	static constexpr float ATTACK_DISTANCE = 150.0f;	// 攻撃
 
 	EnemyBase();
 	virtual ~EnemyBase();
 
-	void Init(TYPE type, int baseModelId, Player* player);	// 初期化
+	void Init(TYPE type, int baseModelId, Player* player, StageBase* stage);	// 初期化
 	void Update();	// 更新
 	void Draw();	// 描画
 	void Release();	// 解放
 
-	void ModelReflect();	// モデルの座標情報などを反映させる。
-
 	int GetModelId() const; // モデルID取得
 	VECTOR GetPos() const; // 敵座標取得
-	VECTOR GetMovedPos() const; // 移動予定位置取得
-	
+
 	void SetPos(VECTOR pos);
 
 	void SetStop(bool isStop);
@@ -95,13 +93,19 @@ public:
 
 	VECTOR GetMoveDir() const;
 
+	// プレイヤーが見えてるか
+	bool CanSeePlayer();
+
 protected:
 
 	AnimControl* anim_;	// アニメーションクラス
 	STATE state_;	// 敵の状態
+	STATE lostState_ = STATE::IDLE;   // プレイヤーを見失った時点の状態（WALK or RUN）
 
 	// 種別
 	TYPE type_;
+
+	StageBase* stage_;
 
 	Player* player_;	// プレイヤーのポインタ
 
@@ -134,6 +138,10 @@ protected:
 
 	// 走り声再生したか
 	bool hasPlayedRunSound_ = false;
+
+	bool isPlayerVisible_ = false;
+	VECTOR lastSeenPlayerPos_ = { 0.0f, 0.0f, 0.0f };
+	bool hasLastSeen_ = false;
 
 	// 状態遷移
 	void ChangeIdle(void);

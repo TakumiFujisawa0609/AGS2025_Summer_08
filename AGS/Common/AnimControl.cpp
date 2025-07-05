@@ -30,6 +30,8 @@ void AnimControl::Init(int modelHandle)
 	blendTimer_ = 0.0f; // ブレンド中の経過時間
 	isBlending_ = false; // ブレンド中フラグ初期化
 	prevAnim_ = ANIM_MAX; // 前のアニメーションを無効値で初期化
+
+    MV1SetAttachAnimBlendRate(modelId_, attachNo_[ANIM_IDLE], 1.0f);
 }
 
 // アニメーション再生

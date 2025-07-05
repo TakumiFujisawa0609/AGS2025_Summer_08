@@ -57,7 +57,7 @@ void SceneManager::Init(void)
 	isSceneChanging_ = false;
 
 	// 初期シーンの設定
-	DoChangeScene(SCENE_ID::TITLE);
+	DoChangeScene(SCENE_ID::GAME);
 	SoundManager::GetInstance()->PlayBgm2();
 
 	// 3Dの初期設定
@@ -187,6 +187,18 @@ float SceneManager::GetClearTime()
 	return clearTime_;;
 }
 
+void SceneManager::StartFadeIn()
+{
+	fader_->SetFade(Fader::STATE::FADE_IN, GetColor(0, 0, 0));
+	isSceneChanging_ = true;
+}
+
+// フェード中か
+bool SceneManager::IsFading() const
+{
+	return fader_->GetState() != Fader::STATE::NONE && !fader_->IsEnd();
+}
+
 void SceneManager::DoChangeScene(SCENE_ID sceneId)
 {
 
@@ -222,6 +234,8 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		break;
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
+		// フェードイン開始（黒から明るく）
+		SceneManager::GetInstance()->StartFadeIn();
 		SoundManager::GetInstance()->PlayBgm1();
 		break;
 	case SCENE_ID::GAMECLEAR:

@@ -51,9 +51,6 @@ public:
     // プレイヤーとステージの当たり判定処理
     void CollisionPAndS();
 
-	// 敵とステージの当たり判定処理
-    void CollisionEAndS();
-
     // プレイヤーとワクチンの当たり判定
     void CollisionPAndItem();
 

@@ -36,6 +36,8 @@ public:
 
 	// シーン遷移命令
 	void ChangeScene(SCENE_ID nextId);
+	// シーン遷移
+	void DoChangeScene(SCENE_ID sceneId);
 
 	// 3Dの初期設定
 	void Init3D(void);
@@ -47,6 +49,10 @@ public:
 
 	void SetClearTime(float clearTime);
 	float GetClearTime();
+
+	void StartFadeIn();
+	// フェード中か
+	bool IsFading() const;
 private:
 
 	// 静的インスタンス
@@ -74,9 +80,6 @@ private:
 
 	// デストラクタ
 	~SceneManager(void);
-
-	// シーン遷移
-	void DoChangeScene(SCENE_ID sceneId);
 
 	// フェード処理
 	void Fade(void);

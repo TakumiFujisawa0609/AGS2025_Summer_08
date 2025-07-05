@@ -4,6 +4,7 @@
 #include "../../Common/AnimControl.h"
 #include "../../Common/Collision.h"
 #include "../../Utility/AsoUtility.h"
+#include "../StageBase.h"
 #include "../Player.h"
 #include "EnemyBase.h"
 
@@ -16,13 +17,15 @@ EnemyBase::~EnemyBase()
 }
 
 
-void EnemyBase::Init(TYPE type, int baseModelId, Player* player)
+void EnemyBase::Init(TYPE type, int baseModelId, Player* player, StageBase* stage)
 {
 	// 敵種別
 	type_ = type;
 
 	// ゲームシーン内のplayerを取得
 	player_ = player;
+
+	stage_ = stage;
 
 	// 敵モデル描画
 	modelId_ = MV1DuplicateModel(baseModelId);
@@ -36,8 +39,6 @@ void EnemyBase::Init(TYPE type, int baseModelId, Player* player)
 
 	// 敵初期位置
 	pos_ = INIT_ENEMY_POS;
-	// 移動予定位置初期化
-	movedPos_ = pos_;
 
 	// 敵初期角度
 	angle_ = INIT_ENEMY_ANGLE;
@@ -60,15 +61,15 @@ void EnemyBase::Init(TYPE type, int baseModelId, Player* player)
 void EnemyBase::Update()
 {
 	// プレイヤーとの距離を更新
-	LookPlayer();   
+	LookPlayer();
 
 	// 状態に応じた行動（追尾・攻撃など）
 	// 生きているときだけ状態変更を行う
-	if (isAlive_) 
+	if (isAlive_)
 	{
 		ChangeStateDist();
 	}
-	
+
 	switch (state_) {
 	case STATE::IDLE:
 		UpdateIdle();
@@ -86,6 +87,19 @@ void EnemyBase::Update()
 		UpdateDie();
 		break;
 	}
+
+	// 視認判定
+	isPlayerVisible_ = CanSeePlayer();
+
+	// プレイヤーが見えていたら
+	if (isPlayerVisible_) {
+		lastSeenPlayerPos_ = player_->GetPPos();
+		hasLastSeen_ = true;
+	}
+
+	// 位置と向きを反映する
+	MV1SetPosition(modelId_, pos_);
+	MV1SetRotationXYZ(modelId_, angle_);
 
 	// アニメーションの時間更新
 	anim_->Update();
@@ -143,27 +157,15 @@ void EnemyBase::Release()
 	MV1DeleteModel(modelId_);
 }
 
-void EnemyBase::ModelReflect()
-{
-	// 進んでよかったら
-	if (!isStop_)
-	{
-		// 座標を進める
-		pos_ = movedPos_;
-	}
-
-	// モデルをセット
-	MV1SetPosition(modelId_, pos_);
-	MV1SetRotationXYZ(modelId_, angle_);
-}
-
 void EnemyBase::LookPlayer()
 {
 	// プレイヤーの座標を取得
-	VECTOR pPos = player_->GetPPos();
+	VECTOR target = player_->GetPPos();
+	// プレイヤーが見えているならその位置を追尾
+	target = isPlayerVisible_ ? player_->GetPPos() : lastSeenPlayerPos_;
 
 	// 移動方向を計算する（プレイヤー座標 - 敵座標）
-	moveDir_ = VSub(pPos, pos_);
+	moveDir_ = VSub(target, pos_);
 
 	// 移動方向のベクトルサイズを取得
 	dist_ = VSize(moveDir_);
@@ -182,7 +184,7 @@ void EnemyBase::ChasePlayer()
 		VECTOR movePow = VScale(moveDir_, speed_);
 
 		// 移動処理（座標＋移動量)
-		movedPos_ = VAdd(pos_, movePow);	// ←移動予定位置
+		pos_ = VAdd(pos_, movePow);
 
 		// 方向から角度(ラジアン）に変換する
 		angle_.y = atan2(moveDir_.x, moveDir_.z);
@@ -228,8 +230,16 @@ void EnemyBase::ChangeStateDist()
 		return;
 	}
 
+	// 視認できない上に到達済みならIDLEに戻る
+	if (!isPlayerVisible_ && hasLastSeen_ && dist_ < RUN_DISTANCE)
+	{
+		hasLastSeen_ = false;
+		ChangeState(STATE::IDLE);
+		return;
+	}
+
 	// 状態を切り替える距離
-	if (dist_ < ATTACK_DISTANCE)
+	if (isPlayerVisible_ && dist_ < ATTACK_DISTANCE)
 	{
 		ChangeState(STATE::ATTACK);
 	}
@@ -237,11 +247,11 @@ void EnemyBase::ChangeStateDist()
 	{
 		ChangeState(STATE::RUN);
 	}
-	else if (dist_ < WALK_DISTANCE)
-	{
-		ChangeState(STATE::WALK);
-	}
-	else if (dist_ > WALK_DISTANCE)
+	//else if (dist_ < WALK_DISTANCE)
+	//{
+	//	ChangeState(STATE::WALK);
+	//}
+	else if (dist_ > RUN_DISTANCE)
 	{
 		ChangeState(STATE::IDLE);
 	}
@@ -278,6 +288,21 @@ VECTOR EnemyBase::GetMoveDir() const
 	return moveDir_;
 }
 
+// プレイヤーが視認できるか
+bool EnemyBase::CanSeePlayer()
+{
+	VECTOR start = VAdd(pos_, VGet(0, 100, 0));      // 敵の目線位置
+	VECTOR end = VAdd(player_->GetPPos(), VGet(0, 100, 0)); // プレイヤー目線位置
+
+	int sModelId = stage_->GetModelId();
+
+	// レイキャストでステージとの当たりを調べる
+	MV1_COLL_RESULT_POLY result = MV1CollCheck_Line(sModelId, -1, start, end);
+
+	// ヒットしなければ → 遮る壁がない → 見えている
+	return result.HitFlag == 0;
+}
+
 int EnemyBase::GetModelId() const
 {
 	return modelId_;
@@ -286,11 +311,6 @@ int EnemyBase::GetModelId() const
 VECTOR EnemyBase::GetPos() const
 {
 	return pos_;
-}
-
-VECTOR EnemyBase::GetMovedPos() const
-{
-	return movedPos_;
 }
 
 void EnemyBase::SetPos(VECTOR pos)
@@ -309,7 +329,7 @@ void EnemyBase::Damage(int damage)
 	hp_ -= damage;
 
 	// hpが０になったら死亡状態に
-	if (hp_ <= 0) 
+	if (hp_ <= 0)
 	{
 		ChangeState(STATE::DIE);
 
@@ -382,6 +402,10 @@ void EnemyBase::UpdateWalk(void)
 
 void EnemyBase::UpdateRun(void)
 {
+	if (dist_ < 3.0f) {
+		ChangeState(STATE::IDLE);
+		return;
+	}
 	ChasePlayer();
 }
 
@@ -391,7 +415,7 @@ void EnemyBase::UpdateAttack(void)
 
 void EnemyBase::UpdateDie(void)
 {
-	
+
 }
 
 void EnemyBase::DrawIdle(void)

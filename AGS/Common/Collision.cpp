@@ -76,7 +76,7 @@ void Collision::Update()
 	CollisionPAndS();
 
 	// 敵とステージの当たり判定
-	CollisionEAndS();
+	//CollisionEAndS();
 
 	// プレイヤーとワクチンの当たり判定
 	CollisionPAndItem();
@@ -373,51 +373,6 @@ void Collision::CollisionPAndS()
 
 	isHit_P_S_ = hitPoly_P_S.HitFlag;
 #endif // _DEBUG
-}
-
-void Collision::CollisionEAndS()
-{
-	const auto& enemies = enemy_->GetEnemies();
-
-	// 連想配列（map）を for で回す
-	for (auto pair : enemies)
-	{
-		// pair.first : EnemyBase::TYPE（型）
-		// pair.second : std::vector<EnemyBase*>（敵リスト）
-		for (EnemyBase* enemy : pair.second)
-		{
-			// ステージのモデルIDを取得
-			int eModelId = stage_->GetModelId();
-			// 敵の座標を取得
-			VECTOR pos = enemy->GetPos();
-			// 敵の移動予定地を取得
-			VECTOR movedPos = enemy->GetMovedPos();
-
-			// Y座標をレイの補正値に固定
-			pos.y = movedPos.y = RAY_COL_Y;
-
-			// 敵とステージの当たり判定設定
-			hitPoly_E_S = MV1CollCheck_Line(eModelId, -1, pos, movedPos);
-
-			//敵とステージが衝突した場合
-			if (hitPoly_E_S.HitFlag == 1)
-			{
-				enemy->SetStop(true);	// 停止
-			}
-			else
-			{
-				enemy->SetStop(false);	// 停止フラグ解除
-			}
-
-
-#ifdef _DEBUG
-
-
-			//enemyPosS_ = pos;
-			//enemyPosE_ = movedPos;
-#endif // _DEBUG
-		}
-	}
 }
 
 // ワクチンとアイテムとの当たり判定

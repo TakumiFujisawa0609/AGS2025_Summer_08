@@ -36,8 +36,6 @@ void ItemBase::Init(TYPE type, int baseModelId, Player* player)
 
     // モデルを座標にセット
     MV1SetPosition(modelId_, pos_);
-
-  
 }
 
 void ItemBase::Update()
@@ -74,6 +72,12 @@ void ItemBase::ChangeState(STATE state)
 
 void ItemBase::PickUp()
 {
+}
+
+void ItemBase::SetAngle(const VECTOR& angle)
+{
+    angle_ = angle;
+    MV1SetRotationXYZ(modelId_, angle_);
 }
 
 VECTOR ItemBase::GetPos() const

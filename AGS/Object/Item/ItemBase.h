@@ -28,25 +28,26 @@ public:
     struct SpawnPoint
     {
         VECTOR pos;
+        VECTOR angle;
     };
 
-    static constexpr SpawnPoint bulletSpawnPoints[5] = {
-       {195.0f, 125.0f, -327.0f},
-        {2575.0f, 125.0f, 3796.0f },
-        {4820.0f, 125.0f, -3700.0f},
-        {7432.0f, 125.0f, -1430.0f},
-        {7432.0f, 125.0f, 1520.0f}
+    static constexpr SpawnPoint bulletSpawnPoints[5] ={
+        { {195.0f, 125.0f, -327.0f}, {0,  -90 * (DX_PI_F / 180.0f), 0 } },
+        { {2576.0f, 125.0f, 3804.0f}, {0, 180 * (DX_PI_F / 180.0f), 0} },
+        { {4819.0f, 125.0f, -3698.0f}, {0, 0, 0} },
+        { {7436.0f, 125.0f, -1430.0f}, {0, 0, 0} },
+        { {7439.0f, 125.0f, 1516.0f}, {0, 180 * (DX_PI_F / 180.0f), 0} }
     };
 
     static constexpr SpawnPoint kitSpawnPoints[2] = {
-       {200.0f, 160.0f, 450.0f},
-        {4841.0f, 160.0f, 820.0f }
+        {{200.0f, 160.0f, 450.0f},{0, 90.0f * (DX_PI_F / 180.0f), 90.0f * (DX_PI_F / 180.0f)}},
+        {{4841.0f, 160.0f, 820.0f}, {0, 90.0f * (DX_PI_F / 180.0f), 90.0f * (DX_PI_F / 180.0f)}}
     };
 
     static constexpr SpawnPoint vaccineSpawnPoints[3] = {
-       {4815.0f, 129.0f, 1550.0f},
-       {3466.0f, 129.0f, -3455.0f},
-       {8830.0f, 129.0f, -12.0f}
+        {{4815.0f, 129.0f, 1550.0f}, {0,  0, 0 }},
+        {{3476.0f, 129.0f, -3480.0f}, { 0,  -90 * (DX_PI_F / 180.0f), 0 }},
+        {{8830.0f, 129.0f, -12.0f}, { 0,  0, 0 }}
     };
 
     // 初期サイズ
@@ -75,6 +76,7 @@ public:
 
     void PickUp();
 
+    void SetAngle(const VECTOR& angle);
 
     VECTOR GetPos() const; // 座標取得
     void SetPos(VECTOR pos);  //座標設定

@@ -39,7 +39,7 @@ void ItemBullet::SetParam()
 	scale_ = DEFAULT_BULLET_SCALE;
 
 	// å¸Ç´ê›íË
-	MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(-90.0f), 0 });
+	//MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(-90.0f), 0 });
 
 	// è≠ÇµñæÇÈÇ≠Ç∑ÇÈ
 	MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.6f, 0.6f, 0.6f, 1.0f)); // ÉAÉCÉeÉÄ

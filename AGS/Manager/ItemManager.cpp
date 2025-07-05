@@ -64,6 +64,7 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 
 		// スポーン位置設定
 		bullet->SetPos(ItemBullet::bulletSpawnPoints[i].pos);
+		bullet->SetAngle(ItemBullet::bulletSpawnPoints[i].angle);
 
 		// アイテムを登録
 		items_[ItemBase::TYPE::BULLET].emplace_back(bullet);
@@ -85,6 +86,7 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 
 		// スポーン位置設定
 		vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
+		vaccine->SetAngle(ItemVaccine::vaccineSpawnPoints[i].angle);
 
 		// アイテムを登録
 		items_[ItemBase::TYPE::VACCINE].emplace_back(vaccine);
@@ -106,6 +108,7 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 
 		// スポーン位置設定
 		kit->SetPos(ItemKit::kitSpawnPoints[i].pos);
+		kit->SetAngle(ItemKit::kitSpawnPoints[i].angle);
 
 		// アイテムを登録
 		items_[ItemBase::TYPE::KIT].emplace_back(kit);

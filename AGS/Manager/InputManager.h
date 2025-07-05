@@ -89,6 +89,9 @@ public:
 	// キーの押下判定(押しっぱなしはNG)
 	bool IsTrgDown(int key) const;
 
+	// キーボードをどのキーでも押したか
+	bool IsAnyKeyDown() const;
+
 	// キーを離した時の判定
 	bool IsTrgUp(int key) const;
 

@@ -30,7 +30,7 @@ void GameScene::Init(void)
 	stage_ = new StageBase();
 	player_ = new Player();
 	camera_ = new Camera();
-	enemy_ = new EnemyManager(player_);
+	enemy_ = new EnemyManager(player_, stage_);
 	pShot_ = new PlayerShot();
 	item_ = new ItemManager();
 	blood_ = new Blood();
@@ -93,8 +93,6 @@ void GameScene::Update(void)
 		return;
 	}
 
-
-
 	// プレイヤー生きてるかで分岐
 	if (player_->GetAlive())
 	{
@@ -118,20 +116,6 @@ void GameScene::Update(void)
 
 	// 当たり判定→プレイヤー座標更新
 	player_->ModelReflect();
-	
-	// 敵取得
-	const auto& enemies = enemy_->GetEnemies();
-	// 連想配列（map）を for で回す
-	for (auto pair : enemies)
-	{
-		// pair.first : EnemyBase::TYPE（型）
-		// pair.second : std::vector<EnemyBase*>（敵リスト）
-		for (EnemyBase* enemy : pair.second)
-		{
-			// 当たり判定→敵座標更新
-			enemy->ModelReflect();
-		}
-	}
 
 	if (pauseSpan_ > 5)
 	{
@@ -149,10 +133,10 @@ void GameScene::Update(void)
 		// 時間を加算（1フレームあたりの経過時間）
 		gameOverTimer_ += SceneManager::GetInstance()->GetDeltaTime();
 
-		if (gameOverTimer_ >= 6.0f)
+		if (gameOverTimer_ >= 5.4f)
 		{
 
-			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
+			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::GAME);
 		}
 	}
 
@@ -193,8 +177,6 @@ void GameScene::Draw(void)
 
 	// リロードキーの表示
 	pShot_->KeyDraw();
-
-
 
 	GameOver();
 

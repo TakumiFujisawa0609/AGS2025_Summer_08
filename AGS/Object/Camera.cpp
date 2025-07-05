@@ -165,6 +165,7 @@ VECTOR Camera::GetPos() const
 	return pos_;
 }
 
+// 死亡演出
 void Camera::UpdateDeathCamera()
 {
 	static auto EaseInOutCubic = [](float t) -> float
@@ -241,7 +242,7 @@ void Camera::UpdateDeathCamera()
 	else
 	{
 		// 演出終了後は位置を固定（揺れなし）
-		pos_ = VAdd(player_->GetPPos(), VGet(0.0f, HEIGHT * 0.1f, 0.3f));
+		//pos_ = VAdd(player_->GetPPos(), VGet(0.0f, HEIGHT * 0.2f, 0.3f));
 	}
 
 	VECTOR lookPos;

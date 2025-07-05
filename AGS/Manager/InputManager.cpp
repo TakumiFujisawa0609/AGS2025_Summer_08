@@ -143,6 +143,15 @@ bool InputManager::IsTrgDown(int key) const
 	return Find(key).keyTrgDown;
 }
 
+bool InputManager::IsAnyKeyDown() const
+{
+	for (const auto& pair : keyInfos_)
+	{
+		if (pair.second.keyTrgDown) return true;
+	}
+	return false;
+}
+
 bool InputManager::IsTrgUp(int key) const
 {
 	return Find(key).keyTrgUp;

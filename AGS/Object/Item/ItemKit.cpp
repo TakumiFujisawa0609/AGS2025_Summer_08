@@ -42,7 +42,7 @@ void ItemKit::SetParam()
     keyImg_ = LoadGraph("Data/Image/Q_Key.png");
 
     // å¸Ç´ê›íË
-    MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(90.0f), AsoUtility::Deg2RadF(90.0f) });
+    //MV1SetRotationXYZ(modelId_, { 0,  AsoUtility::Deg2RadF(90.0f), AsoUtility::Deg2RadF(90.0f) });
 
     // è≠ÇµñæÇÈÇ≠Ç∑ÇÈ
     //MV1SetMaterialEmiColor(modelId_, -1, GetColorF(0.35f, 0.35f, 0.35f, 1.0f));

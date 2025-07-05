@@ -87,7 +87,28 @@ void SoundManager::Update(void)
 void SoundManager::Release(void)
 {
 	DeleteSoundMem(bgm1Hundle_);
+	DeleteSoundMem(bgm2Hundle_);
+	DeleteSoundMem(bgm3Hundle_);
 	DeleteSoundMem(walkHundle_);
+	DeleteSoundMem(openHundle_);
+	DeleteSoundMem(closeHundle_);
+	DeleteSoundMem(hitHundle_);
+	DeleteSoundMem(dieHundle_);
+	DeleteSoundMem(noAmmoHundle_);
+	DeleteSoundMem(pickUpHundle_);
+	DeleteSoundMem(reLoadHundle_);
+	DeleteSoundMem(voiceHundle_);
+	DeleteSoundMem(shotHundle_);
+	DeleteSoundMem(hoverHundle_);
+	DeleteSoundMem(cleckHundle_);
+	DeleteSoundMem(choiceHundle_);
+	DeleteSoundMem(pauseHundle_);
+	DeleteSoundMem(impactHundle_);
+	DeleteSoundMem(healHundle_);
+	DeleteSoundMem(healVoiceHundle_);
+	DeleteSoundMem(damageHundle_);
+	DeleteSoundMem(countHundle_);
+	DeleteSoundMem(killHundle_);
 
 	// インスタンスの削除
 	DeleteInstance();

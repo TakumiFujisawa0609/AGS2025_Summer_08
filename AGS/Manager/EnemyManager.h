@@ -3,6 +3,7 @@
 #include <map>
 #include "../Object/Enemy/EnemyBase.h"
 class EnemyBase;
+class StageBase;
 class Player;
 
 class EnemyManager
@@ -12,7 +13,7 @@ public:
 	static constexpr int ENEMY_NUM = 15;
 
 	// コンストラクタ
-	EnemyManager(Player* player);
+	EnemyManager(Player* player, StageBase* stage);
 	// デストラクタ
 	~EnemyManager(void);
 	void Init();
@@ -29,6 +30,8 @@ private:
 
 	// 敵用のモデルハンドルID
 	std::vector<int> enemyModelIds_;
+
+	StageBase* stage_;
 
 	// プレイヤーのポインタ
 	Player* player_;

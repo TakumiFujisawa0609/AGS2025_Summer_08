@@ -3,8 +3,9 @@
 #include "../Object/Enemy/EnemyNormal.h"
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager(Player* player)
+EnemyManager::EnemyManager(Player* player, StageBase* stage)
 {
+	stage_ = stage;
 	player_ = player;
 }
 
@@ -27,7 +28,7 @@ void EnemyManager::Init()
 		// 初期化
 		normal->Init(EnemyBase::TYPE::NORMAL,
 			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::NORMAL)],
-			player_);
+			player_, stage_);
 
 		// スポーン位置設定
 		normal->SetPos(EnemyNormal::spawnPoints[i].pos);

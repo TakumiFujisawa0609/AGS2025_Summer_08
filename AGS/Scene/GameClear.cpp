@@ -35,9 +35,6 @@ void GameClear::Draw(void)
 
 	clearTime_ = SceneManager::GetInstance()->GetClearTime();
 
-	/*SetFontSize(100);
-	DrawFormatString(1300, Application::SCREEN_SIZE_Y / 2 - 120, 0xffffff, "ClearTime");
-	DrawFormatString(1400, Application::SCREEN_SIZE_Y / 2, 0xffffff, "%.2f•b", clearTime_);*/
 	SetFontSize(100);
 	DrawFormatString(1300, Application::SCREEN_SIZE_Y / 2 - 120, 0xffffff, "ClearTime");
 

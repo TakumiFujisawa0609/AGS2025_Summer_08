@@ -17,9 +17,24 @@ public:
 	void Draw(void) override;
 	void Release(void) override;
 
+	void ReadySkip();
+	void SceneSkip();
+
 private:
 	int movieHandle_;
 
 	float playTime_;         // Ä¶Œo‰ßŠÔ
 	static constexpr float MOVIE_LENGTH = 6.1f;  // “®‰æ‚Ì’·‚³i•bj
+
+	bool isReadySkip_ = false;
+	bool isSkipped_;
+	int spaceKeyImg_;
+	float holdTime_ = 0.0f;
+	bool isHolding_ = false;
+
+	int mouseX_ = 0;
+	int mouseY_ = 0;
+	int prevMouseX_ = 0;
+	int prevMouseY_ = 0;
+
 };
