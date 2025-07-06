@@ -112,6 +112,11 @@ bool ItemBase::IsCollisionState(void)
     return state_ == STATE::STANBY;
 }
 
+bool ItemBase::IsPickedFromPosition(const VECTOR& target, float radius) const
+{
+    return VSize(VSub(pos_, target)) <= radius;
+}
+
 void ItemBase::SetParam()
 {
 }

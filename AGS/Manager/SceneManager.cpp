@@ -57,7 +57,7 @@ void SceneManager::Init(void)
 	isSceneChanging_ = false;
 
 	// ‰ŠúƒV[ƒ“‚ÌÝ’è
-	DoChangeScene(SCENE_ID::GAME);
+	DoChangeScene(SCENE_ID::TITLE);
 	SoundManager::GetInstance()->PlayBgm2();
 
 	// 3D‚Ì‰ŠúÝ’è
@@ -220,6 +220,9 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		return;
 	case SCENE_ID::TITLE:
 		scene_ = new TitleScene();
+		SoundManager::GetInstance()->StopOrder1();
+		SoundManager::GetInstance()->StopOrder2();
+		SoundManager::GetInstance()->StopOrder3();
 		SoundManager::GetInstance()->StopBgm3();
 		SoundManager::GetInstance()->StopBgm1();
 		SoundManager::GetInstance()->PlayBgm2();

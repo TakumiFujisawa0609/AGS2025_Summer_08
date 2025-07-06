@@ -95,4 +95,6 @@ private:
 
 	
 	float clearTime_;      // プレイ開始からの経過時間
+
+	int order1_;
 };

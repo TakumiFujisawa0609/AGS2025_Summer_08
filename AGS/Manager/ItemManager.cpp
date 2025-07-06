@@ -39,6 +39,8 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 	task_04 = LoadGraph("Data/Image/Task/Task_04.png");
 	lastTask = LoadGraph("Data/Image/Task/LastTask.png");
 
+	order04Img_ = LoadGraph("Data/Image/order/order04.png");
+
 
 	 task01_Alive = true;
 	 task02_Alive = true;
@@ -148,7 +150,7 @@ void ItemManager::Update(void)
 			item->Update();
 		}
 	}
-
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_1)) { pickedVaccineNum_ += 1; }
 	//// 右クリックでライト設置
 	//if (InputManager::GetInstance().IsTrgMouseRight())
 	//{
@@ -240,11 +242,15 @@ void ItemManager::Draw(void)
 		count_span = 0;
 		if (hasPlayed == true)
 		{
-			SoundManager::GetInstance()->PlayCount();
+			//SoundManager::GetInstance()->PlayCount();
 			hasPlayed = false;
 		}
-
 		DrawExtendGraph(0,100, 400, 200, lastTask, true);
+	}
+
+	if (SoundManager::GetInstance()->IsPlayOrder3())
+	{
+		DrawGraph(0, 0, order04Img_, true);
 	}
 }
 
@@ -265,6 +271,8 @@ void ItemManager::Release(void)
 	{
 		MV1DeleteModel(id);
 	}
+
+	DeleteGraph(order04Img_);
 }
 
 // ワクチンを拾う
@@ -283,10 +291,17 @@ void ItemManager::PickVaccine(void)
 		SoundManager::GetInstance()->StopWalk();
 	}
 
+	if (pickedVaccineNum_ == 3)
+	{
+		SoundManager::GetInstance()->PlayOrder3();
+	}
+
 	// ワクチンの数がマイナスにならないようにする
 	if (vaccineNum_ < 0)
 	{
 		vaccineNum_ = 0;
+
+		DrawExtendGraph(0, 100, 400, 200, lastTask, true);
 	}
 
 	// 取得音再生
@@ -309,6 +324,20 @@ void ItemManager::PickBulletBox(void)
 	if (bulletBoxNum_ < 0)
 	{
 		bulletBoxNum_ = 0;
+	}
+
+	// すべてのアイテムを更新
+	for (const auto pair : items_)
+	{
+		for (ItemBase* item : pair.second)
+		{
+			if(item->IsPickedFromPosition(ItemBullet::bulletSpawnPoints[1].pos, 100))
+			{
+				triggerNum_ += 1;
+
+				if (triggerNum_ == 2) isTrigger_ = true;
+			}
+		}
 	}
 
 	// 取得音再生
@@ -334,6 +363,20 @@ void ItemManager::PickKitBox(void)
 	if (kitBoxNum_ < 0)
 	{
 		kitBoxNum_ = 0;
+	}
+
+	// すべてのアイテムを更新
+	for (const auto pair : items_)
+	{
+		for (ItemBase* item : pair.second)
+		{
+			if (item->IsPickedFromPosition(ItemKit::kitSpawnPoints[1].pos, 100))
+			{
+				triggerNum_ += 1;
+
+				if (triggerNum_ == 2) isTrigger_ = true;
+			}
+		}
 	}
 
 	// 取得音再生
@@ -398,6 +441,11 @@ bool ItemManager::IsShowingGetKit() const
 void ItemManager::SetIsShowingGetKit(bool isShow)
 {
 	isShowingGetKit_ = isShow;
+}
+
+bool ItemManager::IsTrigger()
+{
+	return isTrigger_;
 }
 
 const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& ItemManager::GetItems()

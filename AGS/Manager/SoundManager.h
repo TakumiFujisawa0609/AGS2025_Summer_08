@@ -24,6 +24,9 @@
 #define DAMEGE_PATH "Data/Sound/Damege.mp3"
 #define COUNT_PATH "Data/Sound/Count.wav"
 #define KILL_PATH "Data/Sound/kill.wav"
+#define ORDERL1_PATH "Data/Sound/order1.wav"
+#define ORDERL2_PATH "Data/Sound/order2.wav"
+#define ORDERL3_PATH "Data/Sound/order3.wav"
 
 class SoundManager
 {
@@ -52,6 +55,7 @@ public:
 	static constexpr int COUNT_VOLUME = 100;
 	static constexpr int DAMEGE_VOLUME = 200;
 	static constexpr int KILL_VOLUME = 210;
+	static constexpr int ORDER_VOLUME = 90;
 
 
 	// インスタンスの生成
@@ -89,6 +93,9 @@ public:
 	void PlayDamage();
 	void PlayCount();
 	void PlayKill();
+	void PlayOrder1();
+	void PlayOrder2();
+	void PlayOrder3();
 	
 	//音源停止
 	void StopBgm1();	// BGM
@@ -97,7 +104,7 @@ public:
 	void StopWalk();	// 歩く
 	void StopOpen();	// 走る
 	void StopClose();	// 歩く
-	void StopDie();	// 走る
+	void StopDie();		// 走る
 	void StopNoAmmo();	// 歩く
 	void StopPickUp();	// 走る
 	void StopReLoad();	// 歩く
@@ -106,7 +113,13 @@ public:
 	void StopHeal();	// 走る
 	void StopDamage();
 	void StopKill();
+	void StopOrder1();
+	void StopOrder2();
+	void StopOrder3();
 
+	bool IsPlayOrder1();
+	bool IsPlayOrder2();
+	bool IsPlayOrder3();
 
 private:
 
@@ -138,6 +151,9 @@ private:
 	int healHundle_;
 	int healVoiceHundle_;
 	int killHundle_;
+	int order1Hundle_;
+	int order2Hundle_;
+	int order3Hundle_;
 
 	//クリック音
 	int cleckHundle_;

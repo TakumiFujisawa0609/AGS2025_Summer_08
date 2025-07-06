@@ -46,7 +46,7 @@ public:
 
     static constexpr SpawnPoint vaccineSpawnPoints[3] = {
         {{4815.0f, 129.0f, 1550.0f}, {0,  0, 0 }},
-        {{3476.0f, 129.0f, -3480.0f}, { 0,  -90 * (DX_PI_F / 180.0f), 0 }},
+        {{2954, 119.0f, -3690.0f}, { 0,  180.0f * (DX_PI_F / 180.0f), 0 }},
         {{8830.0f, 129.0f, -12.0f}, { 0,  0, 0 }}
     };
 
@@ -90,6 +90,8 @@ public:
 
     // Õ“Ë”»’è‚ª—LŒø‚Èó‘Ô
     bool IsCollisionState(void);
+
+    bool IsPickedFromPosition(const VECTOR& target, float radius) const;
 
 protected:
     Player* player_;

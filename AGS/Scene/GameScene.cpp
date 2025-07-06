@@ -46,10 +46,14 @@ void GameScene::Init(void)
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);
 
 	SoundManager::GetInstance()->PlayClose();
+	WaitTimer(1000);
+	SoundManager::GetInstance()->PlayOrder1();
 
 	gameOverImg_ = LoadGraph("Data/Image/die.png");
 	pauseImg_ = LoadGraph("Data/Image/Button/Pause.png");
 	taskuImg_ = LoadGraph("Data/Image/Button/Pause.png");
+
+	order1_ = LoadGraph("Data/Image/order/order01.png");
 
 	isPauseAlive = false;
 	isPauseInit = false;
@@ -178,6 +182,12 @@ void GameScene::Draw(void)
 	// リロードキーの表示
 	pShot_->KeyDraw();
 
+
+	if (SoundManager::GetInstance()->IsPlayOrder1())
+	{
+		DrawGraph(0, 0, order1_, true);
+	}
+
 	GameOver();
 
 	if (isPauseAlive == true)
@@ -210,6 +220,7 @@ void GameScene::Release(void)
 	delete blood_;
 
 	DeleteGraph(gameOverImg_);
+	DeleteGraph(order1_);
 }
 
 void GameScene::GameOver()

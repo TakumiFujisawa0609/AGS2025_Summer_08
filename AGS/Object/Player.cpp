@@ -49,9 +49,6 @@ void Player::Update(VECTOR angle)
 
 	// ダメージ表現
 	DamageEffect();
-
-
-	if (CheckHitKey(KEY_INPUT_0)) { isAlive_ = false; }
 }
 
 void Player::Draw(void)
@@ -92,6 +89,8 @@ void Player::Hp(void)
 		isAlive_ = false;
 
 		SoundManager::GetInstance()->StopWalk();
+		SoundManager::GetInstance()->StopOrder2();
+		SoundManager::GetInstance()->StopOrder3();
 	}
 
 	// HP最大制限

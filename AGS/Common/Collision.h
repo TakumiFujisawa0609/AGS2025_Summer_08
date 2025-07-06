@@ -100,6 +100,9 @@ private:
     int sImage_;
     int kImage_;
 
+    int order02Img_;
+    int order03Img_;
+
     //ダメージエフェクトハンドル
     int damegeHandle_;
     int defoHandle_;
@@ -141,4 +144,8 @@ private:
 
     VECTOR a;
     VECTOR b;
+
+    bool isTrgger_ = false;
+    float triggerTimer_ = 0.0f;        // トリガー後の経過時間
+    bool isTriggerStarted_ = false;    // トリガー発生時に一度だけ開始
 };

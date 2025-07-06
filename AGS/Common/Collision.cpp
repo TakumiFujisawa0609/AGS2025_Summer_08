@@ -59,6 +59,9 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
 	defoHandle_ = LoadGraph("Data/Image/Effect/Damege_01.png");
 
+	order02Img_ = LoadGraph("Data/Image/order/order02.png");
+	order03Img_ = LoadGraph("Data/Image/order/order03.png");
+
 	isGameClear_ = false;
 }
 
@@ -83,6 +86,20 @@ void Collision::Update()
 
 	// プレイヤーとドアの当たり判定
 	CollisionPAndD();
+
+	// トリガーが発生したらカウント開始
+	if (isTrgger_)
+	{
+		if (!isTriggerStarted_)
+		{
+			isTriggerStarted_ = true;
+			triggerTimer_ = 0.0f;  // 初期化
+		}
+		else
+		{
+			triggerTimer_ += SceneManager::GetInstance()->GetDeltaTime();
+		}
+	}
 }
 
 void Collision::Draw()
@@ -150,7 +167,7 @@ void Collision::Draw()
 		if (InputManager::GetInstance().IsTrgMouseLeft())
 		{
 			item_->SetIsShowingGetVaccine(false);
-			isClosekey_ =false;
+			isClosekey_ = false;
 		}
 	}
 	if (item_->IsShowingGetShot())
@@ -164,6 +181,13 @@ void Collision::Draw()
 		{
 			item_->SetIsShowingGetShot(false);
 			isClosekey_ = false;
+
+			if (item_->IsTrigger())
+			{
+				SoundManager::GetInstance()->StopOrder1();
+				SoundManager::GetInstance()->PlayOrder2();
+				isTrgger_ = true;
+			}
 		}
 	}
 	if (item_->IsShowingGetKit())
@@ -177,6 +201,13 @@ void Collision::Draw()
 		{
 			item_->SetIsShowingGetKit(false);
 			isClosekey_ = false;
+
+			if (item_->IsTrigger())
+			{
+				SoundManager::GetInstance()->StopOrder1();
+				SoundManager::GetInstance()->PlayOrder2();
+				isTrgger_ = true;
+			}
 		}
 	}
 
@@ -195,6 +226,22 @@ void Collision::Draw()
 			//DrawSphere3D(centerPosE, rEnemy, 10, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
 		}
 	}
+
+	// トリガーから10秒以内は画像1、10秒経過後は画像2
+	if (isTriggerStarted_)
+	{
+		if (SoundManager::GetInstance()->IsPlayOrder2())
+		{
+			if (triggerTimer_ < 10.0f)
+			{
+				DrawGraph(0, 0, order02Img_, true); // 1枚目
+			}
+			else
+			{
+				DrawGraph(0, 0, order03Img_, true); // 2枚目
+			}
+		}
+	}
 }
 
 void Collision::Release()
@@ -207,6 +254,9 @@ void Collision::Release()
 
 	DeleteGraph(damegeHandle_);
 	DeleteGraph(defoHandle_);
+
+	DeleteGraph(order02Img_);
+	DeleteGraph(order03Img_);
 }
 
 void Collision::CollisionPAndE()

@@ -16,7 +16,7 @@ public:
 	static constexpr int VACCINE_NUM = 3;
 	static constexpr int LIGHT_NUM = 10;
 
-	static constexpr int LAST_COUNT_SPAN = 120;
+	static constexpr int LAST_COUNT_SPAN = 180;
 
 	static constexpr int SHOW_DURATION = 2500;
 
@@ -53,6 +53,8 @@ public:
 	bool IsShowingGetKit() const;
 	void SetIsShowingGetKit(bool isShow);
 
+	bool IsTrigger();
+
 	const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& GetItems();
 
 private:
@@ -81,6 +83,8 @@ private:
 
 	int pickUpTime_ = 0;   // 拾った時間（ミリ秒）
 
+	int triggerNum_ = 0;
+	bool isTrigger_ = false;
 
 	bool task01_Alive;
 	bool task02_Alive;
@@ -97,7 +101,8 @@ private:
 	int task_04;
 	int lastTask;
 
-	// 脱出タスクまでの時間
+	int order04Img_;
+
 	int count_span;
 
 	bool isShowingGetVaccine_ = false;

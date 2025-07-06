@@ -74,6 +74,9 @@ void SoundManager::Init(void)
 	damageHundle_= LoadSoundMem(DAMEGE_PATH);
 	countHundle_ = LoadSoundMem(COUNT_PATH);
 	killHundle_ = LoadSoundMem(KILL_PATH);
+	order1Hundle_ = LoadSoundMem(ORDERL1_PATH);
+	order2Hundle_ = LoadSoundMem(ORDERL2_PATH);
+	order3Hundle_ = LoadSoundMem(ORDERL3_PATH);
 
 	isDamegeEnd_ = true;
 }
@@ -109,6 +112,9 @@ void SoundManager::Release(void)
 	DeleteSoundMem(damageHundle_);
 	DeleteSoundMem(countHundle_);
 	DeleteSoundMem(killHundle_);
+	DeleteSoundMem(order1Hundle_);
+	DeleteSoundMem(order2Hundle_);
+	DeleteSoundMem(order3Hundle_);
 
 	// インスタンスの削除
 	DeleteInstance();
@@ -352,6 +358,30 @@ void SoundManager::PlayKill()
 	ChangeVolumeSoundMem(KILL_VOLUME, killHundle_);
 }
 
+void SoundManager::PlayOrder1()
+{
+	// 再生
+	PlaySoundMem(order1Hundle_, DX_PLAYTYPE_BACK, true);
+	// 音量調整
+	ChangeVolumeSoundMem(ORDER_VOLUME, order1Hundle_);
+}
+
+void SoundManager::PlayOrder2()
+{
+	// 再生
+	PlaySoundMem(order2Hundle_, DX_PLAYTYPE_BACK, true);
+	// 音量調整
+	ChangeVolumeSoundMem(ORDER_VOLUME, order2Hundle_);
+}
+
+void SoundManager::PlayOrder3()
+{
+	// 再生
+	PlaySoundMem(order3Hundle_, DX_PLAYTYPE_BACK, true);
+	// 音量調整
+	ChangeVolumeSoundMem(ORDER_VOLUME, order3Hundle_);
+}
+
 
 
 //// 走る音
@@ -431,4 +461,35 @@ void SoundManager::StopDamage()
 void SoundManager::StopKill()
 {
 }
+
+void SoundManager::StopOrder1()
+{
+	StopSoundMem(order1Hundle_);
+}
+
+void SoundManager::StopOrder2()
+{
+	StopSoundMem(order2Hundle_);
+}
+
+void SoundManager::StopOrder3()
+{
+	StopSoundMem(order3Hundle_);
+}
+
+bool SoundManager::IsPlayOrder1()
+{
+	return CheckSoundMem(order1Hundle_) == 1;
+}
+
+bool SoundManager::IsPlayOrder2()
+{
+	return CheckSoundMem(order2Hundle_) == 1;
+}
+
+bool SoundManager::IsPlayOrder3()
+{
+	return CheckSoundMem(order3Hundle_) == 1;
+}
+
 
