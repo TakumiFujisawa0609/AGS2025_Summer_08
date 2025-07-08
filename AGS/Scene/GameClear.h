@@ -19,8 +19,11 @@ public:
 
 private:
 
-
 	int gameClearImg_;
+
+	int clearMovieHundle_;
+
+	float movieTimer_;
 
 	float clearTime_;
 };
