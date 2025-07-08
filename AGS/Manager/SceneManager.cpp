@@ -48,7 +48,7 @@ void SceneManager::Init(void)
 	// (３Ｄ描画で使用するカメラの設定などがリセットされる)
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	sceneId_ = SCENE_ID::TITLE;
+	sceneId_ = SCENE_ID::GAME;
 	waitSceneId_ = SCENE_ID::NONE;
 
 	fader_ = new Fader();
@@ -69,7 +69,6 @@ void SceneManager::Init(void)
 
 void SceneManager::Update(void)
 {
-
 	//// フェード更新
 	//fader_->Update();
 	//if (isSceneChanging_)

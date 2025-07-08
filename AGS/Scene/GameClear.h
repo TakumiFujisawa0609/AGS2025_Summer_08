@@ -20,10 +20,12 @@ public:
 private:
 
 	int gameClearImg_;
+	int resultImg_;
 
 	int clearMovieHundle_;
 
-	float movieTimer_;
-
 	float clearTime_;
+
+	float movieTimer_;
+	bool isPause_;
 };

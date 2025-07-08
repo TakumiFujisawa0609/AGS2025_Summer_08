@@ -28,7 +28,7 @@
 #define ORDERL2_PATH "Data/Sound/order2.wav"
 #define ORDERL3_PATH "Data/Sound/order3.wav"
 #define CLEAR_PATH "Data/Sound/clear.mp3"
-#define BIRD_PATH "Data/Sound/bird.wav"
+#define PAPER_PATH "Data/Sound/paper.wav"
 
 class SoundManager
 {
@@ -59,7 +59,7 @@ public:
 	static constexpr int KILL_VOLUME = 210;
 	static constexpr int ORDER_VOLUME = 90;
 	static constexpr int CLEAR_VOLUME = 90;
-	static constexpr int BIRD_VOLUME = 140;
+	static constexpr int PARPER_VOLUME = 220;
 
 
 	// インスタンスの生成
@@ -100,7 +100,7 @@ public:
 	void PlayOrder1();
 	void PlayOrder2();
 	void PlayOrder3();
-	void PlayBird();
+	void PlayPaper();
 	
 	//音源停止
 	void StopBgm1();	// BGM
@@ -121,10 +121,12 @@ public:
 	void StopOrder1();
 	void StopOrder2();
 	void StopOrder3();
+	void StopPaper();
 
 	bool IsPlayOrder1();
 	bool IsPlayOrder2();
 	bool IsPlayOrder3();
+	bool IsPlayClear();
 
 private:
 
@@ -160,7 +162,7 @@ private:
 	int order2Hundle_;
 	int order3Hundle_;
 	int clearHundle_;
-	int birdHundle_;
+	int paperHundle_;
 
 	//クリック音
 	int cleckHundle_;

@@ -15,14 +15,15 @@ GameClear::~GameClear(void)
 void GameClear::Init(void)
 {
 	gameClearImg_ = LoadGraph("Data/Image/gameclear1.png");
+	resultImg_ = LoadGraph("Data/Image/result.png");
 
 	clearMovieHundle_ = LoadGraph("Data/Sound/clear.mp4");
 	PlayMovieToGraph(clearMovieHundle_);
 
-	SoundManager::GetInstance()->PlayBird();
-
 	clearTime_ = 0.0f;
 	movieTimer_ = 0.0f;
+
+	isPause_ = false;
 }
 
 void GameClear::Update(void)
@@ -32,21 +33,30 @@ void GameClear::Update(void)
 		// スペースキーが押下されたら、ゲームシーンへ遷移する
 		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
 	}
+
+	movieTimer_ += SceneManager::GetInstance()->GetDeltaTime();
+
+	// 8秒経ったら止める
+	if (!isPause_ && movieTimer_ >= 8.0f)
+	{
+		PauseMovieToGraph(clearMovieHundle_);
+		SoundManager::GetInstance()->PlayPaper();
+
+		isPause_ = true;
+	}
 }
 
 void GameClear::Draw(void)
 {
-	movieTimer_ += SceneManager::GetInstance()->GetDeltaTime();
+	// ムービー描画
+	DrawGraph(0, 0, clearMovieHundle_, TRUE);
 
-	// 5秒経ったら止める
-	if (movieTimer_ < 5.0f)
+	if (isPause_)
 	{
-		// ムービー描画
-		DrawGraph(0, 0, clearMovieHundle_, TRUE);
-	}
-	else
-	{
-		PauseMovieToGraph(clearMovieHundle_);
+		SoundManager::GetInstance()->PlayClear();
+		DrawGraph(0, 0, resultImg_, true);
+
+		isPause_ = false;
 	}
 
 	//clearTime_ = SceneManager::GetInstance()->GetClearTime();

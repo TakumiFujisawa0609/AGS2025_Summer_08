@@ -54,6 +54,7 @@ void SoundManager::Init(void)
 	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 	bgm2Hundle_ = LoadSoundMem(BGM2_PATH);
 	bgm3Hundle_ = LoadSoundMem(BGM3_PATH);
+	clearHundle_ = LoadSoundMem(CLEAR_PATH);
 	walkHundle_ = LoadSoundMem(WALK_PATH);
 	openHundle_ = LoadSoundMem(OPEN_PATH);
 	closeHundle_ = LoadSoundMem(CLOSE_PATH);
@@ -77,7 +78,7 @@ void SoundManager::Init(void)
 	order1Hundle_ = LoadSoundMem(ORDERL1_PATH);
 	order2Hundle_ = LoadSoundMem(ORDERL2_PATH);
 	order3Hundle_ = LoadSoundMem(ORDERL3_PATH);
-	birdHundle_ = LoadSoundMem(BIRD_PATH);
+	paperHundle_ = LoadSoundMem(PAPER_PATH);
 
 	isDamegeEnd_ = true;
 }
@@ -117,7 +118,7 @@ void SoundManager::Release(void)
 	DeleteSoundMem(order2Hundle_);
 	DeleteSoundMem(order3Hundle_);
 	DeleteSoundMem(clearHundle_);
-	DeleteSoundMem(birdHundle_);
+	DeleteSoundMem(paperHundle_);
 
 	// インスタンスの削除
 	DeleteInstance();
@@ -384,12 +385,12 @@ void SoundManager::PlayOrder3()
 	ChangeVolumeSoundMem(ORDER_VOLUME, order3Hundle_);
 }
 
-void SoundManager::PlayBird()
+void SoundManager::PlayPaper()
 {
 	// 再生
-	PlaySoundMem(birdHundle_, DX_PLAYTYPE_BACK, true);
+	PlaySoundMem(paperHundle_, DX_PLAYTYPE_BACK, true);
 	// 音量調整
-	ChangeVolumeSoundMem(BIRD_VOLUME, birdHundle_);
+	ChangeVolumeSoundMem(PARPER_VOLUME, paperHundle_);
 }
 
 
@@ -487,6 +488,11 @@ void SoundManager::StopOrder3()
 	StopSoundMem(order3Hundle_);
 }
 
+void SoundManager::StopPaper()
+{
+	StopSoundMem(paperHundle_);
+}
+
 bool SoundManager::IsPlayOrder1()
 {
 	return CheckSoundMem(order1Hundle_) == 1;
@@ -500,6 +506,11 @@ bool SoundManager::IsPlayOrder2()
 bool SoundManager::IsPlayOrder3()
 {
 	return CheckSoundMem(order3Hundle_) == 1;
+}
+
+bool SoundManager::IsPlayClear()
+{
+	return CheckSoundMem(clearHundle_) == 1;
 }
 
 

@@ -163,7 +163,7 @@ void GameScene::Draw(void)
 	blood_->Draw();
 
 	// ŒiF
-	View();
+	//View();
 
 	camera_->Draw();
 

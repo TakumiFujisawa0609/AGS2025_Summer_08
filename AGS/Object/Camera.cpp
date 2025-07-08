@@ -138,7 +138,7 @@ void Camera::Angle(void)
 	// カメラの位置を前方向にする
 	pos_ = VAdd(pos_, forward_);
 
-
+	SetCameraNearFar(3, 30000);
 	// カメラセット
 	SetCameraPositionAndTargetAndUpVec(
 		pos_,
