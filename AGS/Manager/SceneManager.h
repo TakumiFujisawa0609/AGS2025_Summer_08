@@ -53,6 +53,8 @@ public:
 	void StartFadeIn();
 	// フェード中か
 	bool IsFading() const;
+
+	void SetHeadShot(int cnt);
 private:
 
 	// 静的インスタンス
@@ -86,4 +88,5 @@ private:
 
 	float clearTime_;
 
+	int headShotCnt_;
 };

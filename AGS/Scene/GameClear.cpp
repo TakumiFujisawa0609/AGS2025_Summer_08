@@ -24,6 +24,7 @@ void GameClear::Init(void)
 	movieTimer_ = 0.0f;
 
 	isPause_ = false;
+	isResult_ = false;
 }
 
 void GameClear::Update(void)
@@ -40,9 +41,9 @@ void GameClear::Update(void)
 	if (!isPause_ && movieTimer_ >= 8.0f)
 	{
 		PauseMovieToGraph(clearMovieHundle_);
-		SoundManager::GetInstance()->PlayPaper();
 
 		isPause_ = true;
+		isResult_ = true;
 	}
 }
 
@@ -53,10 +54,14 @@ void GameClear::Draw(void)
 
 	if (isPause_)
 	{
-		SoundManager::GetInstance()->PlayClear();
-		DrawGraph(0, 0, resultImg_, true);
+		if (isResult_)
+		{
+			SoundManager::GetInstance()->PlayPause();
+			isResult_ = false;
+		}
 
-		isPause_ = false;
+		//DrawRotaGraph(950, 600, 0.6, 0.0f, resultImg_, true);
+		DrawGraph(0, 15, resultImg_, true);
 	}
 
 	//clearTime_ = SceneManager::GetInstance()->GetClearTime();

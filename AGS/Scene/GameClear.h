@@ -28,4 +28,6 @@ private:
 
 	float movieTimer_;
 	bool isPause_;
+
+	bool isResult_;
 };

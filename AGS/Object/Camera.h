@@ -34,6 +34,8 @@ public:
 	VECTOR GetPos() const;
 
 	void UpdateDeathCamera();
+
+	void SpotLight();
 private:
 	// プレイヤー
 	Player* player_;
@@ -54,6 +56,9 @@ private:
 
 	// カメラの位置
 	VECTOR pos_;
+
+	// 注視点の位置
+	VECTOR targetPos_;
 
 	// カメラの角度(rad)
 	VECTOR angles_;

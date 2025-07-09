@@ -65,6 +65,7 @@ void SceneManager::Init(void)
 
 	preTime_ = std::chrono::system_clock::now();  // ここで初期化
 	clearTime_ = 0.0f;
+	headShotCnt_ = 0;
 }
 
 void SceneManager::Update(void)
@@ -167,7 +168,7 @@ void SceneManager::Init3D(void)
 	// ライトの設定
 	SetUseLighting(true);
 	// 角度の設定
-	ChangeLightTypeDir({ -0.5f,-0.5f,-0.5f });
+	//ChangeLightTypeDir({ -0,-0.5f,-0 });
 }
 
 // デルタタイムの取得
@@ -196,6 +197,11 @@ void SceneManager::StartFadeIn()
 bool SceneManager::IsFading() const
 {
 	return fader_->GetState() != Fader::STATE::NONE && !fader_->IsEnd();
+}
+
+void SceneManager::SetHeadShot(int cnt)
+{
+	headShotCnt_ = cnt;
 }
 
 void SceneManager::DoChangeScene(SCENE_ID sceneId)
