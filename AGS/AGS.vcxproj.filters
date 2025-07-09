@@ -38,6 +38,8 @@
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Object\Item\ItemLight.cpp" />
     <ClCompile Include="Scene\MovieScene.cpp" />
+    <ClCompile Include="Object\Button\AimButton.cpp" />
+    <ClCompile Include="Object\Button\AimControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Vector2.h" />
@@ -78,6 +80,8 @@
     <ClInclude Include="Utility\AsoUtility.h" />
     <ClInclude Include="Object\Item\ItemLight.h" />
     <ClInclude Include="Scene\MovieScene.h" />
+    <ClInclude Include="Object\Button\AimButton.h" />
+    <ClInclude Include="Object\Button\AimControl.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Data\Image\TestGameScene.png" />

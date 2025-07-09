@@ -57,7 +57,7 @@ void SceneManager::Init(void)
 	isSceneChanging_ = false;
 
 	// ‰ŠúƒV[ƒ“‚ÌÝ’è
-	DoChangeScene(SCENE_ID::TITLE);
+	DoChangeScene(SCENE_ID::GAME);
 	SoundManager::GetInstance()->PlayBgm2();
 
 	// 3D‚Ì‰ŠúÝ’è

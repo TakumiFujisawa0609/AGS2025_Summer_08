@@ -15,6 +15,7 @@
 #include "../Object/Button/ReturnButton.h"
 #include "../Object/Button/PauseExit.h"
 #include "../Object/Button/TitleButton.h"
+#include "../Object/Button/AimControl.h"
 
 GameScene::GameScene(void)
 {
@@ -35,6 +36,7 @@ void GameScene::Init(void)
 	item_ = new ItemManager();
 	blood_ = new Blood();
 	collision_ = new Collision();
+	aimControl_ = new AimControl();
 
 	stage_->Init();
 	player_->Init();
@@ -44,6 +46,7 @@ void GameScene::Init(void)
 	item_->Init(player_, pShot_);
 	blood_->Init();
 	collision_->Init(player_, stage_, enemy_, blood_, pShot_, camera_, item_);
+	aimControl_->Init();
 
 	SoundManager::GetInstance()->PlayClose();
 	WaitTimer(1000);
@@ -219,6 +222,9 @@ void GameScene::Release(void)
 	blood_->Release();
 	delete blood_;
 
+	aimControl_->Release();
+	delete aimControl_;
+
 	DeleteGraph(gameOverImg_);
 	DeleteGraph(order1_);
 }
@@ -330,6 +336,7 @@ void GameScene::Pause(void)
 			titleButton_ = new TitleButton(Application::SCREEN_SIZE_X / 2, 650, 500, 200);
 			titleButton_->Init();
 
+
 			isPauseInit = true;
 			return;
 		}
@@ -353,6 +360,7 @@ void GameScene::Pause(void)
 		pauseExit_->Update();
 		returnButton_->Update();
 		titleButton_->Update();
+		aimControl_->Update();
 
 		if (pauseExit_->GetButtonState() == PauseExit::BUTTON_STATE::DISABLED)
 		{
@@ -386,6 +394,7 @@ void GameScene::PauseDraw(void)
 	pauseExit_->Draw();
 	returnButton_->Draw();
 	titleButton_->Draw();
+	aimControl_->Draw();
 }
 
 void GameScene::ClearTime()

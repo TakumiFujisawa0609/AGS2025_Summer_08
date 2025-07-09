@@ -153,6 +153,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Object\Button\AimControl.cpp" />
+    <ClCompile Include="Object\Button\AimButton.cpp" />
     <ClCompile Include="Common\Vector2.cpp" />
     <ClCompile Include="Scene\MovieScene.cpp" />
     <ClCompile Include="Object\Item\ItemLight.cpp" />
@@ -171,6 +173,8 @@
     <ClCompile Include="Scene\Tutorial.cpp" />
     <ClCompile Include="Object\Button\TitleButton.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
+    <ClInclude Include="Object\Button\AimControl.h" />
+    <ClInclude Include="Object\Button\AimButton.h" />
     <ClInclude Include="Common\Vector2.h" />
     <ClInclude Include="Scene\MovieScene.h" />
     <ClInclude Include="Object\Item\ItemLight.h" />
