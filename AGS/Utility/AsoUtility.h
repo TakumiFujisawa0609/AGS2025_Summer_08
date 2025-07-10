@@ -113,7 +113,6 @@ public:
 	// •`‰æŒn
 	static void DrawLineDir(const VECTOR& pos, const VECTOR& dir, int color, float len = 50.0f);
 	//static void DrawLineXYZ(const VECTOR& pos, const Quaternion& rot, float len = 50.0f);
-
 };
 
 

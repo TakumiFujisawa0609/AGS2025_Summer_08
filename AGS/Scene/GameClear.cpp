@@ -61,13 +61,21 @@ void GameClear::Draw(void)
 			SoundManager::GetInstance()->PlayPause();
 			isResult_ = false;
 		}
+		SoundManager::GetInstance()->PlayClear();
 
 		//DrawRotaGraph(950, 600, 0.6, 0.0f, resultImg_, true);
 		DrawGraph(0, 15, resultImg_, true);
 
+		SetFontSize(180);
+		int enemyKillNumber = SceneManager::GetInstance()->GetEnemyKillNuber();
+		DrawFormatStringToHandle(400, 340, GetColor(255, 255, 255), fontHandle_, "倒したゾンビ    %d体", enemyKillNumber);
+
 		float acc = SceneManager::GetInstance()->GetAccuracy();
-		SetFontSize(50);
-		DrawFormatStringToHandle(500, 500, GetColor(255, 255, 255), fontHandle_, "命中率: %.1f%%", acc * 100.0f);
+		DrawFormatStringToHandle(400, 440, GetColor(255, 255, 255), fontHandle_, "命中率    %.1f%%", acc * 100.0f);
+
+		float headShotNumber = SceneManager::GetInstance()->GetHeadShotNumber();
+		DrawFormatStringToHandle(400, 540, GetColor(255, 255, 255), fontHandle_, "ヘッドショット    %d回", headShotNumber);
+
 	}
 
 

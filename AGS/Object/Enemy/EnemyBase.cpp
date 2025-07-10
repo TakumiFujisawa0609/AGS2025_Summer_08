@@ -392,6 +392,9 @@ void EnemyBase::ChangeDie(void)
 
 	// Ž€–SŽž‚Ìˆ—
 	SoundManager::GetInstance()->StopVoice();
+
+	// ƒLƒ‹ƒJƒEƒ“ƒg‰ÁŽZ
+	SceneManager::GetInstance()->SetKillEnemyCnt(1);
 }
 
 void EnemyBase::UpdateIdle(void)

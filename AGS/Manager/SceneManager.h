@@ -56,9 +56,14 @@ public:
 
 	void MissShot();
 
+	int GetHeadShotNumber();
 	void SetHeadShot(int cnt);
+
 	void SetShotCnt(int cnt);
 	void SetHitShotCnt(int cnt);
+
+	int GetEnemyKillNuber();
+	void SetKillEnemyCnt(int cnt);
 
 	float GetAccuracy();
 
@@ -99,6 +104,8 @@ private:
 	int ShotCnt_;
 	int hitShotNumber_;
 	int missShotNumber_;
+
+	int enmeyKillNumber_;
 
 	float accuracy_;
 };

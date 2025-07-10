@@ -43,6 +43,9 @@ void PlayerShot::Update(void)
 	{
 		if (!shot.isAlive) continue;
 
+		// ’e‚ÌˆÚ“®‘OˆÊ’u‚ð‹L˜^
+		shot.prevPos = shot.pos;
+
 		shot.pos = VAdd(shot.pos, VScale(shot.dir, SHOT_SPEED));
 		shot.dist = VSize(VSub(shot.pos, shot.startPos));
 

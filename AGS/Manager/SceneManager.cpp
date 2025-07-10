@@ -71,6 +71,8 @@ void SceneManager::Init(void)
 	hitShotNumber_ = 0;
 	headShotCnt_ = 0;
 
+	enmeyKillNumber_ = 0;
+
 	accuracy_ = 0;
 }
 
@@ -210,9 +212,15 @@ void SceneManager::MissShot()
 	missShotNumber_ += ShotCnt_ - hitShotNumber_;
 }
 
+int SceneManager::GetHeadShotNumber()
+{
+	return headShotCnt_;
+}
+
 void SceneManager::SetHeadShot(int cnt)
 {
-	headShotCnt_ = cnt;
+	headShotCnt_ += cnt;
+	printfDx("ヘッドショット加算: +%d → 合計: %d\n", cnt, headShotCnt_);
 }
 
 void SceneManager::SetShotCnt(int cnt)
@@ -223,6 +231,16 @@ void SceneManager::SetShotCnt(int cnt)
 void SceneManager::SetHitShotCnt(int cnt)
 {
 	hitShotNumber_ = cnt;
+}
+
+int SceneManager::GetEnemyKillNuber()
+{
+	return enmeyKillNumber_;
+}
+
+void SceneManager::SetKillEnemyCnt(int cnt)
+{
+	enmeyKillNumber_ += cnt;
 }
 
 float SceneManager::GetAccuracy()

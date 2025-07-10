@@ -141,7 +141,7 @@ void Camera::Angle(void)
 
 	targetPos_ = VGet(followPos.x, followPos.y + HEIGHT, followPos.z);
 
-	SetCameraNearFar(3, 30000);
+	SetCameraNearFar(2.5f, 30000);
 	// カメラセット
 	SetCameraPositionAndTargetAndUpVec(
 		pos_,
@@ -275,8 +275,8 @@ void Camera::SpotLight()
 	ChangeLightTypeSpot(
 		pos_,
 		forward_,
-		30.0f * DX_PI_F / 180.0f,  // 中心角度
-		25.0f * DX_PI_F / 180.0f,	// 外角
+		40.0f * DX_PI_F / 180.0f,  // 中心角度
+		30.0f * DX_PI_F / 180.0f,	// 外角
 		2000.0f,
 		0.0f,
 		0.001f,

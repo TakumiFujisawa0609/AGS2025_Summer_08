@@ -178,4 +178,3 @@ double AsoUtility::AngleDeg(const VECTOR& from, const VECTOR& to)
 void AsoUtility::DrawLineDir(const VECTOR& pos, const VECTOR& dir, int color, float len)
 {
 }
-

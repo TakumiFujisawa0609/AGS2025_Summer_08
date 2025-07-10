@@ -58,7 +58,7 @@ public:
 	static constexpr int DAMEGE_VOLUME = 200;
 	static constexpr int KILL_VOLUME = 210;
 	static constexpr int ORDER_VOLUME = 90;
-	static constexpr int CLEAR_VOLUME = 90;
+	static constexpr int CLEAR_VOLUME = 200;
 	static constexpr int PARPER_VOLUME = 220;
 
 

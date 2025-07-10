@@ -60,6 +60,8 @@ public:
 
     bool GetClear();
 
+    float DistanceFromLineSegment(VECTOR A, VECTOR B, VECTOR P);
+
 private:
 
     Player* player_;
