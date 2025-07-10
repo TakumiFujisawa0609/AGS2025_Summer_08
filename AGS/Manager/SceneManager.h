@@ -54,7 +54,14 @@ public:
 	// フェード中か
 	bool IsFading() const;
 
+	void MissShot();
+
 	void SetHeadShot(int cnt);
+	void SetShotCnt(int cnt);
+	void SetHitShotCnt(int cnt);
+
+	float GetAccuracy();
+
 private:
 
 	// 静的インスタンス
@@ -89,4 +96,9 @@ private:
 	float clearTime_;
 
 	int headShotCnt_;
+	int ShotCnt_;
+	int hitShotNumber_;
+	int missShotNumber_;
+
+	float accuracy_;
 };

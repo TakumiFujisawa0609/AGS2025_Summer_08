@@ -25,6 +25,8 @@ void GameClear::Init(void)
 
 	isPause_ = false;
 	isResult_ = false;
+
+	fontHandle_ = CreateFontToHandle("ƒƒCƒŠƒI", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
 void GameClear::Update(void)
@@ -62,7 +64,12 @@ void GameClear::Draw(void)
 
 		//DrawRotaGraph(950, 600, 0.6, 0.0f, resultImg_, true);
 		DrawGraph(0, 15, resultImg_, true);
+
+		float acc = SceneManager::GetInstance()->GetAccuracy();
+		SetFontSize(50);
+		DrawFormatStringToHandle(500, 500, GetColor(255, 255, 255), fontHandle_, "–½’†—¦: %.1f%%", acc * 100.0f);
 	}
+
 
 	//clearTime_ = SceneManager::GetInstance()->GetClearTime();
 
@@ -90,4 +97,6 @@ void GameClear::Release(void)
 	DeleteGraph(gameClearImg_);
 
 	DeleteGraph(clearMovieHundle_);
+
+	DeleteFontToHandle(fontHandle_);
 }

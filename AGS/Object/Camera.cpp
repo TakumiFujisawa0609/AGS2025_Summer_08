@@ -270,20 +270,19 @@ void Camera::UpdateDeathCamera()
 
 void Camera::SpotLight()
 {
-
 	forward_ = VNorm(VSub(targetPos_, pos_));
 
 	ChangeLightTypeSpot(
 		pos_,
 		forward_,
-		80.0f * DX_PI_F / 180.0f,  // 中心角度
-		50.0f * DX_PI_F / 180.0f,	// 外角
+		30.0f * DX_PI_F / 180.0f,  // 中心角度
+		25.0f * DX_PI_F / 180.0f,	// 外角
 		2000.0f,
 		0.0f,
 		0.001f,
 		0.0f
 	);
-
+	//SetLightDifColor(GetColorF(1.0f, 1.0f, 1.0f, 0.3)); // 真っ黄色
 	SetLightPosition(pos_);
 }
 

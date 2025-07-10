@@ -17,7 +17,6 @@ void StageBase::Init(void)
 	modelId_ = MV1LoadModel("Data/Model/Stage/Stage.mv1");
 	dModelId_ = MV1LoadModel("Data/Model/Stage/Door/Door.mv1");
 
-
 	// コリジョン情報の初期化
 	MV1SetupCollInfo(modelId_, -1);
 
@@ -32,24 +31,35 @@ void StageBase::Init(void)
 	MV1SetScale(modelId_, scale_);
 
 	// エミッシブカラー設定
-	MV1SetMaterialEmiColor(modelId_, 0, GetColorF(0.2f, 0.2f, 0.2f, 1.0f)); // 内壁
-	MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 外壁
-	MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 追加した外壁2
+	//MV1SetMaterialEmiColor(modelId_, 0, GetColorF(0.2f, 0.2f, 0.2f, 1.0f)); // 内壁
+	//MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 外壁
+	//MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 追加した外壁2
 	MV1SetMaterialEmiColor(modelId_, 3, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 追加した外壁1
 	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 最初の部屋の外壁
 	MV1SetMaterialEmiColor(modelId_, 5, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 天井
-	MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 台座
-	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.4f, 0.4f, 0.4f, 1.0f));	// 台座
-	MV1SetMaterialEmiColor(modelId_, 8, GetColorF(0.4f, 0.4f, 0.4f, 1.0f));	// 台座
+	//MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 台座
+	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.4f, 0.4f, 0.4f, 1.0f));	// キット(テキスト)
+	MV1SetMaterialEmiColor(modelId_, 8, GetColorF(0.4f, 0.4f, 0.4f, 1.0f));	// 弾薬箱(テキスト)
 
-	// マテリアルをすべてエミッシブに設定
-	int materialNum = MV1GetMaterialNum(modelId_);
-	for (int i = 0; i < materialNum; ++i)
+	// ステージ
+	int stageMaterialNum = MV1GetMaterialNum(modelId_);
+	for (int i = 0; i < stageMaterialNum; ++i)
+	{
+		MV1SetMaterialDifColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1)); // 拡散反射
+		MV1SetMaterialSpcColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1)); // 鏡面反射
+		//MV1SetMaterialEmiColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1.0f)); // 自発光
+		MV1SetMaterialAmbColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1)); // 環境光
+	}
+
+
+	// ドア
+	int doorMaterialNum = MV1GetMaterialNum(dModelId_);
+	for (int i = 0; i < doorMaterialNum; ++i)
 	{
 		MV1SetMaterialDifColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1)); // 拡散反射なし
 		MV1SetMaterialSpcColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1)); // 鏡面反射なし
-	//	//MV1SetMaterialEmiColor(modelId_, i, GetColorF(0.2f, 0.2f, 0.2f, 1.0f)); // 自発光
-	//	MV1SetMaterialAmbColor(modelId_, i, GetColorF(0, 0, 0, 1)); // 環境光なし
+		MV1SetMaterialEmiColor(modelId_, i, GetColorF(0.8f, 0.8f, 0.8f, 1.0f)); // 自発光
+		//MV1SetMaterialAmbColor(modelId_, i, GetColorF(0.5f, 0.5f, 0.5f, 1)); // 環境光なし
 	}
 
 	dPos_ = { -1432,-3,50 };

@@ -30,4 +30,6 @@ private:
 	bool isPause_;
 
 	bool isResult_;
+
+	int fontHandle_;
 };

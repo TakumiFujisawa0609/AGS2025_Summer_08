@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../../Manager/InputManager.h"
 #include "../../Manager/SoundManager.h"
+#include "../../Manager/SceneManager.h"
 #include "../../Common/AnimControl.h"
 #include "../../Common/Collision.h"
 #include "../../Utility/AsoUtility.h"
@@ -327,6 +328,8 @@ void EnemyBase::Damage(int damage)
 {
 	// ƒ_ƒ[ƒW‚ğó‚¯‚é
 	hp_ -= damage;
+
+	SceneManager::GetInstance()->SetHitShotCnt(1);
 
 	// hp‚ª‚O‚É‚È‚Á‚½‚ç€–Só‘Ô‚É
 	if (hp_ <= 0)

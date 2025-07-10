@@ -65,7 +65,13 @@ void SceneManager::Init(void)
 
 	preTime_ = std::chrono::system_clock::now();  // ‚±‚±‚Å‰Šú‰»
 	clearTime_ = 0.0f;
+
+	ShotCnt_ = 0;
+	missShotNumber_ = 0;
+	hitShotNumber_ = 0;
 	headShotCnt_ = 0;
+
+	accuracy_ = 0;
 }
 
 void SceneManager::Update(void)
@@ -199,9 +205,32 @@ bool SceneManager::IsFading() const
 	return fader_->GetState() != Fader::STATE::NONE && !fader_->IsEnd();
 }
 
+void SceneManager::MissShot()
+{
+	missShotNumber_ += ShotCnt_ - hitShotNumber_;
+}
+
 void SceneManager::SetHeadShot(int cnt)
 {
 	headShotCnt_ = cnt;
+}
+
+void SceneManager::SetShotCnt(int cnt)
+{
+	ShotCnt_ += cnt;
+}
+
+void SceneManager::SetHitShotCnt(int cnt)
+{
+	hitShotNumber_ = cnt;
+}
+
+float SceneManager::GetAccuracy()
+{
+	if (ShotCnt_ == 0) return 0.0f;
+	accuracy_ = static_cast<float>(hitShotNumber_) / ShotCnt_;
+
+	return accuracy_;
 }
 
 void SceneManager::DoChangeScene(SCENE_ID sceneId)

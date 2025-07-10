@@ -35,8 +35,8 @@ void PlayerShot::Update(void)
 	if (shotTimer_ > 0) --shotTimer_;
 
 	// 撃つ・リロード
-	Shot();
 	ReLoad();
+	Shot();
 
 	// 弾の配列を回す
 	for (auto& shot : shots_)
@@ -112,6 +112,7 @@ void PlayerShot::Shot(void)
 			shot.isAlive = true;
 
 			ammo_--;
+			SceneManager::GetInstance()->SetShotCnt(1);
 			SoundManager::GetInstance()->PlayShot();
 			shotTimer_ = SHOT_INTERVAL;
 			break;
