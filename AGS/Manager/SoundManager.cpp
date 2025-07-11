@@ -50,6 +50,11 @@ void SoundManager::DeleteInstance(void)
 
 void SoundManager::Init(void)
 {
+	//SetCreate3DSoundFlag(TRUE);
+	//SetEnableXAudioFlag(TRUE);
+	voiceHundle_ = LoadSoundMem(VOICE_PATH);
+	//SetCreate3DSoundFlag(FALSE);
+
 	// BGMì«Ç›çûÇ›
 	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 	bgm2Hundle_ = LoadSoundMem(BGM2_PATH);
@@ -63,7 +68,6 @@ void SoundManager::Init(void)
 	noAmmoHundle_ = LoadSoundMem(NOBULLET_PATH);
 	pickUpHundle_ = LoadSoundMem(PICKUP_PATH);
 	reLoadHundle_ = LoadSoundMem(RELOAD_PATH);
-	voiceHundle_ = LoadSoundMem(VOICE_PATH);
 	shotHundle_ = LoadSoundMem(SHOT_PATH);
 	hoverHundle_ = LoadSoundMem(HOVER_PATH);
 	cleckHundle_ = LoadSoundMem(CLECK_PATH);
@@ -239,7 +243,7 @@ void SoundManager::PlayReLoad()
 	ChangeVolumeSoundMem(RELOAD_VOLUME, reLoadHundle_);
 }
 
-void SoundManager::PlayVoice()
+void SoundManager::PlayVoice(VECTOR pos)
 {
 	// çƒê∂
 	if (CheckSoundMem(voiceHundle_) == 0)
@@ -247,6 +251,12 @@ void SoundManager::PlayVoice()
 		// çƒê∂
 		PlaySoundMem(voiceHundle_, DX_PLAYTYPE_BACK, true);
 	}
+
+	// ìGÇÃà íuÇ3DâπåπÇ…ê›íË
+	//Set3DPositionSoundMem(pos, voiceHundle_);
+	//Set3DRadiusSoundMem(1830.0f, voiceHundle_);
+
+	//Set3DDistanceFactor(0.5f);
 
 	// âπó í≤êÆ
 	ChangeVolumeSoundMem(VOICE_VOLUME, voiceHundle_);

@@ -303,7 +303,7 @@ void Collision::CollisionPAndE()
 				{
 					if (!enemyAttackHit_[enemy])
 					{
-						player_->Damage(1);
+						//player_->Damage(1);
 						enemyAttackHit_[enemy] = true;
 					}
 				}
@@ -358,10 +358,10 @@ void Collision::CollisionPShotAndE(void)
 
 				if (dist1 < (pShotRad + headRad))
 				{
-					enemy->Damage(1);
+					//enemy->Damage(1);
 					shot.isAlive = false;
 
-					blood_->SetAlive(true);
+					//blood_->SetAlive(true);
 					blood_->SetPos(headPos);
 					blood_->Emit();
 
@@ -371,64 +371,64 @@ void Collision::CollisionPShotAndE(void)
 				}
 
 				// 胴体
-				VECTOR ePos1 = VAdd(enemy->GetPos(), { 0,60,0 });
+				VECTOR ePos1 = VAdd(enemy->GetPos(), { 0,100,0 });
 				float dist2 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos1);
 
 				if (dist1 < (pShotRad + 30))
 				{
-					enemy->Damage(1);
+					//enemy->Damage(1);
 					shot.isAlive = false;
 
 					blood_->SetAlive(true);
-					blood_->SetPos(VAdd(ePos1, { 0,80,0 }));
+					blood_->SetPos(VAdd(ePos1, { 0,0,0 }));
 					blood_->Emit();
 
 					break;  // 1体に当たったら他の敵はスキップ（弾1発）
 				}
 
-				//// 胴体
-				//VECTOR ePos2 = VAdd(enemy->GetPos(), { 0,40,0 });
-				//float dist3 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos2);
+				// 胴体
+				VECTOR ePos2 = VAdd(enemy->GetPos(), { 0,90,0 });
+				float dist3 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos2);
 
-				//if (dist3 < (pShotRad + 30))
-				//{
-				//	//enemy->Damage(1);
-				//	shot.isAlive = false;
+				if (dist3 < (pShotRad + 30))
+				{
+					//enemy->Damage(1);
+					shot.isAlive = false;
 
-				//	blood_->SetAlive(true);
-				//	blood_->SetPos(VAdd(ePos2, { 0, 40,0 }));
-				//	blood_->Emit();
+					blood_->SetAlive(true);
+					blood_->SetPos(VAdd(ePos2, { 0, 0,0 }));
+					blood_->Emit();
 
-				//	break;  // 1体に当たったら他の敵はスキップ（弾1発）
-				//}
-
-				//// 足
-				//VECTOR ePos3 = VAdd(enemy->GetPos(), { 0,40,0 });
-				//float dist4 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos3);
-
-				//if (dist4 < (pShotRad + 30))
-				//{
-				//	//enemy->Damage(1);
-				//	shot.isAlive = false;
-
-				//	blood_->SetAlive(true);
-				//	blood_->SetPos(VAdd(ePos3, { 0, 40,0 }));
-				//	blood_->Emit();
-
-				//	break;  // 1体に当たったら他の敵はスキップ（弾1発）
-				//}
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
 
 				// 足
-				VECTOR ePos4 = VAdd(enemy->GetPos(), { 0,20,0 });
+				VECTOR ePos3 = VAdd(enemy->GetPos(), { 0,60,0 });
+				float dist4 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos3);
+
+				if (dist4 < (pShotRad + 30))
+				{
+					//enemy->Damage(1);
+					shot.isAlive = false;
+
+					blood_->SetAlive(true);
+					blood_->SetPos(VAdd(ePos3, { 0, 0,0 }));
+					blood_->Emit();
+
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
+
+				// 足
+				VECTOR ePos4 = VAdd(enemy->GetPos(), { 0,30,0 });
 				float dist5 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos4);
 
 				if (dist5 < (pShotRad + 30))
 				{
-					enemy->Damage(1);
+					//enemy->Damage(1);
 					shot.isAlive = false;
 
 					blood_->SetAlive(true);
-					blood_->SetPos(VAdd(ePos4, { 0, 20,0 }));
+					blood_->SetPos(VAdd(ePos4, { 0, 0,0 }));
 					blood_->Emit();
 
 					break;  // 1体に当たったら他の敵はスキップ（弾1発）

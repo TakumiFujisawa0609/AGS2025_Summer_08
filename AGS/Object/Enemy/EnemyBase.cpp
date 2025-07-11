@@ -370,7 +370,7 @@ void EnemyBase::ChangeRun(void)
 	// Ä¶Ï‚Ý‚Å‚È‚¯‚ê‚ÎÄ¶
 	if (!hasPlayedRunSound_)
 	{
-		SoundManager::GetInstance()->PlayVoice();
+		SoundManager::GetInstance()->PlayVoice(pos_);
 		hasPlayedRunSound_ = true;
 	}
 }

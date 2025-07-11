@@ -85,7 +85,7 @@ public:
 	void PlayNoAmmo();	// •à‚­
 	void PlayPickUp();	// ‘–‚é
 	void PlayReLoad();	// •à‚­
-	void PlayVoice();	// ‘–‚é
+	void PlayVoice(VECTOR pos);	// ‘–‚é
 	void PlayShot();	// •à‚­
 	void PlayCleck();	// •à‚­
 	void PlayChoice();

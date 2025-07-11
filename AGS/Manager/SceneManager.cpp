@@ -192,7 +192,7 @@ void SceneManager::SetClearTime(float clearTime)
 
 float SceneManager::GetClearTime()
 {
-	return clearTime_;;
+	return clearTime_;
 }
 
 void SceneManager::StartFadeIn()

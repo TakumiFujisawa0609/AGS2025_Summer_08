@@ -26,7 +26,8 @@ void GameClear::Init(void)
 	isPause_ = false;
 	isResult_ = false;
 
-	fontHandle_ = CreateFontToHandle("メイリオ", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	fontHandle_ = CreateFontToHandle("メイリオ", 60, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	//fontHandle_ = CreateFontToHandle("MS ゴシック", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
 void GameClear::Update(void)
@@ -65,39 +66,21 @@ void GameClear::Draw(void)
 
 		//DrawRotaGraph(950, 600, 0.6, 0.0f, resultImg_, true);
 		DrawGraph(0, 15, resultImg_, true);
+		SetFontSize(220);
 
-		SetFontSize(180);
+		// クリアタイム-------------------------------------------------------------
+		clearTime_ = SceneManager::GetInstance()->GetClearTime();
+		DrawFormatStringToHandle(340, 320, GetColor(255, 255, 255), fontHandle_, "Clear Time : %.1f seconds", clearTime_);
+
 		int enemyKillNumber = SceneManager::GetInstance()->GetEnemyKillNuber();
-		DrawFormatStringToHandle(400, 340, GetColor(255, 255, 255), fontHandle_, "倒したゾンビ    %d体", enemyKillNumber);
-
+		DrawFormatStringToHandle(340, 450, GetColor(255, 255, 255), fontHandle_, "Zombies : %d killed", enemyKillNumber);
+		
 		float acc = SceneManager::GetInstance()->GetAccuracy();
-		DrawFormatStringToHandle(400, 440, GetColor(255, 255, 255), fontHandle_, "命中率    %.1f%%", acc * 100.0f);
+		DrawFormatStringToHandle(340, 580, GetColor(255, 255, 255), fontHandle_, "Hit Rate : %.1f %%", acc * 100.0f);
 
-		float headShotNumber = SceneManager::GetInstance()->GetHeadShotNumber();
-		DrawFormatStringToHandle(400, 540, GetColor(255, 255, 255), fontHandle_, "ヘッドショット    %d回", headShotNumber);
-
+		int headShotNumber = SceneManager::GetInstance()->GetHeadShotNumber();
+		DrawFormatStringToHandle(340, 710, GetColor(255, 255, 255), fontHandle_, "Head Shot : %d hit", headShotNumber);
 	}
-
-
-	//clearTime_ = SceneManager::GetInstance()->GetClearTime();
-
-	//SetFontSize(100);
-	//DrawFormatString(1300, Application::SCREEN_SIZE_Y / 2 - 120, 0xffffff, "ClearTime");
-
-	//// 小数点以下は文字列で分割して描画
-	//int intPart = static_cast<int>(clearTime_);
-	//int decimalPart = static_cast<int>((clearTime_ - intPart) * 100);  // 小数点以下2桁
-
-	//// 整数部＋小数点を描画
-	//char timeStr[32];
-	//snprintf(timeStr, sizeof(timeStr), "%d.", intPart);
-	//int intPartWidth = GetDrawStringWidth(timeStr, strlen(timeStr));
-	//DrawFormatString(1400, Application::SCREEN_SIZE_Y / 2, 0xffffff, "%s", timeStr);
-
-	//// 小数部は少し小さくして整数部の右に少しスペースを空けて描画
-	//SetFontSize(60);
-	//snprintf(timeStr, sizeof(timeStr), "%02d", decimalPart);
-	//DrawFormatString(1380 + intPartWidth, Application::SCREEN_SIZE_Y / 2 + 32, 0xffffff, "%s秒", timeStr);
 }
 
 void GameClear::Release(void)
