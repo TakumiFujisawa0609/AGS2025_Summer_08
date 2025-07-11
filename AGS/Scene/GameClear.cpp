@@ -70,7 +70,7 @@ void GameClear::Draw(void)
 
 		// クリアタイム-------------------------------------------------------------
 		clearTime_ = SceneManager::GetInstance()->GetClearTime();
-		DrawFormatStringToHandle(340, 320, GetColor(255, 255, 255), fontHandle_, "Clear Time : %.1f seconds", clearTime_);
+		DrawFormatStringToHandle(300, 320, GetColor(255, 255, 255), fontHandle_, "Clear Time : %.1f sec", clearTime_);
 
 		int enemyKillNumber = SceneManager::GetInstance()->GetEnemyKillNuber();
 		DrawFormatStringToHandle(340, 450, GetColor(255, 255, 255), fontHandle_, "Zombies : %d killed", enemyKillNumber);
