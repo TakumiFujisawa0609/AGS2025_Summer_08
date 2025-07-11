@@ -2,6 +2,7 @@
 #include <DxLib.h>
 class Player;
 class Application;
+class AimControl;
 
 class Camera
 {
@@ -34,9 +35,14 @@ public:
 	VECTOR GetPos() const;
 
 	void UpdateDeathCamera();
+	float GetcontrolSensi_(void) { return controlSensi_; }
+	void  SetcontrolSensi_(float controlSensi) { controlSensi_ = controlSensi; }
+
 private:
 	// プレイヤー
 	Player* player_;
+	//エイムコントロール
+	AimControl* aimControl_;
 
 	// 前のマウス位置
 	int prevPosX_;
@@ -69,4 +75,6 @@ private:
 
 	// ゲーム内フラグ
 	bool isInGame_;
+
+	float controlSensi_;
 };

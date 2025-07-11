@@ -5,6 +5,7 @@
 #include "../Manager/Application.h"
 #include "../Manager/InputManager.h"
 #include "../Utility/AsoUtility.h"
+#include "../Object/Button/AimControl.h"
 
 void Camera::Init(Player* player)
 {
@@ -114,6 +115,9 @@ void Camera::Angle(void)
 
 	// 角度更新（感度調整）
 	const float sensitivity = 0.00035f; // センシ調整
+	// 角度更新（感度調整）
+	const float sensitivity = ; // センシ調整
+
 	// 更新
 	yaw_ += deltaX * sensitivity;
 	pitch_ += deltaY * sensitivity;

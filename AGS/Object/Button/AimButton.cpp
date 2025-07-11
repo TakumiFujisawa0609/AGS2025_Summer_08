@@ -23,12 +23,14 @@ void AimButton::Init(void)
 	handle_[ON] = LoadGraph("Data/Image/Button/AimButton_On.png");//今回はHOVERがボタンが押された状態
 	
 	 prevMouseDown_ = false;
+	 nowClick_ = false;
 
 }
 
 void AimButton::Update(void)
 {
 	// マウス座標取得
+	nowClick_ = false;
 	int mousePosX = 0, mousePosY = 0;
 	GetMousePoint(&mousePosX, &mousePosY);
 
@@ -47,9 +49,11 @@ void AimButton::Update(void)
 		// 状態トグル
 		if (buttonState_ == OFF) {
 			buttonState_ = ON;
+			nowClick_ = true;
 		}
 		else if (buttonState_ == ON) {
 			buttonState_ = OFF;
+			nowClick_ = true;
 		}
 	}
 
@@ -77,4 +81,8 @@ AimButton::BUTTON_STATE AimButton::GetButtonState(void)
 
 }
 
+void AimButton::ButtonStateOn(void)
+{
+	buttonState_ = BUTTON_STATE::ON;
+}
 
