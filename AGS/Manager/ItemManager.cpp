@@ -443,6 +443,11 @@ void ItemManager::SetIsShowingGetKit(bool isShow)
 	isShowingGetKit_ = isShow;
 }
 
+bool ItemManager::GetPickdAllVaccine()
+{
+	return pickedVaccineNum_ == 3;
+}
+
 bool ItemManager::IsTrigger()
 {
 	return isTrigger_;

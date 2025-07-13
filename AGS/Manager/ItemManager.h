@@ -53,6 +53,8 @@ public:
 	bool IsShowingGetKit() const;
 	void SetIsShowingGetKit(bool isShow);
 
+	bool GetPickdAllVaccine();
+
 	bool IsTrigger();
 
 	const std::map<ItemBase::TYPE, std::vector<ItemBase*>>& GetItems();
@@ -108,4 +110,6 @@ private:
 	bool isShowingGetVaccine_ = false;
 	bool isShowingGetShot_ = false;
 	bool isShowingGetKit_ = false;
+
+	bool isPickedAllVaccine_ = false;
 };

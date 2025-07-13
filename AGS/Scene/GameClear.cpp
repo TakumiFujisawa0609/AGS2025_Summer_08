@@ -1,4 +1,14 @@
 #include <DxLib.h>
+
+// DxLibのmin/maxマクロを無効化
+#ifdef max
+#undef max
+#endif
+#ifdef min
+#undef min
+#endif
+
+#include <algorithm> // std::min / max を安全に使う
 #include "../Manager/Application.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
@@ -26,7 +36,8 @@ void GameClear::Init(void)
 	isPause_ = false;
 	isResult_ = false;
 
-	fontHandle_ = CreateFontToHandle("メイリオ", 60, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	fontHandle1_ = CreateFontToHandle("メイリオ", 60, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	fontHandle2_ = CreateFontToHandle("メイリオ", 100, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 	//fontHandle_ = CreateFontToHandle("MS ゴシック", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
@@ -66,20 +77,45 @@ void GameClear::Draw(void)
 
 		//DrawRotaGraph(950, 600, 0.6, 0.0f, resultImg_, true);
 		DrawGraph(0, 15, resultImg_, true);
-		SetFontSize(220);
+		SetFontSize(200);
 
-		// クリアタイム-------------------------------------------------------------
-		clearTime_ = SceneManager::GetInstance()->GetClearTime();
-		DrawFormatStringToHandle(300, 320, GetColor(255, 255, 255), fontHandle_, "Clear Time : %.1f sec", clearTime_);
+		// --- クリアタイム ---
+		int totalSec = static_cast<int>(SceneManager::GetInstance()->GetClearTime());
+		int minutes = totalSec / 60;
+		int seconds = totalSec % 60;
 
+		char timeStr[16];
+		snprintf(timeStr, sizeof(timeStr), "%02d:%02d", minutes, seconds);
+		DrawFormatStringToHandle(300, 300, GetColor(255, 255, 255), fontHandle1_, "Clear Time   %s", timeStr);
+
+		// 各項目取得
 		int enemyKillNumber = SceneManager::GetInstance()->GetEnemyKillNuber();
-		DrawFormatStringToHandle(340, 450, GetColor(255, 255, 255), fontHandle_, "Zombies : %d killed", enemyKillNumber);
-		
+		DrawFormatStringToHandle(350, 450, GetColor(255, 255, 255), fontHandle1_, "Zombies : %d killed", enemyKillNumber);
+
 		float acc = SceneManager::GetInstance()->GetAccuracy();
-		DrawFormatStringToHandle(340, 580, GetColor(255, 255, 255), fontHandle_, "Hit Rate : %.1f %%", acc * 100.0f);
+		DrawFormatStringToHandle(350, 600, GetColor(255, 255, 255), fontHandle1_, "Hit Rate : %.1f%%", acc * 100.0f);
 
 		int headShotNumber = SceneManager::GetInstance()->GetHeadShotNumber();
-		DrawFormatStringToHandle(340, 710, GetColor(255, 255, 255), fontHandle_, "Head Shot : %d hit", headShotNumber);
+		DrawFormatStringToHandle(350, 750, GetColor(255, 255, 255), fontHandle1_, "Head Shot : %d hits", headShotNumber);
+
+		// 時間スコア（30秒ごとの段階制、最大10分）
+		const int maxTimeScore = 1500 * 180;  // 満点スコア（3分）
+		const int maxClearTime = 600;         // 10分で0点
+		int step = totalSec / 30;
+		int maxSteps = maxClearTime / 30;
+		if (step > maxSteps) step = maxSteps;
+		int timeScore = maxTimeScore * (maxSteps - step) / maxSteps;
+
+		// 残りスコア
+		int killScore = std::min(enemyKillNumber, 50) * 10000;
+		int accScore = static_cast<int>(std::min(acc, 0.1f) * 99999);
+		int headScore = std::min(headShotNumber, 50) * 10000;
+		int totalScore = std::min(timeScore + killScore + accScore + headScore, 999999);
+
+		// スコア表示
+		DrawFormatStringToHandle(1150, 350, GetColor(255, 255, 255), fontHandle2_, "SCORE");
+		DrawFormatStringToHandle(1130, 560, GetColor(255, 255, 255), fontHandle2_, "%06d", totalScore);
+
 	}
 }
 
@@ -89,5 +125,7 @@ void GameClear::Release(void)
 
 	DeleteGraph(clearMovieHundle_);
 
-	DeleteFontToHandle(fontHandle_);
+	DeleteFontToHandle(fontHandle1_);
+	DeleteFontToHandle(fontHandle2_);
+
 }

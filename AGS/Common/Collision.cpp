@@ -1,4 +1,5 @@
-﻿#include <DxLib.h>
+﻿#include <algorithm>
+#include <DxLib.h>
 #include "../Utility/AsoUtility.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
@@ -243,6 +244,85 @@ void Collision::Draw()
 			}
 		}
 	}
+
+//#ifdef _DEBUG
+//
+//	for (auto pair : enemies)
+//	{
+//		for (EnemyBase* enemy : pair.second)
+//		{
+//			if (!enemy->GetAlive()) continue;
+//
+//			int modelId = enemy->GetModelId();
+//
+//			// 頭の座標と半径（頭の当たり判定は球体）
+//			int head = MV1SearchFrame(modelId, "mixamorig:Head");
+//			VECTOR headPos = MV1GetFramePosition(modelId, head);
+//			float headRadius = 15.0f;
+//
+//			// 頭の球を赤色で描画
+//			DrawSphere3D(headPos, headRadius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+//
+//			// 胴体のOBBを黄色で描画
+//			int body = MV1SearchFrame(modelId, "mixamorig:Neck");
+//			int hip = MV1SearchFrame(modelId, "mixamorig:Hips");
+//
+//			VECTOR top = MV1GetFramePosition(modelId, body);
+//			VECTOR bottom = MV1GetFramePosition(modelId, hip);
+//
+//			DrawDebugOBB(top, bottom, 15.5f);
+//
+//			// 左腕など他の部位のOBBも同様に描画
+//			// 左上腕
+//			int LeftArm = MV1SearchFrame(modelId, "mixamorig:LeftArm");
+//			int LeftForeArm = MV1SearchFrame(modelId, "mixamorig:LeftForeArm");
+//			VECTOR leftArmPos = MV1GetFramePosition(modelId, LeftArm);
+//			VECTOR leftForeArmPos = MV1GetFramePosition(modelId, LeftForeArm);
+//			DrawDebugOBB(leftArmPos, leftForeArmPos, 9.0f);
+//
+//			// 左前腕
+//			int LeftHand = MV1SearchFrame(modelId, "mixamorig:LeftHandMiddle1");
+//			VECTOR leftHandPos = MV1GetFramePosition(modelId, LeftHand);
+//			DrawDebugOBB(leftForeArmPos, leftHandPos, 6.0f);
+//
+//			// 右上腕
+//			int RightArm = MV1SearchFrame(modelId, "mixamorig:RightArm");
+//			int RightForeArm = MV1SearchFrame(modelId, "mixamorig:RightForeArm");
+//			VECTOR rightArmPos = MV1GetFramePosition(modelId, RightArm);
+//			VECTOR rightForeArmPos = MV1GetFramePosition(modelId, RightForeArm);
+//			DrawDebugOBB(rightArmPos, rightForeArmPos, 9.0f);
+//
+//			// 右前腕
+//			int RightHand = MV1SearchFrame(modelId, "mixamorig:RightHandMiddle1");
+//			VECTOR rightHandPos = MV1GetFramePosition(modelId, RightHand);
+//			DrawDebugOBB(rightForeArmPos, rightHandPos, 6.0f);
+//
+//			// 左太もも
+//			int LeftUpLeg = MV1SearchFrame(modelId, "mixamorig:LeftUpLeg");
+//			int LeftLeg = MV1SearchFrame(modelId, "mixamorig:LeftLeg");
+//			VECTOR leftUpLegPos = MV1GetFramePosition(modelId, LeftUpLeg);
+//			VECTOR leftLegPos = MV1GetFramePosition(modelId, LeftLeg);
+//			DrawDebugOBB(leftUpLegPos, leftLegPos, 10.0f);
+//
+//			// 左脛
+//			int LeftFoot = MV1SearchFrame(modelId, "mixamorig:LeftFoot");
+//			VECTOR leftFootPos = MV1GetFramePosition(modelId, LeftFoot);
+//			DrawDebugOBB(leftLegPos, leftFootPos, 6.0f);
+//
+//			// 右太もも
+//			int RightUpLeg = MV1SearchFrame(modelId, "mixamorig:RightUpLeg");
+//			int RightLeg = MV1SearchFrame(modelId, "mixamorig:RightLeg");
+//			VECTOR rightUpLegPos = MV1GetFramePosition(modelId, RightUpLeg);
+//			VECTOR rightLegPos = MV1GetFramePosition(modelId, RightLeg);
+//			DrawDebugOBB(rightUpLegPos, rightLegPos, 10.0f);
+//
+//			// 右脛
+//			int RightFoot = MV1SearchFrame(modelId, "mixamorig:RightFoot");
+//			VECTOR rightFootPos = MV1GetFramePosition(modelId, RightFoot);
+//			DrawDebugOBB(rightLegPos, rightFootPos, 6.0f);
+//		}
+//	}
+//#endif
 }
 
 void Collision::Release()
@@ -303,7 +383,7 @@ void Collision::CollisionPAndE()
 				{
 					if (!enemyAttackHit_[enemy])
 					{
-						//player_->Damage(1);
+						player_->Damage(1);
 						enemyAttackHit_[enemy] = true;
 					}
 				}
@@ -340,29 +420,23 @@ void Collision::CollisionPShotAndE(void)
 				int eModelId = enemy->GetModelId();
 
 				float headRad = 15;	// 頭の半径
-				float pShotRad = 10.0f;	// 弾の半径
+				float pShotRad = 0.1f;	// 弾の半径
 				// フレーム
 				int head = MV1SearchFrame(eModelId, "mixamorig:Head");
-				int zombie = MV1SearchFrame(eModelId, "parasiteZombie");
 				// 頭の座標
 				VECTOR headPos = MV1GetFramePosition(eModelId, head);
-
-				// プレイヤーショットの中心点
-				//VECTOR pShotCenterPos = shot.pos;
-				//float pShotToHeadDis = VSize(VSub(headPos, pShotCenterPos));
-				//float pShotAndHeadRad = headRad + pShotRad;
-
 
 				// 線分距離
 				float dist1 = DistanceFromLineSegment(shot.prevPos, shot.pos, headPos);
 
+				// 頭
 				if (dist1 < (pShotRad + headRad))
 				{
-					//enemy->Damage(1);
+					enemy->Damage(3);
 					shot.isAlive = false;
 
-					//blood_->SetAlive(true);
-					blood_->SetPos(headPos);
+					blood_->SetAlive(true);
+					blood_->SetPos(shot.pos);
 					blood_->Emit();
 
 					SceneManager::GetInstance()->SetHeadShot(1);
@@ -371,68 +445,150 @@ void Collision::CollisionPShotAndE(void)
 				}
 
 				// 胴体
-				VECTOR ePos1 = VAdd(enemy->GetPos(), { 0,100,0 });
-				float dist2 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos1);
+				int body = MV1SearchFrame(eModelId, "mixamorig:Neck");
+				int hip = MV1SearchFrame(eModelId, "mixamorig:Hips");
+				VECTOR bodyPos = MV1GetFramePosition(eModelId, body);
+				VECTOR hipPos = MV1GetFramePosition(eModelId, hip);
 
-				if (dist1 < (pShotRad + 30))
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, bodyPos, hipPos, 15.5f))
 				{
-					//enemy->Damage(1);
 					shot.isAlive = false;
+					enemy->Damage(1);
 
 					blood_->SetAlive(true);
-					blood_->SetPos(VAdd(ePos1, { 0,0,0 }));
+					blood_->SetPos(shot.pos);
 					blood_->Emit();
-
-					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+					break;
 				}
 
-				// 胴体
-				VECTOR ePos2 = VAdd(enemy->GetPos(), { 0,90,0 });
-				float dist3 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos2);
+				// 左上腕
+				int LeftArm = MV1SearchFrame(eModelId, "mixamorig:LeftArm");
+				int LeftForeArm = MV1SearchFrame(eModelId, "mixamorig:LeftForeArm");
+				VECTOR leftArmPos = MV1GetFramePosition(eModelId, LeftArm);
+				VECTOR leftForeArmPod = MV1GetFramePosition(eModelId, LeftForeArm);
 
-				if (dist3 < (pShotRad + 30))
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, leftArmPos, leftForeArmPod, 9.0f))
 				{
-					//enemy->Damage(1);
 					shot.isAlive = false;
+					enemy->Damage(1);
 
 					blood_->SetAlive(true);
-					blood_->SetPos(VAdd(ePos2, { 0, 0,0 }));
+					blood_->SetPos(shot.pos);
 					blood_->Emit();
-
-					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+					break;
 				}
 
-				// 足
-				VECTOR ePos3 = VAdd(enemy->GetPos(), { 0,60,0 });
-				float dist4 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos3);
+				// 左前腕
+				int LeftHand = MV1SearchFrame(eModelId, "mixamorig:LeftHandMiddle1");
+				VECTOR LeftHandPos = MV1GetFramePosition(eModelId, LeftHand);;
 
-				if (dist4 < (pShotRad + 30))
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, leftArmPos, LeftHandPos, 6.0f))
 				{
-					//enemy->Damage(1);
 					shot.isAlive = false;
+					enemy->Damage(1);
 
 					blood_->SetAlive(true);
-					blood_->SetPos(VAdd(ePos3, { 0, 0,0 }));
+					blood_->SetPos(shot.pos);
 					blood_->Emit();
-
-					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+					break;
 				}
 
-				// 足
-				VECTOR ePos4 = VAdd(enemy->GetPos(), { 0,30,0 });
-				float dist5 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos4);
+				// 左上腕
+				int RightArm = MV1SearchFrame(eModelId, "mixamorig:RightArm");
+				int RightForeArm = MV1SearchFrame(eModelId, "mixamorig:RightForeArm");
+				VECTOR RightArmPos = MV1GetFramePosition(eModelId, RightArm);
+				VECTOR RightForeArmPos = MV1GetFramePosition(eModelId, RightForeArm);
 
-				if (dist5 < (pShotRad + 30))
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, RightArmPos, RightForeArmPos, 9.0f))
 				{
-					//enemy->Damage(1);
 					shot.isAlive = false;
+					enemy->Damage(1);
 
 					blood_->SetAlive(true);
-					blood_->SetPos(VAdd(ePos4, { 0, 0,0 }));
+					blood_->SetPos(shot.pos);
 					blood_->Emit();
-
-					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+					break;
 				}
+
+				// 右前腕
+				int RightHand = MV1SearchFrame(eModelId, "mixamorig:RightHandMiddle1");
+				VECTOR RightHandPos = MV1GetFramePosition(eModelId, RightHand);;
+
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, RightArmPos, RightHandPos, 6.0f))
+				{
+					shot.isAlive = false;
+					enemy->Damage(1);
+
+					blood_->SetAlive(true);
+					blood_->SetPos(shot.pos);
+					blood_->Emit();
+					break;
+				}
+
+				// 左太もも
+				int LeftUpLeg = MV1SearchFrame(eModelId, "mixamorig:LeftUpLeg");
+				int LeftLeg = MV1SearchFrame(eModelId, "mixamorig:LeftLeg");
+				VECTOR LeftUpLegPos = MV1GetFramePosition(eModelId, LeftUpLeg);
+				VECTOR LeftLegPos = MV1GetFramePosition(eModelId, LeftLeg);
+
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, LeftUpLegPos, LeftLegPos, 10.0f))
+				{
+					shot.isAlive = false;
+					enemy->Damage(1);
+
+					blood_->SetAlive(true);
+					blood_->SetPos(shot.pos);
+					blood_->Emit();
+					break;
+				}
+
+				// 左脛
+				int LeftFoot = MV1SearchFrame(eModelId, "mixamorig:LeftFoot");
+				VECTOR LeftFootPos = MV1GetFramePosition(eModelId, LeftFoot);;
+
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, LeftLegPos, LeftFootPos, 6.0f))
+				{
+					shot.isAlive = false;
+					enemy->Damage(1);
+
+					blood_->SetAlive(true);
+					blood_->SetPos(shot.pos);
+					blood_->Emit();
+					break;
+				}
+
+				// 右太もも
+				int RightUpLeg = MV1SearchFrame(eModelId, "mixamorig:RightUpLeg");
+				int RightLeg = MV1SearchFrame(eModelId, "mixamorig:RightLeg");
+				VECTOR RightUpLegPos = MV1GetFramePosition(eModelId, RightUpLeg);
+				VECTOR RightLegPos = MV1GetFramePosition(eModelId, RightLeg);
+
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, RightUpLegPos, RightLegPos, 10.0f))
+				{
+					shot.isAlive = false;
+					enemy->Damage(1);
+
+					blood_->SetAlive(true);
+					blood_->SetPos(shot.pos);
+					blood_->Emit();
+					break;
+				}
+
+				// 右脛
+				int RightFoot = MV1SearchFrame(eModelId, "mixamorig:RightFoot");
+				VECTOR RightFootPos = MV1GetFramePosition(eModelId, RightFoot);;
+
+				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, RightLegPos, RightFootPos, 6.0f))
+				{
+					shot.isAlive = false;
+					enemy->Damage(1);
+
+					blood_->SetAlive(true);
+					blood_->SetPos(shot.pos);
+					blood_->Emit();
+					break;
+				}
+
 			}
 		}
 	}
@@ -662,4 +818,94 @@ float Collision::DistanceFromLineSegment(VECTOR A, VECTOR B, VECTOR P)
 	VECTOR diff = VSub(P, closest);
 
 	return VSize(diff);  // 最近点までの距離
+}
+
+bool Collision::IsHitLineSegmentAndOBB(const VECTOR& p1, const VECTOR& p2, const VECTOR& top, const VECTOR& bottom, float halfWidth)
+{
+	VECTOR dir = VSub(p2, p1); // 弾の方向
+	VECTOR up = VSub(top, bottom); // 長方形の縦軸
+	VECTOR center = VScale(VAdd(top, bottom), 0.5f); // OBB中心
+	VECTOR heightDir = VNorm(up);
+	VECTOR sideDir = VNorm(VCross(heightDir, VGet(0, 0, 1))); // 横軸（おおよそ）
+	VECTOR frontDir = VNorm(VCross(sideDir, heightDir)); // 奥行き軸（補完）
+
+	float halfHeight = VSize(VScale(up, 0.5f));
+	float halfDepth = halfWidth; // 奥行きも同じ程度にする（必要なら調整）
+
+	// 3軸
+	VECTOR axis[3] = { sideDir, heightDir, frontDir };
+	float halfSize[3] = { halfWidth, halfHeight, halfDepth };
+
+	// OBBと線分の交差判定（Separating Axis Theorem）
+	VECTOR segCenter = VScale(VAdd(p1, p2), 0.5f);
+	VECTOR segDir = VSub(p2, p1);
+	float segLen = VSize(segDir) * 0.5f;
+	if (segLen < 1e-6f) return false;
+
+	segDir = VNorm(segDir);
+	VECTOR diff = VSub(segCenter, center);
+
+	for (int i = 0; i < 3; ++i)
+	{
+		float r = halfSize[i] + segLen * fabs(VDot(segDir, axis[i]));
+		if (fabs(VDot(diff, axis[i])) > r)
+			return false;
+	}
+
+	return true;
+}
+
+void Collision::DrawDebugOBB(const VECTOR& top, const VECTOR& bottom, float halfWidth)
+{
+	VECTOR up = VSub(top, bottom);
+	VECTOR heightDir = VNorm(up);
+
+	// Y軸と up ベクトルの外積から横ベクトルを求める（傾きに強く対応）
+	VECTOR sideDir;
+	if (fabs(heightDir.x) < 0.0001f && fabs(heightDir.z) < 0.0001f)
+	{
+		// Y軸と平行な場合、X軸を横とする
+		sideDir = VGet(1, 0, 0);
+	}
+	else
+	{
+		sideDir = VNorm(VCross(heightDir, VGet(0, 1, 0)));
+	}
+
+	VECTOR frontDir = VNorm(VCross(sideDir, heightDir));
+
+	float halfHeight = VSize(VScale(up, 0.5f));
+	VECTOR center = VScale(VAdd(top, bottom), 0.5f);
+
+	// OBBの8頂点を計算
+	VECTOR corners[8];
+	int idx = 0;
+	for (int y = -1; y <= 1; y += 2)
+	{
+		for (int x = -1; x <= 1; x += 2)
+		{
+			for (int z = -1; z <= 1; z += 2)
+			{
+				VECTOR offset = VAdd(
+					VAdd(VScale(sideDir, x * halfWidth),
+						VScale(heightDir, y * halfHeight)),
+					VScale(frontDir, z * halfWidth)
+				);
+				corners[idx++] = VAdd(center, offset);
+			}
+		}
+	}
+
+	int color = GetColor(255, 255, 0); // 黄色
+	// 各辺を線でつなぐ（12本）
+	const int edges[12][2] = {
+		{0,1}, {1,3}, {3,2}, {2,0},
+		{4,5}, {5,7}, {7,6}, {6,4},
+		{0,4}, {1,5}, {2,6}, {3,7}
+	};
+
+	for (int i = 0; i < 12; ++i)
+	{
+		DrawLine3D(corners[edges[i][0]], corners[edges[i][1]], color);
+	}
 }

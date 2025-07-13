@@ -53,7 +53,7 @@ void SceneManager::Init(void)
 
 	fader_ = new Fader();
 	fader_->Init();
-
+	
 	isSceneChanging_ = false;
 
 	// 初期シーンの設定
@@ -220,7 +220,7 @@ int SceneManager::GetHeadShotNumber()
 void SceneManager::SetHeadShot(int cnt)
 {
 	headShotCnt_ += cnt;
-	printfDx("ヘッドショット加算: +%d → 合計: %d\n", cnt, headShotCnt_);
+	//printfDx("ヘッドショット加算: +%d → 合計: %d\n", cnt, headShotCnt_);
 }
 
 void SceneManager::SetShotCnt(int cnt)

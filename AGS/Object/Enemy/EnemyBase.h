@@ -29,24 +29,6 @@ public:
 		VECTOR pos;
 	};
 
-	static constexpr SpawnPoint spawnPoints[15] = {
-		{2467, 0, -659},
-		{3552, 0, 763},
-		{4670, 0, -483},
-		{4596, 0, 2034},
-		{3679, 0, 2965},
-		{2857, 0, 2194},
-		{4680, 0, -3500.0f},
-		{2739, 0, -1770},
-		{3070, 0, -3560},
-		{6215, 0, 460},
-		{7443, 0, 1222},
-		{9811, 0, 577},
-		{6761, 0, -1254},
-		{7659, 0, -986},
-		{8786, 0, -623}
-	};
-
 	// 敵初期位置
 	static constexpr VECTOR INIT_ENEMY_POS = { 0.0f, 0.0f, 250.0f };
 	// 敵初期角度
@@ -57,7 +39,7 @@ public:
 	static constexpr float MOVE_RUN_SPEED = 6.0f;	// 走り
 
 	// アニメーションが切り替わる距離
-	//static constexpr float WALK_DISTANCE = 1700.0f;	// 歩き
+	static constexpr float WALK_DISTANCE = 1830.0f;	// 歩き
 	static constexpr float RUN_DISTANCE = 1830.0f;	// 走り
 	static constexpr float ATTACK_DISTANCE = 150.0f;	// 攻撃
 

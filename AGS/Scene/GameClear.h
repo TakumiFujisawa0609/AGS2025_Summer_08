@@ -31,5 +31,6 @@ private:
 
 	bool isResult_;
 
-	int fontHandle_;
+	int fontHandle1_;
+	int	fontHandle2_;
 };

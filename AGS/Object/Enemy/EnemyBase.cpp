@@ -244,14 +244,14 @@ void EnemyBase::ChangeStateDist()
 	{
 		ChangeState(STATE::ATTACK);
 	}
-	else if (dist_ < RUN_DISTANCE)
-	{
-		ChangeState(STATE::RUN);
-	}
-	//else if (dist_ < WALK_DISTANCE)
+	//else if (dist_ < RUN_DISTANCE)
 	//{
-	//	ChangeState(STATE::WALK);
+	//	ChangeState(STATE::RUN);
 	//}
+	else if (dist_ < WALK_DISTANCE)
+	{
+		ChangeState(STATE::WALK);
+	}
 	else if (dist_ > RUN_DISTANCE)
 	{
 		ChangeState(STATE::IDLE);

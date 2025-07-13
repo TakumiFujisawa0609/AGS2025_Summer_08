@@ -5,6 +5,7 @@
 class EnemyBase;
 class StageBase;
 class Player;
+class ItemManager;
 
 class EnemyManager
 {
@@ -13,7 +14,7 @@ public:
 	static constexpr int ENEMY_NUM = 15;
 
 	// コンストラクタ
-	EnemyManager(Player* player, StageBase* stage);
+	EnemyManager(Player* player, StageBase* stage, ItemManager* item);
 	// デストラクタ
 	~EnemyManager(void);
 	void Init();
@@ -25,6 +26,8 @@ public:
 
 private:
 
+	ItemManager* item_;
+
 	// エネミー連想配列
 	std::map<EnemyBase::TYPE, std::vector<EnemyBase*>> enemies_;
 
@@ -35,5 +38,9 @@ private:
 
 	// プレイヤーのポインタ
 	Player* player_;
+
+	void ReSpawn();
+
+	bool isRespawn_ = false;
 };
 

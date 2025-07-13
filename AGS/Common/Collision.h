@@ -61,7 +61,8 @@ public:
     bool GetClear();
 
     float DistanceFromLineSegment(VECTOR A, VECTOR B, VECTOR P);
-
+    
+    bool IsHitLineSegmentAndOBB(const VECTOR& p1, const VECTOR& p2, const VECTOR& top, const VECTOR& bottom, float halfWidth);
 private:
 
     Player* player_;
@@ -150,4 +151,6 @@ private:
     bool isTrgger_ = false;
     float triggerTimer_ = 0.0f;        // トリガー後の経過時間
     bool isTriggerStarted_ = false;    // トリガー発生時に一度だけ開始
+
+    void DrawDebugOBB(const VECTOR& top, const VECTOR& bottom, float halfWidth);
 };

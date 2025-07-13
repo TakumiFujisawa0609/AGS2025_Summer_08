@@ -32,12 +32,12 @@ void StageBase::Init(void)
 
 	// エミッシブカラー設定
 	//MV1SetMaterialEmiColor(modelId_, 0, GetColorF(0.2f, 0.2f, 0.2f, 1.0f)); // 緑の壁
-	//MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 
-	//MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 追加した外壁2
-	MV1SetMaterialEmiColor(modelId_, 3, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 追加した外壁1
-	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 最初の部屋の外壁
-	MV1SetMaterialEmiColor(modelId_, 5, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 天井
-	//MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.2f, 0.2f, 0.2f, 1.0f));	// 台座
+	MV1SetMaterialEmiColor(modelId_, 1, GetColorF(0.2f, 0.2f, 0.2f, 0.2f));	// 
+	MV1SetMaterialEmiColor(modelId_, 2, GetColorF(0.2f, 0.2f, 0.2f, 0.2f));	// 追加した外壁2
+	MV1SetMaterialEmiColor(modelId_, 3, GetColorF(0.2f, 0.2f, 0.2f, 0.2f));	// 追加した外壁1
+	MV1SetMaterialEmiColor(modelId_, 4, GetColorF(0.2f, 0.2f, 0.2f, 0.2f));	// 最初の部屋の外壁
+	MV1SetMaterialEmiColor(modelId_, 5, GetColorF(0.2f, 0.2f, 0.2f, 0.2f));	// 天井
+	MV1SetMaterialEmiColor(modelId_, 6, GetColorF(0.2f, 0.2f, 0.2f, 0.2f));	// 台座
 	MV1SetMaterialEmiColor(modelId_, 7, GetColorF(0.6f, 0.6f, 0.6f, 1));	// キット(テキスト)
 	MV1SetMaterialEmiColor(modelId_, 8, GetColorF(0.6f, 0.6f, 0.6f, 1));	// 弾薬箱(テキスト)
 

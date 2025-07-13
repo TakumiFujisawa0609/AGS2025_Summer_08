@@ -1,12 +1,14 @@
 #include <DxLib.h>
 #include "../Object/Enemy/EnemyBase.h"
 #include "../Object/Enemy/EnemyNormal.h"
+#include "../Manager/ItemManager.h"
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager(Player* player, StageBase* stage)
+EnemyManager::EnemyManager(Player* player, StageBase* stage, ItemManager* item)
 {
 	stage_ = stage;
 	player_ = player;
+	item_ = item;
 }
 
 EnemyManager::~EnemyManager(void)
@@ -31,7 +33,7 @@ void EnemyManager::Init()
 			player_, stage_);
 
 		// ƒXƒ|[ƒ“ˆÊ’uÝ’è
-		normal->SetPos(EnemyNormal::spawnPoints[i].pos);
+		normal->SetPos(EnemyNormal::wave1SpawnPoints[i].pos);
 
 		// “G‚ð“o˜^
 		enemies_[EnemyBase::TYPE::NORMAL].emplace_back(normal);
@@ -48,6 +50,14 @@ void EnemyManager::Update(void)
 			enemy->Update();
 		}
 	}
+
+	if (item_->GetPickdAllVaccine() && !isRespawn_)
+	{
+		ReSpawn();
+
+		isRespawn_ = true;
+	}
+
 }
 
 void EnemyManager::Draw(void)
@@ -82,5 +92,31 @@ void EnemyManager::Release(void)
 const std::map<EnemyBase::TYPE, std::vector<EnemyBase*>>& EnemyManager::GetEnemies()
 {
 	return enemies_;
+}
+
+void EnemyManager::ReSpawn()
+{
+	// Šù‘¶‚Ì“G‚ðíœ
+	for (auto& pair : enemies_)
+	{
+		for (EnemyBase* enemy : pair.second)
+		{
+			enemy->Release();
+			delete enemy;
+		}
+	}
+	enemies_.clear();
+
+	// WAVE2—p‚Ì“G”z’u
+	for (int i = 0; i < ENEMY_NUM; i++)
+	{
+		EnemyBase* normal = new EnemyNormal();
+		normal->Init(EnemyBase::TYPE::NORMAL,
+			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::NORMAL)],
+			player_, stage_);
+
+		normal->SetPos(EnemyNormal::wave2SpawnPoints[i].pos);
+		enemies_[EnemyBase::TYPE::NORMAL].emplace_back(normal);
+	}
 }
  
