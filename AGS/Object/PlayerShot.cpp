@@ -35,13 +35,16 @@ void PlayerShot::Update(void)
 	if (shotTimer_ > 0) --shotTimer_;
 
 	// 撃つ・リロード
-	Shot();
 	ReLoad();
+	Shot();
 
 	// 弾の配列を回す
 	for (auto& shot : shots_)
 	{
 		if (!shot.isAlive) continue;
+
+		// 弾の移動前位置を記録
+		shot.prevPos = shot.pos;
 
 		shot.pos = VAdd(shot.pos, VScale(shot.dir, SHOT_SPEED));
 		shot.dist = VSize(VSub(shot.pos, shot.startPos));
@@ -112,6 +115,7 @@ void PlayerShot::Shot(void)
 			shot.isAlive = true;
 
 			ammo_--;
+			SceneManager::GetInstance()->SetShotCnt(1);
 			SoundManager::GetInstance()->PlayShot();
 			shotTimer_ = SHOT_INTERVAL;
 			break;

@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../../Manager/InputManager.h"
 #include "../../Manager/SoundManager.h"
+#include "../../Manager/SceneManager.h"
 #include "../../Common/AnimControl.h"
 #include "../../Common/Collision.h"
 #include "../../Utility/AsoUtility.h"
@@ -328,6 +329,8 @@ void EnemyBase::Damage(int damage)
 	// ダメージを受ける
 	hp_ -= damage;
 
+	SceneManager::GetInstance()->SetHitShotCnt(1);
+
 	// hpが０になったら死亡状態に
 	if (hp_ <= 0)
 	{
@@ -367,7 +370,7 @@ void EnemyBase::ChangeRun(void)
 	// 再生済みでなければ再生
 	if (!hasPlayedRunSound_)
 	{
-		SoundManager::GetInstance()->PlayVoice();
+		SoundManager::GetInstance()->PlayVoice(pos_);
 		hasPlayedRunSound_ = true;
 	}
 }
@@ -389,6 +392,9 @@ void EnemyBase::ChangeDie(void)
 
 	// 死亡時の処理
 	SoundManager::GetInstance()->StopVoice();
+
+	// キルカウント加算
+	SceneManager::GetInstance()->SetKillEnemyCnt(1);
 }
 
 void EnemyBase::UpdateIdle(void)

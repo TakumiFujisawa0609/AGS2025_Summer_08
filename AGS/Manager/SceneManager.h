@@ -53,6 +53,20 @@ public:
 	void StartFadeIn();
 	// フェード中か
 	bool IsFading() const;
+
+	void MissShot();
+
+	int GetHeadShotNumber();
+	void SetHeadShot(int cnt);
+
+	void SetShotCnt(int cnt);
+	void SetHitShotCnt(int cnt);
+
+	int GetEnemyKillNuber();
+	void SetKillEnemyCnt(int cnt);
+
+	float GetAccuracy();
+
 private:
 
 	// 静的インスタンス
@@ -86,4 +100,12 @@ private:
 
 	float clearTime_;
 
+	int headShotCnt_;
+	int ShotCnt_;
+	int hitShotNumber_;
+	int missShotNumber_;
+
+	int enmeyKillNumber_;
+
+	float accuracy_;
 };

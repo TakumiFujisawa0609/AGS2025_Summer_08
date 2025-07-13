@@ -50,10 +50,16 @@ void SoundManager::DeleteInstance(void)
 
 void SoundManager::Init(void)
 {
+	//SetCreate3DSoundFlag(TRUE);
+	//SetEnableXAudioFlag(TRUE);
+	voiceHundle_ = LoadSoundMem(VOICE_PATH);
+	//SetCreate3DSoundFlag(FALSE);
+
 	// BGM読み込み
 	bgm1Hundle_ = LoadSoundMem(BGM1_PATH);
 	bgm2Hundle_ = LoadSoundMem(BGM2_PATH);
 	bgm3Hundle_ = LoadSoundMem(BGM3_PATH);
+	clearHundle_ = LoadSoundMem(CLEAR_PATH);
 	walkHundle_ = LoadSoundMem(WALK_PATH);
 	openHundle_ = LoadSoundMem(OPEN_PATH);
 	closeHundle_ = LoadSoundMem(CLOSE_PATH);
@@ -62,7 +68,6 @@ void SoundManager::Init(void)
 	noAmmoHundle_ = LoadSoundMem(NOBULLET_PATH);
 	pickUpHundle_ = LoadSoundMem(PICKUP_PATH);
 	reLoadHundle_ = LoadSoundMem(RELOAD_PATH);
-	voiceHundle_ = LoadSoundMem(VOICE_PATH);
 	shotHundle_ = LoadSoundMem(SHOT_PATH);
 	hoverHundle_ = LoadSoundMem(HOVER_PATH);
 	cleckHundle_ = LoadSoundMem(CLECK_PATH);
@@ -77,6 +82,7 @@ void SoundManager::Init(void)
 	order1Hundle_ = LoadSoundMem(ORDERL1_PATH);
 	order2Hundle_ = LoadSoundMem(ORDERL2_PATH);
 	order3Hundle_ = LoadSoundMem(ORDERL3_PATH);
+	paperHundle_ = LoadSoundMem(PAPER_PATH);
 
 	isDamegeEnd_ = true;
 }
@@ -115,6 +121,8 @@ void SoundManager::Release(void)
 	DeleteSoundMem(order1Hundle_);
 	DeleteSoundMem(order2Hundle_);
 	DeleteSoundMem(order3Hundle_);
+	DeleteSoundMem(clearHundle_);
+	DeleteSoundMem(paperHundle_);
 
 	// インスタンスの削除
 	DeleteInstance();
@@ -146,17 +154,16 @@ void SoundManager::PlayBgm2()
 	ChangeVolumeSoundMem(BGM2_VOLUME, bgm2Hundle_);
 }
 
-// クリアシーン
-void SoundManager::PlayBgm3()
+void SoundManager::PlayClear()
 {
 	// 再生
-	if (CheckSoundMem(bgm3Hundle_) == 0)
+	if (CheckSoundMem(clearHundle_) == 0)
 	{
-		PlaySoundMem(bgm3Hundle_, DX_PLAYTYPE_LOOP, true);
+		PlaySoundMem(clearHundle_, DX_PLAYTYPE_LOOP, true);
 	}
 
 	// 音量調整
-	ChangeVolumeSoundMem(BGM3_VOLUME, bgm3Hundle_);
+	ChangeVolumeSoundMem(CLEAR_VOLUME, clearHundle_);
 }
 
 void SoundManager::PlayWalk()
@@ -236,7 +243,7 @@ void SoundManager::PlayReLoad()
 	ChangeVolumeSoundMem(RELOAD_VOLUME, reLoadHundle_);
 }
 
-void SoundManager::PlayVoice()
+void SoundManager::PlayVoice(VECTOR pos)
 {
 	// 再生
 	if (CheckSoundMem(voiceHundle_) == 0)
@@ -244,6 +251,12 @@ void SoundManager::PlayVoice()
 		// 再生
 		PlaySoundMem(voiceHundle_, DX_PLAYTYPE_BACK, true);
 	}
+
+	// 敵の位置を3D音源に設定
+	//Set3DPositionSoundMem(pos, voiceHundle_);
+	//Set3DRadiusSoundMem(1830.0f, voiceHundle_);
+
+	//Set3DDistanceFactor(0.5f);
 
 	// 音量調整
 	ChangeVolumeSoundMem(VOICE_VOLUME, voiceHundle_);
@@ -382,6 +395,14 @@ void SoundManager::PlayOrder3()
 	ChangeVolumeSoundMem(ORDER_VOLUME, order3Hundle_);
 }
 
+void SoundManager::PlayPaper()
+{
+	// 再生
+	PlaySoundMem(paperHundle_, DX_PLAYTYPE_BACK, true);
+	// 音量調整
+	ChangeVolumeSoundMem(PARPER_VOLUME, paperHundle_);
+}
+
 
 
 //// 走る音
@@ -405,9 +426,9 @@ void SoundManager::StopBgm2()
 	StopSoundMem(bgm2Hundle_);
 }
 
-void SoundManager::StopBgm3()
+void SoundManager::StopClear()
 {
-	StopSoundMem(bgm3Hundle_);
+	StopSoundMem(clearHundle_);
 }
 
 void SoundManager::StopWalk()
@@ -477,6 +498,11 @@ void SoundManager::StopOrder3()
 	StopSoundMem(order3Hundle_);
 }
 
+void SoundManager::StopPaper()
+{
+	StopSoundMem(paperHundle_);
+}
+
 bool SoundManager::IsPlayOrder1()
 {
 	return CheckSoundMem(order1Hundle_) == 1;
@@ -490,6 +516,11 @@ bool SoundManager::IsPlayOrder2()
 bool SoundManager::IsPlayOrder3()
 {
 	return CheckSoundMem(order3Hundle_) == 1;
+}
+
+bool SoundManager::IsPlayClear()
+{
+	return CheckSoundMem(clearHundle_) == 1;
 }
 
 

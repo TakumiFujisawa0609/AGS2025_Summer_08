@@ -168,7 +168,7 @@ void ItemManager::Update(void)
 	//}
 
 
-	//if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_1)) pickedVaccineNum_ += 1;
+	if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_1)) vaccineNum_ -= 1;
 }
 
 void ItemManager::Draw(void)

@@ -79,7 +79,6 @@ void AnimControl::Play(ANIM_TYPE animType, float speed)
 
     // 攻撃開始したらフラグを立てる
     if (animType == ANIM_ATTACK) { isAttack_ = true; }
-
 }
 
 // フレームごとにアニメーションを進める処理

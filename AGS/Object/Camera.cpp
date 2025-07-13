@@ -55,6 +55,8 @@ void Camera::Init(Player* player)
 
 void Camera::Update(void)
 {
+
+
 	// マウス座標取得
 	GetMousePoint(&movedPosX_, &movedPosY_);
 
@@ -70,11 +72,13 @@ void Camera::Update(void)
 
 	// マウスを中央に戻す
 	SetMousePoint(centerX_, centerY_);
+
+	Set3DSoundListenerPosAndFrontPos_UpVecY(pos_, targetPos_);
 }
 
 void Camera::Draw(void)
 {
-	
+	SpotLight();
 }
 
 void Camera::Release(void)
@@ -109,6 +113,7 @@ void Camera::MouseLimit(void)
 // アングル処理
 void Camera::Angle(void)
 {
+
 	// 前のマウス位置との差分
 	int deltaX = movedPosX_ - centerX_;
 	int deltaY = movedPosY_ - centerY_;
@@ -142,11 +147,13 @@ void Camera::Angle(void)
 	// カメラの位置を前方向にする
 	pos_ = VAdd(pos_, forward_);
 
+	targetPos_ = VGet(followPos.x, followPos.y + HEIGHT, followPos.z);
 
+	SetCameraNearFar(2.5f, 30000);
 	// カメラセット
 	SetCameraPositionAndTargetAndUpVec(
 		pos_,
-		VGet(followPos.x, followPos.y + HEIGHT, followPos.z),
+		targetPos_,
 		VGet(0, 1, 0)
 	);
 
@@ -267,6 +274,25 @@ void Camera::UpdateDeathCamera()
 		VGet(0, 1, 0)
 	);
 
+}
+
+void Camera::SpotLight()
+{
+	forward_ = VNorm(VSub(targetPos_, pos_));
+
+	ChangeLightTypeSpot(			//							   /
+		pos_,						//							  /
+		forward_,					//							 / )
+		40.0f * DX_PI_F / 180.0f,  // ライトの外周　		  　/   ) ←この角度
+		32.5f * DX_PI_F / 180.0f,	// 光の減衰が始まる角度		＼ )
+		4000.0f,					//							  ＼				
+		0.0f,						//							    ＼
+		0.001f,
+		0.0f
+	);
+
+	//SetLightDifColor(GetColorF(1.0f, 1.0f, 0.3f, 1.0f)); // 黄色
+	SetLightPosition(pos_);
 }
 
 

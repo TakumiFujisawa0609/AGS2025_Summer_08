@@ -154,6 +154,9 @@ void GameScene::Update(void)
 // •`‰æˆ—
 void GameScene::Draw(void)
 {
+
+	camera_->Draw();
+
 	stage_->Draw();
 
 	player_->Draw();
@@ -166,9 +169,7 @@ void GameScene::Draw(void)
 	blood_->Draw();
 
 	// ŒiF
-	View();
-
-	camera_->Draw();
+	//View();
 
 	pShot_->Draw();
 

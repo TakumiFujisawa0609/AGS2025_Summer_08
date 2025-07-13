@@ -10,6 +10,7 @@ public:
 	struct ShotData {
 		bool isAlive = false;
 		VECTOR pos = { 0,0,0 };
+		VECTOR prevPos = { 0,0,0 };
 		VECTOR startPos = { 0,0,0 };
 		VECTOR dir = { 0,0,0 };
 		float dist = 0.0f;

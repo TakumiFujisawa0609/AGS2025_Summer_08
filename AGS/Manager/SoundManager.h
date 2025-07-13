@@ -27,6 +27,8 @@
 #define ORDERL1_PATH "Data/Sound/order1.wav"
 #define ORDERL2_PATH "Data/Sound/order2.wav"
 #define ORDERL3_PATH "Data/Sound/order3.wav"
+#define CLEAR_PATH "Data/Sound/clear.mp3"
+#define PAPER_PATH "Data/Sound/paper.wav"
 
 class SoundManager
 {
@@ -46,7 +48,7 @@ public:
 	static constexpr int SHOT_VOLUME = 182;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int PICKUP_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int VOICE_VOLUME = 220;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
-	static constexpr int PAUSE_VOLUME = 120;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PAUSE_VOLUME = 230;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int CLECK_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HOVER_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HEAL_VOLUME = 247;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
@@ -56,6 +58,8 @@ public:
 	static constexpr int DAMEGE_VOLUME = 200;
 	static constexpr int KILL_VOLUME = 210;
 	static constexpr int ORDER_VOLUME = 90;
+	static constexpr int CLEAR_VOLUME = 200;
+	static constexpr int PARPER_VOLUME = 220;
 
 
 	// ÉCÉìÉXÉ^ÉìÉXÇÃê∂ê¨
@@ -72,7 +76,7 @@ public:
 	// âπåπçƒê∂
 	void PlayBgm1();	// BGM
 	void PlayBgm2();	// BGM
-	void PlayBgm3();	// BGM
+	void PlayClear();	// BGM
 	void PlayWalk();	// ï‡Ç≠
 	void PlayOpen();	// ëñÇÈ
 	void PlayClose();	// ï‡Ç≠
@@ -81,7 +85,7 @@ public:
 	void PlayNoAmmo();	// ï‡Ç≠
 	void PlayPickUp();	// ëñÇÈ
 	void PlayReLoad();	// ï‡Ç≠
-	void PlayVoice();	// ëñÇÈ
+	void PlayVoice(VECTOR pos);	// ëñÇÈ
 	void PlayShot();	// ï‡Ç≠
 	void PlayCleck();	// ï‡Ç≠
 	void PlayChoice();
@@ -96,11 +100,12 @@ public:
 	void PlayOrder1();
 	void PlayOrder2();
 	void PlayOrder3();
+	void PlayPaper();
 	
 	//âπåπí‚é~
 	void StopBgm1();	// BGM
 	void StopBgm2();	// BGM
-	void StopBgm3();	// BGM
+	void StopClear();	// BGM
 	void StopWalk();	// ï‡Ç≠
 	void StopOpen();	// ëñÇÈ
 	void StopClose();	// ï‡Ç≠
@@ -116,10 +121,12 @@ public:
 	void StopOrder1();
 	void StopOrder2();
 	void StopOrder3();
+	void StopPaper();
 
 	bool IsPlayOrder1();
 	bool IsPlayOrder2();
 	bool IsPlayOrder3();
+	bool IsPlayClear();
 
 private:
 
@@ -154,6 +161,8 @@ private:
 	int order1Hundle_;
 	int order2Hundle_;
 	int order3Hundle_;
+	int clearHundle_;
+	int paperHundle_;
 
 	//ÉNÉäÉbÉNâπ
 	int cleckHundle_;

@@ -48,7 +48,7 @@ void SceneManager::Init(void)
 	// (３Ｄ描画で使用するカメラの設定などがリセットされる)
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	sceneId_ = SCENE_ID::TITLE;
+	sceneId_ = SCENE_ID::GAME;
 	waitSceneId_ = SCENE_ID::NONE;
 
 	fader_ = new Fader();
@@ -65,11 +65,19 @@ void SceneManager::Init(void)
 
 	preTime_ = std::chrono::system_clock::now();  // ここで初期化
 	clearTime_ = 0.0f;
+
+	ShotCnt_ = 0;
+	missShotNumber_ = 0;
+	hitShotNumber_ = 0;
+	headShotCnt_ = 0;
+
+	enmeyKillNumber_ = 0;
+
+	accuracy_ = 0;
 }
 
 void SceneManager::Update(void)
 {
-
 	//// フェード更新
 	//fader_->Update();
 	//if (isSceneChanging_)
@@ -168,7 +176,7 @@ void SceneManager::Init3D(void)
 	// ライトの設定
 	SetUseLighting(true);
 	// 角度の設定
-	ChangeLightTypeDir({ -0.5f,-0.5f,-0.5f });
+	//ChangeLightTypeDir({ -0,-0.5f,-0 });
 }
 
 // デルタタイムの取得
@@ -184,7 +192,7 @@ void SceneManager::SetClearTime(float clearTime)
 
 float SceneManager::GetClearTime()
 {
-	return clearTime_;;
+	return clearTime_;
 }
 
 void SceneManager::StartFadeIn()
@@ -197,6 +205,50 @@ void SceneManager::StartFadeIn()
 bool SceneManager::IsFading() const
 {
 	return fader_->GetState() != Fader::STATE::NONE && !fader_->IsEnd();
+}
+
+void SceneManager::MissShot()
+{
+	missShotNumber_ += ShotCnt_ - hitShotNumber_;
+}
+
+int SceneManager::GetHeadShotNumber()
+{
+	return headShotCnt_;
+}
+
+void SceneManager::SetHeadShot(int cnt)
+{
+	headShotCnt_ += cnt;
+	printfDx("ヘッドショット加算: +%d → 合計: %d\n", cnt, headShotCnt_);
+}
+
+void SceneManager::SetShotCnt(int cnt)
+{
+	ShotCnt_ += cnt;
+}
+
+void SceneManager::SetHitShotCnt(int cnt)
+{
+	hitShotNumber_ = cnt;
+}
+
+int SceneManager::GetEnemyKillNuber()
+{
+	return enmeyKillNumber_;
+}
+
+void SceneManager::SetKillEnemyCnt(int cnt)
+{
+	enmeyKillNumber_ += cnt;
+}
+
+float SceneManager::GetAccuracy()
+{
+	if (ShotCnt_ == 0) return 0.0f;
+	accuracy_ = static_cast<float>(hitShotNumber_) / ShotCnt_;
+
+	return accuracy_;
 }
 
 void SceneManager::DoChangeScene(SCENE_ID sceneId)
@@ -223,7 +275,7 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		SoundManager::GetInstance()->StopOrder1();
 		SoundManager::GetInstance()->StopOrder2();
 		SoundManager::GetInstance()->StopOrder3();
-		SoundManager::GetInstance()->StopBgm3();
+		SoundManager::GetInstance()->StopClear();
 		SoundManager::GetInstance()->StopBgm1();
 		SoundManager::GetInstance()->PlayBgm2();
 		break;
@@ -244,7 +296,7 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	case SCENE_ID::GAMECLEAR:
 		scene_ = new GameClear();
 		SoundManager::GetInstance()->StopBgm1();
-		SoundManager::GetInstance()->PlayBgm3();
+		//SoundManager::GetInstance()->StopClear();
 		break;
 	}
 

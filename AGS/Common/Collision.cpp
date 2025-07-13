@@ -1,4 +1,5 @@
 ﻿#include <DxLib.h>
+#include "../Utility/AsoUtility.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/SceneManager.h"
 #include "../Manager/SoundManager.h"
@@ -302,7 +303,7 @@ void Collision::CollisionPAndE()
 				{
 					if (!enemyAttackHit_[enemy])
 					{
-						player_->Damage(1);
+						//player_->Damage(1);
 						enemyAttackHit_[enemy] = true;
 					}
 				}
@@ -330,32 +331,104 @@ void Collision::CollisionPShotAndE(void)
 	{
 		if (!shot.isAlive) continue;  // 死んでたらスキップ
 
-		// プレイヤーショットの中心点（高さ調整）
-		VECTOR centerPosPShot = VAdd(shot.pos, VGet(0, 0, 0));  // 調整不要ならそのまま
-
 		for (auto pair : enemies)
 		{
 			for (EnemyBase* enemy : pair.second)
 			{
 				if (!enemy->GetAlive()) continue;
 
-				// 敵の当たり判定用中心
-				VECTOR centerPosE = VAdd(enemy->GetPos(), VGet(0, 95, 0));
+				int eModelId = enemy->GetModelId();
 
-				VECTOR centerPosE1 = VAdd(centerPosE, VGet(0, 40, 0));
+				float headRad = 15;	// 頭の半径
+				float pShotRad = 10.0f;	// 弾の半径
+				// フレーム
+				int head = MV1SearchFrame(eModelId, "mixamorig:Head");
+				int zombie = MV1SearchFrame(eModelId, "parasiteZombie");
+				// 頭の座標
+				VECTOR headPos = MV1GetFramePosition(eModelId, head);
 
-				float dis = VSize(VSub(centerPosE, centerPosPShot));
-				float rEnemy = 65.0f;
-				float rPShot = 10.0f;
-				float radiusNum = rEnemy + rPShot;
+				// プレイヤーショットの中心点
+				//VECTOR pShotCenterPos = shot.pos;
+				//float pShotToHeadDis = VSize(VSub(headPos, pShotCenterPos));
+				//float pShotAndHeadRad = headRad + pShotRad;
 
-				if (dis < radiusNum)
+
+				// 線分距離
+				float dist1 = DistanceFromLineSegment(shot.prevPos, shot.pos, headPos);
+
+				if (dist1 < (pShotRad + headRad))
 				{
-					enemy->Damage(1);
-					shot.isAlive = false;  // 弾を消す
+					//enemy->Damage(1);
+					shot.isAlive = false;
+
+					//blood_->SetAlive(true);
+					blood_->SetPos(headPos);
+					blood_->Emit();
+
+					SceneManager::GetInstance()->SetHeadShot(1);
+
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
+
+				// 胴体
+				VECTOR ePos1 = VAdd(enemy->GetPos(), { 0,100,0 });
+				float dist2 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos1);
+
+				if (dist1 < (pShotRad + 30))
+				{
+					//enemy->Damage(1);
+					shot.isAlive = false;
 
 					blood_->SetAlive(true);
-					blood_->SetPos(centerPosE1);
+					blood_->SetPos(VAdd(ePos1, { 0,0,0 }));
+					blood_->Emit();
+
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
+
+				// 胴体
+				VECTOR ePos2 = VAdd(enemy->GetPos(), { 0,90,0 });
+				float dist3 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos2);
+
+				if (dist3 < (pShotRad + 30))
+				{
+					//enemy->Damage(1);
+					shot.isAlive = false;
+
+					blood_->SetAlive(true);
+					blood_->SetPos(VAdd(ePos2, { 0, 0,0 }));
+					blood_->Emit();
+
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
+
+				// 足
+				VECTOR ePos3 = VAdd(enemy->GetPos(), { 0,60,0 });
+				float dist4 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos3);
+
+				if (dist4 < (pShotRad + 30))
+				{
+					//enemy->Damage(1);
+					shot.isAlive = false;
+
+					blood_->SetAlive(true);
+					blood_->SetPos(VAdd(ePos3, { 0, 0,0 }));
+					blood_->Emit();
+
+					break;  // 1体に当たったら他の敵はスキップ（弾1発）
+				}
+
+				// 足
+				VECTOR ePos4 = VAdd(enemy->GetPos(), { 0,30,0 });
+				float dist5 = DistanceFromLineSegment(shot.prevPos, shot.pos, ePos4);
+
+				if (dist5 < (pShotRad + 30))
+				{
+					//enemy->Damage(1);
+					shot.isAlive = false;
+
+					blood_->SetAlive(true);
+					blood_->SetPos(VAdd(ePos4, { 0, 0,0 }));
 					blood_->Emit();
 
 					break;  // 1体に当たったら他の敵はスキップ（弾1発）
@@ -398,7 +471,7 @@ void Collision::CollisionPAndS()
 	// 移動ベクトル（向き）
 	VECTOR dir = VSub(movedPos, pos);  // 移動方向ベクトル
 	dir = VNorm(dir);             // 正規化（長さを1にする）
-	dir = VScale(dir, 150.0f);    // 任意の長さにスケーリング
+	dir = VScale(dir, 100.0f);    // 任意の長さにスケーリング
 	VECTOR endPos = VAdd(pos, dir); // pos から伸ばした終点
 
 	// XとY座標をレイの補正値に固定
@@ -573,3 +646,20 @@ bool Collision::GetClear()
 	return isGameClear_;
 }
 
+float Collision::DistanceFromLineSegment(VECTOR A, VECTOR B, VECTOR P)
+{
+	VECTOR AB = VSub(B, A);
+	VECTOR AP = VSub(P, A);
+	float ab2 = VDot(AB, AB);
+	float ap_ab = VDot(AP, AB);
+
+	float t = ap_ab / ab2;
+
+	if (t < 0.0f) t = 0.0f;
+	if (t > 1.0f) t = 1.0f;
+
+	VECTOR closest = VAdd(A, VScale(AB, t));  // 線分上の最近点
+	VECTOR diff = VSub(P, closest);
+
+	return VSize(diff);  // 最近点までの距離
+}
