@@ -312,8 +312,6 @@ VECTOR EnemyBase::GetMoveDir() const
 // プレイヤーが視認できるか
 bool EnemyBase::CanSeePlayer()
 {
-	if (dist_ > WALK_DISTANCE) return false;
-
 	VECTOR start = VAdd(pos_, VGet(0, 100, 0));      // 敵の目線位置
 	VECTOR end = VAdd(player_->GetPPos(), VGet(0, 100, 0)); // プレイヤー目線位置
 

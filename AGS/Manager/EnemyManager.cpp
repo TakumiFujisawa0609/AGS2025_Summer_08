@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "../Object/Enemy/EnemyBase.h"
 #include "../Object/Enemy/EnemyNormal.h"
+#include "../Object/Enemy/EnemyFemale.h"
 #include "../Manager/ItemManager.h"
 #include "EnemyManager.h"
 
@@ -21,6 +22,8 @@ void EnemyManager::Init()
 	// “Gƒ‚ƒfƒ‹‚Ìƒ[ƒh
 	enemyModelIds_.emplace_back(
 		MV1LoadModel("Data/Model/Enemy/Zombie.mv1"));
+	enemyModelIds_.emplace_back(
+		MV1LoadModel("Data/Model/Enemy/FZombie.mv1"));
 
 	// Œˆ‚ß‚ç‚ê‚½””z’u
 	for (int i = 0; i < ENEMY_NUM; i++)
@@ -38,6 +41,24 @@ void EnemyManager::Init()
 
 		// “G‚ğ“o˜^
 		enemies_[EnemyBase::TYPE::NORMAL].emplace_back(normal);
+	}
+
+	// Œˆ‚ß‚ç‚ê‚½””z’u
+	for (int i = 0; i < 2; i++)
+	{
+		// “G¶¬
+		EnemyBase* female = new EnemyFemale();
+
+		// ‰Šú‰»
+		female->Init(EnemyBase::TYPE::FEMALE,
+			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::FEMALE)],
+			player_, stage_, camera_);
+
+		// ƒXƒ|[ƒ“ˆÊ’uİ’è
+		female->SetPos(EnemyFemale::femaleWave1SpawnPoints[i].pos);
+
+		// “G‚ğ“o˜^
+		enemies_[EnemyBase::TYPE::FEMALE].emplace_back(female);
 	}
 }
 

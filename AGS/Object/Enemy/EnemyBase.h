@@ -1,4 +1,5 @@
 #pragma once
+#include <DxLib.h>
 class AnimControl;
 class StageBase;
 class Camera;
@@ -12,6 +13,7 @@ public:
 	enum class TYPE
 	{
 		NORMAL,
+		FEMALE,
 		MAX
 	};
 
@@ -65,7 +67,7 @@ public:
 
 	void LookPlayer();
 	void ChangeState(STATE state);	// アニメーション変更
-	void ChangeStateDist();
+	virtual void ChangeStateDist();
 
 	bool GetAlive();
 	void SetAlive(bool isAlive);
@@ -130,7 +132,7 @@ protected:
 	// 状態遷移
 	void ChangeIdle(void);
 	void ChangeWalk(void);
-	void ChangeRun(void);
+	virtual void ChangeRun(void);
 	void ChangeAttack(void);
 	void ChangeDie(void);
 	// 状態別更新
