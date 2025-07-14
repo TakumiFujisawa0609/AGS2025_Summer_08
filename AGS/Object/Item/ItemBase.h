@@ -1,5 +1,6 @@
 #pragma once
 #include <DxLib.h>
+class Camera;
 class Player;
 
 
@@ -67,7 +68,7 @@ public:
     ItemBase();
     virtual ~ItemBase();
 
-    void Init(TYPE type, int baseModel, Player* player);        // ‰Šú‰»
+    void Init(TYPE type, int baseModel, Player* player, Camera* camera);        // ‰Šú‰»
     virtual void Update();      // XV
     virtual void Draw() = 0;      // •`‰æ
     void Release();     // ‰ğ•ú
@@ -94,6 +95,7 @@ public:
     bool IsPickedFromPosition(const VECTOR& target, float radius) const;
 
 protected:
+    Camera* camera_;
     Player* player_;
 
     // ó‘Ô

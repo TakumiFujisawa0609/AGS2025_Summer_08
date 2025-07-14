@@ -1,6 +1,7 @@
 #pragma once
 class AnimControl;
 class StageBase;
+class Camera;
 class Player;
 
 
@@ -46,7 +47,7 @@ public:
 	EnemyBase();
 	virtual ~EnemyBase();
 
-	void Init(TYPE type, int baseModelId, Player* player, StageBase* stage);	// 初期化
+	void Init(TYPE type, int baseModelId, Player* player, StageBase* stage, Camera* camera);	// 初期化
 	void Update();	// 更新
 	void Draw();	// 描画
 	void Release();	// 解放
@@ -80,6 +81,7 @@ public:
 
 protected:
 
+	Camera* camera_;
 	AnimControl* anim_;	// アニメーションクラス
 	STATE state_;	// 敵の状態
 	STATE lostState_ = STATE::IDLE;   // プレイヤーを見失った時点の状態（WALK or RUN）

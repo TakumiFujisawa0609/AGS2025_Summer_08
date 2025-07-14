@@ -3,6 +3,7 @@
 #include <map>
 #include "../Object/Item/ItemBase.h"
 class ItemBase;
+class Camera;
 class Player;
 class PlayerShot;
 
@@ -24,7 +25,7 @@ public:
 	ItemManager(void);
 	~ItemManager(void);
 
-	void Init(Player* player, PlayerShot* pShot);
+	void Init(Player* player, PlayerShot* pShot, Camera* camera);
 	void Update(void);
 	void Draw(void);
 	void Release(void);
@@ -61,6 +62,7 @@ public:
 
 private:
 
+	Camera* camera_;
 	Player* player_; // プレイヤーへのポインタ
 	PlayerShot* pShot_; // 弾へのポインタ
 

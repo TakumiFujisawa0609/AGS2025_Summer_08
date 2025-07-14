@@ -4,9 +4,10 @@
 #include "../Manager/ItemManager.h"
 #include "EnemyManager.h"
 
-EnemyManager::EnemyManager(Player* player, StageBase* stage, ItemManager* item)
+EnemyManager::EnemyManager(Player* player, StageBase* stage, ItemManager* item, Camera* camera)
 {
 	stage_ = stage;
+	camera_ = camera;
 	player_ = player;
 	item_ = item;
 }
@@ -30,7 +31,7 @@ void EnemyManager::Init()
 		// 初期化
 		normal->Init(EnemyBase::TYPE::NORMAL,
 			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::NORMAL)],
-			player_, stage_);
+			player_, stage_, camera_);
 
 		// スポーン位置設定
 		normal->SetPos(EnemyNormal::wave1SpawnPoints[i].pos);
@@ -113,7 +114,7 @@ void EnemyManager::ReSpawn()
 		EnemyBase* normal = new EnemyNormal();
 		normal->Init(EnemyBase::TYPE::NORMAL,
 			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::NORMAL)],
-			player_, stage_);
+			player_, stage_, camera_);
 
 		normal->SetPos(EnemyNormal::wave2SpawnPoints[i].pos);
 		enemies_[EnemyBase::TYPE::NORMAL].emplace_back(normal);

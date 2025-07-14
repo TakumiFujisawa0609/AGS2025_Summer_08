@@ -13,9 +13,11 @@ ItemBase::~ItemBase()
 {
 }
 
-void ItemBase::Init(TYPE type, int baseModelId, Player* player)
+void ItemBase::Init(TYPE type, int baseModelId, Player* player, Camera* camera)
 {
     player_ = player;
+
+    camera_ = camera;
 
     // Ží•Ê
     type_ = type;

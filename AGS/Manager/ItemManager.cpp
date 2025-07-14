@@ -1,6 +1,7 @@
 #include <DxLib.h>
 #include "InputManager.h"
 #include "SoundManager.h"
+#include "../Object/Camera.h"
 #include "../Object/Item/ItemBase.h"
 #include "../Object/Item/ItemBullet.h"
 #include "../Object/Item/ItemKit.h"
@@ -18,10 +19,11 @@ ItemManager::~ItemManager()
 {
 }
 
-void ItemManager::Init(Player* player, PlayerShot* pShot)
+void ItemManager::Init(Player* player, PlayerShot* pShot, Camera* camera)
 {
 	player_ = player;
 	pShot_ = pShot;
+	camera_ = camera;
 
 	// アイテムモデルロード
 	itemModelIds_.emplace_back(
@@ -62,7 +64,7 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 		//初期化　
 		bullet->Init(ItemBase::TYPE::BULLET,
 			itemModelIds_[static_cast<int>(ItemBase::TYPE::BULLET)],
-			player_);
+			player_, camera_);
 
 		// スポーン位置設定
 		bullet->SetPos(ItemBullet::bulletSpawnPoints[i].pos);
@@ -84,7 +86,7 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 		//初期化　
 		vaccine->Init(ItemBase::TYPE::VACCINE,
 			itemModelIds_[static_cast<int>(ItemBase::TYPE::VACCINE)],
-			player_);
+			player_, camera_);
 
 		// スポーン位置設定
 		vaccine->SetPos(ItemVaccine::vaccineSpawnPoints[i].pos);
@@ -106,7 +108,7 @@ void ItemManager::Init(Player* player, PlayerShot* pShot)
 		//初期化　
 		kit->Init(ItemBase::TYPE::KIT,
 			itemModelIds_[static_cast<int>(ItemBase::TYPE::KIT)],
-			player_);
+			player_, camera_);
 
 		// スポーン位置設定
 		kit->SetPos(ItemKit::kitSpawnPoints[i].pos);

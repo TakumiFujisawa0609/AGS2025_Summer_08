@@ -3,6 +3,7 @@
 #include <map>
 #include "../Object/Enemy/EnemyBase.h"
 class EnemyBase;
+class Camera;
 class StageBase;
 class Player;
 class ItemManager;
@@ -14,7 +15,7 @@ public:
 	static constexpr int ENEMY_NUM = 15;
 
 	// コンストラクタ
-	EnemyManager(Player* player, StageBase* stage, ItemManager* item);
+	EnemyManager(Player* player, StageBase* stage, ItemManager* item, Camera* camera);
 	// デストラクタ
 	~EnemyManager(void);
 	void Init();
@@ -25,7 +26,7 @@ public:
 	const std::map<EnemyBase::TYPE, std::vector<EnemyBase*>>& GetEnemies();
 
 private:
-
+	Camera* camera_;
 	ItemManager* item_;
 
 	// エネミー連想配列

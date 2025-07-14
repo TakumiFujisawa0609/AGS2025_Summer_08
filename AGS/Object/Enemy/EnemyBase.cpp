@@ -5,6 +5,7 @@
 #include "../../Common/AnimControl.h"
 #include "../../Common/Collision.h"
 #include "../../Utility/AsoUtility.h"
+#include "../Camera.h"
 #include "../StageBase.h"
 #include "../Player.h"
 #include "EnemyBase.h"
@@ -18,10 +19,12 @@ EnemyBase::~EnemyBase()
 }
 
 
-void EnemyBase::Init(TYPE type, int baseModelId, Player* player, StageBase* stage)
+void EnemyBase::Init(TYPE type, int baseModelId, Player* player, StageBase* stage, Camera* camera)
 {
 	// 敵種別
 	type_ = type;
+
+	camera_ = camera;
 
 	// ゲームシーン内のplayerを取得
 	player_ = player;
@@ -128,14 +131,31 @@ void EnemyBase::Draw()
 
 
 	// 敵の当たり判定用中心
-	VECTOR centerPosE = VAdd(pos_, VGet(0, 100, 0));
+	VECTOR centerPosE = VAdd(pos_, VGet(0, 80, 0));
 
 	float dis = VSize(VSub(centerPosE, player_->GetPPos()));
 
-	// 範囲内判定
-	if (dis < 2400)
+	//// 範囲内判定
+	//if (dis < 2400)
+	//{
+	//	// 敵モデル描画
+	//	MV1DrawModel(modelId_);
+	//}
+
+	// カメラ→敵へのベクトルを正規化して toEnemy を定義
+	VECTOR toEnemy = VNorm(VSub(centerPosE, camera_->GetPos()));
+
+	// カメラの前方向ベクトル
+	VECTOR cameraForward = camera_->GetForward();
+
+	// 内積で視野内か判定
+	const float fovCos = cosf(60.0f * DX_PI_F / 180.0f);
+
+	float dot = VDot(toEnemy, cameraForward);
+
+	// カメラの前方向とある程度一致している（＝視野内）なら描画
+	if (dot > fovCos && dis < 2400 )
 	{
-		// 敵モデル描画
 		MV1DrawModel(modelId_);
 	}
 
@@ -292,6 +312,8 @@ VECTOR EnemyBase::GetMoveDir() const
 // プレイヤーが視認できるか
 bool EnemyBase::CanSeePlayer()
 {
+	if (dist_ > WALK_DISTANCE) return false;
+
 	VECTOR start = VAdd(pos_, VGet(0, 100, 0));      // 敵の目線位置
 	VECTOR end = VAdd(player_->GetPPos(), VGet(0, 100, 0)); // プレイヤー目線位置
 
