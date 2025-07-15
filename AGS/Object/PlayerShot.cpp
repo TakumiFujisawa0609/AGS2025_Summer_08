@@ -24,7 +24,7 @@ void PlayerShot::Init(Camera* camera, Player* player)
 	MV1SetScale(modelId_, scale_);
 
 	ammo_ = MAX_AMMO;
-	maxMagazine_ = MAX_AMMO;
+	maxMagazine_ = 0;
 
 	shots_.resize(MAX_SHOTS);
 	shotTimer_ = 0;
@@ -204,5 +204,5 @@ std::vector<PlayerShot::ShotData>& PlayerShot::GetShots()
 
 void PlayerShot::SetMagazine()
 {
-	maxMagazine_ += MAX_AMMO;
+	maxMagazine_ += 5;
 }

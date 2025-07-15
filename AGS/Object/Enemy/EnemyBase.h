@@ -14,6 +14,7 @@ public:
 	{
 		NORMAL,
 		FEMALE,
+		PRISONER,
 		MAX
 	};
 

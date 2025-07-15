@@ -1,7 +1,9 @@
 #include <DxLib.h>
+#include "../Object/Player.h"
 #include "../Object/Enemy/EnemyBase.h"
 #include "../Object/Enemy/EnemyNormal.h"
 #include "../Object/Enemy/EnemyFemale.h"
+#include "../Object/Enemy/EnemyPrisoner.h"
 #include "../Manager/ItemManager.h"
 #include "EnemyManager.h"
 
@@ -24,9 +26,11 @@ void EnemyManager::Init()
 		MV1LoadModel("Data/Model/Enemy/Zombie.mv1"));
 	enemyModelIds_.emplace_back(
 		MV1LoadModel("Data/Model/Enemy/FZombie.mv1"));
+	enemyModelIds_.emplace_back(
+		MV1LoadModel("Data/Model/Enemy/PZombie.mv1"));
 
 	// 決められた数配置
-	for (int i = 0; i < ENEMY_NUM; i++)
+	for (int i = 0; i < 13; i++)
 	{
 		// 敵生成
 		EnemyBase* normal = new EnemyNormal();
@@ -47,29 +51,47 @@ void EnemyManager::Init()
 	for (int i = 0; i < 2; i++)
 	{
 		// 敵生成
-		EnemyBase* female = new EnemyFemale();
+		EnemyBase* prisoner = new EnemyPrisoner();
 
 		// 初期化
-		female->Init(EnemyBase::TYPE::FEMALE,
-			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::FEMALE)],
+		prisoner->Init(EnemyBase::TYPE::PRISONER,
+			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::PRISONER)],
 			player_, stage_, camera_);
 
 		// スポーン位置設定
-		female->SetPos(EnemyFemale::femaleWave1SpawnPoints[i].pos);
+		prisoner->SetPos(EnemyPrisoner::prisonerWave1SpawnPoints[i].pos);
 
 		// 敵を登録
-		enemies_[EnemyBase::TYPE::FEMALE].emplace_back(female);
+		enemies_[EnemyBase::TYPE::PRISONER].emplace_back(prisoner);
 	}
 }
 
 void EnemyManager::Update(void)
 {
 	// すべての敵を更新
-	for (const auto pair : enemies_)
+	for (auto& pair : enemies_) // ← const外す
 	{
-		for (EnemyBase* enemy : pair.second)
+		auto& enemyList = pair.second;
+
+		for (auto it = enemyList.begin(); it != enemyList.end(); )
 		{
+			EnemyBase* enemy = *it;
 			enemy->Update();
+
+			VECTOR pPos = player_->GetPPos();
+			float dis = VSize(VSub(enemy->GetPos(), pPos));
+
+			// 死んでいて、かつプレイヤーから離れたら削除
+			if (!enemy->GetAlive() && dis > 1000 && !enemy->CanSeePlayer())
+			{
+				enemy->Release();
+				delete enemy;
+				it = enemyList.erase(it); // eraseしたら戻り値で次に進む
+			}
+			else
+			{
+				++it;
+			}
 		}
 	}
 
@@ -79,6 +101,7 @@ void EnemyManager::Update(void)
 
 		isRespawn_ = true;
 	}
+
 
 }
 
@@ -130,7 +153,7 @@ void EnemyManager::ReSpawn()
 	enemies_.clear();
 
 	// WAVE2用の敵配置
-	for (int i = 0; i < ENEMY_NUM; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		EnemyBase* normal = new EnemyNormal();
 		normal->Init(EnemyBase::TYPE::NORMAL,
@@ -139,6 +162,24 @@ void EnemyManager::ReSpawn()
 
 		normal->SetPos(EnemyNormal::wave2SpawnPoints[i].pos);
 		enemies_[EnemyBase::TYPE::NORMAL].emplace_back(normal);
+	}
+
+	// 決められた数配置
+	for (int i = 0; i < 2; i++)
+	{
+		// 敵生成
+		EnemyBase* female = new EnemyFemale();
+
+		// 初期化
+		female->Init(EnemyBase::TYPE::FEMALE,
+			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::FEMALE)],
+			player_, stage_, camera_);
+
+		// スポーン位置設定
+		female->SetPos(EnemyFemale::femaleWave2SpawnPoints[i].pos);
+
+		// 敵を登録
+		enemies_[EnemyBase::TYPE::FEMALE].emplace_back(female);
 	}
 }
  

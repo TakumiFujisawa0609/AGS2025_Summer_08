@@ -245,84 +245,84 @@ void Collision::Draw()
 		}
 	}
 
-//#ifdef _DEBUG
-//
-//	for (auto pair : enemies)
-//	{
-//		for (EnemyBase* enemy : pair.second)
-//		{
-//			if (!enemy->GetAlive()) continue;
-//
-//			int modelId = enemy->GetModelId();
-//
-//			// 頭の座標と半径（頭の当たり判定は球体）
-//			int head = MV1SearchFrame(modelId, "mixamorig:Head");
-//			VECTOR headPos = MV1GetFramePosition(modelId, head);
-//			float headRadius = 15.0f;
-//
-//			// 頭の球を赤色で描画
-//			DrawSphere3D(headPos, headRadius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
-//
-//			// 胴体のOBBを黄色で描画
-//			int body = MV1SearchFrame(modelId, "mixamorig:Neck");
-//			int hip = MV1SearchFrame(modelId, "mixamorig:Hips");
-//
-//			VECTOR top = MV1GetFramePosition(modelId, body);
-//			VECTOR bottom = MV1GetFramePosition(modelId, hip);
-//
-//			DrawDebugOBB(top, bottom, 15.5f);
-//
-//			// 左腕など他の部位のOBBも同様に描画
-//			// 左上腕
-//			int LeftArm = MV1SearchFrame(modelId, "mixamorig:LeftArm");
-//			int LeftForeArm = MV1SearchFrame(modelId, "mixamorig:LeftForeArm");
-//			VECTOR leftArmPos = MV1GetFramePosition(modelId, LeftArm);
-//			VECTOR leftForeArmPos = MV1GetFramePosition(modelId, LeftForeArm);
-//			DrawDebugOBB(leftArmPos, leftForeArmPos, 9.0f);
-//
-//			// 左前腕
-//			int LeftHand = MV1SearchFrame(modelId, "mixamorig:LeftHandMiddle1");
-//			VECTOR leftHandPos = MV1GetFramePosition(modelId, LeftHand);
-//			DrawDebugOBB(leftForeArmPos, leftHandPos, 6.0f);
-//
-//			// 右上腕
-//			int RightArm = MV1SearchFrame(modelId, "mixamorig:RightArm");
-//			int RightForeArm = MV1SearchFrame(modelId, "mixamorig:RightForeArm");
-//			VECTOR rightArmPos = MV1GetFramePosition(modelId, RightArm);
-//			VECTOR rightForeArmPos = MV1GetFramePosition(modelId, RightForeArm);
-//			DrawDebugOBB(rightArmPos, rightForeArmPos, 9.0f);
-//
-//			// 右前腕
-//			int RightHand = MV1SearchFrame(modelId, "mixamorig:RightHandMiddle1");
-//			VECTOR rightHandPos = MV1GetFramePosition(modelId, RightHand);
-//			DrawDebugOBB(rightForeArmPos, rightHandPos, 6.0f);
-//
-//			// 左太もも
-//			int LeftUpLeg = MV1SearchFrame(modelId, "mixamorig:LeftUpLeg");
-//			int LeftLeg = MV1SearchFrame(modelId, "mixamorig:LeftLeg");
-//			VECTOR leftUpLegPos = MV1GetFramePosition(modelId, LeftUpLeg);
-//			VECTOR leftLegPos = MV1GetFramePosition(modelId, LeftLeg);
-//			DrawDebugOBB(leftUpLegPos, leftLegPos, 10.0f);
-//
-//			// 左脛
-//			int LeftFoot = MV1SearchFrame(modelId, "mixamorig:LeftFoot");
-//			VECTOR leftFootPos = MV1GetFramePosition(modelId, LeftFoot);
-//			DrawDebugOBB(leftLegPos, leftFootPos, 6.0f);
-//
-//			// 右太もも
-//			int RightUpLeg = MV1SearchFrame(modelId, "mixamorig:RightUpLeg");
-//			int RightLeg = MV1SearchFrame(modelId, "mixamorig:RightLeg");
-//			VECTOR rightUpLegPos = MV1GetFramePosition(modelId, RightUpLeg);
-//			VECTOR rightLegPos = MV1GetFramePosition(modelId, RightLeg);
-//			DrawDebugOBB(rightUpLegPos, rightLegPos, 10.0f);
-//
-//			// 右脛
-//			int RightFoot = MV1SearchFrame(modelId, "mixamorig:RightFoot");
-//			VECTOR rightFootPos = MV1GetFramePosition(modelId, RightFoot);
-//			DrawDebugOBB(rightLegPos, rightFootPos, 6.0f);
-//		}
-//	}
-//#endif
+#ifdef _DEBUG
+
+	//for (auto pair : enemies)
+	//{
+	//	for (EnemyBase* enemy : pair.second)
+	//	{
+	//		if (!enemy->GetAlive()) continue;
+
+	//		int modelId = enemy->GetModelId();
+
+	//		// 頭の座標と半径（頭の当たり判定は球体）
+	//		int head = MV1SearchFrame(modelId, "mixamorig:Head");
+	//		VECTOR headPos = MV1GetFramePosition(modelId, head);
+	//		float headRadius = 15.0f;
+
+	//		// 頭の球を赤色で描画
+	//		DrawSphere3D(headPos, headRadius, 16, GetColor(255, 0, 0), GetColor(255, 0, 0), false);
+
+	//		// 胴体のOBBを黄色で描画
+	//		int body = MV1SearchFrame(modelId, "mixamorig:Neck");
+	//		int hip = MV1SearchFrame(modelId, "mixamorig:Hips");
+
+	//		VECTOR top = MV1GetFramePosition(modelId, body);
+	//		VECTOR bottom = MV1GetFramePosition(modelId, hip);
+
+	//		DrawDebugOBB(top, bottom, 15.5f);
+
+	//		// 左腕など他の部位のOBBも同様に描画
+	//		// 左上腕
+	//		int LeftArm = MV1SearchFrame(modelId, "mixamorig:LeftArm");
+	//		int LeftForeArm = MV1SearchFrame(modelId, "mixamorig:LeftForeArm");
+	//		VECTOR leftArmPos = MV1GetFramePosition(modelId, LeftArm);
+	//		VECTOR leftForeArmPos = MV1GetFramePosition(modelId, LeftForeArm);
+	//		DrawDebugOBB(leftArmPos, leftForeArmPos, 9.0f);
+
+	//		// 左前腕
+	//		int LeftHand = MV1SearchFrame(modelId, "mixamorig:LeftHandMiddle1");
+	//		VECTOR leftHandPos = MV1GetFramePosition(modelId, LeftHand);
+	//		DrawDebugOBB(leftForeArmPos, leftHandPos, 6.0f);
+
+	//		// 右上腕
+	//		int RightArm = MV1SearchFrame(modelId, "mixamorig:RightArm");
+	//		int RightForeArm = MV1SearchFrame(modelId, "mixamorig:RightForeArm");
+	//		VECTOR rightArmPos = MV1GetFramePosition(modelId, RightArm);
+	//		VECTOR rightForeArmPos = MV1GetFramePosition(modelId, RightForeArm);
+	//		DrawDebugOBB(rightArmPos, rightForeArmPos, 9.0f);
+
+	//		// 右前腕
+	//		int RightHand = MV1SearchFrame(modelId, "mixamorig:RightHand");
+	//		VECTOR rightHandPos = MV1GetFramePosition(modelId, RightHand);
+	//		DrawDebugOBB(rightForeArmPos, rightHandPos, 6.0f);
+
+	//		// 左太もも
+	//		int LeftUpLeg = MV1SearchFrame(modelId, "mixamorig:LeftUpLeg");
+	//		int LeftLeg = MV1SearchFrame(modelId, "mixamorig:LeftLeg");
+	//		VECTOR leftUpLegPos = MV1GetFramePosition(modelId, LeftUpLeg);
+	//		VECTOR leftLegPos = MV1GetFramePosition(modelId, LeftLeg);
+	//		DrawDebugOBB(leftUpLegPos, leftLegPos, 10.0f);
+
+	//		// 左脛
+	//		int LeftFoot = MV1SearchFrame(modelId, "mixamorig:LeftFoot");
+	//		VECTOR leftFootPos = MV1GetFramePosition(modelId, LeftFoot);
+	//		DrawDebugOBB(leftLegPos, leftFootPos, 6.0f);
+
+	//		// 右太もも
+	//		int RightUpLeg = MV1SearchFrame(modelId, "mixamorig:RightUpLeg");
+	//		int RightLeg = MV1SearchFrame(modelId, "mixamorig:RightLeg");
+	//		VECTOR rightUpLegPos = MV1GetFramePosition(modelId, RightUpLeg);
+	//		VECTOR rightLegPos = MV1GetFramePosition(modelId, RightLeg);
+	//		DrawDebugOBB(rightUpLegPos, rightLegPos, 10.0f);
+
+	//		// 右脛
+	//		int RightFoot = MV1SearchFrame(modelId, "mixamorig:RightFoot");
+	//		VECTOR rightFootPos = MV1GetFramePosition(modelId, RightFoot);
+	//		DrawDebugOBB(rightLegPos, rightFootPos, 6.0f);
+	//	}
+	//}
+#endif
 }
 
 void Collision::Release()
@@ -493,7 +493,7 @@ void Collision::CollisionPShotAndE(void)
 					break;
 				}
 
-				// 左上腕
+				//右上腕
 				int RightArm = MV1SearchFrame(eModelId, "mixamorig:RightArm");
 				int RightForeArm = MV1SearchFrame(eModelId, "mixamorig:RightForeArm");
 				VECTOR RightArmPos = MV1GetFramePosition(eModelId, RightArm);
@@ -510,8 +510,8 @@ void Collision::CollisionPShotAndE(void)
 					break;
 				}
 
-				// 右前腕
-				int RightHand = MV1SearchFrame(eModelId, "mixamorig:RightHandMiddle1");
+				// 右前腕1
+				int RightHand = MV1SearchFrame(eModelId, "mixamorig:RightHand");
 				VECTOR RightHandPos = MV1GetFramePosition(eModelId, RightHand);;
 
 				if (IsHitLineSegmentAndOBB(shot.prevPos, shot.pos, RightArmPos, RightHandPos, 6.0f))

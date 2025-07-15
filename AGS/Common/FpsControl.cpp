@@ -82,14 +82,14 @@ void FpsControl::DrawFrameRate(void)
 	// フォントサイズ変更
 	SetFontSize(18);
 
-	// スクリーンの右端に来るように設定
-	DrawFormatString(
-		Application::SCREEN_SIZE_X - 90,
-		0,
-		0xffffff,
-		"FPS[%.2f]",
-		frameRate
-	);
+	//// スクリーンの右端に来るように設定
+	//DrawFormatString(
+	//	Application::SCREEN_SIZE_X - 90,
+	//	0,
+	//	0xffffff,
+	//	"FPS[%.2f]",
+	//	frameRate
+	//);
 	// フォントサイズ固定
 	SetFontSize(18);
 }

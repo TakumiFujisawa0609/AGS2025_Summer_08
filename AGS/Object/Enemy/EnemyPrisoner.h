@@ -1,17 +1,17 @@
 #pragma once
 #include "EnemyBase.h"
-class EnemyFemale : public EnemyBase
+class EnemyPrisoner : public EnemyBase
 {
 public:
 
-	static constexpr SpawnPoint femaleWave2SpawnPoints[2] = {
+	static constexpr SpawnPoint prisonerWave1SpawnPoints[2] = {
 	{4670, 0, -483},
-	{2467, 0, -659}
+	{6761, 0, -1254}
 	};
 
 	// コンストラクタ・デストラクタ
-	EnemyFemale(void);
-	~EnemyFemale(void);
+	EnemyPrisoner(void);
+	~EnemyPrisoner(void);
 
 	void ChangeStateDist() override;
 	void ChangeRun(void) override;

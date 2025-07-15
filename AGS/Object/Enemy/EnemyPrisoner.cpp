@@ -2,24 +2,24 @@
 #include "../Player.h"
 #include "../../Common/AnimControl.h"
 #include "../../Manager/SoundManager.h"
-#include "EnemyFemale.h"
+#include "EnemyPrisoner.h"
 
-EnemyFemale::EnemyFemale(void)
+EnemyPrisoner::EnemyPrisoner(void)
 {
 }
 
-EnemyFemale::~EnemyFemale(void)
+EnemyPrisoner::~EnemyPrisoner(void)
 {
 }
 
-void EnemyFemale::ChangeStateDist()
+void EnemyPrisoner::ChangeStateDist()
 {
 	// プレイヤーが死んでいたら常にIDLEにする
-	if (!player_->GetAlive())
-	{
-		ChangeState(STATE::IDLE);
-		return;
-	}
+		if (!player_->GetAlive())
+		{
+			ChangeState(STATE::IDLE);
+			return;
+		}
 
 	// 視認できない上に到達済みならIDLEに戻る
 	if (!isPlayerVisible_ && hasLastSeen_ && dist_ < RUN_DISTANCE)
@@ -34,26 +34,26 @@ void EnemyFemale::ChangeStateDist()
 	{
 		ChangeState(STATE::ATTACK);
 	}
-	else if (dist_ < RUN_DISTANCE)
-	{
-		ChangeState(STATE::RUN);
-	}
-	//else if (dist_ < WALK_DISTANCE)
+	//else if (dist_ < RUN_DISTANCE)
 	//{
-	//	ChangeState(STATE::WALK);
+	//	ChangeState(STATE::RUN);
 	//}
+	else if (dist_ < WALK_DISTANCE)
+	{
+		ChangeState(STATE::WALK);
+	}
 	else if (dist_ > RUN_DISTANCE)
 	{
 		ChangeState(STATE::IDLE);
 	}
 }
 
-void EnemyFemale::ChangeRun(void)
+void EnemyPrisoner::ChangeRun(void)
 {
 	// アニメ再生
 	anim_->Play(ANIM_RUN, 1);
 
-	speed_ = MOVE_RUN_SPEED; // 走り速度
+	speed_ = 9; // 走り速度
 
 	// 再生済みでなければ再生
 	if (!hasPlayedRunSound_)
@@ -63,12 +63,12 @@ void EnemyFemale::ChangeRun(void)
 	}
 }
 
-void EnemyFemale::SetParam()
+void EnemyPrisoner::SetParam()
 {
 	// ダメージを受ける
 	hp_ = 2;
 
-	MV1SetScale(modelId_, { 0.9f, 0.9f, 0.9f });
+	MV1SetScale(modelId_, { 1, 1, 1 });
 
 	// マテリアルをすべてエミッシブに設定
 	int materialNum = MV1GetMaterialNum(modelId_);
