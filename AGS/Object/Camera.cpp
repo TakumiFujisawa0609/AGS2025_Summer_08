@@ -50,6 +50,10 @@ void Camera::Init(Player* player)
 		VGet(followPos.x, followPos.y + HEIGHT, followPos.z),
 		VGet(0, 1, 0)
 	);
+
+
+	//感度
+	sensi_ = 0.00035f;
 }
 
 void Camera::Update(void)
@@ -117,11 +121,10 @@ void Camera::Angle(void)
 	int deltaX = movedPosX_ - centerX_;
 	int deltaY = movedPosY_ - centerY_;
 
-	// 角度更新（感度調整）
-	const float sensitivity = 0.00035f; // センシ調整
+
 	// 更新
-	yaw_ += deltaX * sensitivity;
-	pitch_ += deltaY * sensitivity;
+	yaw_ += deltaX * sensi_;
+	pitch_ += deltaY * sensi_;
 
 	// ピッチ制限（上向きすぎ・下向きすぎを防ぐ）
 	const float limit = DX_PI_F / 2.5f; // 72度ぐらい
@@ -289,6 +292,16 @@ void Camera::SpotLight()
 
 	//SetLightDifColor(GetColorF(1.0f, 1.0f, 0.3f, 1.0f)); // 黄色
 	SetLightPosition(pos_);
+}
+
+float Camera::Getsensi_()
+{
+	return sensi_;
+}
+
+void Camera::Setsensi_(float sensi)
+{
+	sensi_ = sensi;
 }
 
 

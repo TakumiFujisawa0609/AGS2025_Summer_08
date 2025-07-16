@@ -12,6 +12,8 @@ class Grid;
 class PauseExit;
 class ReturnButton;
 class TitleButton;
+class AimUpButton;
+class AimDownButton;
 
 class GameScene : public SceneBase
 {
@@ -65,6 +67,10 @@ private:
 	ReturnButton* returnButton_;
 	//タイトルに戻る
 	TitleButton* titleButton_;
+
+	AimUpButton* upButton_;
+
+	AimDownButton* downButton_;
 
 	//testゲームシーン
 	int testGameSceneImg_;
