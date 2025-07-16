@@ -6,11 +6,15 @@
 #define CLOSE_PATH "Data/Sound/close.wav"
 #define HIT_PATH "Data/Sound/hit.wav"
 #define DIE_PATH "Data/Sound/die.wav"
+#define FDIE_PATH "Data/Sound/FZombieDie.wav"
+#define PDIE_PATH "Data/Sound/PZombieDie.wav"
 #define NOBULLET_PATH "Data/Sound/noBullet.wav"
 #define RELOAD_PATH "Data/Sound/reload.wav"
 #define SHOT_PATH "Data/Sound/shot.wav"
 #define PICKUP_PATH "Data/Sound/pickUp.wav"
 #define VOICE_PATH "Data/Sound/voice.wav"
+#define FVOICE_PATH "Data/Sound/FZombieVoice.wav"
+#define PVOICE_PATH "Data/Sound/PZombieVoice.wav"
 #define CLECK_PATH "Data/Sound/Cleck.wav"
 #define CHOICE_PATH "Data/Sound/choice.wav"
 #define HOVER_PATH "Data/Sound/Hover.mp3"
@@ -42,12 +46,16 @@ public:
 	static constexpr int CLOSE_VOLUME = 170;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int Choice_VOLUME = 160;
 	static constexpr int DIE_VOLUME = 172;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int FDIE_VOLUME = 200;	// éÄñSéûÇÃÉCÉÅÅ[ÉW
+	static constexpr int PDIE_VOLUME = 250;	// éÄñSéûÇÃÉCÉÅÅ[ÉW
 	static constexpr int HIT_VOLUME = 200;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int NOBULLET_VOLUME = 227;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int RELOAD_VOLUME = 202;		// BGMÇÃâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int SHOT_VOLUME = 182;	// ï‡Ç≠âπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int PICKUP_VOLUME = 255;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int VOICE_VOLUME = 220;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int FVOICE_VOLUME = 220;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
+	static constexpr int PVOICE_VOLUME = 220;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int PAUSE_VOLUME = 230;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int CLECK_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
 	static constexpr int HOVER_VOLUME = 130;		// ëñÇÈâπó ÅiÇOÅ`ÇQÇTÇTÅj
@@ -82,10 +90,14 @@ public:
 	void PlayClose();	// ï‡Ç≠
 	void PlayHit();
 	void PlayDie();	// ëñÇÈ
+	void PlayFDie();	// ï‡Ç≠
+	void PlayPDie();	// ï‡Ç≠
 	void PlayNoAmmo();	// ï‡Ç≠
 	void PlayPickUp();	// ëñÇÈ
 	void PlayReLoad();	// ï‡Ç≠
 	void PlayVoice(VECTOR pos);	// ëñÇÈ
+	void PlayFVoice();
+	void PlayPVoice();
 	void PlayShot();	// ï‡Ç≠
 	void PlayCleck();	// ï‡Ç≠
 	void PlayChoice();
@@ -110,10 +122,14 @@ public:
 	void StopOpen();	// ëñÇÈ
 	void StopClose();	// ï‡Ç≠
 	void StopDie();		// ëñÇÈ
+	void StopFDie();	// ï‡Ç≠
+	void StopPDie();	// ï‡Ç≠
 	void StopNoAmmo();	// ï‡Ç≠
 	void StopPickUp();	// ëñÇÈ
 	void StopReLoad();	// ï‡Ç≠
 	void StopVoice();	// ëñÇÈ
+	void StopFVoice();	// ëñÇÈ
+	void StopPVoice();	// ëñÇÈ
 	void StopShot();	// ëñÇÈ
 	void StopHeal();	// ëñÇÈ
 	void StopDamage();
@@ -148,10 +164,14 @@ private:
 	int choiceHundle_;
 	int hitHundle_;
 	int dieHundle_;
+	int fDieHundle_;
+	int pDieHundle_;
 	int noAmmoHundle_;
 	int pickUpHundle_;
 	int reLoadHundle_;
 	int voiceHundle_;
+	int fVoiceHundle_;
+	int pVoiceHundle_;
 	int shotHundle_;
 	int hoverHundle_;
 	int impactHundle_;

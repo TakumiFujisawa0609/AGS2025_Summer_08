@@ -2,6 +2,7 @@
 #include "../Player.h"
 #include "../../Common/AnimControl.h"
 #include "../../Manager/SoundManager.h"
+#include "../../Manager/SceneManager.h"
 #include "EnemyFemale.h"
 
 EnemyFemale::EnemyFemale(void)
@@ -56,11 +57,29 @@ void EnemyFemale::ChangeRun(void)
 	speed_ = MOVE_RUN_SPEED; // 走り速度
 
 	// 再生済みでなければ再生
-	if (!hasPlayedRunSound_)
+	if (!hasFPlayedRunSound_)
 	{
-		SoundManager::GetInstance()->PlayVoice(pos_);
-		hasPlayedRunSound_ = true;
+		SoundManager::GetInstance()->PlayFVoice();
+		hasFPlayedRunSound_ = true;
 	}
+}
+
+void EnemyFemale::ChangeDie()
+{
+	// アニメ再生
+	anim_->Play(ANIM_DIE, 1);
+
+	speed_ = 0.0f;
+
+	// 死亡時の処理
+	SoundManager::GetInstance()->StopFVoice();
+
+
+	// 死亡時の処理
+	SoundManager::GetInstance()->PlayFDie();
+
+	// キルカウント加算
+	SceneManager::GetInstance()->SetKillEnemyCnt(1);
 }
 
 void EnemyFemale::SetParam()

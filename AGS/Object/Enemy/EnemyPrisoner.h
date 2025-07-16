@@ -14,9 +14,11 @@ public:
 	~EnemyPrisoner(void);
 
 	void ChangeStateDist() override;
-	void ChangeRun(void) override;
+	void ChangeWalk(void) override;
+	void ChangeDie() override;
 
 protected:
+	bool hasPPlayedRunSound_ = false; // ‘–‚èºÄ¶‚µ‚½‚©
 
 	// ƒpƒ‰ƒ[ƒ^İ’è
 	void SetParam() override;

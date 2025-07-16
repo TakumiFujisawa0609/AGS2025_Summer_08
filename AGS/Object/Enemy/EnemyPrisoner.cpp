@@ -2,6 +2,7 @@
 #include "../Player.h"
 #include "../../Common/AnimControl.h"
 #include "../../Manager/SoundManager.h"
+#include "../../Manager/SceneManager.h"
 #include "EnemyPrisoner.h"
 
 EnemyPrisoner::EnemyPrisoner(void)
@@ -15,11 +16,11 @@ EnemyPrisoner::~EnemyPrisoner(void)
 void EnemyPrisoner::ChangeStateDist()
 {
 	// プレイヤーが死んでいたら常にIDLEにする
-		if (!player_->GetAlive())
-		{
-			ChangeState(STATE::IDLE);
-			return;
-		}
+	if (!player_->GetAlive())
+	{
+		ChangeState(STATE::IDLE);
+		return;
+	}
 
 	// 視認できない上に到達済みならIDLEに戻る
 	if (!isPlayerVisible_ && hasLastSeen_ && dist_ < RUN_DISTANCE)
@@ -48,19 +49,36 @@ void EnemyPrisoner::ChangeStateDist()
 	}
 }
 
-void EnemyPrisoner::ChangeRun(void)
+void EnemyPrisoner::ChangeWalk(void)
 {
-	// アニメ再生
-	anim_->Play(ANIM_RUN, 1);
+	//アニメ再生
+	anim_->Play(ANIM_WALK, 1);
 
-	speed_ = 9; // 走り速度
+	speed_ = 6.5f;  // 歩き速度
 
 	// 再生済みでなければ再生
-	if (!hasPlayedRunSound_)
+	if (!hasPPlayedRunSound_)
 	{
-		SoundManager::GetInstance()->PlayVoice(pos_);
-		hasPlayedRunSound_ = true;
+		SoundManager::GetInstance()->PlayPVoice();
+		hasPPlayedRunSound_ = true;
 	}
+}
+
+void EnemyPrisoner::ChangeDie()
+{
+	// アニメ再生
+	anim_->Play(ANIM_DIE, 1);
+
+	speed_ = 0.0f;
+
+	// 死亡時の処理
+	SoundManager::GetInstance()->StopPVoice();
+	// 死亡時の処理
+	SoundManager::GetInstance()->PlayPDie();
+
+
+	// キルカウント加算
+	SceneManager::GetInstance()->SetKillEnemyCnt(1);
 }
 
 void EnemyPrisoner::SetParam()

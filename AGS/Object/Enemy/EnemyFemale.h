@@ -15,8 +15,11 @@ public:
 
 	void ChangeStateDist() override;
 	void ChangeRun(void) override;
+	void ChangeDie();
 
 protected:
+
+	bool hasFPlayedRunSound_ = false; // ‘–‚èºÄ¶‚µ‚½‚©
 
 	// ƒpƒ‰ƒ[ƒ^İ’è
 	void SetParam() override;

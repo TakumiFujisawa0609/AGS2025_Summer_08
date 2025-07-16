@@ -44,6 +44,8 @@ public:
 	EnemyNormal(void);
 	~EnemyNormal(void);
 
+	void ChangeWalk(void) override;
+
 protected:
 
 	// ƒpƒ‰ƒ[ƒ^İ’è

@@ -1,4 +1,6 @@
 #include <DxLib.h>
+#include "../../Manager/SoundManager.h"
+#include "../../Common/AnimControl.h"
 #include "EnemyNormal.h"
 
 EnemyNormal::EnemyNormal(void)
@@ -7,6 +9,21 @@ EnemyNormal::EnemyNormal(void)
 
 EnemyNormal::~EnemyNormal(void)
 {
+}
+
+void EnemyNormal::ChangeWalk(void)
+{
+	//ƒAƒjƒÄ¶
+	anim_->Play(ANIM_WALK, 1);
+
+	speed_ = MOVE_WALK_SPEED;  // •à‚«‘¬“x
+
+	// Ä¶Ï‚Ý‚Å‚È‚¯‚ê‚ÎÄ¶
+	if (!hasPlayedRunSound_)
+	{
+		SoundManager::GetInstance()->PlayVoice(pos_);
+		hasPlayedRunSound_ = true;
+	}
 }
 
 void EnemyNormal::SetParam()

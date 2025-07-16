@@ -132,10 +132,10 @@ protected:
 
 	// ó‘Ô‘JˆÚ
 	void ChangeIdle(void);
-	void ChangeWalk(void);
+	virtual void ChangeWalk(void);
 	virtual void ChangeRun(void);
 	void ChangeAttack(void);
-	void ChangeDie(void);
+	virtual void ChangeDie(void);
 	// ó‘Ô•ÊXV
 	void UpdateIdle(void);
 	void UpdateWalk(void);

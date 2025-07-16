@@ -53,6 +53,8 @@ void SoundManager::Init(void)
 	//SetCreate3DSoundFlag(TRUE);
 	//SetEnableXAudioFlag(TRUE);
 	voiceHundle_ = LoadSoundMem(VOICE_PATH);
+	fVoiceHundle_ = LoadSoundMem(FVOICE_PATH);
+	pVoiceHundle_ = LoadSoundMem(PVOICE_PATH);
 	//SetCreate3DSoundFlag(FALSE);
 
 	// BGMì«Ç›çûÇ›
@@ -65,6 +67,8 @@ void SoundManager::Init(void)
 	closeHundle_ = LoadSoundMem(CLOSE_PATH);
 	hitHundle_ = LoadSoundMem(HIT_PATH);
 	dieHundle_ = LoadSoundMem(DIE_PATH);
+	fDieHundle_ = LoadSoundMem(FDIE_PATH);
+	pDieHundle_ = LoadSoundMem(PDIE_PATH);
 	noAmmoHundle_ = LoadSoundMem(NOBULLET_PATH);
 	pickUpHundle_ = LoadSoundMem(PICKUP_PATH);
 	reLoadHundle_ = LoadSoundMem(RELOAD_PATH);
@@ -103,10 +107,14 @@ void SoundManager::Release(void)
 	DeleteSoundMem(closeHundle_);
 	DeleteSoundMem(hitHundle_);
 	DeleteSoundMem(dieHundle_);
+	DeleteSoundMem(fDieHundle_);
+	DeleteSoundMem(pDieHundle_);
 	DeleteSoundMem(noAmmoHundle_);
 	DeleteSoundMem(pickUpHundle_);
 	DeleteSoundMem(reLoadHundle_);
 	DeleteSoundMem(voiceHundle_);
+	DeleteSoundMem(fVoiceHundle_);
+	DeleteSoundMem(pVoiceHundle_);
 	DeleteSoundMem(shotHundle_);
 	DeleteSoundMem(hoverHundle_);
 	DeleteSoundMem(cleckHundle_);
@@ -216,6 +224,30 @@ void SoundManager::PlayDie()
 	ChangeVolumeSoundMem(DIE_VOLUME, dieHundle_);
 }
 
+void SoundManager::PlayFDie()
+{
+	// çƒê∂
+	if (CheckSoundMem(fDieHundle_) == 0)
+	{
+		// çƒê∂
+		PlaySoundMem(fDieHundle_, DX_PLAYTYPE_BACK, true);
+	}
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(FDIE_VOLUME, fDieHundle_);
+}
+
+void SoundManager::PlayPDie()
+{
+	// çƒê∂
+	if (CheckSoundMem(pDieHundle_) == 0)
+	{
+		// çƒê∂
+		PlaySoundMem(pDieHundle_, DX_PLAYTYPE_BACK, true);
+	}
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(PDIE_VOLUME, pDieHundle_);
+}
+
 void SoundManager::PlayNoAmmo()
 {
 	// çƒê∂
@@ -260,6 +292,30 @@ void SoundManager::PlayVoice(VECTOR pos)
 
 	// âπó í≤êÆ
 	ChangeVolumeSoundMem(VOICE_VOLUME, voiceHundle_);
+}
+
+void SoundManager::PlayFVoice()
+{
+	// çƒê∂
+	if (CheckSoundMem(fVoiceHundle_) == 0)
+	{
+		// çƒê∂
+		PlaySoundMem(fVoiceHundle_, DX_PLAYTYPE_BACK, true);
+	}
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(FVOICE_VOLUME, voiceHundle_);
+}
+
+void SoundManager::PlayPVoice()
+{
+	// çƒê∂
+	if (CheckSoundMem(pVoiceHundle_) == 0)
+	{
+		// çƒê∂
+		PlaySoundMem(pVoiceHundle_, DX_PLAYTYPE_BACK, true);
+	}
+	// âπó í≤êÆ
+	ChangeVolumeSoundMem(PVOICE_VOLUME, pVoiceHundle_);
 }
 
 void SoundManager::PlayShot()
@@ -448,6 +504,14 @@ void SoundManager::StopDie()
 {
 }
 
+void SoundManager::StopFDie()
+{
+}
+
+void SoundManager::StopPDie()
+{
+}
+
 void SoundManager::StopNoAmmo()
 {
 }
@@ -463,6 +527,16 @@ void SoundManager::StopReLoad()
 void SoundManager::StopVoice()
 {
 	StopSoundMem(voiceHundle_);
+}
+
+void SoundManager::StopFVoice()
+{
+	StopSoundMem(fVoiceHundle_);
+}
+
+void SoundManager::StopPVoice()
+{
+	StopSoundMem(pVoiceHundle_);
 }
 
 void SoundManager::StopShot()

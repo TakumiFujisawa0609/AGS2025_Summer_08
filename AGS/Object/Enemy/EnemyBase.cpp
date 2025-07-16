@@ -386,13 +386,6 @@ void EnemyBase::ChangeRun(void)
 	anim_->Play(ANIM_RUN, 1);
 
 	speed_ = MOVE_RUN_SPEED; // ‘–‚è‘¬“x
-
-	// Ä¶Ï‚Ý‚Å‚È‚¯‚ê‚ÎÄ¶
-	if (!hasPlayedRunSound_)
-	{
-		SoundManager::GetInstance()->PlayVoice(pos_);
-		hasPlayedRunSound_ = true;
-	}
 }
 
 void EnemyBase::ChangeAttack(void)
