@@ -54,8 +54,8 @@ public:
 	static constexpr int SHOT_VOLUME = 182;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int PICKUP_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int VOICE_VOLUME = 250;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int FVOICE_VOLUME = 220;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int PVOICE_VOLUME = 220;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int FVOICE_VOLUME = 200;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int PVOICE_VOLUME = 200;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int PAUSE_VOLUME = 230;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int CLECK_VOLUME = 130;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int HOVER_VOLUME = 130;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj

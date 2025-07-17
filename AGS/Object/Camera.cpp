@@ -53,7 +53,7 @@ void Camera::Init(Player* player)
 
 
 	//Š´“x
-	sensi_ = 0.00035f;
+	sensi_ = 0.00030f;
 }
 
 void Camera::Update(void)

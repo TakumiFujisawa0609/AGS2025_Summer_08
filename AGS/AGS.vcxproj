@@ -156,6 +156,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Common\Vector2.cpp" />
+    <ClCompile Include="Object\Button\AimDownButton.cpp" />
+    <ClCompile Include="Object\Button\AimUpButton.cpp" />
     <ClCompile Include="Object\Enemy\EnemyPrisoner.cpp" />
     <ClCompile Include="Object\Enemy\EnemyFemale.cpp" />
     <ClCompile Include="Scene\MovieScene.cpp" />
@@ -176,6 +178,8 @@
     <ClCompile Include="Object\Button\TitleButton.cpp" />
     <ClCompile Include="Utility\AsoUtility.cpp" />
     <ClInclude Include="Common\Vector2.h" />
+    <ClInclude Include="Object\Button\AimDownButton.h" />
+    <ClInclude Include="Object\Button\AimUpButton.h" />
     <ClInclude Include="Object\Enemy\EnemyPrisoner.h" />
     <ClInclude Include="Object\Enemy\EnemyFemale.h" />
     <ClInclude Include="Scene\MovieScene.h" />

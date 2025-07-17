@@ -40,6 +40,8 @@
     <ClCompile Include="Scene\MovieScene.cpp" />
     <ClCompile Include="Object\Enemy\EnemyFemale.cpp" />
     <ClCompile Include="Object\Enemy\EnemyPrisoner.cpp" />
+    <ClCompile Include="Object\Button\AimDownButton.cpp" />
+    <ClCompile Include="Object\Button\AimUpButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Vector2.h" />
@@ -82,6 +84,8 @@
     <ClInclude Include="Scene\MovieScene.h" />
     <ClInclude Include="Object\Enemy\EnemyFemale.h" />
     <ClInclude Include="Object\Enemy\EnemyPrisoner.h" />
+    <ClInclude Include="Object\Button\AimDownButton.h" />
+    <ClInclude Include="Object\Button\AimUpButton.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Data\Image\TestGameScene.png" />

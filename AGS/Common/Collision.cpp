@@ -763,7 +763,7 @@ void Collision::CollisionPAndD()
 	VECTOR dCenterPos = VAdd(dPos, VGet(0,200, 0));
 
 	float radiusP = 50.0f;
-	float radiusD = 200.0f;
+	float radiusD = 210.0f;
 
 	// 中心間の距離
 	float dis = VSize(VSub(dCenterPos, pCenterPos));
