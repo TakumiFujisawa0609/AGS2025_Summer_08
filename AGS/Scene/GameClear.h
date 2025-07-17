@@ -33,4 +33,5 @@ private:
 
 	int fontHandle1_;
 	int	fontHandle2_;
+	int	fontHandle3_;
 };

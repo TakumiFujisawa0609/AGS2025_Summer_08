@@ -4,9 +4,16 @@ class EnemyPrisoner : public EnemyBase
 {
 public:
 
-	static constexpr SpawnPoint prisonerWave1SpawnPoints[2] = {
+	static constexpr SpawnPoint prisonerWave1SpawnPoints[4] = {
 	{4670, 0, -483},
-	{6761, 0, -1254}
+	{6761, 0, -1254},
+	{ 8786, 0, 677 },
+	{ 8986, 0, 677 }
+	};
+
+	static constexpr SpawnPoint prisonerWave2SpawnPoints[2] = {
+		{-370.0f, 0, 450.0f},
+		{-370.0f, 0, -327.0f}
 	};
 
 	// コンストラクタ・デストラクタ

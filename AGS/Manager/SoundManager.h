@@ -47,13 +47,13 @@ public:
 	static constexpr int Choice_VOLUME = 160;
 	static constexpr int DIE_VOLUME = 172;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int FDIE_VOLUME = 200;	// €–S‚ÌƒCƒ[ƒW
-	static constexpr int PDIE_VOLUME = 250;	// €–S‚ÌƒCƒ[ƒW
+	static constexpr int PDIE_VOLUME = 240;	// €–S‚ÌƒCƒ[ƒW
 	static constexpr int HIT_VOLUME = 200;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int NOBULLET_VOLUME = 227;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int RELOAD_VOLUME = 202;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int SHOT_VOLUME = 182;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int PICKUP_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int VOICE_VOLUME = 220;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int VOICE_VOLUME = 250;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int FVOICE_VOLUME = 220;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int PVOICE_VOLUME = 220;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
 	static constexpr int PAUSE_VOLUME = 230;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj

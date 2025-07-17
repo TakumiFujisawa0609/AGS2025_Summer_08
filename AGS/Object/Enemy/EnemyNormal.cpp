@@ -1,4 +1,5 @@
 #include <DxLib.h>
+#include "../../Manager/SceneManager.h"
 #include "../../Manager/SoundManager.h"
 #include "../../Common/AnimControl.h"
 #include "EnemyNormal.h"
@@ -24,6 +25,21 @@ void EnemyNormal::ChangeWalk(void)
 		SoundManager::GetInstance()->PlayVoice(pos_);
 		hasPlayedRunSound_ = true;
 	}
+}
+
+void EnemyNormal::ChangeDie()
+{
+	// アニメ再生
+	anim_->Play(ANIM_DIE, 1);
+
+	speed_ = 0.0f;
+
+	// 死亡時の処理
+	SoundManager::GetInstance()->StopVoice();
+	SoundManager::GetInstance()->PlayKill();
+
+	// キルカウント加算
+	SceneManager::GetInstance()->SetKillEnemyCnt(1);
 }
 
 void EnemyNormal::SetParam()

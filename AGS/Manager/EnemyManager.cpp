@@ -48,7 +48,7 @@ void EnemyManager::Init()
 	}
 
 	// 決められた数配置
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		// 敵生成
 		EnemyBase* prisoner = new EnemyPrisoner();
@@ -82,7 +82,7 @@ void EnemyManager::Update(void)
 			float dis = VSize(VSub(enemy->GetPos(), pPos));
 
 			// 死んでいて、かつプレイヤーから離れたら削除
-			if (!enemy->GetAlive() && dis > 1000 && !enemy->CanSeePlayer())
+			if (!enemy->GetAlive() && !enemy->CanSeePlayer())
 			{
 				enemy->Release();
 				delete enemy;
@@ -153,7 +153,7 @@ void EnemyManager::ReSpawn()
 	enemies_.clear();
 
 	// WAVE2用の敵配置
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 12; i++)
 	{
 		EnemyBase* normal = new EnemyNormal();
 		normal->Init(EnemyBase::TYPE::NORMAL,
@@ -165,7 +165,7 @@ void EnemyManager::ReSpawn()
 	}
 
 	// 決められた数配置
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		// 敵生成
 		EnemyBase* female = new EnemyFemale();
@@ -180,6 +180,24 @@ void EnemyManager::ReSpawn()
 
 		// 敵を登録
 		enemies_[EnemyBase::TYPE::FEMALE].emplace_back(female);
+	}
+
+	// 決められた数配置
+	for (int i = 0; i < 2; i++)
+	{
+		// 敵生成
+		EnemyBase* prisoner = new EnemyPrisoner();
+
+		// 初期化
+		prisoner->Init(EnemyBase::TYPE::PRISONER,
+			enemyModelIds_[static_cast<int>(EnemyBase::TYPE::PRISONER)],
+			player_, stage_, camera_);
+
+		// スポーン位置設定
+		prisoner->SetPos(EnemyPrisoner::prisonerWave2SpawnPoints[i].pos);
+
+		// 敵を登録
+		enemies_[EnemyBase::TYPE::PRISONER].emplace_back(prisoner);
 	}
 }
  

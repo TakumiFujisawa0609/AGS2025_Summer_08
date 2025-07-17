@@ -16,13 +16,13 @@ public:
 		{3070, 0, -3560},
 		{6215, 0, 460},
 		{7443, 0, 1222},
-		{9811, 0, 577},
+		{8786, 0, 577},
 		//{6761, 0, -1254},
 		{7659, 0, -986},
 		{8786, 0, -623}
 	};
 
-	static constexpr SpawnPoint wave2SpawnPoints[10] = {
+	static constexpr SpawnPoint wave2SpawnPoints[12] = {
 		//{2467, 0, -659},
 		{3552, 0, 763},
 		//{4670, 0, -483},
@@ -36,6 +36,8 @@ public:
 		{7443, 0, 1222},
 		{9811, 0, 577},
 		{6761, 0, -1254},
+		{-370.0f, 0, 0.0f},
+		{-370.0f, 0, 0},
 		{7659, 0, -986}
 		//{8786, 0, -623}
 	};
@@ -45,6 +47,7 @@ public:
 	~EnemyNormal(void);
 
 	void ChangeWalk(void) override;
+	void ChangeDie(void) override;
 
 protected:
 

@@ -611,6 +611,8 @@ void Collision::CollisionPShotAndS()
 		{
 			shot.isAlive = false;
 		}
+
+		MV1CollResultPolyDimTerminate(hitPoly_PShot_S);
 	}
 }
 
@@ -646,7 +648,6 @@ void Collision::CollisionPAndS()
 	{
 		player_->SetStop(false);	// 停止フラグ解除
 	}
-
 
 #ifdef _DEBUG
 
@@ -761,8 +762,8 @@ void Collision::CollisionPAndD()
 	// ドアの当たり判定の球体の中心点
 	VECTOR dCenterPos = VAdd(dPos, VGet(0,200, 0));
 
-	float radiusP = 45.0f;
-	float radiusD = 165.0f;
+	float radiusP = 50.0f;
+	float radiusD = 200.0f;
 
 	// 中心間の距離
 	float dis = VSize(VSub(dCenterPos, pCenterPos));

@@ -149,12 +149,12 @@ void EnemyBase::Draw()
 	VECTOR cameraForward = camera_->GetForward();
 
 	// “àÏ‚ÅŽ‹–ì“à‚©”»’è
-	const float fovCos = cosf(60.0f * DX_PI_F / 180.0f);
+	const float fovCos = cosf(50.0f * DX_PI_F / 180.0f);
 
 	float dot = VDot(toEnemy, cameraForward);
 
 	// ƒJƒƒ‰‚Ì‘O•ûŒü‚Æ‚ ‚é’ö“xˆê’v‚µ‚Ä‚¢‚éiŽ‹–ì“àj‚È‚ç•`‰æ
-	if (dot > fovCos && dis < 2400 )
+	if (dot > fovCos && dis < 2100)
 	{
 		MV1DrawModel(modelId_);
 	}
@@ -322,6 +322,8 @@ bool EnemyBase::CanSeePlayer()
 
 	// ƒqƒbƒg‚µ‚È‚¯‚ê‚Î ¨ ŽÕ‚é•Ç‚ª‚È‚¢ ¨ Œ©‚¦‚Ä‚¢‚é
 	return result.HitFlag == 0;
+
+	MV1CollResultPolyDimTerminate(reinterpret_cast<MV1_COLL_RESULT_POLY_DIM&>(result));
 }
 
 int EnemyBase::GetModelId() const
@@ -359,8 +361,6 @@ void EnemyBase::Damage(int damage)
 		hp_ = 0; // hp‚ð‚O‚ÉŒÅ’è
 
 		isAlive_ = false; // ¶‘¶ƒtƒ‰ƒO‚ðfalse‚É‚·‚é
-
-		SoundManager::GetInstance()->PlayKill();
 	}
 }
 
@@ -404,10 +404,10 @@ void EnemyBase::ChangeDie(void)
 	speed_ = 0.0f;
 
 	// Ž€–SŽž‚Ìˆ—
-	SoundManager::GetInstance()->StopVoice();
+	//SoundManager::GetInstance()->StopVoice();
 
 	// ƒLƒ‹ƒJƒEƒ“ƒg‰ÁŽZ
-	SceneManager::GetInstance()->SetKillEnemyCnt(1);
+	//SceneManager::GetInstance()->SetKillEnemyCnt(1);
 }
 
 void EnemyBase::UpdateIdle(void)

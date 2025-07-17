@@ -1,3 +1,4 @@
+#include <cstring>
 #include <DxLib.h>
 
 // DxLibのmin/maxマクロを無効化
@@ -38,16 +39,12 @@ void GameClear::Init(void)
 
 	fontHandle1_ = CreateFontToHandle("メイリオ", 60, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 	fontHandle2_ = CreateFontToHandle("メイリオ", 100, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
+	fontHandle3_ = CreateFontToHandle("メイリオ", 165, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 	//fontHandle_ = CreateFontToHandle("MS ゴシック", 50, 1, DX_FONTTYPE_ANTIALIASING_EDGE);
 }
 
 void GameClear::Update(void)
 {
-	if (CheckHitKey(KEY_INPUT_SPACE))
-	{
-		// スペースキーが押下されたら、ゲームシーンへ遷移する
-		SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
-	}
 
 	movieTimer_ += SceneManager::GetInstance()->GetDeltaTime();
 
@@ -72,6 +69,12 @@ void GameClear::Draw(void)
 		{
 			SoundManager::GetInstance()->PlayPause();
 			isResult_ = false;
+		}
+		SetMouseDispFlag(true);
+		if (CheckHitKey(KEY_INPUT_SPACE) || (GetMouseInput() & MOUSE_INPUT_LEFT))
+		{
+			// スペースキーが押下されたら、ゲームシーンへ遷移する
+			SceneManager::GetInstance()->ChangeScene(SceneManager::SCENE_ID::TITLE);
 		}
 		SoundManager::GetInstance()->PlayClear();
 
@@ -113,9 +116,43 @@ void GameClear::Draw(void)
 		int totalScore = std::min(timeScore + killScore + accScore + headScore, 999999);
 
 		// スコア表示
-		DrawFormatStringToHandle(1150, 350, GetColor(255, 255, 255), fontHandle2_, "SCORE");
-		DrawFormatStringToHandle(1130, 560, GetColor(255, 255, 255), fontHandle2_, "%06d", totalScore);
+		DrawFormatStringToHandle(1150, 300, GetColor(255, 255, 255), fontHandle2_, "SCORE");
+		DrawFormatStringToHandle(1130, 500, GetColor(255, 255, 255), fontHandle2_, "%06d", totalScore);
 
+		// ランク表示用の色定義
+		const int COLOR_S = GetColor(255, 215, 0);   // ゴールド
+		const int COLOR_A = GetColor(255, 0, 0);     // レッド
+		const int COLOR_B = GetColor(0, 0, 255);     // 青
+		const int COLOR_C = GetColor(255, 255, 0);   // 黄色
+
+		// ランク判定
+		char rankChar = 'C';           // 初期はC
+		int rankColor = COLOR_C;       // Cの色で初期化
+
+		if (totalScore >= 500000) {
+			rankChar = 'S';
+			rankColor = COLOR_S;
+		}
+		else if (totalScore >= 450000) {
+			rankChar = 'A';
+			rankColor = COLOR_A;
+		}
+		else if (totalScore >= 400000) {
+			rankChar = 'B';
+			rankColor = COLOR_B;
+		}
+		// それ以外はC（黄色）
+
+		// 描画
+		DrawFormatStringToHandle(1265, 650, rankColor, fontHandle3_, "%c", rankChar);
+
+		// ランク文字描画位置
+		int rankX = 1285;
+		int rankY = 650;
+
+		// 下線を描画（フォントの高さ+10程度下）
+		int lineY = rankY + 153;
+		DrawLine(rankX - 25, lineY, rankX + 105, lineY, 0xffffff, 5); // 太さ5の直線
 	}
 }
 
