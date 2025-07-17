@@ -15,6 +15,9 @@
 #include "../Object/Button/ReturnButton.h"
 #include "../Object/Button/PauseExit.h"
 #include "../Object/Button/TitleButton.h"
+#include "../Object/Button/AimUpButton.h"
+#include "../Object/Button/AimDownButton.h"
+
 
 GameScene::GameScene(void)
 {
@@ -62,6 +65,8 @@ void GameScene::Init(void)
 
 	clearTime_ = 0.0f;
 	gameOverTimer_ = 0.0f;
+
+	
 }
 
 // 更新処理
@@ -331,8 +336,16 @@ void GameScene::Pause(void)
 			titleButton_ = new TitleButton(Application::SCREEN_SIZE_X / 2, 650, 500, 200);
 			titleButton_->Init();
 
+			upButton_ = new AimUpButton(1920-320, 400, 100, 50);
+			upButton_->Init();
+
+			downButton_ = new AimDownButton(1920 - 320, 800, 100,50);
+			downButton_->Init();
+
 			isPauseInit = true;
 			return;
+
+			
 		}
 	}
 	// ここでEscapeキー判定を追加する
@@ -354,6 +367,10 @@ void GameScene::Pause(void)
 		pauseExit_->Update();
 		returnButton_->Update();
 		titleButton_->Update();
+		upButton_->Update();
+		downButton_->Update();
+
+		float aim = camera_->Getsensi_();
 
 		if (pauseExit_->GetButtonState() == PauseExit::BUTTON_STATE::DISABLED)
 		{
@@ -367,7 +384,14 @@ void GameScene::Pause(void)
 			SetMouseDispFlag(false);
 			pauseSpanAlive_ = true;
 		}
-
+		if (upButton_->GetButtonState() == AimUpButton::BUTTON_STATE::DISABLED)
+		{
+			aim = aim + 0.00010f;
+		}
+		if (downButton_->GetButtonState() == AimDownButton::BUTTON_STATE::DISABLED)
+		{
+			aim = aim - 0.00010f;
+		}
 
 		if (titleButton_->GetButtonState() == ReturnButton::BUTTON_STATE::DISABLED)
 		{
@@ -375,18 +399,37 @@ void GameScene::Pause(void)
 			SoundManager::GetInstance()->StopDamage();
 		}
 
+		if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_UP))
+		{
+			aim = aim + 0.00010f;
+		}
+
+		if (InputManager::GetInstance().IsTrgDown(KEY_INPUT_DOWN))
+		{
+			aim = aim - 0.00010f;
+		}
+
+		camera_->Setsensi_(aim);
 	}
 
 }
 
 void GameScene::PauseDraw(void)
 {
-	DrawGraph(0, 0, pauseImg_, true);
+	float aim = camera_->Getsensi_();
 
+	DrawGraph(0, 0, pauseImg_, true);
+	SetFontSize(30);
+
+	DrawString(1920 -375, 500,  "aim感度 ", 0x0ffffff);
+	SetFontSize(60);
+	DrawFormatString(1920 -420, 600, 0x0ffffff, "%.5f", aim);
 
 	pauseExit_->Draw();
 	returnButton_->Draw();
 	titleButton_->Draw();
+	upButton_->Draw();
+	downButton_->Draw();
 }
 
 void GameScene::ClearTime()

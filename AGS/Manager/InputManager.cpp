@@ -40,6 +40,7 @@ void InputManager::Init(void)
 	Add(KEY_INPUT_F);
 	Add(KEY_INPUT_ESCAPE);
 
+
 	// アニメーション用に使用するボタン
 	Add(KEY_INPUT_1);
 	Add(KEY_INPUT_2);

@@ -36,6 +36,11 @@ public:
 	void UpdateDeathCamera();
 
 	void SpotLight();
+
+	float Getsensi_();
+	void Setsensi_(float sensi);
+
+
 private:
 	// プレイヤー
 	Player* player_;
@@ -53,6 +58,8 @@ private:
 
 	// 水平・垂直の角度（ラジアン）
 	float yaw_, pitch_;
+	//感度
+	float sensi_;
 
 	// カメラの位置
 	VECTOR pos_;
