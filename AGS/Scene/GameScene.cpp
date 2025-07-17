@@ -336,10 +336,10 @@ void GameScene::Pause(void)
 			titleButton_ = new TitleButton(Application::SCREEN_SIZE_X / 2, 650, 500, 200);
 			titleButton_->Init();
 
-			upButton_ = new AimUpButton(100, 200, 400, 200);
+			upButton_ = new AimUpButton(1920-320, 400, 100, 50);
 			upButton_->Init();
 
-			downButton_ = new AimDownButton(100, 600, 400, 200);
+			downButton_ = new AimDownButton(1920 - 320, 800, 100,50);
 			downButton_->Init();
 
 			isPauseInit = true;
@@ -419,7 +419,11 @@ void GameScene::PauseDraw(void)
 	float aim = camera_->Getsensi_();
 
 	DrawGraph(0, 0, pauseImg_, true);
-	DrawFormatString(0, 20, 0x0ffffff, "aimŠ´“x : %.5f", aim);
+	SetFontSize(30);
+
+	DrawString(1920 -375, 500,  "aimŠ´“x ", 0x0ffffff);
+	SetFontSize(60);
+	DrawFormatString(1920 -420, 600, 0x0ffffff, "%.5f", aim);
 
 	pauseExit_->Draw();
 	returnButton_->Draw();

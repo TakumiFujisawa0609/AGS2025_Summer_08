@@ -120,7 +120,8 @@ void Camera::Angle(void)
 	// 前のマウス位置との差分
 	int deltaX = movedPosX_ - centerX_;
 	int deltaY = movedPosY_ - centerY_;
-
+	
+	
 
 	// 更新
 	yaw_ += deltaX * sensi_;

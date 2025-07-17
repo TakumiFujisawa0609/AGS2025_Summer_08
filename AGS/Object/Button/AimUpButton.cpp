@@ -12,6 +12,10 @@ AimUpButton::AimUpButton(int posX, int posY, int sizeW, int sizsH)
 	sizeH_ = sizsH;
 
 	buttonState_ = BUTTON_STATE::DISABLED;
+
+	prevMouseLeftDown_ = false;    // 前フレームの左クリック状態
+
+    counter_ = 0;
 }
 
 AimUpButton::~AimUpButton()
@@ -27,41 +31,42 @@ void AimUpButton::Init(void)
 
 void AimUpButton::Update(void)
 {
-	//マウス座標
-	int mousePosX = 0;
-	int mousePosY = 0;
+    int mousePosX = 0;
+    int mousePosY = 0;
+    GetMousePoint(&mousePosX, &mousePosY);
 
+    int mouseInput = GetMouseInput();
+    bool isLeftDown = (mouseInput & MOUSE_INPUT_LEFT) != 0;
 
-	// 前フレームの状態を保持する変数を用意（クラスメンバ変数にする必要あり）
-AimUpButton::BUTTON_STATE prevButtonState_ = buttonState_;
+    // マウスがボタンの上にあるかどうか判定
+    bool isMouseOnButton =
+        (posX_ - sizeW_ / 2 < mousePosX) &&
+        (mousePosX < posX_ + sizeW_ / 2) &&
+        (posY_ - sizeH_ / 2 < mousePosY) &&
+        (mousePosY < posY_ + sizeH_ / 2);
 
+    // ボタンの見た目（HOVER など）の更新
+    if (isMouseOnButton)
+    {
+        buttonState_ = HOVER;
+    }
+    else
+    {
+        buttonState_ = DEFOAULT;
+    }
 
-	GetMousePoint(&mousePosX, &mousePosY);
-	//ボタンの状態
-	buttonState_ = DEFOAULT;
-	if (posX_ - (sizeW_ / 2) < mousePosX &&//右判定
-		posX_ - (sizeW_ / 2) + sizeW_ > mousePosX &&//左判定
-		posY_ - (sizeH_ / 2) < mousePosY &&//上判定
-		posY_ - (sizeH_ / 2) + sizeH_ > mousePosY)//下判定
-	{
-		// マウスがボタンの上にある
-		buttonState_ = HOVER;
+    // エッジ検出：前が押されていなくて、今押されている（押した瞬間）
+    if (isMouseOnButton && !prevMouseLeftDown_ && isLeftDown)
+    {
+        // このタイミングで1回だけ増やす
+        counter_++;
+        SoundManager::GetInstance()->PlayPause();
 
-		// 前フレームがHOVER以外 → 今フレームHOVER になったタイミングでだけサウンド再生
-		if (prevButtonState_ != HOVER)
-		{
-			SoundManager::GetInstance()->PlayPause();
-		}
+        buttonState_ = DISABLED; // 見た目を変えるならここ
+    }
 
-		if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
-		{
-			// クリックされている
-			buttonState_ = DISABLED;
-		}
-	}
-
-	// フレームの最後で前回状態を更新
-	prevButtonState_ = buttonState_;
+    // マウスボタンの状態を次のフレームのために記録
+    prevMouseLeftDown_ = isLeftDown;
 }
 
 

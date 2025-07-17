@@ -35,6 +35,10 @@ private:
 
 	int sizeW_; //‰¡•
 	int sizeH_; //c•
+
+	int counter_;
+
+	bool prevMouseLeftDown_;
 };
 
 
