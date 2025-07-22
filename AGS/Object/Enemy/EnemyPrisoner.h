@@ -12,8 +12,8 @@ public:
 	};
 
 	static constexpr SpawnPoint prisonerWave2SpawnPoints[2] = {
-		{-370.0f, 0, 450.0f},
-		{-370.0f, 0, -327.0f}
+		{-1170.0f, 0, 450.0f},
+		{-1170.0f, 0, -327.0f}
 	};
 
 	// コンストラクタ・デストラクタ
