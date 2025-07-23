@@ -442,7 +442,6 @@ void GameScene::ClearTime()
 	if (collision_->GetClear())
 	{
 		SoundManager::GetInstance()->StopWalk();
-		SoundManager::GetInstance()->StopDamage();
 
 		SceneManager::GetInstance()->SetClearTime(clearTime_);
 

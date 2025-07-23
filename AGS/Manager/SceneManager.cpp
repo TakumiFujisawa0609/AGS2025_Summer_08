@@ -296,6 +296,7 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	case SCENE_ID::GAMECLEAR:
 		scene_ = new GameClear();
 		SoundManager::GetInstance()->StopBgm1();
+		SoundManager::GetInstance()->StopDamage();
 		//SoundManager::GetInstance()->StopClear();
 		break;
 	}
