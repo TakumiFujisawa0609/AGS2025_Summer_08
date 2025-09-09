@@ -153,6 +153,9 @@ void GameClear::Draw(void)
 		// 下線を描画（フォントの高さ+10程度下）
 		int lineY = rankY + 153;
 		DrawLine(rankX - 25, lineY, rankX + 105, lineY, 0xffffff, 5); // 太さ5の直線
+
+		// 死んだらスコアリセット
+		
 	}
 }
 
