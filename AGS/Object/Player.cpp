@@ -91,6 +91,8 @@ void Player::Hp(void)
 		SoundManager::GetInstance()->StopWalk();
 		SoundManager::GetInstance()->StopOrder2();
 		SoundManager::GetInstance()->StopOrder3();
+
+		SceneManager::GetInstance()->ResetScore();
 	}
 
 	// HP最大制限

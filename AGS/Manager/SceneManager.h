@@ -68,6 +68,8 @@ public:
 
 	float GetAccuracy();
 
+	void ResetScore();
+
 private:
 
 	// 静的インスタンス

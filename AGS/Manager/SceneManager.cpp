@@ -251,6 +251,17 @@ float SceneManager::GetAccuracy()
 	return accuracy_;
 }
 
+void SceneManager::ResetScore()
+{
+	ShotCnt_ = 0;
+	missShotNumber_ = 0;
+	hitShotNumber_ = 0;
+	headShotCnt_ = 0;
+	enmeyKillNumber_ = 0;
+	accuracy_ = 0.0f;
+	clearTime_ = 0.0f;
+}
+
 void SceneManager::DoChangeScene(SCENE_ID sceneId)
 {
 
@@ -278,6 +289,7 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 		SoundManager::GetInstance()->StopClear();
 		SoundManager::GetInstance()->StopBgm1();
 		SoundManager::GetInstance()->PlayBgm2();
+		SoundManager::GetInstance()->StopDamage();
 		break;
 	case SCENE_ID::T:
 		scene_ = new Tutorial();
