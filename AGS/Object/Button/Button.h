@@ -6,17 +6,14 @@ public:
 	//ボタンの状態
 	enum BUTTON_STATE
 	{
-		DEFOAULT,//通常
-		HOVER,//クリック可能
-		DISABLED,//クリック不可
-
-		MAX,//最大
+		DEFOAULT,	// 通常
+		HOVER,		// クリック可能
+		DISABLED,	// クリック不可
+		MAX,		// 最大
 	};
 
 	Button(int posX,int posY, int sizeW, int sizsH);
 	~Button();
-
-	
 
 	void Init(void);
 	void Update(void);
@@ -25,6 +22,7 @@ public:
 
 	//ボタンの状態を返す
 	BUTTON_STATE GetButtonState(void);
+
 private:
 
 	BUTTON_STATE buttonState_;//ボタン状態

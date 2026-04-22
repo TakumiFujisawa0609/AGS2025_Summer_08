@@ -42,12 +42,14 @@ void Button::Update(void)
 	Button::BUTTON_STATE prevButtonState_ = buttonState_;
 
 
-	//ボタンの状態
+	// ボタンの初期化
 	buttonState_ = DEFOAULT;
-	if (posX_ - (sizeW_ / 2) < mousePosX &&//右判定
-		posX_ - (sizeW_ / 2) + sizeW_ > mousePosX &&//左判定
-		posY_ - (sizeH_ / 2) < mousePosY &&//上判定
-		posY_ - (sizeH_ / 2) + sizeH_ > mousePosY)//下判定
+
+	// マウスがボタンの上にあるか判定
+	if (posX_ - (sizeW_ / 2) < mousePosX &&			 //右判定
+		posX_ - (sizeW_ / 2) + sizeW_ > mousePosX && //左判定
+		posY_ - (sizeH_ / 2) < mousePosY &&		     //上判定
+		posY_ - (sizeH_ / 2) + sizeH_ > mousePosY)   //下判定
 	{
 		// マウスがボタンの上にある
 		buttonState_ = HOVER;
