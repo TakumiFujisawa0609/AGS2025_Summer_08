@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <functional>
+#include <DxLib.h>
 
 class Button
 {
@@ -9,13 +10,13 @@ public:
 	// コンストラクタ
 	Button(int x, int y, int width, int height);
 
-	// コールバック関数の登録
-	void SetOnClick(std::function<void()> callback);
-
 	// 更新処理
 	void Update();
 	// 描画処理
 	void Draw();
+
+	// コールバック関数の登録
+	void SetOnClick(std::function<void()> callback);
 
 private:
 
