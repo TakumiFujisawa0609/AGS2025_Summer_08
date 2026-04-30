@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Common\AnimControl.cpp" />
-    <ClCompile Include="Common\Button.cpp" />
+    <ClCompile Include="Object\Button.cpp" />
     <ClCompile Include="Common\Collision.cpp" />
     <ClCompile Include="Common\Fader.cpp" />
     <ClCompile Include="Common\FpsControl.cpp" />
@@ -169,7 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\AnimControl.h" />
-    <ClInclude Include="Common\Button.h" />
+    <ClInclude Include="Object\Button.h" />
     <ClInclude Include="Common\Collision.h" />
     <ClInclude Include="Common\Fader.h" />
     <ClInclude Include="Common\FpsControl.h" />

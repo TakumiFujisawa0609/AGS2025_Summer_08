@@ -18,7 +18,7 @@
     <ClCompile Include="Common\AnimControl.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Common\Button.cpp">
+    <ClCompile Include="Object\Button.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Common\Collision.cpp">
@@ -125,7 +125,7 @@
     <ClInclude Include="Common\AnimControl.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Common\Button.h">
+    <ClInclude Include="Object\Button.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Common\Collision.h">

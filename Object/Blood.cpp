@@ -4,7 +4,6 @@
 
 void Blood::Init()
 {
-	//imageId_ = LoadGraph("Data/Effect/blood.png", true);
 
     isAlive_ = false;
 }
@@ -45,7 +44,6 @@ void Blood::Update()
 
 void Blood::Draw()
 {
-   // DrawFormatString(500, 200, 0xffffff, "isAliveB:%d", isAlive_);
     if (!isAlive_) return;                                                                    
 
     for (int i = 0; i < PARTICLE_NUM; i++) {
@@ -65,10 +63,6 @@ void Blood::Draw()
 
 void Blood::Release()
 {
-    /*if (imageId_ != -1) {
-        DeleteGraph(imageId_);
-        imageId_ = -1;
-    }*/
 }
 
 void Blood::Emit()
