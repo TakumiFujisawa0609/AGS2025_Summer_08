@@ -131,7 +131,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Common\AnimControl.cpp" />
+    <ClCompile Include="Common\Quaternion.cpp" />
+    <ClCompile Include="Manager\Camera.cpp" />
+    <ClCompile Include="Object\Actor\ActorBase.cpp" />
+    <ClCompile Include="Object\Actor\Blood.cpp" />
+    <ClCompile Include="Object\Actor\Charactor\CharactorBase.cpp" />
+    <ClCompile Include="Object\Actor\Charactor\Enemy\EnemyBase.cpp" />
+    <ClCompile Include="Object\Actor\Charactor\Enemy\EnemyFemale.cpp" />
+    <ClCompile Include="Object\Actor\Charactor\Enemy\EnemyNormal.cpp" />
+    <ClCompile Include="Object\Actor\Charactor\Enemy\EnemyPrisoner.cpp" />
+    <ClCompile Include="Object\Actor\Charactor\Player.cpp" />
+    <ClCompile Include="Object\Actor\Item\ItemBase.cpp" />
+    <ClCompile Include="Object\Actor\Item\ItemBullet.cpp" />
+    <ClCompile Include="Object\Actor\Item\ItemKit.cpp" />
+    <ClCompile Include="Object\Actor\Item\ItemLight.cpp" />
+    <ClCompile Include="Object\Actor\Item\ItemVaccine.cpp" />
+    <ClCompile Include="Object\Actor\PlayerShot.cpp" />
+    <ClCompile Include="Object\Actor\Stage.cpp" />
+    <ClCompile Include="Object\Actor\StageBase.cpp" />
+    <ClCompile Include="Object\Collider\ColliderBase.cpp" />
+    <ClCompile Include="Object\Collider\ColliderCapsule.cpp" />
+    <ClCompile Include="Object\Collider\ColliderLine.cpp" />
+    <ClCompile Include="Object\Collider\ColliderModel.cpp" />
+    <ClCompile Include="Object\Collider\ColliderSphere.cpp" />
+    <ClCompile Include="Object\Common\AnimControl.cpp" />
+    <ClCompile Include="Common\Button.cpp" />
     <ClCompile Include="Object\Button.cpp" />
     <ClCompile Include="Common\Collision.cpp" />
     <ClCompile Include="Common\Fader.cpp" />
@@ -145,8 +169,7 @@
     <ClCompile Include="Manager\main.cpp" />
     <ClCompile Include="Manager\SceneManager.cpp" />
     <ClCompile Include="Manager\SoundManager.cpp" />
-    <ClCompile Include="Object\Blood.cpp" />
-    <ClCompile Include="Object\Camera.cpp" />
+    <ClCompile Include="Object\Common\Transform.cpp" />
     <ClCompile Include="Object\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Object\Enemy\EnemyFemale.cpp" />
     <ClCompile Include="Object\Enemy\EnemyNormal.cpp" />
@@ -156,9 +179,6 @@
     <ClCompile Include="Object\Item\ItemKit.cpp" />
     <ClCompile Include="Object\Item\ItemLight.cpp" />
     <ClCompile Include="Object\Item\ItemVaccine.cpp" />
-    <ClCompile Include="Object\Player.cpp" />
-    <ClCompile Include="Object\PlayerShot.cpp" />
-    <ClCompile Include="Object\StageBase.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\MovieScene.cpp" />
@@ -168,7 +188,31 @@
     <ClCompile Include="Utility\AsoUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\AnimControl.h" />
+    <ClInclude Include="Common\Quaternion.h" />
+    <ClInclude Include="Manager\Camera.h" />
+    <ClInclude Include="Object\Actor\ActorBase.h" />
+    <ClInclude Include="Object\Actor\Blood.h" />
+    <ClInclude Include="Object\Actor\Charactor\CharactorBase.h" />
+    <ClInclude Include="Object\Actor\Charactor\Enemy\EnemyBase.h" />
+    <ClInclude Include="Object\Actor\Charactor\Enemy\EnemyFemale.h" />
+    <ClInclude Include="Object\Actor\Charactor\Enemy\EnemyNormal.h" />
+    <ClInclude Include="Object\Actor\Charactor\Enemy\EnemyPrisoner.h" />
+    <ClInclude Include="Object\Actor\Charactor\Player.h" />
+    <ClInclude Include="Object\Actor\Item\ItemBase.h" />
+    <ClInclude Include="Object\Actor\Item\ItemBullet.h" />
+    <ClInclude Include="Object\Actor\Item\ItemKit.h" />
+    <ClInclude Include="Object\Actor\Item\ItemLight.h" />
+    <ClInclude Include="Object\Actor\Item\ItemVaccine.h" />
+    <ClInclude Include="Object\Actor\PlayerShot.h" />
+    <ClInclude Include="Object\Actor\Stage.h" />
+    <ClInclude Include="Object\Actor\StageBase.h" />
+    <ClInclude Include="Object\Collider\ColliderBase.h" />
+    <ClInclude Include="Object\Collider\ColliderCapsule.h" />
+    <ClInclude Include="Object\Collider\ColliderLine.h" />
+    <ClInclude Include="Object\Collider\ColliderModel.h" />
+    <ClInclude Include="Object\Collider\ColliderSphere.h" />
+    <ClInclude Include="Object\Common\AnimControl.h" />
+    <ClInclude Include="Common\Button.h" />
     <ClInclude Include="Object\Button.h" />
     <ClInclude Include="Common\Collision.h" />
     <ClInclude Include="Common\Fader.h" />
@@ -181,8 +225,7 @@
     <ClInclude Include="Manager\ItemManager.h" />
     <ClInclude Include="Manager\SceneManager.h" />
     <ClInclude Include="Manager\SoundManager.h" />
-    <ClInclude Include="Object\Blood.h" />
-    <ClInclude Include="Object\Camera.h" />
+    <ClInclude Include="Object\Common\Transform.h" />
     <ClInclude Include="Object\Enemy\EnemyBase.h" />
     <ClInclude Include="Object\Enemy\EnemyFemale.h" />
     <ClInclude Include="Object\Enemy\EnemyNormal.h" />
@@ -192,9 +235,6 @@
     <ClInclude Include="Object\Item\ItemKit.h" />
     <ClInclude Include="Object\Item\ItemLight.h" />
     <ClInclude Include="Object\Item\ItemVaccine.h" />
-    <ClInclude Include="Object\Player.h" />
-    <ClInclude Include="Object\PlayerShot.h" />
-    <ClInclude Include="Object\StageBase.h" />
     <ClInclude Include="Scene\GameClear.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\MovieScene.h" />
@@ -204,11 +244,11 @@
     <ClInclude Include="Utility\AsoUtility.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include="AGS2025_Summer_GameDev.slnx" />
+    <Text Include="test.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt" />
+    <None Include=".gitignore" />
+    <None Include="AGS2025_Summer_GameDev.slnx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
