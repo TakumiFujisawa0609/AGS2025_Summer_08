@@ -1,74 +1,64 @@
 #pragma once
 #include <chrono>
 #include <DxLib.h>
-class Fader;
 class SceneBase;
+class Fader;
+class Camera;
 
 class SceneManager
 {
+
 public:
 
-	static constexpr float DEFAULT_
-		= 60.0f;
+	// 背景色
+	static constexpr int BACKGROUND_COLOR_R = 0;
+	static constexpr int BACKGROUND_COLOR_G = 139;
+	static constexpr int BACKGROUND_COLOR_B = 139;
+
+	// ディレクショナルライトの方向
+	static constexpr VECTOR LIGHT_DIRECTION = { 0.3f, -0.7f, 0.8f };
 
 	// シーン管理用
 	enum class SCENE_ID
 	{
 		NONE,
 		TITLE,
-		T,
-		MOVIE,
 		GAME,
-		GAMECLEAR
+		DEBUG,
 	};
-
+	
 	// インスタンスの生成
 	static void CreateInstance(void);
 
 	// インスタンスの取得
-	static SceneManager* GetInstance(void);
+	static SceneManager& GetInstance(void);
 
+	// 初期化
 	void Init(void);
+	
+	// 3Dの初期化
+	void Init3D(void);
+
+	// 更新
 	void Update(void);
+
+	// 描画
 	void Draw(void);
 
 	// リソースの破棄
 	void Destroy(void);
 
-	// シーン遷移命令
+	// 状態遷移
 	void ChangeScene(SCENE_ID nextId);
-	// シーン遷移
-	void DoChangeScene(SCENE_ID sceneId);
 
-	// 3Dの初期設定
-	void Init3D(void);
+	// シーンIDの取得
+	SCENE_ID GetSceneID(void);
 
+	// デルタタイムの取得
 	float GetDeltaTime(void) const;
 
-	void SetGameEnd() { isGameEnd = true; }
-	bool IsGameEnd() { return isGameEnd; }
-
-	void SetClearTime(float clearTime);
-	float GetClearTime();
-
-	void StartFadeIn();
-	// フェード中か
-	bool IsFading() const;
-
-	void MissShot();
-
-	int GetHeadShotNumber();
-	void SetHeadShot(int cnt);
-
-	void SetShotCnt(int cnt);
-	void SetHitShotCnt(int cnt);
-
-	int GetEnemyKillNuber();
-	void SetKillEnemyCnt(int cnt);
-
-	float GetAccuracy();
-
-	void ResetScore();
+	// カメラの取得
+	Camera* GetCamera(void) const;
 
 private:
 
@@ -78,12 +68,14 @@ private:
 	SCENE_ID sceneId_;
 	SCENE_ID waitSceneId_;
 
-	bool isGameEnd;
-
 	// フェード
 	Fader* fader_;
+
 	// 各種シーン
 	SceneBase* scene_;
+
+	// カメラ
+	Camera* camera_;
 
 	// シーン遷移中判定
 	bool isSceneChanging_;
@@ -91,24 +83,24 @@ private:
 	// デルタタイム
 	std::chrono::system_clock::time_point preTime_;
 	float deltaTime_;
-
-	// コンストラクタ
+	
+	// デフォルトコンストラクタをprivateにして、
+	// 外部から生成できない様にする
 	SceneManager(void);
 
-	// デストラクタ
-	~SceneManager(void);
+	// コピーコンストラクタも同様
+	SceneManager(const SceneManager& instance) = default;
 
-	// フェード処理
+	// デストラクタも同様
+	~SceneManager(void) = default;
+
+	// デルタタイムをリセットする
+	void ResetDeltaTime(void);
+
+	// シーン遷移
+	void DoChangeScene(SCENE_ID sceneId);
+
+	// フェード
 	void Fade(void);
 
-	float clearTime_;
-
-	int headShotCnt_;
-	int ShotCnt_;
-	int hitShotNumber_;
-	int missShotNumber_;
-
-	int enmeyKillNumber_;
-
-	float accuracy_;
 };
