@@ -1,6 +1,13 @@
+#include "../Manager/ResourceManager.h"
+#include "../Manager/SceneManager.h"
+#include "../Manager/SoundManager.h"
 #include "SceneBase.h"
 
 SceneBase::SceneBase(void)
+	:
+	resMng_(ResourceManager::GetInstance()),
+	sceneMng_((SceneManager::GetInstance()),
+	soundMng_(SoundManager::GetInstance())
 {
 }
 

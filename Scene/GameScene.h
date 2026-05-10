@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneBase.h"
+#include "../Common/Vector2.h"
 class StageBase;
 class Camera;
 class Player;
@@ -9,11 +10,6 @@ class EnemyManager;
 class ItemManager;
 class Collision;
 class Grid;
-class PauseExit;
-class ReturnButton;
-class TitleButton;
-class AimUpButton;
-class AimDownButton;
 
 class GameScene : public SceneBase
 {
@@ -61,16 +57,6 @@ private:
 	Collision* collision_;
 	// グリッド
 	Grid* grid_;
-	//ゲーム終了ボタン
-	PauseExit* pauseExit_;
-	//ゲームにも戻る
-	ReturnButton* returnButton_;
-	//タイトルに戻る
-	TitleButton* titleButton_;
-
-	AimUpButton* upButton_;
-
-	AimDownButton* downButton_;
 
 	//testゲームシーン
 	int testGameSceneImg_;
@@ -81,8 +67,7 @@ private:
 
 	
 	//マウス位置
-	int mousePos_X;
-	int mousePos_Y;
+	Vector2 mousePos_;
 
 
 	int pauseSpan_;

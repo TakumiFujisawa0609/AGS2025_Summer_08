@@ -8,7 +8,7 @@ class Button
 public:
 
 	// コンストラクタ
-	Button(int x, int y, int width, int height);
+	Button(int x, int y, int normalImg, int hoverImg, int pressImg);
 
 	// 更新処理
 	void Update();
@@ -20,13 +20,18 @@ public:
 
 private:
 
-	// ボタンサイズ
+	// ボタンの位置とサイズ
 	int x, y, width, height;
 
+	// 画像ハンドル
+	int normalImg_;	// 通常時
+	int hoverImg_;  // ホバー時
+	int pressImg_; // クリック時
+
 	// 状態管理
-	bool isHovered;
-	bool isPressed;
-	bool prevMouseState; // 前フレームのクリック状態
+	bool isHovered_;
+	bool isPressed_;
+	bool prevMouseState_; // 前フレームのクリック状態
 
 	// コールバック関数
 	std::function<void()> onClick;

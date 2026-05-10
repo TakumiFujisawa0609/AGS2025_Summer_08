@@ -38,36 +38,37 @@ class SoundManager
 {
 public:
 
-	static constexpr int BGM1_VOLUME = 153;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int BGM2_VOLUME = 250;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int BGM3_VOLUME = 220;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int WALK_VOLUME = 200;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int OPEN_VOLUME = 176;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int CLOSE_VOLUME = 170;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int Choice_VOLUME = 160;
-	static constexpr int DIE_VOLUME = 172;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int FDIE_VOLUME = 200;	// €–S‚ÌƒCƒ[ƒW
-	static constexpr int PDIE_VOLUME = 240;	// €–S‚ÌƒCƒ[ƒW
-	static constexpr int HIT_VOLUME = 200;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int NOBULLET_VOLUME = 227;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int RELOAD_VOLUME = 202;		// BGM‚Ì‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int SHOT_VOLUME = 182;	// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int PICKUP_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int VOICE_VOLUME = 250;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int FVOICE_VOLUME = 200;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int PVOICE_VOLUME = 200;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int PAUSE_VOLUME = 230;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int CLECK_VOLUME = 130;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int HOVER_VOLUME = 130;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int HEAL_VOLUME = 247;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int HEALVOICE_VOLUME = 255;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int IMPACT_VOLUME = 252;		// ‘–‚é‰¹—Êi‚O`‚Q‚T‚Tj
-	static constexpr int COUNT_VOLUME = 100;
-	static constexpr int DAMEGE_VOLUME = 200;
-	static constexpr int KILL_VOLUME = 210;
-	static constexpr int ORDER_VOLUME = 90;
-	static constexpr int CLEAR_VOLUME = 200;
-	static constexpr int PARPER_VOLUME = 220;
+	// ‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int BGM1_VOLUME = 153;		// BGM1
+	static constexpr int BGM2_VOLUME = 250;		// BGM2
+	static constexpr int BGM3_VOLUME = 220;		// BGM3
+	static constexpr int WALK_VOLUME = 200;		// •às
+	static constexpr int OPEN_VOLUME = 176;		// ŠJ‚­
+	static constexpr int CLOSE_VOLUME = 170;	// ‘I‘ğ 
+	static constexpr int Choice_VOLUME = 160;   // ‘I‘ğ
+	static constexpr int DIE_VOLUME = 172;		// ƒ€ƒLƒ€ƒLƒ]ƒ“ƒr€–S
+	static constexpr int FDIE_VOLUME = 200;		// —ƒ]ƒ“ƒr€–S
+	static constexpr int PDIE_VOLUME = 240;		// úlƒ]ƒ“ƒr€–S
+	static constexpr int HIT_VOLUME = 200;		// •à‚­‰¹—Êi‚O`‚Q‚T‚Tj
+	static constexpr int NOBULLET_VOLUME = 227;	// ’eØ‚ê
+	static constexpr int RELOAD_VOLUME = 202;	// ƒŠƒ[ƒh
+	static constexpr int SHOT_VOLUME = 182;		// ËŒ‚
+	static constexpr int PICKUP_VOLUME = 255;	// E‚¤
+	static constexpr int VOICE_VOLUME = 250;	// ƒ€ƒLƒ€ƒLƒ]ƒ“ƒr‚Ìº
+	static constexpr int FVOICE_VOLUME = 200;	// —ƒ]ƒ“ƒr‚Ìº
+	static constexpr int PVOICE_VOLUME = 200;	// úlƒ]ƒ“ƒr‚Ìº
+	static constexpr int PAUSE_VOLUME = 230;	// ƒ|[ƒY
+	static constexpr int CLECK_VOLUME = 130;	// ƒ|[ƒY‘I‘ğ
+	static constexpr int HOVER_VOLUME = 130;	// ƒ|[ƒYƒ{ƒ^ƒ“‚Ìƒzƒo[
+	static constexpr int HEAL_VOLUME = 247;		// ‰ñ•œ
+	static constexpr int HEALVOICE_VOLUME = 255;// ‰ñ•œ‚Ìº
+	static constexpr int IMPACT_VOLUME = 252;	// €–S‰‰o
+	static constexpr int COUNT_VOLUME = 100;	// ƒXƒRƒA•\¦
+	static constexpr int DAMEGE_VOLUME = 200;	// ”íƒ_ƒ[ƒW
+	static constexpr int KILL_VOLUME = 210;		// €–SŒø‰Ê
+	static constexpr int ORDER_VOLUME = 90;		// ”C–±ƒ{ƒCƒX
+	static constexpr int CLEAR_VOLUME = 200;	// ƒNƒŠƒABGM
+	static constexpr int PARPER_VOLUME = 220;   // †‚ğŒ‚é
 
 
 	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬

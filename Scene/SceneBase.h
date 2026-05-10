@@ -1,4 +1,7 @@
 #pragma once
+class ResourceManager;
+class SceneManager;
+class SoundManager;
 
 class SceneBase
 {
@@ -23,8 +26,15 @@ public:
 	// 解放処理
 	virtual void Release(void);
 
-private:
+protected:
 
-	
+	// リソース管理
+	ResourceManager& resMng_;
+
+	// シーン管理
+	SceneManager& sceneMng_;
+
+	// サウンド管理
+	SoundManager& soundMng_;
 
 };

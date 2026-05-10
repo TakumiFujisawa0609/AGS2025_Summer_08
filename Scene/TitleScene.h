@@ -1,9 +1,8 @@
 #pragma once
+#include <vector>
+#include "../Common/Vector2.h"
 #include "SceneBase.h"
-class Camera;
 class Button;
-class ExitButton;
-
 
 class TitleScene : public SceneBase
 {
@@ -23,18 +22,17 @@ public:
 
 private:
 
-	int mousePos_X;
-	int mousePos_Y;
+	Vector2 mousePos_;
 
 	// testタイトル画像
 	int testTitleImg_;
 
-	int gameText_;
-	int tutorialText_;
-	int frameImage_;
+	// ボタン画像
+	int normalGameStartImg_;
+	int normalExitImg_;
+	int hoverGameStartImg_;
+	int hoverExitImg_;
 
-	// スタート画像
-	Camera* camera_;
-	Button* button_;
-	ExitButton* exitButton_;
+	// ボタンの配列
+	std::vector<Button*> buttons_;
 };

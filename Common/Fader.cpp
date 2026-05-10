@@ -1,25 +1,42 @@
 #include <DxLib.h>
-#include "../Manager/Application.h"
+#include "../Application.h"
 #include "Fader.h"
 
 Fader::Fader(void)
+	:
+	state_(STATE::NONE),
+	alpha_(0.0f),
+	isPreEnd_(true),
+	isEnd_(true)
 {
-	state_ = STATE::NONE;
-	alpha_ = 0.0f;
-	isPreEnd_ = true;
-	isEnd_ = true;
 }
 
 Fader::~Fader(void)
 {
 }
 
+Fader::STATE Fader::GetState(void) const
+{
+	return state_;
+}
+
+bool Fader::IsEnd(void) const
+{
+	return isEnd_;
+}
+
+void Fader::SetFade(STATE state)
+{
+	state_ = state;
+	if (state_ != STATE::NONE)
+	{
+		isPreEnd_ = false;
+		isEnd_ = false;
+	}
+}
+
 void Fader::Init(void)
 {
-	state_ = STATE::NONE;
-	alpha_ = 0.0f;
-	isPreEnd_ = true;
-	isEnd_ = true;
 }
 
 void Fader::Update(void)
@@ -27,20 +44,11 @@ void Fader::Update(void)
 
 	if (isEnd_)
 	{
-		// フェード処理が終了していたら何もしない
-		return;
-	}
-
-	if (isPreEnd_)
-	{
-		// 1フレーム後(Draw後)に終了とする
-		isEnd_ = true;
 		return;
 	}
 
 	switch (state_)
 	{
-
 	case STATE::NONE:
 		return;
 
@@ -50,8 +58,14 @@ void Fader::Update(void)
 		{
 			// フェード終了
 			alpha_ = 255;
+			if (isPreEnd_)
+			{
+				// 1フレーム後(Draw後)に終了とする
+				isEnd_ = true;
+			}
 			isPreEnd_ = true;
 		}
+
 		break;
 
 	case STATE::FADE_IN:
@@ -60,13 +74,17 @@ void Fader::Update(void)
 		{
 			// フェード終了
 			alpha_ = 0;
+			if (isPreEnd_)
+			{
+				// 1フレーム後(Draw後)に終了とする
+				isEnd_ = true;
+			}
 			isPreEnd_ = true;
 		}
 		break;
 
 	default:
 		return;
-
 	}
 
 }
@@ -80,39 +98,14 @@ void Fader::Draw(void)
 		return;
 	case STATE::FADE_OUT:
 	case STATE::FADE_IN:
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(alpha_));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)alpha_);
 		DrawBox(
 			0, 0,
 			Application::SCREEN_SIZE_X,
 			Application::SCREEN_SIZE_Y,
-			color_, true);
+			0x000000, true);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		break;
 	}
 
-}
-
-//状態取得
-Fader::STATE Fader::GetState(void)
-{
-	return state_;
-}
-// フェード処理終了しているか否か
-bool Fader::IsEnd(void)
-{
-	return isEnd_;
-}
-//指定フェードを開始する
-void Fader::SetFade(STATE state, unsigned int color)
-{
-	state_ = state;
-
-	// 色を設定します
-	color_ = color;
-
-	if (state_ != STATE::NONE)
-	{
-		isPreEnd_ = false;
-		isEnd_ = false;
-	}
 }

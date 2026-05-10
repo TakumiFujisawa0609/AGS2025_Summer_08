@@ -1,5 +1,4 @@
 #include <DxLib.h>
-#include <EffekseerForDXLib.h>
 #include "../Utility/AsoUtility.h"
 #include "../Manager/InputManager.h"
 #include "../Object/Common/Transform.h"
@@ -59,9 +58,6 @@ void Camera::SetBeforeDraw(void)
 		targetPos_, 
 		transform_.quaRot.GetUp()
 	);
-
-	// DXライブラリのカメラとEffekseerのカメラを同期する。
-	Effekseer_Sync3DSetting();
 
 }
 

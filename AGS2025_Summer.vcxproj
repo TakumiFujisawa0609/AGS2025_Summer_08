@@ -19,36 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>18.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{5a662dda-d014-475d-b3d4-311de80e8140}</ProjectGuid>
-    <RootNamespace>AGS2025SummerGameDev</RootNamespace>
+    <ProjectGuid>{5ce4aa18-90c5-4274-98ea-1f8d8970a49c}</ProjectGuid>
+    <RootNamespace>AGS2025Summer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -76,7 +76,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -91,10 +90,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -104,7 +104,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(DXLIB_DIR)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -121,18 +120,41 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(DXLIB_DIR)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(DXLIB_DIR)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Collider\ColliderBase.cpp" />
+    <ClCompile Include="Collider\ColliderCapsule.cpp" />
+    <ClCompile Include="Collider\ColliderLine.cpp" />
+    <ClCompile Include="Collider\ColliderModel.cpp" />
+    <ClCompile Include="Collider\ColliderSphere.cpp" />
+    <ClCompile Include="Common\Button.cpp" />
+    <ClCompile Include="Common\Collision.cpp" />
+    <ClCompile Include="Common\Fader.cpp" />
+    <ClCompile Include="Common\FpsControl.cpp" />
+    <ClCompile Include="Common\Grid.cpp" />
     <ClCompile Include="Common\Quaternion.cpp" />
+    <ClCompile Include="Common\Vector2.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manager\Application.cpp" />
     <ClCompile Include="Manager\Camera.cpp" />
+    <ClCompile Include="Manager\EnemyManager.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
+    <ClCompile Include="Manager\ItemManager.cpp" />
+    <ClCompile Include="Manager\main.cpp" />
+    <ClCompile Include="Manager\Resource.cpp" />
+    <ClCompile Include="Manager\ResourceManager.cpp" />
+    <ClCompile Include="Manager\SceneManager.cpp" />
+    <ClCompile Include="Manager\SoundManager.cpp" />
     <ClCompile Include="Object\Actor\ActorBase.cpp" />
     <ClCompile Include="Object\Actor\Blood.cpp" />
     <ClCompile Include="Object\Actor\Charactor\CharactorBase.cpp" />
@@ -155,30 +177,7 @@
     <ClCompile Include="Object\Collider\ColliderModel.cpp" />
     <ClCompile Include="Object\Collider\ColliderSphere.cpp" />
     <ClCompile Include="Object\Common\AnimControl.cpp" />
-    <ClCompile Include="Common\Button.cpp" />
-    <ClCompile Include="Object\Button.cpp" />
-    <ClCompile Include="Common\Collision.cpp" />
-    <ClCompile Include="Common\Fader.cpp" />
-    <ClCompile Include="Common\FpsControl.cpp" />
-    <ClCompile Include="Common\Grid.cpp" />
-    <ClCompile Include="Common\Vector2.cpp" />
-    <ClCompile Include="Manager\Application.cpp" />
-    <ClCompile Include="Manager\EnemyManager.cpp" />
-    <ClCompile Include="Manager\InputManager.cpp" />
-    <ClCompile Include="Manager\ItemManager.cpp" />
-    <ClCompile Include="Manager\main.cpp" />
-    <ClCompile Include="Manager\SceneManager.cpp" />
-    <ClCompile Include="Manager\SoundManager.cpp" />
     <ClCompile Include="Object\Common\Transform.cpp" />
-    <ClCompile Include="Object\Enemy\EnemyBase.cpp" />
-    <ClCompile Include="Object\Enemy\EnemyFemale.cpp" />
-    <ClCompile Include="Object\Enemy\EnemyNormal.cpp" />
-    <ClCompile Include="Object\Enemy\EnemyPrisoner.cpp" />
-    <ClCompile Include="Object\Item\ItemBase.cpp" />
-    <ClCompile Include="Object\Item\ItemBullet.cpp" />
-    <ClCompile Include="Object\Item\ItemKit.cpp" />
-    <ClCompile Include="Object\Item\ItemLight.cpp" />
-    <ClCompile Include="Object\Item\ItemVaccine.cpp" />
     <ClCompile Include="Scene\GameClear.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\MovieScene.cpp" />
@@ -188,8 +187,28 @@
     <ClCompile Include="Utility\AsoUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Collider\ColliderBase.h" />
+    <ClInclude Include="Collider\ColliderCapsule.h" />
+    <ClInclude Include="Collider\ColliderLine.h" />
+    <ClInclude Include="Collider\ColliderModel.h" />
+    <ClInclude Include="Collider\ColliderSphere.h" />
+    <ClInclude Include="Common\Button.h" />
+    <ClInclude Include="Common\Collision.h" />
+    <ClInclude Include="Common\Fader.h" />
+    <ClInclude Include="Common\FpsControl.h" />
+    <ClInclude Include="Common\Grid.h" />
     <ClInclude Include="Common\Quaternion.h" />
+    <ClInclude Include="Common\Vector2.h" />
+    <ClInclude Include="Manager\Application.h" />
     <ClInclude Include="Manager\Camera.h" />
+    <ClInclude Include="Manager\EnemyManager.h" />
+    <ClInclude Include="Manager\InputManager.h" />
+    <ClInclude Include="Manager\ItemManager.h" />
+    <ClInclude Include="Manager\Resource.h" />
+    <ClInclude Include="Manager\ResourceManager.h" />
+    <ClInclude Include="Manager\SceneManager.h" />
+    <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Object\Actor\ActorBase.h" />
     <ClInclude Include="Object\Actor\Blood.h" />
     <ClInclude Include="Object\Actor\Charactor\CharactorBase.h" />
@@ -212,29 +231,7 @@
     <ClInclude Include="Object\Collider\ColliderModel.h" />
     <ClInclude Include="Object\Collider\ColliderSphere.h" />
     <ClInclude Include="Object\Common\AnimControl.h" />
-    <ClInclude Include="Common\Button.h" />
-    <ClInclude Include="Object\Button.h" />
-    <ClInclude Include="Common\Collision.h" />
-    <ClInclude Include="Common\Fader.h" />
-    <ClInclude Include="Common\FpsControl.h" />
-    <ClInclude Include="Common\Grid.h" />
-    <ClInclude Include="Common\Vector2.h" />
-    <ClInclude Include="Manager\Application.h" />
-    <ClInclude Include="Manager\EnemyManager.h" />
-    <ClInclude Include="Manager\InputManager.h" />
-    <ClInclude Include="Manager\ItemManager.h" />
-    <ClInclude Include="Manager\SceneManager.h" />
-    <ClInclude Include="Manager\SoundManager.h" />
     <ClInclude Include="Object\Common\Transform.h" />
-    <ClInclude Include="Object\Enemy\EnemyBase.h" />
-    <ClInclude Include="Object\Enemy\EnemyFemale.h" />
-    <ClInclude Include="Object\Enemy\EnemyNormal.h" />
-    <ClInclude Include="Object\Enemy\EnemyPrisoner.h" />
-    <ClInclude Include="Object\Item\ItemBase.h" />
-    <ClInclude Include="Object\Item\ItemBullet.h" />
-    <ClInclude Include="Object\Item\ItemKit.h" />
-    <ClInclude Include="Object\Item\ItemLight.h" />
-    <ClInclude Include="Object\Item\ItemVaccine.h" />
     <ClInclude Include="Scene\GameClear.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\MovieScene.h" />
@@ -244,11 +241,7 @@
     <ClInclude Include="Utility\AsoUtility.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="test.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="AGS2025_Summer_GameDev.slnx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,9 @@
 #include <chrono>
 #include <DxLib.h>
-#include <EffekseerForDXLib.h>
 #include "../Common/Fader.h"
 #include "../Scene/TitleScene.h"
 #include "../Scene/GameScene.h"
-#include "../Scene/DebugScene.h"
+#include "../Scene/GameClear.h"
 #include "Camera.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
@@ -73,15 +72,6 @@ void SceneManager::Init3D(void)
 
 	// ライトの設定
 	SetUseLighting(true);
-	
-	// ライトの設定
-	ChangeLightTypeDir({ 0.3f, -0.7f, 0.8f });
-
-	// フォグ設定
-	SetFogEnable(true);
-	SetFogColor(5, 5, 5);
-	SetFogStartEnd(10000.0f, 20000.0f);
-
 }
 
 void SceneManager::Update(void)
@@ -129,17 +119,11 @@ void SceneManager::Draw(void)
 	// カメラ設定
 	camera_->SetBeforeDraw();
 
-	// Effekseerにより再生中のエフェクトを更新する。
-	UpdateEffekseer3D();
-
 	// 各シーンの描画処理
 	scene_->Draw();
 
 	// カメラ描画
 	camera_->DrawDebug();
-
-	// Effekseerにより再生中のエフェクトを描画する。
-	DrawEffekseer3D();
 	
 	// 暗転・明転
 	fader_->Draw();
@@ -243,8 +227,8 @@ void SceneManager::DoChangeScene(SCENE_ID sceneId)
 	case SCENE_ID::GAME:
 		scene_ = new GameScene();
 		break;
-	case SCENE_ID::DEBUG:
-		scene_ = new DebugScene();
+	case SCENE_ID::CLEAR:
+		scene_ = new GameClear();
 		break;
 	}
 

@@ -58,9 +58,6 @@ void Collision::Init(Player* player, StageBase* stage, EnemyManager* enemy,
 	sImage_ = LoadGraph("Data/Image/GetShot.png");
 	kImage_ = LoadGraph("Data/Image/GeyKit.png");
 
-	damegeHandle_ = LoadGraph("Data/Image/Effect/Damege.png");
-	defoHandle_ = LoadGraph("Data/Image/Effect/Damege_01.png");
-
 	order02Img_ = LoadGraph("Data/Image/order/order02.png");
 	order03Img_ = LoadGraph("Data/Image/order/order03.png");
 
