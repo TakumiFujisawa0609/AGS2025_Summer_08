@@ -131,7 +131,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp" />
     <ClCompile Include="Collider\ColliderBase.cpp" />
     <ClCompile Include="Collider\ColliderCapsule.cpp" />
     <ClCompile Include="Collider\ColliderLine.cpp" />
@@ -144,7 +143,6 @@
     <ClCompile Include="Common\Grid.cpp" />
     <ClCompile Include="Common\Quaternion.cpp" />
     <ClCompile Include="Common\Vector2.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager\Application.cpp" />
     <ClCompile Include="Manager\Camera.cpp" />
     <ClCompile Include="Manager\EnemyManager.cpp" />
@@ -244,7 +242,6 @@
     <ClCompile Include="Utility\AsoUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
     <ClInclude Include="Collider\ColliderBase.h" />
     <ClInclude Include="Collider\ColliderCapsule.h" />
     <ClInclude Include="Collider\ColliderLine.h" />
