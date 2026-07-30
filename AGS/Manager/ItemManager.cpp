@@ -191,18 +191,33 @@ void ItemManager::Draw(void)
 	//Šl“¾ƒƒNƒ`ƒ“‚ª0ŒÂ
 	if (pickedVaccineNum_ == 0)
 	{
-		DrawExtendGraph(0, 100, 400, 200, task_01, true);
-	}
-	//Šl“¾ƒƒNƒ`ƒ“‚ª‚PŒÂ
-	if (pickedVaccineNum_ == 1)
-	{
-		if (task01_Alive == true)
-		{
-			task01_Alive = false;
-			// SoundManager::GetInstance()->PlayCount();
+		int fontHandle = CreateFontToHandle(NULL, 36, 3, DX_FONTTYPE_ANTIALIASING);
+		const char* text = "ƒƒNƒ`ƒ“‚Ì‰ñû  0 / 0";
+		int textWidth = GetDrawStringWidthToHandle(text, strlen(text), fontHandle);
+		int textHeight = GetFontSizeToHandle(fontHandle);
 
-		}
-		DrawExtendGraph(0, 100, 400, 200, task_02, true);
+		const int padX = 20;
+		const int padY = 16;
+		const int left = 0;
+		const int top = 80;
+		int right = left + textWidth + padX * 2;
+		int bottom = top + textHeight + padY * 2;
+
+		// ”wŒi
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
+		DrawBox(left, top, right, bottom, GetColor(20, 20, 20), TRUE);
+
+		// ˜gü
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 190);
+		DrawBox(left, top, right, bottom, GetColor(220, 220, 220), FALSE);
+
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+		// ‰e
+		DrawStringToHandle(left + padX + 2, top + padY + 2, text, GetColor(0, 0, 0), fontHandle);
+		// –{•¶
+		DrawStringToHandle(left + padX, top + padY, text, GetColor(255, 255, 255), fontHandle);
+		DeleteFontToHandle(fontHandle);
 	}
 
 	//Šl“¾ƒƒNƒ`ƒ“‚ª2ŒÂ

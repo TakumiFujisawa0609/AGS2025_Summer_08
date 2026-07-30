@@ -283,7 +283,7 @@ void Camera::SpotLight()
 	ChangeLightTypeSpot(			//							   /
 		pos_,						//							  /
 		forward_,					//							 / )
-		40.0f * DX_PI_F / 180.0f,  // ライトの外周　		  　/   ) ←この角度
+		40.0f * DX_PI_F / 180.0f,   // ライトの外周　		  　/   ) ←この角度
 		31.5f * DX_PI_F / 180.0f,	// 光の減衰が始まる角度		＼ )
 		4000.0f,					//							  ＼				
 		0.0f,						//							    ＼
