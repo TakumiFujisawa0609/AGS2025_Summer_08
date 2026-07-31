@@ -191,61 +191,7 @@ void ItemManager::Draw(void)
 	//獲得ワクチンが0個
 	if (pickedVaccineNum_ == 0)
 	{
-		int fontHandle = CreateFontToHandle(NULL, 36, 3, DX_FONTTYPE_ANTIALIASING);
-		const char* text = "ワクチンの回収  0 / 0";
-		int textWidth = GetDrawStringWidthToHandle(text, strlen(text), fontHandle);
-		int textHeight = GetFontSizeToHandle(fontHandle);
-
-		const int padX = 20;
-		const int padY = 16;
-		const int left = 0;
-		const int top = 80;
-		int right = left + textWidth + padX * 2;
-		int bottom = top + textHeight + padY * 2;
-
-		// 背景
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 180);
-		DrawBox(left, top, right, bottom, GetColor(20, 20, 20), TRUE);
-
-		// 枠線
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 190);
-		DrawBox(left, top, right, bottom, GetColor(220, 220, 220), FALSE);
-
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-
-		// 影
-		DrawStringToHandle(left + padX + 2, top + padY + 2, text, GetColor(0, 0, 0), fontHandle);
-		// 本文
-		DrawStringToHandle(left + padX, top + padY, text, GetColor(255, 255, 255), fontHandle);
-		DeleteFontToHandle(fontHandle);
-	}
-
-	//獲得ワクチンが2個
-	if (pickedVaccineNum_ == 2)
-	{
-		
-		if (task02_Alive == true)
-		{
-			//SoundManager::GetInstance()->PlayCount();
-			task02_Alive = false;
-		}
-		DrawExtendGraph(0, 100, 400, 200, task_03, true);
-	}
-
-	if (lasttask_Alive == false)
-	{
-		//獲得ワクチンが3個
-		if (pickedVaccineNum_ == 3)
-		{
-			if (task03_Alive == true)
-			{
-				//SoundManager::GetInstance()->PlayCount();
-				task03_Alive = false;
-			}
-			
-			DrawExtendGraph(0, 100, 400, 200, task_04, true);
-			count_span++;
-		}
+		DrawExtendGraph(0, 100, 400, 200, task_01, true);
 	}
 	//最後のタスク表示するまでのカウント
 	if (count_span >= LAST_COUNT_SPAN)
